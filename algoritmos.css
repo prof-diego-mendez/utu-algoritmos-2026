@@ -121,6 +121,26 @@ body {
   white-space: nowrap;
 }
 
+.nav-tab-link {
+  padding: 6px 16px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-tab-link:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
 .nav-tab:hover {
   color: var(--text);
   background: var(--surface);

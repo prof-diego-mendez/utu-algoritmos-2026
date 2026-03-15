@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipos de Datos en Java · Programación I</title>
+  <meta name="description" content="Material educativo sobre tipos de datos primitivos y no primitivos en Java. Programación I – Prof. Diego Méndez – ITI 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../algoritmos.css">
+  <link rel="stylesheet" href="tipos-de-datos.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">☕</div>
+      <div>
+        <span>Tipos de Datos</span>
+        <span class="logo-sub"> · Programación I · Prof. Diego Méndez · ITI 2026</span>
+      </div>
+    </div>
+    <nav class="nav-tabs">
+      <a class="nav-tab-link" href="../index.html">← Algoritmos</a>
+      <button class="nav-tab active" onclick="showSection('primitivos',this)">Primitivos</button>
+      <button class="nav-tab" onclick="showSection('noprim',this)">No Primitivos</button>
+      <button class="nav-tab" onclick="showSection('conversion',this)">Conversión</button>
+      <button class="nav-tab" onclick="showSection('practica',this)">Práctica</button>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== PRIMITIVOS ===== -->
+    <section id="primitivos" class="section active">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 01 · Fundamentos de Java</div>
+        <h1>Tipos de datos primitivos<br>en Java</h1>
+        <p>Java es un lenguaje <strong>fuertemente tipado</strong>: toda variable debe declararse con un tipo antes de usarse. Los tipos primitivos son los bloques de construcción más básicos del
+          lenguaje.</p>
+      </div>
+
+      <h2>¿Qué es un tipo de dato?</h2>
+      <p>Un <strong>tipo de dato</strong> define qué clase de valor puede almacenar una variable, cuántos bytes de memoria ocupa y qué operaciones se pueden realizar sobre él. En Java, cada variable
+        tiene exactamente un tipo, que no cambia durante la ejecución.</p>
+
+      <div class="card card-accent blue">
+        <h3>Declaración en Java</h3>
+        <p>La sintaxis general es: <strong>tipo nombreVariable = valorInicial;</strong></p>
+        <p>Ejemplo: <strong>int edad = 18;</strong> — se reserva memoria, se nombra la variable y se asigna un valor.</p>
+      </div>
+
+      <h2>Los 8 tipos primitivos</h2>
+      <p>Java define exactamente 8 tipos primitivos. No son objetos: son valores almacenados directamente en memoria (stack).</p>
+
+      <div class="tipos-grid">
+
+        <div class="tipo-card tipo-azul">
+          <div class="tipo-header">
+            <span class="tipo-keyword">byte</span>
+            <span class="tipo-size">8 bits · 1 byte</span>
+          </div>
+          <div class="tipo-range">−128 a 127</div>
+          <div class="tipo-desc">Entero muy pequeño. Útil para ahorrar memoria en arreglos grandes.</div>
+          <div class="code-inline">byte b = <span class="nm">100</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-azul">
+          <div class="tipo-header">
+            <span class="tipo-keyword">short</span>
+            <span class="tipo-size">16 bits · 2 bytes</span>
+          </div>
+          <div class="tipo-range">−32 768 a 32 767</div>
+          <div class="tipo-desc">Entero corto. Poco común en código moderno.</div>
+          <div class="code-inline">short s = <span class="nm">1000</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-teal">
+          <div class="tipo-header">
+            <span class="tipo-keyword">int</span>
+            <span class="tipo-size">32 bits · 4 bytes</span>
+          </div>
+          <div class="tipo-range">−2 147 483 648 a 2 147 483 647</div>
+          <div class="tipo-desc">El tipo entero más usado. Valor predeterminado para literales numéricos enteros.</div>
+          <div class="code-inline">int edad = <span class="nm">18</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-teal">
+          <div class="tipo-header">
+            <span class="tipo-keyword">long</span>
+            <span class="tipo-size">64 bits · 8 bytes</span>
+          </div>
+          <div class="tipo-range">±9.2 × 10¹⁸</div>
+          <div class="tipo-desc">Entero muy grande. El literal lleva sufijo <strong>L</strong>.</div>
+          <div class="code-inline">long pob = <span class="nm">8000000000L</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-amber">
+          <div class="tipo-header">
+            <span class="tipo-keyword">float</span>
+            <span class="tipo-size">32 bits · 4 bytes</span>
+          </div>
+          <div class="tipo-range">±3.4 × 10³⁸ (~7 dígitos)</div>
+          <div class="tipo-desc">Decimal de simple precisión. El literal lleva sufijo <strong>f</strong>.</div>
+          <div class="code-inline">float pi = <span class="nm">3.14f</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-amber">
+          <div class="tipo-header">
+            <span class="tipo-keyword">double</span>
+            <span class="tipo-size">64 bits · 8 bytes</span>
+          </div>
+          <div class="tipo-range">±1.7 × 10³⁰⁸ (~15 dígitos)</div>
+          <div class="tipo-desc">Decimal de doble precisión. El más usado para cálculos. Es el tipo predeterminado para literales decimales.</div>
+          <div class="code-inline">double nota = <span class="nm">9.75</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-coral">
+          <div class="tipo-header">
+            <span class="tipo-keyword">char</span>
+            <span class="tipo-size">16 bits · 2 bytes</span>
+          </div>
+          <div class="tipo-range">'\u0000' a '\uFFFF' (Unicode)</div>
+          <div class="tipo-desc">Un único carácter Unicode. Se escribe entre comillas simples.</div>
+          <div class="code-inline">char letra = <span class="nm">'A'</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-purple">
+          <div class="tipo-header">
+            <span class="tipo-keyword">boolean</span>
+            <span class="tipo-size">1 bit (lógico)</span>
+          </div>
+          <div class="tipo-range">true · false</div>
+          <div class="tipo-desc">Solo dos valores posibles. Esencial para condiciones y estructuras de control.</div>
+          <div class="code-inline">boolean activo = <span class="nm">true</span>;</div>
+        </div>
+
+      </div>
+
+      <h2>Tabla resumen</h2>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Categoría</th>
+                <th>Bits</th>
+                <th>Rango / Valores</th>
+                <th>Valor por defecto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pill pill-blue">byte</span></td>
+                <td>Entero</td>
+                <td class="num">8</td>
+                <td>−128 a 127</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-blue">short</span></td>
+                <td>Entero</td>
+                <td class="num">16</td>
+                <td>−32 768 a 32 767</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-teal">int</span></td>
+                <td>Entero</td>
+                <td class="num">32</td>
+                <td>±2.1 × 10⁹</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-teal">long</span></td>
+                <td>Entero</td>
+                <td class="num">64</td>
+                <td>±9.2 × 10¹⁸</td>
+                <td class="num">0L</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-amber">float</span></td>
+                <td>Decimal</td>
+                <td class="num">32</td>
+                <td>±3.4 × 10³⁸</td>
+                <td class="num">0.0f</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-amber">double</span></td>
+                <td>Decimal</td>
+                <td class="num">64</td>
+                <td>±1.7 × 10³⁰⁸</td>
+                <td class="num">0.0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-coral">char</span></td>
+                <td>Carácter</td>
+                <td class="num">16</td>
+                <td>'\u0000' – '\uFFFF'</td>
+                <td class="num">'\u0000'</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-purple">boolean</span></td>
+                <td>Lógico</td>
+                <td class="num">1</td>
+                <td>true / false</td>
+                <td class="num">false</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card card-accent amber">
+        <h3>⚠ Overflow: cuando un número no cabe</h3>
+        <p>Si asignás un valor fuera del rango del tipo, Java produce un <strong>overflow</strong>: el número "da la vuelta". Por ejemplo, si <code>byte b = 127</code> y hacés <code>b++</code>, el
+          resultado es −128. Java no lanza error, simplemente el valor se desborda silenciosamente.</p>
+      </div>
+
+      <h2>Variables y constantes</h2>
+      <div class="code-block" id="cb-declaracion"></div>
+
+      <h2>Reglas y convenciones para nombrar variables</h2>
+      <p>Java distingue reglas <strong>obligatorias</strong> (el compilador las rechaza si no se cumplen) de convenciones <strong>recomendadas</strong> (el compilador las acepta, pero el equipo las exige para mantener código legible).</p>
+
+      <div class="naming-grid">
+
+        <div class="naming-card naming-rules">
+          <div class="naming-card-header">
+            <span class="naming-icon">⚙</span>
+            <span>Reglas obligatorias</span>
+          </div>
+          <ul class="naming-list">
+            <li><strong>Solo</strong> letras, dígitos, <code>$</code> y <code>_</code></li>
+            <li>El primer carácter <strong>no puede ser un dígito</strong></li>
+            <li><strong>Sin espacios</strong> ni caracteres especiales (<code>-</code>, <code>@</code>, <code>!</code>…)</li>
+            <li>No puede ser una <strong>palabra reservada</strong> (<code>int</code>, <code>class</code>, <code>return</code>…)</li>
+            <li>Es <strong>case-sensitive</strong>: <code>nota</code> ≠ <code>Nota</code> ≠ <code>NOTA</code></li>
+            <li>No tiene límite de longitud</li>
+          </ul>
+          <div class="naming-examples">
+            <div class="naming-ex valid">✓ <code>edad</code></div>
+            <div class="naming-ex valid">✓ <code>_total</code></div>
+            <div class="naming-ex valid">✓ <code>$precio</code></div>
+            <div class="naming-ex invalid">✗ <code>2nota</code> — empieza con dígito</div>
+            <div class="naming-ex invalid">✗ <code>mi nota</code> — tiene espacio</div>
+            <div class="naming-ex invalid">✗ <code>class</code> — palabra reservada</div>
+            <div class="naming-ex invalid">✗ <code>es-mayor</code> — guión prohibido</div>
+          </div>
+        </div>
+
+        <div class="naming-card naming-conventions">
+          <div class="naming-card-header">
+            <span class="naming-icon">📐</span>
+            <span>Convenciones recomendadas</span>
+          </div>
+          <div class="conv-table">
+            <div class="conv-row conv-header">
+              <div>¿Qué?</div>
+              <div>Estilo</div>
+              <div>Ejemplo</div>
+            </div>
+            <div class="conv-row">
+              <div>Variables y métodos</div>
+              <div><span class="pill pill-teal">camelCase</span></div>
+              <div><code>nombreAlumno</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Constantes (<code>final</code>)</div>
+              <div><span class="pill pill-amber">UPPER_SNAKE_CASE</span></div>
+              <div><code>MAX_INTENTOS</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Clases e interfaces</div>
+              <div><span class="pill pill-purple">PascalCase</span></div>
+              <div><code>MiClase</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Paquetes</div>
+              <div><span class="pill pill-blue">todo.minúsculas</span></div>
+              <div><code>com.empresa.util</code></div>
+            </div>
+          </div>
+          <div class="card card-accent blue" style="margin-top:1rem">
+            <h3>¿Qué es camelCase?</h3>
+            <p>Las palabras se unen sin espacio y cada palabra (excepto la primera) empieza con mayúscula: <strong>precioFinal</strong>, <strong>nombreCompleto</strong>, <strong>cantidadDeAlumnos</strong>.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="code-block" id="cb-nombres"></div>
+
+
+
+      <h2>Operadores aritméticos en Java</h2>
+      <div class="pill-row">
+        <span class="pill pill-teal">+ suma</span>
+        <span class="pill pill-teal">- resta</span>
+        <span class="pill pill-teal">* multiplicación</span>
+        <span class="pill pill-teal">/ división</span>
+        <span class="pill pill-teal">% módulo (resto)</span>
+      </div>
+
+      <div class="card card-accent coral">
+        <h3>División entera vs. división real</h3>
+        <p>En Java, <strong>7 / 2 = 3</strong> (división entera, sin decimales) porque ambos operandos son <code>int</code>. Para obtener <strong>3.5</strong>, al menos uno debe ser
+          <code>double</code>: <strong>7.0 / 2</strong> o <strong>(double) 7 / 2</strong>.
+        </p>
+      </div>
+
+      <h2>Incremento y decremento</h2>
+      <div class="code-block" id="cb-incremento"></div>
+
+    </section>
+
+    <!-- ===== NO PRIMITIVOS ===== -->
+    <section id="noprim" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 02 · Tipos de Referencia</div>
+        <h1>Tipos no primitivos<br>(de referencia)</h1>
+        <p>A diferencia de los primitivos, los tipos de referencia almacenan una <strong>dirección de memoria</strong> (referencia) que apunta al objeto real. Son más flexibles y potentes, pero tienen
+          un costo de memoria mayor.</p>
+      </div>
+
+      <h2>Primitivo vs. Referencia</h2>
+
+      <div class="comparacion-grid">
+        <div class="comp-card comp-prim">
+          <div class="comp-label">Tipo Primitivo</div>
+          <ul>
+            <li>Almacena el valor directamente</li>
+            <li>Vive en el <strong>stack</strong></li>
+            <li>No puede ser <code>null</code></li>
+            <li>No tiene métodos propios</li>
+            <li>Comparación con <code>==</code></li>
+          </ul>
+          <div class="comp-example">int x = 5; <span class="cm">// valor: 5</span></div>
+        </div>
+        <div class="comp-card comp-ref">
+          <div class="comp-label">Tipo de Referencia</div>
+          <ul>
+            <li>Almacena una referencia al objeto</li>
+            <li>El objeto vive en el <strong>heap</strong></li>
+            <li>Puede ser <code>null</code></li>
+            <li>Tiene métodos y atributos</li>
+            <li>Comparación con <code>.equals()</code></li>
+          </ul>
+          <div class="comp-example">String s = "Hola"; <span class="cm">// ref → heap</span></div>
+        </div>
+      </div>
+
+      <h2>String — La clase más usada</h2>
+      <p>Un <strong>String</strong> es una secuencia inmutable de caracteres. En Java, es un objeto de la clase <code>java.lang.String</code>, disponible sin importar nada.</p>
+
+      <div class="code-block" id="cb-string"></div>
+
+      <h2>Métodos esenciales de String</h2>
+      <div class="metodos-grid">
+        <div class="metodo-card">
+          <div class="metodo-name">.length()</div>
+          <div class="metodo-desc">Devuelve la cantidad de caracteres.</div>
+          <div class="code-inline">"Hola".<span class="fn">length</span>() <span class="cm">// 4</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.toUpperCase()</div>
+          <div class="metodo-desc">Convierte todo a mayúsculas.</div>
+          <div class="code-inline">"hola".<span class="fn">toUpperCase</span>() <span class="cm">// "HOLA"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.toLowerCase()</div>
+          <div class="metodo-desc">Convierte todo a minúsculas.</div>
+          <div class="code-inline">"HOLA".<span class="fn">toLowerCase</span>() <span class="cm">// "hola"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.charAt(i)</div>
+          <div class="metodo-desc">Devuelve el carácter en posición i (base 0).</div>
+          <div class="code-inline">"Java".<span class="fn">charAt</span>(<span class="nm">0</span>) <span class="cm">// 'J'</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.substring(a, b)</div>
+          <div class="metodo-desc">Extrae caracteres desde a hasta b (sin incluir b).</div>
+          <div class="code-inline">"Hola".<span class="fn">substring</span>(<span class="nm">1</span>,<span class="nm">3</span>) <span class="cm">// "ol"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.contains(str)</div>
+          <div class="metodo-desc">Devuelve true si contiene la cadena indicada.</div>
+          <div class="code-inline">"Java".<span class="fn">contains</span>(<span class="fn">"av"</span>) <span class="cm">// true</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.replace(a, b)</div>
+          <div class="metodo-desc">Reemplaza todas las ocurrencias de a por b.</div>
+          <div class="code-inline">"aabbaa".<span class="fn">replace</span>(<span class="fn">"a"</span>,<span class="fn">"x"</span>) <span class="cm">// "xxbbxx"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.trim()</div>
+          <div class="metodo-desc">Elimina espacios al inicio y al final.</div>
+          <div class="code-inline">" hola ".<span class="fn">trim</span>() <span class="cm">// "hola"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.equals(str)</div>
+          <div class="metodo-desc">Compara contenido (no referencia). Siempre usar esto, nunca ==.</div>
+          <div class="code-inline">s1.<span class="fn">equals</span>(s2) <span class="cm">// true/false</span></div>
+        </div>
+      </div>
+
+      <h2>Clases envolventes (Wrapper Classes)</h2>
+      <p>Cada tipo primitivo tiene una <strong>clase envolvente</strong> en Java. Permiten tratar primitivos como objetos (necesario en colecciones, generics, etc.).</p>
+
+      <div class="props-grid">
+        <div class="prop-card">
+          <div class="prop-label">Primitivo</div>
+          <div class="prop-value">→ Wrapper</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">byte</div>
+          <div class="prop-value">Byte</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">short</div>
+          <div class="prop-value">Short</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">int</div>
+          <div class="prop-value">Integer</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">long</div>
+          <div class="prop-value">Long</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">float</div>
+          <div class="prop-value">Float</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">double</div>
+          <div class="prop-value">Double</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">char</div>
+          <div class="prop-value">Character</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">boolean</div>
+          <div class="prop-value">Boolean</div>
+        </div>
+      </div>
+
+      <div class="card card-accent teal">
+        <h3>Autoboxing y Unboxing</h3>
+        <p>Java convierte automáticamente entre primitivos y wrappers. Esa conversión automática se llama <strong>autoboxing</strong> (primitivo → objeto) y <strong>unboxing</strong> (objeto →
+          primitivo). Desde Java 5, esto es transparente para el programador.</p>
+      </div>
+
+      <div class="code-block" id="cb-wrapper"></div>
+
+    </section>
+
+    <!-- ===== CONVERSIÓN ===== -->
+    <section id="conversion" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 03 · Casting y Conversiones</div>
+        <h1>Conversión<br>entre tipos de datos</h1>
+        <p>En Java, convertir datos de un tipo a otro es una operación frecuente. Según el nivel de riesgo, puede ser <strong>automática</strong> o requerir intervención explícita del programador.</p>
+      </div>
+
+      <h2>Conversión implícita (Widening)</h2>
+      <p>Java convierte automáticamente un tipo "más pequeño" a uno "más grande" sin pérdida de información. No requiere ninguna sintaxis especial.</p>
+
+      <div class="widening-flow">
+        <div class="w-node">byte</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">short</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">int</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">long</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">float</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node w-highlight">double</div>
+      </div>
+
+      <div class="code-block" id="cb-widening"></div>
+
+      <h2>Conversión explícita — Casting (Narrowing)</h2>
+      <p>Cuando convertís de un tipo "más grande" a uno "más pequeño" puede haber <strong>pérdida de datos</strong>. Debés indicarlo explícitamente con <code>(tipo)</code> para asumir la
+        responsabilidad.</p>
+
+      <div class="card card-accent coral">
+        <h3>⚠ Riesgo de precisión</h3>
+        <p>Al hacer casting de <code>double</code> a <code>int</code>, la parte decimal se <strong>descarta</strong> (no se redondea). Por ejemplo: <code>(int) 9.99</code> devuelve <code>9</code>, no
+          <code>10</code>.
+        </p>
+      </div>
+
+      <div class="code-block" id="cb-casting"></div>
+
+      <h2>Conversión entre String y número</h2>
+      <p>Para procesar entradas del usuario (que siempre llegan como <code>String</code>) necesitás convertirlas a número.</p>
+
+      <div class="code-block" id="cb-parse"></div>
+
+      <h2>Operaciones mixtas y promoción de tipos</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Si un operando es double</h3>
+            <p>El otro operando se convierte automáticamente a <code>double</code>. El resultado es <code>double</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Si un operando es float</h3>
+            <p>El otro se convierte a <code>float</code>. El resultado es <code>float</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Si un operando es long</h3>
+            <p>El otro se convierte a <code>long</code>. El resultado es <code>long</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Si ambos son int o menores</h3>
+            <p>Ambos se promueven a <code>int</code>. El resultado es <code>int</code>. Nunca <code>byte</code> ni <code>short</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Concatenación con String</h2>
+      <div class="card card-accent blue">
+        <h3>El operador + con String</h3>
+        <p>Cuando un operando de <code>+</code> es <code>String</code>, Java convierte el otro a texto automáticamente. Esto puede ser fuente de errores si se mezclan sumas y concatenaciones en la
+          misma expresión.</p>
+      </div>
+
+      <div class="code-block" id="cb-concat"></div>
+
+    </section>
+
+    <!-- ===== PRÁCTICA ===== -->
+    <section id="practica" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">15 Ejercicios · Tipos de Datos Java</div>
+        <h1>Práctica:<br>tipos de datos en Java</h1>
+        <p>Respondé cada ejercicio analizando el tipo correcto, el rango necesario y posibles errores.</p>
+      </div>
+
+      <div class="ex-stats">
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-total">20</span><span class="ex-stat-l">ejercicios</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-done">0</span><span class="ex-stat-l">completados</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-pct">0%</span><span class="ex-stat-l">progreso</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterEx('todos',this)">Todos (20)</button>
+        <button class="filter-btn" onclick="filterEx('Básico',this)">Básico (8)</button>
+        <button class="filter-btn" onclick="filterEx('Intermedio',this)">Intermedio (8)</button>
+        <button class="filter-btn" onclick="filterEx('Avanzado',this)">Avanzado (4)</button>
+      </div>
+
+      <div class="ex-list" id="ex-list"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav">
+    <a class="nav-tab" href="../index.html">Algoritmos</a>
+    <button class="nav-tab active" onclick="showSection('primitivos',this)">Primitivos</button>
+    <button class="nav-tab" onclick="showSection('noprim',this)">No Prim.</button>
+    <button class="nav-tab" onclick="showSection('conversion',this)">Casting</button>
+    <button class="nav-tab" onclick="showSection('practica',this)">Práctica</button>
+  </nav>
+
+  <script src="tipos-de-datos.js"></script>
+</body>
+
+</html>

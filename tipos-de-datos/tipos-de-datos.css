@@ -1,0 +1,387 @@
+/* ============================================================
+   tipos-de-datos.css
+   Estilos adicionales para la página de Tipos de Datos en Java.
+   Extiende algoritmos.css sin modificarlo.
+   ============================================================ */
+
+/* ── GRID DE TIPOS PRIMITIVOS ─────────────────────────── */
+.tipos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 1.5rem 0;
+}
+
+.tipo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.1rem 1.25rem;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tipo-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+.tipo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.tipo-keyword {
+  font-family: 'DM Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.tipo-size {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.tipo-range {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.tipo-desc {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* Color variants */
+.tipo-azul  { border-left: 3px solid var(--blue); }
+.tipo-azul  .tipo-keyword { color: var(--blue); }
+.tipo-azul  .tipo-range   { color: #93c5fd; }
+
+.tipo-teal  { border-left: 3px solid var(--teal); }
+.tipo-teal  .tipo-keyword { color: var(--teal); }
+.tipo-teal  .tipo-range   { color: #6ee7b7; }
+
+.tipo-amber { border-left: 3px solid var(--amber); }
+.tipo-amber .tipo-keyword { color: var(--amber); }
+.tipo-amber .tipo-range   { color: #fde68a; }
+
+.tipo-coral { border-left: 3px solid var(--coral); }
+.tipo-coral .tipo-keyword { color: var(--coral); }
+.tipo-coral .tipo-range   { color: #fca5a5; }
+
+.tipo-purple { border-left: 3px solid var(--accent); }
+.tipo-purple .tipo-keyword { color: var(--accent); }
+.tipo-purple .tipo-range   { color: #c4b5fd; }
+
+/* ── INLINE CODE ──────────────────────────────────────── */
+.code-inline {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #d4d4d8;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.code-inline .nm  { color: #60a5fa; }
+.code-inline .fn  { color: #34d399; }
+.code-inline .kw  { color: #c084fc; }
+.code-inline .cm  { color: #52525b; font-style: italic; }
+.code-inline .op  { color: #fbbf24; }
+
+/* ── COMPARACIÓN PRIM vs REF ──────────────────────────── */
+.comparacion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 600px) {
+  .comparacion-grid { grid-template-columns: 1fr; }
+}
+
+.comp-card {
+  border-radius: var(--r-lg);
+  padding: 1.25rem;
+  border: 1px solid var(--border2);
+}
+
+.comp-prim {
+  background: rgba(52, 211, 153, 0.06);
+  border-left: 3px solid var(--teal);
+}
+
+.comp-ref {
+  background: rgba(167, 139, 250, 0.06);
+  border-left: 3px solid var(--accent);
+}
+
+.comp-label {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.comp-prim .comp-label { color: var(--teal); }
+.comp-ref  .comp-label { color: var(--accent); }
+
+.comp-card ul {
+  margin-bottom: 0.75rem;
+}
+
+.comp-card li {
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.comp-example {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: #d4d4d8;
+  margin-top: 8px;
+}
+
+.comp-example .cm { color: #52525b; font-style: italic; }
+
+/* ── GRID DE MÉTODOS ──────────────────────────────────── */
+.metodos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 1.25rem 0;
+}
+
+.metodo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.875rem 1rem;
+  transition: border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metodo-card:hover {
+  border-color: var(--accent);
+}
+
+.metodo-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 2px;
+}
+
+.metodo-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ── WIDENING FLOW ────────────────────────────────────── */
+.widening-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.w-node {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--blue);
+}
+
+.w-node.w-highlight {
+  background: rgba(96, 165, 250, 0.1);
+  border-color: var(--blue);
+  color: #93c5fd;
+}
+
+.w-arrow {
+  color: var(--faint);
+  font-size: 1.1rem;
+}
+
+/* ── PILL BLUE (extra color not in algoritmos.css) ────── */
+.pill-blue {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+/* ── DARK BG for code-inline inside code-block context ── */
+code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85em;
+  background: rgba(167, 139, 250, 0.12);
+  color: #c4b5fd;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+/* ── MOBILE ADJUSTMENTS ───────────────────────────────── */
+@media (max-width: 640px) {
+  .tipos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metodos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .widening-flow {
+    justify-content: center;
+  }
+}
+
+/* ── NAMING RULES SECTION ─────────────────────────────── */
+.naming-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 760px) {
+  .naming-grid { grid-template-columns: 1fr; }
+}
+
+.naming-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.naming-rules       { border-left: 3px solid var(--coral); }
+.naming-conventions { border-left: 3px solid var(--teal); }
+
+.naming-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.naming-rules       .naming-card-header { color: var(--coral); }
+.naming-conventions .naming-card-header { color: var(--teal); }
+
+.naming-icon {
+  font-size: 1.15rem;
+}
+
+.naming-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.naming-list li {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.naming-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--faint);
+}
+
+.naming-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.naming-ex {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  padding: 3px 0;
+}
+
+.naming-ex.valid   { color: #4ade80; }
+.naming-ex.invalid { color: #f87171; }
+
+/* ── CONVENTIONS TABLE ────────────────────────────────── */
+.conv-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+
+.conv-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1.2fr 1.2fr;
+  gap: 0;
+}
+
+.conv-row > div {
+  padding: 7px 10px;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.conv-row:last-child > div { border-bottom: none; }
+
+.conv-header {
+  background: var(--surface2);
+}
+
+.conv-header > div {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
