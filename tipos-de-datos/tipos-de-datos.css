@@ -264,7 +264,36 @@ code {
   }
 
   .widening-flow {
-    justify-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .comparacion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .naming-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .conv-table {
+    overflow-x: auto;
+  }
+
+  .conv-row {
+    grid-template-columns: 1.4fr 1.1fr 1.1fr;
+    min-width: 300px;
+  }
+
+  .tipo-card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .tipo-header {
+    flex: 1 1 100%;
   }
 }
 

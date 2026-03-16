@@ -99,7 +99,7 @@ body {
 .logo-sub {
   color: var(--muted);
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .nav-tabs {
@@ -153,7 +153,7 @@ body {
 
 /* MAIN LAYOUT */
 .main {
-  max-width: 50%;
+  max-width: clamp(320px, 90%, 860px);
   margin: 0 auto;
   padding: 3rem 2rem 6rem;
 }
@@ -457,6 +457,7 @@ li strong {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
+  overflow-x: auto;
 }
 
 .flow-node {
@@ -776,6 +777,7 @@ tr:hover td {
   padding: 1.25rem 1.25rem 1.25rem 4.5rem;
   position: relative;
   transition: all 0.2s;
+  min-width: 0;
 }
 
 .ex-item:hover {
@@ -1035,10 +1037,34 @@ tr:hover td {
   color: white;
 }
 
+/* TABLET */
+@media (max-width: 900px) {
+  .main {
+    max-width: 95%;
+  }
+
+  .logo-sub {
+    display: none;
+  }
+}
+
 /* MOBILE */
 @media (max-width: 640px) {
   .site-header {
     padding: 0 1rem;
+    height: auto;
+    min-height: 56px;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .logo {
+    padding: 10px 0;
+    gap: 8px;
+  }
+
+  .logo > div > span:first-child {
+    font-size: 0.9rem;
   }
 
   .nav-tabs {
@@ -1046,7 +1072,81 @@ tr:hover td {
   }
 
   .main {
-    padding: 1.5rem 1rem 5rem;
+    max-width: 100%;
+    padding: 1.25rem 1rem 5.5rem;
+  }
+
+  .hero {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.3rem, 6vw, 2rem);
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .props-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+
+  .flow-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+
+  .flow-legend {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .steps .step {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .ex-item {
+    padding: 1rem 1rem 1rem 3.5rem;
+  }
+
+  .ex-num {
+    left: 0.875rem;
+  }
+
+  .ex-stats {
+    gap: 6px;
+  }
+
+  .ex-stat {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .ex-stat-n {
+    font-size: 1.4rem;
+  }
+
+  .filter-row {
+    gap: 4px;
+  }
+
+  .filter-btn {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .card {
+    padding: 1rem 1.125rem;
+  }
+
+  .work-textarea {
+    min-height: 100px;
+    font-size: 0.75rem;
   }
 
   .mobile-nav {
@@ -1055,20 +1155,28 @@ tr:hover td {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(14, 15, 19, 0.95);
+    background: rgba(14, 15, 19, 0.97);
     backdrop-filter: blur(20px);
     border-top: 1px solid var(--border2);
-    padding: 8px 1rem 12px;
-    gap: 4px;
+    padding: 6px 0.75rem calc(6px + env(safe-area-inset-bottom));
+    gap: 2px;
     z-index: 200;
+    justify-content: stretch;
   }
 
-  .mobile-nav .nav-tab {
+  .mobile-nav .nav-tab,
+  .mobile-nav .nav-tab-link {
     flex: 1;
-    font-size: 0.6rem;
-    padding: 8px 4px;
+    font-size: 0.62rem;
+    padding: 7px 2px;
     text-align: center;
     border-radius: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
