@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables · Programación I</title>
+  <meta name="description" content="Aprende el concepto fundamental de las variables en programación a través de teoría, pseudocódigo y ejercicios prácticos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="algoritmos.css">
+</head>
+
+<body>
+
+  <!-- ── SITE HEADER (shared with index.html) ── -->
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">λ</div>
+      <div>
+        <span>Algoritmos</span>
+        <span class="logo-sub"> · Programación I · Prof. Diego Méndez · ITI 2026</span>
+      </div>
+    </div>
+    <nav class="nav-tabs">
+      <a class="nav-tab-link" href="index.html">Teoría</a>
+      <a class="nav-tab-link active" href="variables.html" style="background:var(--accent-glow);color:var(--accent);border-radius:6px;">Variables</a>
+      <a class="nav-tab-link" href="index.html" onclick="localStorage.setItem('algo_tab','estructuras')">Estructuras</a>
+      <a class="nav-tab-link" href="index.html" onclick="localStorage.setItem('algo_tab','disenio')">Diseño</a>
+      <a class="nav-tab-link" href="index.html" onclick="localStorage.setItem('algo_tab','ejercicios')">Ejercicios</a>
+      <a class="nav-tab-link" href="tipos-de-datos/tipos-de-datos.html">Tipos de Datos →</a>
+    </nav>
+  </header>
+
+  <!-- ── SUB-NAV (sections within this page) ── -->
+  <nav class="page-nav">
+    <div class="page-nav-inner">
+      <div class="page-nav-links" style="margin-left:0;">
+        <a class="page-nav-link" href="#concepto">Concepto</a>
+        <a class="page-nav-link" href="#tipos">Tipos</a>
+        <a class="page-nav-link" href="#operaciones">Operaciones</a>
+        <a class="page-nav-link" href="#sandbox">Sandbox</a>
+        <a class="page-nav-link" href="#ejercicios">Ejercicios</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── CONTENT ── -->
+  <div class="main page-scroll">
+
+    <!-- ── HERO ── -->
+    <section class="hero-scroll">
+      <div class="hero-eyebrow">Introducción a la programación</div>
+      <h1>Variables<br>en <em>acción</em></h1>
+      <p class="hero-desc-scroll">
+        Aprendé el concepto fundamental de cualquier lenguaje de programación — la variable — a través de teoría clara, ejemplos en pseudocódigo y 20 ejercicios prácticos.
+      </p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">4</span><span class="stat-label">Tipos de datos</span></div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Operadores</span></div>
+        <div class="stat"><span class="stat-num">20</span><span class="stat-label">Ejercicios</span></div>
+      </div>
+      <div class="hero-code">
+        <span class="var">nombre</span> <span class="op">←</span> <span class="str">"Ana"</span>
+        <span class="var">edad</span> <span class="op">←</span> <span class="num">25</span>
+        <span class="var">aprobó</span> <span class="op">←</span> <span class="kw">verdadero</span>
+
+        <span class="cm">// modificar el valor</span>
+        <span class="var">edad</span> <span class="op">←</span> <span class="var">edad</span> <span class="op">+</span> <span class="num">1</span>
+
+        <span class="fn">escribir</span>(<span class="str">"Hola, "</span> <span class="op">+</span> <span class="var">nombre</span>)
+      </div>
+    </section>
+
+    <!-- ===== 01 — CONCEPTO ===== -->
+    <section class="section" id="concepto">
+      <div class="section-tag">01 — Concepto</div>
+      <h2>¿Qué es una variable?</h2>
+      <p class="section-desc">
+        Una variable es un espacio con nombre en la memoria del programa donde se puede guardar un dato. Pensá en ella como una caja etiquetada: la etiqueta es el nombre y lo que hay adentro es el valor.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🏷️</div>
+          <div class="card-title">Nombre</div>
+          <div class="card-body">Identificador único que usamos para referir a la variable en el código. Debe ser descriptivo.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">📦</div>
+          <div class="card-title">Valor</div>
+          <div class="card-body">El dato almacenado dentro de la variable. Puede cambiar durante la ejecución.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔖</div>
+          <div class="card-title">Tipo</div>
+          <div class="card-body">La clase de dato que contiene: número, texto, valor lógico, etc.</div>
+        </div>
+      </div>
+
+      <h3 class="sub-header">Declaración y asignación</h3>
+      <p class="section-desc" style="margin-bottom:0;">Declarar es crear la variable. Asignar es guardar un valor en ella.</p>
+      <div class="code-wrap">
+        <div class="code-header">
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <span class="code-filename">declaracion.pseudo</span>
+          <button class="code-copy" onclick="copyCode(this)">copiar</button>
+        </div>
+        <pre><span class="cm">// Declarar y asignar en el mismo paso</span>
+<span class="var">edad</span>     <span class="op">←</span> <span class="num">25</span>
+<span class="var">nombre</span>   <span class="op">←</span> <span class="str">"Ana"</span>
+<span class="var">promedio</span> <span class="op">←</span> <span class="num">8.5</span>
+<span class="var">aprobado</span> <span class="op">←</span> <span class="kw">verdadero</span>
+
+<span class="cm">// Modificar el valor de una variable existente</span>
+<span class="var">edad</span> <span class="op">←</span> <span class="num">26</span>           <span class="cm">// ahora edad vale 26</span>
+
+<span class="cm">// Mostrar en pantalla</span>
+<span class="fn">escribir</span>(<span class="var">nombre</span>)    <span class="cm">// → Ana</span>
+<span class="fn">escribir</span>(<span class="var">edad</span>)      <span class="cm">// → 26</span></pre>
+      </div>
+
+      <h3 class="sub-header">Entrada del usuario</h3>
+      <div class="code-wrap">
+        <div class="code-header">
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <span class="code-filename">entrada.pseudo</span>
+          <button class="code-copy" onclick="copyCode(this)">copiar</button>
+        </div>
+        <pre><span class="fn">escribir</span>(<span class="str">"¿Cuál es tu nombre?"</span>)
+<span class="var">nombre</span> <span class="op">←</span> <span class="fn">leer</span>()
+<span class="fn">escribir</span>(<span class="str">"Hola, "</span> <span class="op">+</span> <span class="var">nombre</span> <span class="op">+</span> <span class="str">"!"</span>)</pre>
+      </div>
+    </section>
+
+    <!-- ===== 02 — TIPOS DE DATOS ===== -->
+    <section class="section" id="tipos">
+      <div class="section-tag">02 — Tipos de datos</div>
+      <h2>¿Qué puede guardar una variable?</h2>
+      <p class="section-desc">El tipo de dato determina qué clase de información puede almacenar la variable y qué operaciones se pueden hacer con ella.</p>
+      <table class="type-table">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Ejemplos de valores</th>
+            <th>Descripción</th>
+            <th>Uso típico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge b-blue">entero</span></td>
+            <td class="td-mono">42 &nbsp; -7 &nbsp; 0 &nbsp; 1000</td>
+            <td class="td-desc">Números sin parte decimal</td>
+            <td class="td-desc">Edades, contadores, índices</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-amber">real</span></td>
+            <td class="td-mono">3.14 &nbsp; -0.5 &nbsp; 9.99</td>
+            <td class="td-desc">Números con parte decimal</td>
+            <td class="td-desc">Precios, promedios, medidas</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-teal">texto</span></td>
+            <td class="td-mono">"Hola" &nbsp; "abc" &nbsp; "42"</td>
+            <td class="td-desc">Cadena de caracteres</td>
+            <td class="td-desc">Nombres, mensajes, códigos</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-purple">lógico</span></td>
+            <td class="td-mono">verdadero &nbsp; falso</td>
+            <td class="td-desc">Solo dos posibles valores</td>
+            <td class="td-desc">Condiciones, estados, flags</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="code-wrap">
+        <div class="code-header">
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <span class="code-filename">tipos.pseudo</span>
+          <button class="code-copy" onclick="copyCode(this)">copiar</button>
+        </div>
+        <pre><span class="var">cantidad</span>  <span class="op">←</span> <span class="num">10</span>              <span class="cm">// entero</span>
+<span class="var">precio</span>    <span class="op">←</span> <span class="num">19.99</span>           <span class="cm">// real</span>
+<span class="var">producto</span>  <span class="op">←</span> <span class="str">"Cuaderno"</span>      <span class="cm">// texto</span>
+<span class="var">enStock</span>   <span class="op">←</span> <span class="kw">verdadero</span>       <span class="cm">// lógico</span>
+
+<span class="var">total</span> <span class="op">←</span> <span class="var">cantidad</span> <span class="op">×</span> <span class="var">precio</span>  <span class="cm">// → 199.90</span>
+<span class="fn">escribir</span>(<span class="var">producto</span> <span class="op">+</span> <span class="str">": $"</span> <span class="op">+</span> <span class="var">total</span>)</pre>
+      </div>
+    </section>
+
+    <!-- ===== 03 — OPERACIONES ===== -->
+    <section class="section" id="operaciones">
+      <div class="section-tag">03 — Operaciones</div>
+      <h2>Operaciones básicas</h2>
+      <p class="section-desc">Con variables numéricas podemos realizar todas las operaciones matemáticas fundamentales.</p>
+
+      <div class="ops-grid">
+        <div class="op-card"><span class="op-sym">+</span><div class="op-name">Suma</div></div>
+        <div class="op-card"><span class="op-sym">−</span><div class="op-name">Resta</div></div>
+        <div class="op-card"><span class="op-sym">×</span><div class="op-name">Multiplicación</div></div>
+        <div class="op-card"><span class="op-sym">÷</span><div class="op-name">División</div></div>
+        <div class="op-card"><span class="op-sym">mod</span><div class="op-name">Módulo (resto)</div></div>
+        <div class="op-card"><span class="op-sym">^</span><div class="op-name">Potencia</div></div>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-header">
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <span class="code-filename">operaciones.pseudo</span>
+          <button class="code-copy" onclick="copyCode(this)">copiar</button>
+        </div>
+        <pre><span class="var">a</span> <span class="op">←</span> <span class="num">10</span>
+<span class="var">b</span> <span class="op">←</span> <span class="num">3</span>
+
+<span class="var">suma</span>      <span class="op">←</span> <span class="var">a</span> <span class="op">+</span> <span class="var">b</span>      <span class="cm">// → 13</span>
+<span class="var">resta</span>     <span class="op">←</span> <span class="var">a</span> <span class="op">-</span> <span class="var">b</span>      <span class="cm">// → 7</span>
+<span class="var">producto</span>  <span class="op">←</span> <span class="var">a</span> <span class="op">×</span> <span class="var">b</span>      <span class="cm">// → 30</span>
+<span class="var">cociente</span>  <span class="op">←</span> <span class="var">a</span> <span class="op">÷</span> <span class="var">b</span>      <span class="cm">// → 3.333...</span>
+<span class="var">resto</span>     <span class="op">←</span> <span class="var">a</span> <span class="kw">mod</span> <span class="var">b</span>    <span class="cm">// → 1</span>
+<span class="var">potencia</span>  <span class="op">←</span> <span class="var">a</span> <span class="op">^</span> <span class="var">b</span>      <span class="cm">// → 1000</span>
+
+<span class="cm">// Acumulador: sumar al valor anterior</span>
+<span class="var">total</span> <span class="op">←</span> <span class="num">0</span>
+<span class="var">total</span> <span class="op">←</span> <span class="var">total</span> <span class="op">+</span> <span class="num">5</span>    <span class="cm">// → 5</span>
+<span class="var">total</span> <span class="op">←</span> <span class="var">total</span> <span class="op">+</span> <span class="num">8</span>    <span class="cm">// → 13</span>
+<span class="var">total</span> <span class="op">←</span> <span class="var">total</span> <span class="op">+</span> <span class="num">12</span>   <span class="cm">// → 25</span></pre>
+      </div>
+
+      <h3 class="sub-header">Intercambio de variables</h3>
+      <p class="section-desc" style="margin-bottom:0;">Para intercambiar los valores de dos variables necesitamos una tercera variable auxiliar.</p>
+      <div class="code-wrap">
+        <div class="code-header">
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <span class="code-filename">intercambio.pseudo</span>
+          <button class="code-copy" onclick="copyCode(this)">copiar</button>
+        </div>
+        <pre><span class="var">x</span>   <span class="op">←</span> <span class="num">5</span>
+<span class="var">y</span>   <span class="op">←</span> <span class="num">10</span>
+<span class="var">aux</span> <span class="op">←</span> <span class="var">x</span>     <span class="cm">// guardamos x en aux → aux = 5</span>
+<span class="var">x</span> <span class="op">←</span> <span class="var">y</span>              <span class="cm">// x toma el valor de y → x = 10</span>
+<span class="var">y</span> <span class="op">←</span> <span class="var">aux</span>            <span class="cm">// y toma el valor original de x → y = 5</span>
+
+<span class="fn">escribir</span>(<span class="str">"x = "</span> <span class="op">+</span> <span class="var">x</span>)  <span class="cm">// → x = 10</span>
+<span class="fn">escribir</span>(<span class="str">"y = "</span> <span class="op">+</span> <span class="var">y</span>)  <span class="cm">// → y = 5</span></pre>
+      </div>
+    </section>
+
+    <!-- ===== 04 — SANDBOX ===== -->
+    <section class="section" id="sandbox">
+      <div class="section-tag">04 — Sandbox</div>
+      <h2>Probá el pseudocódigo</h2>
+      <p class="section-desc">Escribí pseudocódigo y ejecutalo para ver el resultado. Usá <code style="font-size:0.8rem;background:var(--surface2);padding:1px 6px;border-radius:3px;color:var(--teal);font-family:'DM Mono',monospace">escribir()</code>, <code style="font-size:0.8rem;background:var(--surface2);padding:1px 6px;border-radius:3px;color:var(--teal);font-family:'DM Mono',monospace">←</code> para asignar, y operadores <code style="font-size:0.8rem;background:var(--surface2);padding:1px 6px;border-radius:3px;color:var(--teal);font-family:'DM Mono',monospace">+ - * / mod ^</code>.</p>
+
+      <div class="sandbox">
+        <div class="sandbox-header">
+          <div class="sandbox-dot"></div>
+          <span class="sandbox-title">Intérprete de pseudocódigo</span>
+          <button class="sandbox-clear-btn" onclick="clearSandbox('sandbox-code', 'sandbox-output')">limpiar</button>
+        </div>
+        <div class="sandbox-body">
+          <div class="sandbox-input-area">
+            <div class="sandbox-label">// código</div>
+            <textarea class="sandbox-editor" id="sandbox-code" spellcheck="false"
+              placeholder='nombre ← "Ana"&#10;edad ← 20&#10;escribir("Hola, " + nombre)&#10;escribir("Tenés " + edad + " años")'></textarea>
+            <button class="sandbox-run" onclick="runSandbox('sandbox-code', 'sandbox-output')">▶ Ejecutar</button>
+          </div>
+          <div class="sandbox-output-area">
+            <div class="sandbox-label">// salida</div>
+            <div class="sandbox-output" id="sandbox-output">
+              <span style="color:var(--faint);font-size:0.8rem;">La salida aparecerá aquí...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05 — EJERCICIOS ===== -->
+    <section class="section" id="ejercicios">
+      <div class="section-tag">05 — Ejercicios</div>
+      <h2>20 ejercicios prácticos</h2>
+      <p class="section-desc">Practicá los conceptos con ejercicios graduados. Cada uno tiene una solución sugerida en pseudocódigo que podés revelar cuando quieras.</p>
+
+      <div class="progress-track">
+        <div>
+          <div class="prog-count" id="prog-count">0</div>
+          <div class="prog-label">de 20<br>resueltos</div>
+        </div>
+        <div style="flex:1;min-width:140px;">
+          <div class="prog-bar-wrap">
+            <div class="prog-bar-fill" id="prog-fill" style="width:0%"></div>
+          </div>
+          <div style="font-size:0.625rem;color:var(--faint);margin-top:6px;letter-spacing:0.05em;font-family:'DM Mono',monospace">PROGRESO</div>
+        </div>
+        <div class="prog-dots" id="prog-dots"></div>
+      </div>
+
+      <div class="ex-controls">
+        <button class="filter-btn active" onclick="filterExs('todos',this)">Todos</button>
+        <button class="filter-btn" onclick="filterExs('basico',this)">Básico</button>
+        <button class="filter-btn" onclick="filterExs('aritmetica',this)">Aritmética</button>
+        <button class="filter-btn" onclick="filterExs('intercambio',this)">Intercambio</button>
+        <button class="filter-btn" onclick="filterExs('texto',this)">Texto</button>
+      </div>
+
+      <div class="ex-list" id="ex-list"></div>
+    </section>
+
+  </div>
+
+  <!-- ── MODAL ── -->
+  <div id="sandbox-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="sandbox">
+        <div class="sandbox-header">
+          <div class="sandbox-dot"></div>
+          <span class="sandbox-title">Sandbox del Ejercicio</span>
+          <button class="sandbox-clear-btn" onclick="clearSandbox('modal-sandbox-code', 'modal-sandbox-output')">limpiar</button>
+        </div>
+        <div class="sandbox-body">
+          <div class="sandbox-input-area">
+            <div class="sandbox-label">// código</div>
+            <textarea class="sandbox-editor" id="modal-sandbox-code" spellcheck="false"></textarea>
+            <button class="sandbox-run" onclick="runSandbox('modal-sandbox-code', 'modal-sandbox-output')">▶ Ejecutar</button>
+          </div>
+          <div class="sandbox-output-area">
+            <div class="sandbox-label">// salida</div>
+            <div class="sandbox-output" id="modal-sandbox-output">
+              <span style="color:var(--faint);font-size:0.8rem;">La salida aparecerá aquí...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="page-footer">
+    <p>Variables en Programación &mdash; Prof. Diego Méndez · ITI 2026</p>
+  </footer>
+
+  <script>
+    // ── COPY CODE ──
+    function copyCode(btn) {
+      const pre = btn.closest('.code-wrap').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = '✓ copiado';
+        setTimeout(() => btn.textContent = 'copiar', 1800);
+      });
+    }
+
+    // ── MODAL LOGIC ──
+    function openModal() {
+      const modal = document.getElementById('sandbox-modal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('sandbox-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('sandbox-modal');
+      if (e.target === modal) closeModal();
+    });
+
+    // ── SANDBOX INTERPRETER ──
+    function runSandbox(inputId = 'sandbox-code', outputId = 'sandbox-output') {
+      const code = document.getElementById(inputId).value;
+      const output = document.getElementById(outputId);
+      const lines = code.split('\n');
+      const vars = {};
+      const prints = [];
+      let error = null;
+
+      let lastPromptMsg = 'Ingresá un valor:';
+
+      function evalExpr(expr) {
+        expr = expr.trim();
+        // leer() — pedir datos al usuario via prompt
+        if (expr === 'leer()') {
+          const input = prompt(lastPromptMsg);
+          if (input === null) return ''; // canceló
+          const num = Number(input);
+          return (!isNaN(num) && input.trim() !== '') ? num : input;
+        }
+        if (expr.startsWith('"') && expr.endsWith('"')) return expr.slice(1, -1);
+        if (expr === 'verdadero') return true;
+        if (expr === 'falso') return false;
+        if (!isNaN(expr) && expr !== '') return parseFloat(expr);
+        if (/^[a-záéíóúñA-ZÁÉÍÓÚÑ_][a-záéíóúñA-ZÁÉÍÓÚÑ0-9_]*$/.test(expr)) {
+          if (expr in vars) return vars[expr];
+          throw new Error(`Variable no definida: "${expr}"`);
+        }
+        return evalComplex(expr, vars);
+      }
+
+      function evalComplex(expr, vars) {
+        // 1. Extraer strings literales para no tocar su contenido
+        const strings = [];
+        let safe = expr.replace(/"[^"]*"/g, (m) => {
+          strings.push(m);
+          return `__STR${strings.length - 1}__`;
+        });
+
+        // 2. Reemplazar nombres de variables (fuera de strings)
+        safe = safe.replace(/[a-záéíóúñA-ZÁÉÍÓÚÑ_][a-záéíóúñA-ZÁÉÍÓÚÑ0-9_]*/g, (m) => {
+          if (m.startsWith('__STR')) return m; // placeholder de string, no tocar
+          if (m === 'mod' || m === 'verdadero' || m === 'falso') return m;
+          if (m in vars) {
+            const v = vars[m];
+            return typeof v === 'string' ? JSON.stringify(v) : v;
+          }
+          throw new Error(`Variable no definida: "${m}"`);
+        });
+
+        // 3. Restaurar strings
+        safe = safe.replace(/__STR(\d+)__/g, (_, i) => strings[Number(i)]);
+
+        // 4. Reemplazar operadores pseudo → JS
+        safe = safe
+          .replace(/verdadero/g, 'true')
+          .replace(/falso/g, 'false')
+          .replace(/×/g, '*').replace(/÷/g, '/')
+          .replace(/\^/g, '**')
+          .replace(/\bmod\b/g, '%');
+        try {
+          return Function('"use strict"; return (' + safe + ')')();
+        } catch (e) {
+          throw new Error('Error en expresión: ' + expr);
+        }
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        if (!line || line.startsWith('//')) continue;
+        const ci = line.indexOf(' //');
+        if (ci > 0) line = line.substring(0, ci).trim();
+
+        try {
+          const varMatch = line.match(/^(?:variable\s+)?([a-záéíóúñA-ZÁÉÍÓÚÑ_][a-záéíóúñA-ZÁÉÍÓÚÑ0-9_]*)\s*←\s*(.+)$/u);
+          if (varMatch) {
+            vars[varMatch[1]] = evalExpr(varMatch[2]);
+            continue;
+          }
+          const writeMatch = line.match(/^escribir\((.+)\)$/);
+          if (writeMatch) {
+            const val = evalExpr(writeMatch[1]);
+            prints.push({ text: String(val), error: false });
+            lastPromptMsg = String(val);  // usar como texto del próximo leer()
+            continue;
+          }
+          if (line === 'leer()') {
+            evalExpr('leer()');
+            continue;
+          }
+          if (line !== '') {
+            throw new Error(`Línea no reconocida: "${line}"`);
+          }
+        } catch (e) {
+          error = `Línea ${i + 1}: ${e.message}`;
+          break;
+        }
+      }
+
+      output.innerHTML = '';
+      if (prints.length === 0 && !error) {
+        output.innerHTML = '<span style="color:var(--faint);font-size:0.8rem;">(sin salida — usá escribir() para mostrar resultados)</span>';
+        return;
+      }
+      prints.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'out-line' + (p.error ? ' out-error' : '');
+        div.textContent = p.text;
+        output.appendChild(div);
+      });
+      if (error) {
+        const div = document.createElement('div');
+        div.className = 'out-line out-error';
+        div.textContent = '⚠ ' + error;
+        output.appendChild(div);
+      }
+    }
+
+    function clearSandbox(inputId = 'sandbox-code', outputId = 'sandbox-output') {
+      document.getElementById(inputId).value = '';
+      document.getElementById(outputId).innerHTML = '<span style="color:var(--faint);font-size:0.8rem;">La salida aparecerá aquí...</span>';
+    }
+
+    // Tab / Ctrl+Enter shortcuts for editors
+    function setupEditor(inputId, outputId) {
+      const el = document.getElementById(inputId);
+      if (!el) return;
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          const s = this.selectionStart, end = this.selectionEnd;
+          this.value = this.value.substring(0, s) + '  ' + this.value.substring(end);
+          this.selectionStart = this.selectionEnd = s + 2;
+        }
+        if (e.key === 'Enter' && e.ctrlKey) runSandbox(inputId, outputId);
+      });
+    }
+    setupEditor('sandbox-code', 'sandbox-output');
+    setupEditor('modal-sandbox-code', 'modal-sandbox-output');
+
+
+    // ── EXERCISES ──
+    const EXERCISES = [
+      {
+        n: 1, cat: 'basico', title: 'Declarar variables simples',
+        stmt: 'Declará tres variables: una con tu nombre, una con tu edad y una con tu altura en metros. Luego mostrá los tres valores en pantalla.',
+        hint: `nombre  ← "Tu nombre"\nedad    ← 20\naltura  ← 1.70\nescribir(nombre)\nescribir(edad)\nescribir(altura)`
+      },
+      {
+        n: 2, cat: 'basico', title: 'Cambiar el valor de una variable',
+        stmt: 'Creá una variable llamada <code>temperatura</code> con valor 20. Luego cambiá su valor a 35 y mostrala.',
+        hint: `temperatura ← 20\nescribir(temperatura)   // → 20\ntemperatura ← 35\nescribir(temperatura)   // → 35`
+      },
+      {
+        n: 3, cat: 'aritmetica', title: 'Suma de dos números',
+        stmt: 'Pedí dos números al usuario, guardalos en variables y mostrá su suma.',
+        hint: `escribir("Ingresá el primer número:")\na ← leer()\nescribir("Ingresá el segundo número:")\nb ← leer()\nsuma ← a + b\nescribir("La suma es: " + suma)`
+      },
+      {
+        n: 4, cat: 'aritmetica', title: 'Perímetro de un rectángulo',
+        stmt: 'Guardá el largo y el ancho de un rectángulo en variables. Calculá y mostrá su perímetro (2 × largo + 2 × ancho).',
+        hint: `largo ← leer()\nancho ← leer()\nperimetro ← 2 × largo + 2 × ancho\nescribir("Perímetro: " + perimetro)`
+      },
+      {
+        n: 5, cat: 'aritmetica', title: 'Área de un triángulo',
+        stmt: 'Calculá el área de un triángulo dada su base y altura. El área es (base × altura) ÷ 2.',
+        hint: `base   ← leer()\naltura ← leer()\narea   ← (base × altura) ÷ 2\nescribir("Área: " + area)`
+      },
+      {
+        n: 6, cat: 'aritmetica', title: 'Promedio de tres notas',
+        stmt: 'Pedí tres notas al usuario, guardalas en variables y calculá su promedio.',
+        hint: `nota1 ← leer()\nnota2 ← leer()\nnota3 ← leer()\npromedio ← (nota1 + nota2 + nota3) ÷ 3\nescribir("Promedio: " + promedio)`
+      },
+      {
+        n: 7, cat: 'aritmetica', title: 'Conversión Celsius → Fahrenheit',
+        stmt: 'Leé una temperatura en grados Celsius y convertila a Fahrenheit. La fórmula es: F = C × 9 ÷ 5 + 32.',
+        hint: `celsius    ← leer()\nfahrenheit ← celsius × 9 ÷ 5 + 32\nescribir(celsius + "°C = " + fahrenheit + "°F")`
+      },
+      {
+        n: 8, cat: 'aritmetica', title: 'División entera y resto',
+        stmt: 'Pedí dos números. Mostrá el resultado de la división entera y también el resto usando <code>mod</code>.',
+        hint: `a        ← leer()\nb        ← leer()\ncociente ← a ÷ b\nresto    ← a mod b\nescribir("Cociente: " + cociente)\nescribir("Resto: " + resto)`
+      },
+      {
+        n: 9, cat: 'aritmetica', title: 'Precio con descuento',
+        stmt: 'Guardá el precio de un producto y un porcentaje de descuento. Calculá y mostrá el precio final.',
+        hint: `precio    ← leer()\ndescuento ← leer()   // ej: 20 para 20%\nahorro    ← precio × descuento ÷ 100\nfinal     ← precio - ahorro\nescribir("Precio final: " + final)`
+      },
+      {
+        n: 10, cat: 'aritmetica', title: 'Potenciación simple',
+        stmt: 'Pedí una base y un exponente. Calculá la potencia y mostrá el resultado.',
+        hint: `base ← leer()\nexp  ← leer()\nresultado ← base ^ exp\nescribir(base + " ^ " + exp + " = " + resultado)`
+      },
+      {
+        n: 11, cat: 'intercambio', title: 'Intercambiar dos variables',
+        stmt: 'Tenés dos variables, <code>x</code> e <code>y</code>. Intercambiá sus valores usando una variable auxiliar.',
+        hint: `x   ← 5\ny   ← 10\naux ← x\nx   ← y\ny   ← aux\nescribir("x = " + x + ", y = " + y)   // x=10, y=5`
+      },
+      {
+        n: 12, cat: 'intercambio', title: 'Duplicar un valor',
+        stmt: 'Guardá un número en una variable y creá otra variable que tenga el doble de ese valor. Mostrá ambas.',
+        hint: `original ← leer()\ndoble    ← original × 2\nescribir("Original: " + original)\nescribir("Doble: " + doble)`
+      },
+      {
+        n: 13, cat: 'intercambio', title: 'Acumulador',
+        stmt: 'Empezá con una variable <code>total</code> en 0. Sumale 5, luego 8 y luego 12, actualizando siempre la misma variable. Mostrá el total final.',
+        hint: `total ← 0\ntotal ← total + 5\ntotal ← total + 8\ntotal ← total + 12\nescribir("Total: " + total)   // → 25`
+      },
+      {
+        n: 14, cat: 'intercambio', title: 'Contador de pasos',
+        stmt: 'Creá una variable <code>pasos</code> que empiece en 0. Incrementala de a 1 exactamente tres veces y mostrá el valor final.',
+        hint: `pasos ← 0\npasos ← pasos + 1\npasos ← pasos + 1\npasos ← pasos + 1\nescribir("Pasos: " + pasos)   // → 3`
+      },
+      {
+        n: 15, cat: 'aritmetica', title: 'Segundos a horas, minutos y segundos',
+        stmt: 'Dado un total de segundos, calculá cuántas horas, minutos y segundos restantes contiene usando división entera y módulo.',
+        hint: `total    ← leer()\nhoras    ← total ÷ 3600\nresto1   ← total mod 3600\nminutos  ← resto1 ÷ 60\nsegundos ← resto1 mod 60\nescribir(horas + "h " + minutos + "m " + segundos + "s")`
+      },
+      {
+        n: 16, cat: 'texto', title: 'Concatenar nombre completo',
+        stmt: 'Pedí el nombre y el apellido por separado, guardalos en variables y mostrá el nombre completo en una sola línea.',
+        hint: `nombre   ← leer()\napellido ← leer()\ncompleto ← nombre + " " + apellido\nescribir("Nombre completo: " + completo)`
+      },
+      {
+        n: 17, cat: 'texto', title: 'Mensaje personalizado',
+        stmt: 'Pedí el nombre del usuario y su edad. Mostrá un mensaje del estilo: "Hola, Ana. Tenés 25 años."',
+        hint: `nombre ← leer()\nedad   ← leer()\nescribir("Hola, " + nombre + ". Tenés " + edad + " años.")`
+      },
+      {
+        n: 18, cat: 'aritmetica', title: 'Cálculo del IMC',
+        stmt: 'Pedí el peso (kg) y la altura (m) de una persona. Calculá el IMC: peso ÷ (altura × altura).',
+        hint: `peso   ← leer()\naltura ← leer()\nimc    ← peso ÷ (altura × altura)\nescribir("IMC: " + imc)`
+      },
+      {
+        n: 19, cat: 'aritmetica', title: 'Interés simple',
+        stmt: 'Guardá el capital, la tasa de interés anual (%) y la cantidad de años. Calculá el interés simple: I = capital × tasa ÷ 100 × años.',
+        hint: `capital  ← leer()\ntasa    ← leer()\naños    ← leer()\ninteres ← capital × tasa ÷ 100 × años\ntotal   ← capital + interes\nescribir("Interés generado: " + interes)\nescribir("Total acumulado: " + total)`
+      },
+      {
+        n: 20, cat: 'intercambio', title: 'Intercambiar sin variable auxiliar',
+        stmt: 'Intercambiá los valores de dos variables numéricas sin usar una tercera variable auxiliar. Usá solo operaciones aritméticas.',
+        hint: `a ← leer()\nb ← leer()\na ← a + b\nb ← a - b      // b = a original\na ← a - b      // a = b original\nescribir("a = " + a)\nescribir("b = " + b)`
+      }
+    ];
+
+    const CAT_COLOR = { basico: 'b-purple', aritmetica: 'b-blue', intercambio: 'b-amber', texto: 'b-teal' };
+    const CAT_LABEL = { basico: 'Básico', aritmetica: 'Aritmética', intercambio: 'Intercambio', texto: 'Texto' };
+
+    let done = new Set();
+    let currentFilter = 'todos';
+
+    function buildProgress() {
+      const dotsEl = document.getElementById('prog-dots');
+      dotsEl.innerHTML = '';
+      EXERCISES.forEach(ex => {
+        const d = document.createElement('div');
+        d.className = 'prog-dot' + (done.has(ex.n) ? ' done' : '');
+        d.title = 'Ejercicio ' + ex.n;
+        d.onclick = () => document.getElementById('ex-' + ex.n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        dotsEl.appendChild(d);
+      });
+      document.getElementById('prog-count').textContent = done.size;
+      document.getElementById('prog-fill').style.width = (done.size / 20 * 100) + '%';
+    }
+
+    function buildExercises() {
+      const list = document.getElementById('ex-list');
+      list.innerHTML = '';
+      EXERCISES.forEach(ex => {
+        const card = document.createElement('div');
+        card.className = 'ex-card' + (done.has(ex.n) ? ' solved' : '');
+        card.id = 'ex-' + ex.n;
+        if (currentFilter !== 'todos' && ex.cat !== currentFilter) card.classList.add('hidden');
+
+        card.innerHTML = `
+      <div class="ex-header" onclick="toggleCard(${ex.n})">
+        <div class="ex-num">${done.has(ex.n) ? '✓' : ex.n}</div>
+        <div class="ex-title">${ex.title}</div>
+        <div class="ex-tags"><span class="badge ${CAT_COLOR[ex.cat]}">${CAT_LABEL[ex.cat]}</span></div>
+        <span class="ex-chevron">▾</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-stmt">${ex.stmt}</div>
+        <div class="ex-actions">
+          <button class="btn-ghost" onclick="toggleHint(${ex.n})">💡 Ver solución</button>
+          <button class="btn-solve" onclick="toggleDone(${ex.n})">${done.has(ex.n) ? '✓ Resuelto' : 'Marcar como resuelto'}</button>
+          <button class="btn-ghost" onclick="loadInSandbox(${ex.n})">▶ Probar en sandbox</button>
+        </div>
+        <div class="ex-hint" id="hint-${ex.n}">
+          <div class="ex-hint-header">// solución sugerida</div>
+          <pre>${ex.hint}</pre>
+        </div>
+      </div>`;
+        list.appendChild(card);
+      });
+    }
+
+    function toggleCard(n) {
+      const card = document.getElementById('ex-' + n);
+      card.classList.toggle('open');
+    }
+    function toggleHint(n) {
+      document.getElementById('hint-' + n).classList.toggle('visible');
+    }
+    function toggleDone(n) {
+      done.has(n) ? done.delete(n) : done.add(n);
+      buildExercises();
+      buildProgress();
+    }
+
+    function loadInSandbox(n) {
+      const ex = EXERCISES.find(e => e.n === n);
+      if (!ex) return;
+      document.getElementById('modal-sandbox-code').value = ex.hint;
+      openModal();
+      setTimeout(() => runSandbox('modal-sandbox-code', 'modal-sandbox-output'), 100);
+    }
+
+    function filterExs(cat, btn) {
+      currentFilter = cat;
+      document.querySelectorAll('.ex-controls .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      buildExercises();
+    }
+
+    // Active nav link on scroll
+    const sections = ['concepto', 'tipos', 'operaciones', 'sandbox', 'ejercicios'];
+    window.addEventListener('scroll', () => {
+      let found = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < 100) found = id;
+      });
+      document.querySelectorAll('.page-nav-link').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + found);
+      });
+    }, { passive: true });
+
+    buildProgress();
+    buildExercises();
+  </script>
+</body>
+
+</html>

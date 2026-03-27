@@ -139,6 +139,25 @@ function showSection(id, btn) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Check if we need to open a specific tab (set by links from other pages)
+(function() {
+  const savedTab = localStorage.getItem('algo_tab');
+  if (savedTab) {
+    localStorage.removeItem('algo_tab');
+    const section = document.getElementById(savedTab);
+    if (section) {
+      // Find matching nav button
+      const tabs = document.querySelectorAll('.nav-tab');
+      tabs.forEach(t => {
+        if (t.textContent.trim().toLowerCase().startsWith(savedTab.replace('disenio','diseño').substring(0,4))) {
+          showSection(savedTab, t);
+        }
+      });
+      if (!section.classList.contains('active')) showSection(savedTab, null);
+    }
+  }
+})();
+
 renderEjercicios('todos');
 
 // El contenido del pseudocódigo vive aquí en JS para que el formateador
