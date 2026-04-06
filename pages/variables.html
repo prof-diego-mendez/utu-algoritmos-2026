@@ -40,6 +40,7 @@
         <a class="page-nav-link" href="#concepto">Concepto</a>
         <a class="page-nav-link" href="#tipos">Tipos</a>
         <a class="page-nav-link" href="#operaciones">Operaciones</a>
+        <a class="page-nav-link" href="#logica">Lógica</a>
         <a class="page-nav-link" href="#sandbox">Sandbox</a>
         <a class="page-nav-link" href="#ejercicios">Ejercicios</a>
       </div>
@@ -271,10 +272,100 @@
       </div>
     </section>
 
-    <!-- ===== 04 — SANDBOX ===== -->
+    <!-- ===== 04 — LÓGICA ===== -->
+    <section class="section" id="logica">
+      <br><br><br>
+      <div class="section-tag">04 — Operaciones lógicas</div>
+      <h2>Variables Booleanas</h2>
+      <p class="section-desc">Las variables de tipo lógico (booleanas) son el corazón de la toma de decisiones en programación. Solo pueden almacenar dos valores: <code>verdadero</code> o <code>falso</code>.</p>
+
+      <h3 class="sub-header">Operadores Relacionales</h3>
+      <p class="section-desc">Nos permiten comparar dos valores entre sí. El resultado de una comparación es <strong>siempre</strong> un valor booleano.</p>
+      
+      <div class="ops-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+        <div class="op-card"><span class="op-sym">&gt;</span>
+          <div class="op-name">Mayor que</div>
+        </div>
+        <div class="op-card"><span class="op-sym">&lt;</span>
+          <div class="op-name">Menor que</div>
+        </div>
+        <div class="op-card"><span class="op-sym">&gt;=</span>
+          <div class="op-name">Mayor o igual</div>
+        </div>
+        <div class="op-card"><span class="op-sym">&lt;=</span>
+          <div class="op-name">Menor o igual</div>
+        </div>
+        <div class="op-card"><span class="op-sym">==</span>
+          <div class="op-name">Igual a</div>
+        </div>
+        <div class="op-card"><span class="op-sym">!=</span>
+          <div class="op-name">Distinto de</div>
+        </div>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-header">
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <span class="code-filename">relacionales.pseudo</span>
+          <button class="code-copy" onclick="copyCode(this)">copiar</button>
+        </div>
+        <pre><span class="var">edad</span> <span class="op">←</span> <span class="num">18</span>
+
+<span class="var">esMayor</span>    <span class="op">←</span> <span class="var">edad</span> <span class="op">&gt;=</span> <span class="num">18</span>   <span class="cm">// → verdadero</span>
+<span class="var">esNinio</span>    <span class="op">←</span> <span class="var">edad</span> <span class="op">&lt;</span> <span class="num">12</span>    <span class="cm">// → falso</span>
+<span class="var">esAdulto</span>   <span class="op">←</span> <span class="var">edad</span> <span class="op">==</span> <span class="num">18</span>   <span class="cm">// → verdadero</span>
+<span class="var">diferente</span>  <span class="op">←</span> <span class="var">edad</span> <span class="op">!=</span> <span class="num">20</span>   <span class="cm">// → verdadero</span></pre>
+      </div>
+
+      <h3 class="sub-header">Operadores Lógicos</h3>
+      <p class="section-desc">Sirven para combinar múltiples condiciones y tomar decisiones. Usamos <code>AND</code> (Y), <code>OR</code> (O) y <code>NOT</code> (NO).</p>
+      
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon" style="color:var(--teal)">AND</div>
+          <div class="card-title">Y lógico</div>
+          <div class="card-body">Devuelve <code>verdadero</code> <strong>solo si ambas</strong> condiciones son verdaderas.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="color:var(--purple)">OR</div>
+          <div class="card-title">O lógico</div>
+          <div class="card-body">Devuelve <code>verdadero</code> si <strong>al menos una</strong> condición es verdadera.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="color:var(--amber)">NOT</div>
+          <div class="card-title">Negación</div>
+          <div class="card-body">Invierte el valor. Lo verdadero se vuelve falso, y viceversa.</div>
+        </div>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-header">
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <div class="code-dot"></div>
+          <span class="code-filename">logicos.pseudo</span>
+          <button class="code-copy" onclick="copyCode(this)">copiar</button>
+        </div>
+        <pre><span class="var">tieneEntrada</span>  <span class="op">←</span> <span class="kw">verdadero</span>
+<span class="var">tieneEdad</span>     <span class="op">←</span> <span class="kw">falso</span>
+
+<span class="cm">// AND: Necesita ambas verdaderas</span>
+<span class="var">puedePasar</span>    <span class="op">←</span> <span class="var">tieneEntrada</span> <span class="op">AND</span> <span class="var">tieneEdad</span>     <span class="cm">// → falso</span>
+
+<span class="cm">// OR: Con una verdadera es suficiente</span>
+<span class="var">entraIgual</span>    <span class="op">←</span> <span class="var">tieneEntrada</span> <span class="op">OR</span> <span class="var">tieneEdad</span>      <span class="cm">// → verdadero</span>
+
+<span class="cm">// NOT: Invierte el valor</span>
+<span class="var">noTieneEdad</span>   <span class="op">←</span> <span class="op">NOT</span> <span class="var">tieneEdad</span>                  <span class="cm">// → verdadero</span></pre>
+      </div>
+    </section>
+
+    <!-- ===== 05 — SANDBOX ===== -->
     <section class="section" id="sandbox">
       <br><br><br>
-      <div class="section-tag">04 — Sandbox</div>
+      <div class="section-tag">05 — Sandbox</div>
       <h2>Probá el pseudocódigo</h2>
       <p class="section-desc">Escribí pseudocódigo y ejecutalo para ver el resultado. Usá <code
           style="font-size:0.8rem;background:var(--surface2);padding:1px 6px;border-radius:3px;color:var(--teal);font-family:'DM Mono',monospace">escribir()</code>, <code
@@ -304,9 +395,9 @@
       </div>
     </section>
 
-    <!-- ===== 05 — EJERCICIOS ===== -->
+    <!-- ===== 06 — EJERCICIOS ===== -->
     <section class="section" id="ejercicios">
-      <div class="section-tag">05 — Ejercicios</div>
+      <div class="section-tag">06 — Ejercicios</div>
       <h2>20 ejercicios prácticos</h2>
       <p class="section-desc">Practicá los conceptos con ejercicios graduados. Cada uno tiene una solución sugerida en pseudocódigo que podés revelar cuando quieras.</p>
 
@@ -445,7 +536,7 @@
           // 2. Reemplazar nombres de variables (fuera de strings)
           safe = safe.replace(/[a-záéíóúñA-ZÁÉÍÓÚÑ_][a-záéíóúñA-ZÁÉÍÓÚÑ0-9_]*/g, (m) => {
             if (m.startsWith('__STR')) return m; // placeholder de string, no tocar
-            if (m === 'mod' || m === 'verdadero' || m === 'falso') return m;
+            if (m === 'mod' || m === 'verdadero' || m === 'falso' || m === 'AND' || m === 'OR' || m === 'NOT') return m;
             if (m in vars) {
               const v = vars[m];
               return typeof v === 'string' ? JSON.stringify(v) : v;
@@ -460,6 +551,9 @@
           safe = safe
             .replace(/verdadero/g, 'true')
             .replace(/falso/g, 'false')
+            .replace(/\bAND\b/g, '&&')
+            .replace(/\bOR\b/g, '||')
+            .replace(/\bNOT\b/g, '!')
             .replace(/×/g, '*').replace(/÷/g, '/')
             .replace(/\^/g, '**')
             .replace(/\bmod\b/g, '%');
@@ -736,7 +830,7 @@
     }
 
     // Active nav link on scroll
-    const sections = ['concepto', 'tipos', 'operaciones', 'sandbox', 'ejercicios'];
+    const sections = ['concepto', 'tipos', 'operaciones', 'logica', 'sandbox', 'ejercicios'];
     window.addEventListener('scroll', () => {
       let found = '';
       sections.forEach(id => {
