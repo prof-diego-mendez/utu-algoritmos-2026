@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algoritmos · Programación I</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/algoritmos.css">
+  <style>
+    /* ===== ETYMOLOGY ===== */
+    .etymology {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1.25rem;
+      background: rgba(124, 58, 237, 0.07);
+      border-radius: 0 var(--r) var(--r) 0;
+      margin: 1rem 0 1.25rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .etymology strong {
+      color: var(--text);
+    }
+
+    /* ===== PROPERTIES GRID ===== */
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    .properties-grid .prop-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.1rem 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .properties-grid .prop-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .properties-grid .prop-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .properties-grid .prop-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ===== ANALOGY GRID ===== */
+    .analogy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1rem 0 1.25rem;
+    }
+
+    @media (max-width: 600px) {
+      .analogy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .analogy-col {
+      border-radius: var(--r);
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--border);
+    }
+
+    .analogy-col h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.4rem;
+    }
+
+    .analogy-col p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .analogy-input {
+      background: rgba(20, 184, 166, 0.08);
+      border-color: rgba(20, 184, 166, 0.3);
+    }
+
+    .analogy-input h4 {
+      color: var(--teal);
+    }
+
+    .analogy-process {
+      background: rgba(124, 58, 237, 0.07);
+      border-color: rgba(124, 58, 237, 0.25);
+    }
+
+    .analogy-process h4 {
+      color: var(--accent);
+    }
+
+    .analogy-output {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .analogy-output h4 {
+      color: var(--amber);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 1.75rem;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline li {
+      padding: 0 0 1.25rem 2.5rem;
+      position: relative;
+    }
+
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+    }
+
+    .timeline li strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline li p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ===== QUIZ ===== */
+    .quiz {
+      margin: 1rem 0 1.5rem;
+    }
+
+    .quiz-options {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-options button {
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1rem;
+      border-radius: var(--r);
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .quiz-options button:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: var(--surface2);
+    }
+
+    .quiz-options button:disabled {
+      cursor: default;
+    }
+
+    .quiz-options button.correct {
+      border-color: var(--teal);
+      background: rgba(20, 184, 166, 0.12);
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .quiz-options button.incorrect {
+      border-color: var(--coral);
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--coral);
+    }
+
+    .quiz-options button.reveal-correct {
+      border-color: var(--teal);
+      background: rgba(20, 184, 166, 0.08);
+      color: var(--teal);
+    }
+
+    .quiz-feedback {
+      padding: 0.75rem 1rem;
+      border-radius: var(--r);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .quiz-feedback.correct {
+      display: block;
+      background: rgba(20, 184, 166, 0.12);
+      border: 1px solid rgba(20, 184, 166, 0.35);
+      color: var(--teal);
+    }
+
+    .quiz-feedback.incorrect {
+      display: block;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--coral);
+    }
+
+    /* ===== WHY ALGORITHMS ===== */
+    .why-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    @media (max-width: 600px) {
+      .why-compare {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .why-col {
+      border-radius: var(--r);
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+    }
+
+    .why-col-bad {
+      background: rgba(239, 68, 68, 0.06);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+
+    .why-col-good {
+      background: rgba(20, 184, 166, 0.07);
+      border-color: rgba(20, 184, 166, 0.3);
+    }
+
+    .why-col-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .why-col-bad .why-col-label {
+      color: var(--coral);
+    }
+
+    .why-col-good .why-col-label {
+      color: var(--teal);
+    }
+
+    .why-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .why-col ul li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .why-col-bad ul li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--coral);
+      font-size: 0.8rem;
+    }
+
+    .why-col-good ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-size: 0.8rem;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .why-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .why-card-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .why-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+
+    .why-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .blockquote-highlight {
+      border-left: 3px solid var(--amber);
+      padding: 0.9rem 1.25rem;
+      background: rgba(245, 158, 11, 0.07);
+      border-radius: 0 var(--r) var(--r) 0;
+      margin: 1.5rem 0;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .blockquote-highlight cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      font-style: normal;
+      font-family: 'DM Mono', monospace;
+      color: var(--amber);
+    }
+
+    /* ===== PSEUDO REFERENCE ===== */
+    .pseudo-ref {
+      margin: 1.5rem 0 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .pseudo-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding: 0 0 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.75rem;
+    }
+
+    .pseudo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .pseudo-table th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .pseudo-table td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: top;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .pseudo-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pseudo-table tr:hover td {
+      background: var(--surface2);
+    }
+
+    .pseudo-kw {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .pseudo-syntax {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--teal);
+    }
+
+    .pseudo-desc {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Skip Link for Keyboard/Screen Reader Users -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+  <a href="#nav-principal" class="skip-link">Saltar a la navegación</a>
+
+  <header class="site-header" role="banner">
+    <div class="logo">
+      <div class="logo-icon" aria-hidden="true">λ</div>
+      <div>
+        <span>Algoritmos</span>
+        <span class="logo-sub"> · Programación I · Prof. Diego Méndez · ITI 2026</span>
+      </div>
+    </div>
+    <nav class="nav-tabs" role="tablist" aria-label="Navegación principal" id="nav-principal">
+      <a class="nav-tab-link" href="index.html" style="font-weight:600">← Inicio</a>
+      <a class="nav-tab active" href="#teoria" role="tab" aria-selected="true" aria-controls="teoria">Teoría</a>
+      <a class="nav-tab-link" href="variables.html">Variables →</a>
+      <a class="nav-tab" href="#estructuras" role="tab" aria-selected="false" aria-controls="estructuras">Estructuras</a>
+      <a class="nav-tab" href="#disenio" role="tab" aria-selected="false" aria-controls="disenio">Diseño</a>
+      <a class="nav-tab" href="#ejercicios" role="tab" aria-selected="false" aria-controls="ejercicios">Ejercicios</a>
+      <a class="nav-tab-link" href="tipos-de-datos.html">Tipos de Datos →</a>
+    </nav>
+  </header>
+
+  <main class="main" id="main-content" role="main">
+
+    <!-- ===== TEORÍA ===== -->
+    <section id="teoria" class="section active">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 01 · Fundamentos</div>
+        <h1>Algoritmos:<br>el corazón de la programación</h1>
+        <p>Antes de escribir una línea de código, aprendemos a pensar. Un algoritmo es la solución antes de que exista el programa.</p>
+      </div>
+
+      <h2>¿Qué es un algoritmo?</h2>
+      <p>Un <strong>algoritmo</strong> es un conjunto finito de instrucciones ordenadas, precisas y no ambiguas que permiten resolver un problema o realizar una tarea.</p>
+      <div class="etymology">
+        <p><strong>Etimología:</strong> La palabra deriva del matemático persa Al-Juarismi (siglo IX), cuya obra sentó las bases del cálculo sistemático. Antes de las computadoras, los algoritmos ya
+          guíaban procesos matemáticos, geográficos e industriales.</p>
+      </div>
+      <p>Lo nuevo no es el concepto, sino la velocidad y precisión con que una máquina puede ejecutarlos.</p>
+
+      <h3>Propiedades clave</h3>
+      <div class="properties-grid">
+        <div class="prop-card">
+          <h4>Finito</h4>
+          <p>Tiene un inicio y un fin definidos. No puede ejecutarse indefinidamente.</p>
+        </div>
+        <div class="prop-card">
+          <h4>Ordenado</h4>
+          <p>Cada instrucción sigue a la anterior en una secuencia específica.</p>
+        </div>
+        <div class="prop-card">
+          <h4>Preciso</h4>
+          <p>Cada paso debe ser claro y realizable sin ambigüedad.</p>
+        </div>
+        <div class="prop-card">
+          <h4>Efectivo</h4>
+          <p>Produce un resultado correcto para todas las entradas válidas.</p>
+        </div>
+      </div>
+
+      <h3>Analogía: receta de cocina</h3>
+      <p>Una receta es un algoritmo perfecto — tiene entradas, un proceso ordenado y una salida concreta.</p>
+      <div class="analogy-grid">
+        <div class="analogy-col analogy-input">
+          <h4>Entradas</h4>
+          <p>Ingredientes: harina, huevos, azúcar, manteca…</p>
+        </div>
+        <div class="analogy-col analogy-process">
+          <h4>Proceso</h4>
+          <p>Mezclar, hornear a 180 °C por 30 min, enfriar…</p>
+        </div>
+        <div class="analogy-col analogy-output">
+          <h4>Salida</h4>
+          <p>El plato terminado.</p>
+        </div>
+      </div>
+      <p>Si saltás un paso o lo hacés en orden incorrecto, el resultado cambia o falla por completo — igual que en el código.</p>
+
+      <h3>Breve historia</h3>
+      <ul class="timeline">
+        <li>
+          <strong>Siglo IX — Al-Juarismi</strong>
+          <p>Describe métodos sistemáticos para resolver ecuaciones. Su nombre latinizado da origen a la palabra “algoritmo”.</p>
+        </li>
+        <li>
+          <strong>1843 — Ada Lovelace</strong>
+          <p>Escribe el primer algoritmo diseñado para ejecutarse en una máquina, considerado el primer programa informático.</p>
+        </li>
+        <li>
+          <strong>1936 — Alan Turing</strong>
+          <p>Formaliza el concepto de computación con su modelo de máquina abstracta, base teórica de toda la informática moderna.</p>
+        </li>
+        <li>
+          <strong>Hoy</strong>
+          <p>Los algoritmos ejecutan millones de instrucciones por segundo en dispositivos que caben en un bolsillo.</p>
+        </li>
+      </ul>
+
+      <h3>A ver si estás prestando atención...</h3>
+      <p>¿Cuál de estas opciones NO es una propiedad de un algoritmo?</p>
+      <div class="quiz" id="quiz">
+        <ul class="quiz-options">
+          <li><button data-correct="false" onclick="answerQuiz(this)">Es finito: tiene principio y fin.</button></li>
+          <li><button data-correct="true" onclick="answerQuiz(this)">Puede repetirse infinitamente sin detenerse.</button></li>
+          <li><button data-correct="false" onclick="answerQuiz(this)">Sus instrucciones son precisas y no ambiguas.</button></li>
+          <li><button data-correct="false" onclick="answerQuiz(this)">Produce un resultado para entradas válidas.</button></li>
+        </ul>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+      </div>
+
+      <h2>¿Por qué estudiar algoritmos antes de programar?</h2>
+      <p>La programación es solo el <em>lenguaje</em> en el que se escriben las instrucciones. El verdadero desafío es <strong>pensar la solución</strong>: descomponer un problema complejo en pasos
+        simples, identificar qué información se necesita y qué se debe producir.</p>
+
+      <h3>Con algoritmos vs. sin algoritmos</h3>
+      <div class="why-compare">
+        <div class="why-col why-col-bad">
+          <div class="why-col-label">✗ Sin pensamiento algorítmico</div>
+          <ul>
+            <li>Código que “funciona a veces”</li>
+            <li>Soluciones difíciles de entender o modificar</li>
+            <li>Errores que aparecen sólo con ciertos datos</li>
+            <li>Tiempo perdido depurando en lugar de diseñando</li>
+          </ul>
+        </div>
+        <div class="why-col why-col-good">
+          <div class="why-col-label">✓ Con pensamiento algorítmico</div>
+          <ul>
+            <li>Soluciones predecibles para cualquier entrada</li>
+            <li>Código legible y fácil de mantener</li>
+            <li>Errores detectados antes de escribir una línea</li>
+            <li>Comunicación clara entre integrantes del equipo</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Lo que realmente se entrena</h3>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-card-icon">🔍</div>
+          <div>
+            <h4>Descomponer problemas</h4>
+            <p>Partir un problema grande en subproblemas pequeños y manejables.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">📊</div>
+          <div>
+            <h4>Modelar datos</h4>
+            <p>Identificar qué información entra, cómo se transforma y qué se produce.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">🛡️</div>
+          <div>
+            <h4>Anticipar errores</h4>
+            <p>Pensar en casos límite y entradas inesperadas antes de codificar.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">💬</div>
+          <div>
+            <h4>Comunicar soluciones</h4>
+            <p>Expresar la lógica con claridad a otras personas, independientemente del lenguaje.</p>
+          </div>
+        </div>
+      </div>
+
+      <blockquote class="blockquote-highlight">
+        “Primero, resolvé el problema. Después, escribí el código.”
+        <cite>— John Johnson, ingeniero de software (el meme huérfano más famoso de internet)</cite>
+      </blockquote>
+
+      <h2>Formas de representar un algoritmo</h2>
+
+      <h3>1 · Lenguaje natural</h3>
+      <p>Se describe el algoritmo con palabras cotidianas. Es fácil de entender pero puede ser ambiguo.</p>
+      <div class="highlight">"Pedirle al usuario su edad. Si tiene 18 o más, mostrar 'Mayor de edad'. Si no, mostrar 'Menor de edad'."</div>
+
+      <h3>2 · Pseudocódigo</h3>
+      <p>Lenguaje intermedio entre el idioma natural y la programación. Sigue reglas lógicas estrictas pero sin sintaxis de ningún lenguaje real.</p>
+      <div class="code-block" id="cb-edad"></div>
+
+      <h4 style="margin: 1.5rem 0 0.25rem; font-size: 0.95rem;">Referencia de instrucciones</h4>
+      <p style="margin-bottom: 0.75rem;">Estas son todas las palabras clave que forman el pseudocódigo utilizado en el curso:</p>
+
+      <div class="pseudo-ref">
+
+        <!-- ESTRUCTURA DEL PROGRAMA -->
+        <div>
+          <div class="pseudo-group-title">Estructura del programa</div>
+          <table class="pseudo-table">
+            <thead>
+              <tr>
+                <th>Instrucción</th>
+                <th>Sintaxis</th>
+                <th>Para qué se usa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pseudo-kw">INICIO</span></td>
+                <td><span class="pseudo-syntax">INICIO</span></td>
+                <td class="pseudo-desc">Marca el comienzo del algoritmo.</td>
+              </tr>
+              <tr>
+                <td><span class="pseudo-kw">FIN</span></td>
+                <td><span class="pseudo-syntax">FIN</span></td>
+                <td class="pseudo-desc">Marca el final del algoritmo. Todo lo que está entre INICIO y FIN es el cuerpo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ENTRADA / SALIDA -->
+        <div>
+          <div class="pseudo-group-title">Entrada y salida de datos</div>
+          <table class="pseudo-table">
+            <thead>
+              <tr>
+                <th>Instrucción</th>
+                <th>Sintaxis</th>
+                <th>Para qué se usa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pseudo-kw">LEER</span></td>
+                <td><span class="pseudo-syntax">LEER variable</span></td>
+                <td class="pseudo-desc">Lee un valor ingresado por el usuario y lo guarda en una variable.</td>
+              </tr>
+              <tr>
+                <td><span class="pseudo-kw">ESCRIBIR</span></td>
+                <td><span class="pseudo-syntax">ESCRIBIR "texto" / variable</span></td>
+                <td class="pseudo-desc">Muestra un mensaje o el valor de una variable en pantalla.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ASIGNACIÓN -->
+        <div>
+          <div class="pseudo-group-title">Asignación de variables</div>
+          <table class="pseudo-table">
+            <thead>
+              <tr>
+                <th>Instrucción</th>
+                <th>Sintaxis</th>
+                <th>Para qué se usa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pseudo-kw">← o =</span></td>
+                <td><span class="pseudo-syntax">variable ← expresión</span></td>
+                <td class="pseudo-desc">Asigna un valor a una variable. La expresión de la derecha se evalúa y el resultado se guarda en la variable.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SELECCIÓN -->
+        <div>
+          <div class="pseudo-group-title">Estructuras de selección (decisiones)</div>
+          <table class="pseudo-table">
+            <thead>
+              <tr>
+                <th>Instrucción</th>
+                <th>Sintaxis</th>
+                <th>Para qué se usa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pseudo-kw">SI … ENTONCES</span></td>
+                <td><span class="pseudo-syntax">SI condición ENTONCES<br>&nbsp;&nbsp;instrucciones<br>FIN SI</span></td>
+                <td class="pseudo-desc">Ejecuta un bloque solo si la condición es verdadera.</td>
+              </tr>
+              <tr>
+                <td><span class="pseudo-kw">SI … SINO</span></td>
+                <td><span class="pseudo-syntax">SI condición ENTONCES<br>&nbsp;&nbsp;bloque A<br>SINO<br>&nbsp;&nbsp;bloque B<br>FIN SI</span></td>
+                <td class="pseudo-desc">Define dos caminos: uno si la condición es verdadera y otro si es falsa.</td>
+              </tr>
+              <tr>
+                <td><span class="pseudo-kw">SEGUN … SEA</span></td>
+                <td><span class="pseudo-syntax">SEGUN variable SEA<br>&nbsp;&nbsp;CASO valor: instrucciones<br>&nbsp;&nbsp;SINO: instrucciones<br>FIN SEGUN</span></td>
+                <td class="pseudo-desc">Evalúa una variable y ejecuta el bloque cuyo caso coincida con su valor. Equivale al <em>switch/case</em>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- REPETICIÓN -->
+        <div>
+          <div class="pseudo-group-title">Estructuras de repetición (bucles)</div>
+          <table class="pseudo-table">
+            <thead>
+              <tr>
+                <th>Instrucción</th>
+                <th>Sintaxis</th>
+                <th>Para qué se usa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pseudo-kw">MIENTRAS</span></td>
+                <td><span class="pseudo-syntax">MIENTRAS condición HACER<br>&nbsp;&nbsp;instrucciones<br>FIN MIENTRAS</span></td>
+                <td class="pseudo-desc">Repite el bloque mientras la condición sea verdadera. La condición se evalua <em>antes</em> de cada iteración; si es falsa desde el inicio, el bloque no se
+                  ejecuta.</td>
+              </tr>
+              <tr>
+                <td><span class="pseudo-kw">HACER … MIENTRAS</span></td>
+                <td><span class="pseudo-syntax">HACER<br>&nbsp;&nbsp;instrucciones<br>MIENTRAS condición</span></td>
+                <td class="pseudo-desc">Igual que MIENTRAS, pero la condición se evalua <em>después</em>. El bloque se ejecuta al menos una vez.</td>
+              </tr>
+              <tr>
+                <td><span class="pseudo-kw">PARA</span></td>
+                <td><span class="pseudo-syntax">PARA i ← inicio HASTA fin [PASO n] HACER<br>&nbsp;&nbsp;instrucciones<br>FIN PARA</span></td>
+                <td class="pseudo-desc">Repite el bloque un número conocido de veces usando un contador. El paso (<em>PASO n</em>) es opcional; si se omite se asume 1.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SUBALGORITMOS -->
+        <div>
+          <div class="pseudo-group-title">Subalgoritmos (módulos)</div>
+          <table class="pseudo-table">
+            <thead>
+              <tr>
+                <th>Instrucción</th>
+                <th>Sintaxis</th>
+                <th>Para qué se usa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pseudo-kw">FUNCION</span></td>
+                <td><span class="pseudo-syntax">FUNCION nombre(parámetros): tipo<br>&nbsp;&nbsp;instrucciones<br>&nbsp;&nbsp;RETORNAR valor<br>FIN FUNCION</span></td>
+                <td class="pseudo-desc">Define un subalgoritmo que recibe parámetros y <em>devuelve un resultado</em>.</td>
+              </tr>
+              <tr>
+                <td><span class="pseudo-kw">PROCEDIMIENTO</span></td>
+                <td><span class="pseudo-syntax">PROCEDIMIENTO nombre(parámetros)<br>&nbsp;&nbsp;instrucciones<br>FIN PROCEDIMIENTO</span></td>
+                <td class="pseudo-desc">Define un subalgoritmo que realiza una tarea <em>sin devolver valor</em>.</td>
+              </tr>
+              <tr>
+                <td><span class="pseudo-kw">RETORNAR</span></td>
+                <td><span class="pseudo-syntax">RETORNAR expresión</span></td>
+                <td class="pseudo-desc">Devuelve un valor al punto de llamada y finaliza la ejecución de la función.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <h3>3 · Diagrama de flujo</h3>
+      <p>Representación gráfica con símbolos estándar. Permite ver la lógica completa de un vistazo.</p>
+
+      <div class="flow-row">
+        <div class="flow-node start">INICIO</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node io">LEER / ESCRIBIR</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node proc">Proceso</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node dec">¿Condición?</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node end">FIN</div>
+        <div class="flow-legend">
+          <div class="flow-legend-item">
+            <div class="flow-legend-dot" style="background:var(--teal);border-radius:50%"></div>Óvalo: inicio / fin
+          </div>
+          <div class="flow-legend-item">
+            <div class="flow-legend-dot" style="background:var(--blue)"></div>Rectángulo: proceso
+          </div>
+          <div class="flow-legend-item">
+            <div class="flow-legend-dot" style="background:var(--amber);transform:rotate(45deg)"></div>Rombo: decisión
+          </div>
+          <div class="flow-legend-item">
+            <div class="flow-legend-dot" style="background:var(--accent);transform:skewX(8deg)"></div>Paralelogramo: E/S
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-accent amber">
+        <h3>Objetivo del curso</h3>
+        <p>En esta unidad no escribimos código aún. El objetivo es entrenar el <strong>pensamiento lógico computacional</strong>: plantear, organizar y verificar soluciones antes de
+          implementarlas.</p>
+      </div>
+
+    </section>
+
+    <!-- ===== ESTRUCTURAS ===== -->
+    <section id="estructuras" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 02 · Control</div>
+        <h1>Estructuras de control<br>y tipos de datos</h1>
+        <p>En la década de 1960 surgió la "crisis del software": los programas se volvían cada vez más difíciles de leer, probar y mantener.</p>
+      </div>
+
+      <!-- ── TEOREMA DE BÖHM-JACOPINI ── -->
+      <div style="background: var(--surface2); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.5rem 1.75rem; border-radius: 8px; margin-bottom: 3.5rem;">
+        <h3 style="margin-top: 0; font-size: 1.15rem; color: var(--accent); margin-bottom: 0.75rem;">
+          Teorema de Böhm-Jacopini (1966)
+        </h3>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text); margin-bottom: 1rem;">
+          Antes de este teorema, se creía necesario abusar de instrucciones de salto incondicional (como el <code>GOTO</code>) para resolver problemas complejos, lo que generaba un flujo de ejecución
+          caótico e impredecible conocido como <strong>"código espagueti"</strong>.
+        </p>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text); margin-bottom: 1.5rem;">
+          Los matemáticos Corrado Böhm y Giuseppe Jacopini demostraron que <strong>cualquier algoritmo computable</strong>, sin importar su tamaño o complejidad, puede ser expresado utilizando
+          únicamente la combinación sistemática de tres bloques lógicos elementales. Este descubrimiento sentó las bases de toda la programación estructurada moderna.
+        </p>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <span
+            style="font-family: 'DM Mono', monospace; font-size: 0.85rem; background: var(--surface); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--teal); color: var(--teal);">1.
+            Secuencia</span>
+          <span
+            style="font-family: 'DM Mono', monospace; font-size: 0.85rem; background: var(--surface); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--amber); color: var(--amber);">2.
+            Selección</span>
+          <span
+            style="font-family: 'DM Mono', monospace; font-size: 0.85rem; background: var(--surface); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--coral); color: var(--coral);">3.
+            Repetición</span>
+        </div>
+      </div>
+
+      <h2>Las tres estructuras de control</h2>
+
+      <div class="card card-accent teal">
+        <h3>1 · Secuencia</h3>
+        <p>Las instrucciones se ejecutan <strong>una tras otra</strong>, en orden estricto de arriba hacia abajo. Es la estructura más simple y la base de todo algoritmo.</p>
+        <p><strong>Ejemplo:</strong> calcular el área de un rectángulo.</p>
+      </div>
+      <div class="code-block" id="cb-area"></div>
+
+      <div class="card card-accent amber">
+        <h3>2 · Selección (decisión / condicional)</h3>
+        <p>Permite que el algoritmo tome <strong>caminos distintos</strong> según una condición booleana.</p>
+        <ul>
+          <li><strong>SI-ENTONCES (if):</strong> solo actúa si la condición es verdadera.</li>
+          <li><strong>SI-ENTONCES-SINO (if-else):</strong> un camino para verdadero, otro para falso.</li>
+          <li><strong>SI múltiple (switch/case):</strong> evalúa varios valores posibles de una variable.</li>
+        </ul>
+      </div>
+      <div class="code-block" id="cb-temp"></div>
+
+      <div class="card card-accent coral">
+        <h3>3 · Repetición (bucles / iteración)</h3>
+        <p>Ejecuta un bloque de instrucciones <strong>múltiples veces</strong>. Existen tres variantes:</p>
+        <ul>
+          <li><strong>MIENTRAS (while):</strong> repite mientras la condición sea verdadera. Se evalúa antes de ejecutar.</li>
+          <li><strong>HACER-MIENTRAS (do-while):</strong> ejecuta al menos una vez, luego evalúa.</li>
+          <li><strong>PARA (for):</strong> repite un número conocido de veces usando un contador.</li>
+        </ul>
+        <p><strong>Clave:</strong> todo bucle debe tener una condición de salida. Sin ella → bucle infinito.</p>
+      </div>
+      <div class="code-block" id="cb-bucle"></div>
+
+      <div class="divider"></div>
+
+      <h2>Modularidad (subalgoritmos)</h2>
+      <p>Un <strong>subalgoritmo</strong> (o módulo) resuelve una subtarea específica y puede ser reutilizado. Equivale a lo que en programación se llama <strong>función o procedimiento</strong>.</p>
+
+      <div class="card card-accent blue">
+        <h3>Ventajas de dividir en módulos</h3>
+        <ul>
+          <li>Facilita la lectura y comprensión del algoritmo completo</li>
+          <li>Permite reutilizar partes sin reescribirlas</li>
+          <li>Simplifica la detección y corrección de errores</li>
+          <li>Hace más fácil modificar o ampliar el algoritmo</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ===== DISEÑO ===== -->
+    <section id="disenio" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 03 · Metodología</div>
+        <h1>Diseño y verificación<br>de algoritmos</h1>
+        <p>Diseñar bien es más valioso que programar rápido. Un buen diseño previene errores, facilita el mantenimiento y comunica la intención con claridad.</p>
+      </div>
+
+      <h2>Metodología de resolución</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Análisis del problema (Abstracción)</h3>
+            <p>Antes de pensar en código, es crucial aplicar <strong>abstracción</strong>: aislar y extraer únicamente la información relevante para solucionar tu problema, ignorando el "ruido".
+              Implica definir rigurosamente las <em>entradas</em> (los datos con los que cuentas), las <em>salidas</em> esperadas (los resultados) y delimitar todas las restricciones operativas que
+              el algoritmo debe respetar rigurosamente.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Diseño Lógico (Divide y Vencerás)</h3>
+            <p>La mente no puede procesar un sistema complejo de golpe. Valiéndote del enfoque <strong>Top-Down</strong>, descomponés el desafío principal en sub-problemas fácilmente
+              atacables. Al plasmarlo en pseudocódigo, te liberás de preocuparte por la rigidez sintáctica de un lenguaje específico y te concentrás puramente en idear la
+              solución y el flujo exacto de los datos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Prueba de Escritorio (Tracing)</h3>
+            <p>Se trata de abandonar las asunciones humanas y <strong>convertirse literalmente en el procesador</strong>. Ejecutás tus instrucciones una por una, de forma y mecánica e incuestionable,
+              manteniendo un registro estricto en una tabla del estado de cada variable tras cada paso. Es la única técnica infalible para detectar errores "invisibles", como bucles que nunca terminan
+              o contadores
+              defasados (<em>off-by-one errors</em>).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Refinamiento y Casos Extremos</h3>
+            <p>Un algoritmo no está terminado cuando funciona "la mayoría de las veces". En esta fase practicás la <strong>programación defensiva</strong> interrumpiendo el flujo optimista para
+              contemplar los peores escenarios: ¿qué ocurre si el usuario ingresa un dato vacío o incorrecto, un valor de un tipo no soportado, o valores negativos lógicamente absurdos? Además,
+              optimizás operaciones redundantes para minimizar el
+              costo computacional final.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Ejemplo de prueba de escritorio</h2>
+      <p>Algoritmo que suma los números del 1 al 5:</p>
+
+      <div class="code-block" id="cb-suma"></div>
+
+      <div class="card">
+        <h3>Tabla de seguimiento</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Iteración</th>
+                <th>i</th>
+                <th>suma</th>
+                <th>i ≤ 5?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Inicio</td>
+                <td class="num">1</td>
+                <td class="num">0</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>1ª</td>
+                <td class="num">2</td>
+                <td class="num">1</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>2ª</td>
+                <td class="num">3</td>
+                <td class="num">3</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>3ª</td>
+                <td class="num">4</td>
+                <td class="num">6</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>4ª</td>
+                <td class="num">5</td>
+                <td class="num">10</td>
+                <td class="yes">Sí</td>
+              </tr>
+              <tr>
+                <td>5ª</td>
+                <td class="num">6</td>
+                <td class="num">15</td>
+                <td class="no">No → Sale</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2>Errores comunes en algoritmos</h2>
+
+      <div class="card card-accent coral">
+        <ul>
+          <li><strong>Bucle infinito:</strong> la condición de salida nunca se vuelve falsa. El algoritmo no termina nunca.</li>
+          <li><strong>Variable no inicializada:</strong> usar una variable sin asignarle un valor previo. Resultado impredecible.</li>
+          <li><strong>Error off-by-one:</strong> contar una vez de más o de menos. Muy frecuente en bucles PARA.</li>
+          <li><strong>División por cero:</strong> no verificar que el divisor sea distinto de cero antes de dividir.</li>
+          <li><strong>Condición mal planteada:</strong> usar &lt; cuando debería ser ≤, o viceversa.</li>
+          <li><strong>Algoritmo incompleto:</strong> no contemplar todos los casos posibles de la entrada.</li>
+        </ul>
+      </div>
+
+      <h2>Glosario esencial</h2>
+      <div class="props-grid">
+        <div class="prop-card">
+          <div class="prop-label">Algoritmo</div>
+          <div class="prop-value">Secuencia finita y precisa de instrucciones</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">Variable</div>
+          <div class="prop-value">Espacio de memoria con nombre y valor</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">Constante</div>
+          <div class="prop-value">Valor fijo que no cambia en la ejecución</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">Expresión</div>
+          <div class="prop-value">Combinación de valores y operadores</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">Condición</div>
+          <div class="prop-value">Expresión que resulta Verdadero o Falso</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">Iteración</div>
+          <div class="prop-value">Una pasada completa por el cuerpo de un bucle</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">Acumulador</div>
+          <div class="prop-value">Variable que suma/multiplica valores sucesivos</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">Contador</div>
+          <div class="prop-value">Variable que se incrementa de a 1</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">Bandera (flag)</div>
+          <div class="prop-value">Variable booleana que indica un estado</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== EJERCICIOS ===== -->
+    <section id="ejercicios" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">20 Ejercicios · Sin código</div>
+        <h1>Práctica de pensamiento<br>lógico computacional</h1>
+        <p>Resolvé cada ejercicio en pseudocódigo o lenguaje natural. Usá el área de trabajo para escribir tu solución directamente acá. Tus respuestas se guardan en el navegador.</p>
+      </div>
+
+      <div class="ex-stats" role="group" aria-label="Estadísticas de ejercicios">
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-total">20</span><span class="ex-stat-l">ejercicios</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-done" aria-live="polite" aria-atomic="true">0</span><span class="ex-stat-l">completados</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-pct" aria-live="polite" aria-atomic="true">0%</span><span class="ex-stat-l">progreso</span></div>
+      </div>
+      <div class="progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de ejercicios">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+
+      <div class="filter-row" role="group" aria-label="Filtrar ejercicios por nivel">
+        <button class="filter-btn active" onclick="filterEx('todos',this)" aria-pressed="true">Todos (20)</button>
+        <button class="filter-btn" onclick="filterEx('Básico',this)" aria-pressed="false">Básico (6)</button>
+        <button class="filter-btn" onclick="filterEx('Intermedio',this)" aria-pressed="false">Intermedio (9)</button>
+        <button class="filter-btn" onclick="filterEx('Avanzado',this)" aria-pressed="false">Avanzado (5)</button>
+      </div>
+
+      <div class="ex-list" id="ex-list" aria-live="polite" aria-relevant="additions removals"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Overlay for mobile menu -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <!-- Hamburger menu button -->
+  <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+
+
+  <!-- Mobile navigation drawer -->
+  <nav class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Navegación móvil" aria-modal="true">
+    <div class="mobile-nav-header">
+      <span class="mobile-nav-title">Menú</span>
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Cerrar menú">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <a class="nav-tab-link" href="index.html">← Inicio</a>
+    <a class="nav-tab active" href="#teoria" role="tab">Teoría</a>
+    <a class="nav-tab-link" href="variables.html">Variables →</a>
+    <a class="nav-tab" href="#estructuras" role="tab">Estructuras</a>
+    <a class="nav-tab" href="#disenio" role="tab">Diseño</a>
+    <a class="nav-tab" href="#ejercicios" role="tab">Ejercicios</a>
+    <a class="nav-tab-link" href="tipos-de-datos.html">Tipos de Datos →</a>
+  </nav>
+
+  <!-- State Manager for unified progress tracking -->
+  <script src="../js/state-manager.js"></script>
+  <!-- UI Utilities for loading states and toasts -->
+  <script src="../js/ui-utils.js"></script>
+  <script src="../js/algoritmos.js"></script>
+  <script>
+    function answerQuiz(btn) {
+      var isCorrect = btn.getAttribute('data-correct') === 'true';
+      var buttons = document.querySelectorAll('.quiz-options button');
+      var feedback = document.getElementById('quiz-feedback');
+      buttons.forEach(function (b) { b.disabled = true; });
+      if (isCorrect) {
+        btn.classList.add('correct');
+        feedback.textContent = 'Correcto. Un algoritmo siempre debe ser finito: si no tiene fin, no es un algoritmo válido.';
+        feedback.className = 'quiz-feedback correct';
+      } else {
+        btn.classList.add('incorrect');
+        buttons[1].classList.add('reveal-correct');
+        feedback.textContent = 'No es correcto. La opción que NO es propiedad de un algoritmo es que pueda repetirse infinitamente — eso precisamente lo invalida.';
+        feedback.className = 'quiz-feedback incorrect';
+      }
+    }
+  </script>
+  <!-- ── FOOTER ── -->
+  <footer class="page-footer">
+    <p>Algoritmos y Fundamentos &middot; Prof. Diego Méndez &middot; ITI 2026</p>
+  </footer>
+
+</body>
+
+</html>

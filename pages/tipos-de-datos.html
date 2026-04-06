@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipos de Datos en Java · Programación I</title>
+  <meta name="description" content="Material educativo sobre tipos de datos primitivos y no primitivos en Java. Programación I – Prof. Diego Méndez – ITI 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/algoritmos.css">
+  <link rel="stylesheet" href="../css/tipos-de-datos.css">
+  <style>
+    /* ── MINI INTÉRPRETE DE OPERADORES ── */
+    .op-calc {
+      margin: 1.5rem 0 1.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg, 12px);
+      overflow: hidden;
+    }
+
+    .op-calc-header {
+      background: var(--surface2);
+      padding: 0.6rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .op-calc-header::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 6px var(--teal);
+    }
+
+    .op-calc-body {
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .op-row {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr 2rem 1fr 2rem 1fr;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 0.9rem;
+      transition: border-color 0.2s;
+    }
+
+    .op-row:focus-within {
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 560px) {
+      .op-row {
+        grid-template-columns: 2rem 1fr 1.5rem 1fr 1.5rem 1fr;
+      }
+    }
+
+    .op-sym-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-align: center;
+    }
+
+    .op-num {
+      background: transparent;
+      border: none;
+      border-bottom: 1px dashed var(--border);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.95rem;
+      width: 100%;
+      padding: 2px 4px;
+      outline: none;
+      text-align: center;
+    }
+
+    .op-num:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .op-num::-webkit-inner-spin-button,
+    .op-num::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    .op-num {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .op-eq {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .op-result {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--amber);
+      padding-left: 0.25rem;
+      transition: color 0.15s;
+    }
+
+    .op-calc-note {
+      padding: 0.5rem 1.25rem 0.85rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+      border-top: 1px solid var(--border);
+      background: rgba(239, 68, 68, 0.04);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">☕</div>
+      <div>
+        <span>Tipos de Datos</span>
+        <span class="logo-sub"> · Programación I · Prof. Diego Méndez · ITI 2026</span>
+      </div>
+    </div>
+    <nav class="nav-tabs" role="tablist" aria-label="Navegación principal">
+      <a class="nav-tab-link" href="index.html">← Inicio</a>
+      <a class="nav-tab-link" href="algoritmos-index.html">Algoritmos</a>
+      <a class="nav-tab-link" href="variables.html">Variables</a>
+      <a class="nav-tab active" href="#primitivos" role="tab" aria-selected="true">Primitivos</a>
+      <a class="nav-tab" href="#noprim" role="tab" aria-selected="false">No Primitivos</a>
+      <a class="nav-tab" href="#conversion" role="tab" aria-selected="false">Conversión</a>
+      <a class="nav-tab" href="#practica" role="tab" aria-selected="false">Práctica</a>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== PRIMITIVOS ===== -->
+    <section id="primitivos" class="section active">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 01 · Fundamentos de Java</div>
+        <h1>Tipos de datos primitivos<br>en Java</h1>
+        <p>Java es un lenguaje <strong>fuertemente tipado</strong>: toda variable debe declararse con un tipo antes de usarse. Los tipos primitivos son los bloques de construcción más básicos del
+          lenguaje.</p>
+      </div>
+
+      <h2>¿Qué es un tipo de dato?</h2>
+      <p>Un <strong>tipo de dato</strong> define qué clase de valor puede almacenar una variable, cuántos bytes de memoria ocupa y qué operaciones se pueden realizar sobre él. En Java, cada variable
+        tiene exactamente un tipo, que no cambia durante la ejecución.</p>
+
+      <div class="card card-accent blue">
+        <h3>Declaración en Java</h3>
+        <p>La sintaxis general es: <strong>tipo nombreVariable = valorInicial;</strong></p>
+        <p>Ejemplo: <strong>int edad = 18;</strong> — se reserva memoria, se nombra la variable y se asigna un valor.</p>
+      </div>
+
+      <h2>Los 8 tipos primitivos</h2>
+      <p>Java define exactamente 8 tipos primitivos. No son objetos: son valores almacenados directamente en memoria (stack).</p>
+
+      <div class="tipos-grid">
+
+        <div class="tipo-card tipo-azul">
+          <div class="tipo-header">
+            <span class="tipo-keyword">byte</span>
+            <span class="tipo-size">8 bits · 1 byte</span>
+          </div>
+          <div class="tipo-range">−128 a 127</div>
+          <div class="tipo-desc">Entero muy pequeño. Útil para ahorrar memoria en arreglos grandes.</div>
+          <div class="code-inline">byte b = <span class="nm">100</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-azul">
+          <div class="tipo-header">
+            <span class="tipo-keyword">short</span>
+            <span class="tipo-size">16 bits · 2 bytes</span>
+          </div>
+          <div class="tipo-range">−32 768 a 32 767</div>
+          <div class="tipo-desc">Entero corto. Poco común en código moderno.</div>
+          <div class="code-inline">short s = <span class="nm">1000</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-teal">
+          <div class="tipo-header">
+            <span class="tipo-keyword">int</span>
+            <span class="tipo-size">32 bits · 4 bytes</span>
+          </div>
+          <div class="tipo-range">−2 147 483 648 a 2 147 483 647</div>
+          <div class="tipo-desc">El tipo entero más usado. Valor predeterminado para literales numéricos enteros.</div>
+          <div class="code-inline">int edad = <span class="nm">18</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-teal">
+          <div class="tipo-header">
+            <span class="tipo-keyword">long</span>
+            <span class="tipo-size">64 bits · 8 bytes</span>
+          </div>
+          <div class="tipo-range">±9.2 × 10¹⁸</div>
+          <div class="tipo-desc">Entero muy grande. El literal lleva sufijo <strong>L</strong>.</div>
+          <div class="code-inline">long pob = <span class="nm">8000000000L</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-amber">
+          <div class="tipo-header">
+            <span class="tipo-keyword">float</span>
+            <span class="tipo-size">32 bits · 4 bytes</span>
+          </div>
+          <div class="tipo-range">±3.4 × 10³⁸ (~7 dígitos)</div>
+          <div class="tipo-desc">Decimal de simple precisión. El literal lleva sufijo <strong>f</strong>.</div>
+          <div class="code-inline">float pi = <span class="nm">3.14f</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-amber">
+          <div class="tipo-header">
+            <span class="tipo-keyword">double</span>
+            <span class="tipo-size">64 bits · 8 bytes</span>
+          </div>
+          <div class="tipo-range">±1.7 × 10³⁰⁸ (~15 dígitos)</div>
+          <div class="tipo-desc">Decimal de doble precisión. El más usado para cálculos. Es el tipo predeterminado para literales decimales.</div>
+          <div class="code-inline">double nota = <span class="nm">9.75</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-coral">
+          <div class="tipo-header">
+            <span class="tipo-keyword">char</span>
+            <span class="tipo-size">16 bits · 2 bytes</span>
+          </div>
+          <div class="tipo-range">'\u0000' a '\uFFFF' (Unicode)</div>
+          <div class="tipo-desc">Un único carácter Unicode. Se escribe entre comillas simples.</div>
+          <div class="code-inline">char letra = <span class="nm">'A'</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-purple">
+          <div class="tipo-header">
+            <span class="tipo-keyword">boolean</span>
+            <span class="tipo-size">1 bit (lógico)</span>
+          </div>
+          <div class="tipo-range">true · false</div>
+          <div class="tipo-desc">Solo dos valores posibles. Esencial para condiciones y estructuras de control.</div>
+          <div class="code-inline">boolean activo = <span class="nm">true</span>;</div>
+        </div>
+
+      </div>
+
+      <h2>Tabla resumen</h2>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Categoría</th>
+                <th>Bits</th>
+                <th>Rango / Valores</th>
+                <th>Valor por defecto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pill pill-blue">byte</span></td>
+                <td>Entero</td>
+                <td class="num">8</td>
+                <td>−128 a 127</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-blue">short</span></td>
+                <td>Entero</td>
+                <td class="num">16</td>
+                <td>−32 768 a 32 767</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-teal">int</span></td>
+                <td>Entero</td>
+                <td class="num">32</td>
+                <td>±2.1 × 10⁹</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-teal">long</span></td>
+                <td>Entero</td>
+                <td class="num">64</td>
+                <td>±9.2 × 10¹⁸</td>
+                <td class="num">0L</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-amber">float</span></td>
+                <td>Decimal</td>
+                <td class="num">32</td>
+                <td>±3.4 × 10³⁸</td>
+                <td class="num">0.0f</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-amber">double</span></td>
+                <td>Decimal</td>
+                <td class="num">64</td>
+                <td>±1.7 × 10³⁰⁸</td>
+                <td class="num">0.0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-coral">char</span></td>
+                <td>Carácter</td>
+                <td class="num">16</td>
+                <td>'\u0000' – '\uFFFF'</td>
+                <td class="num">'\u0000'</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-purple">boolean</span></td>
+                <td>Lógico</td>
+                <td class="num">1</td>
+                <td>true / false</td>
+                <td class="num">false</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card card-accent amber">
+        <h3>⚠ Overflow: cuando un número no cabe</h3>
+        <p>Si asignás un valor fuera del rango del tipo, Java produce un <strong>overflow</strong>: el número "da la vuelta". Por ejemplo, si <code>byte b = 127</code> y hacés <code>b++</code>, el
+          resultado es −128. Java no lanza error, simplemente el valor se desborda silenciosamente.</p>
+      </div>
+
+      <h2>Variables y constantes</h2>
+      <div class="code-block" id="cb-declaracion"></div>
+
+      <h2>Reglas y convenciones para nombrar variables</h2>
+      <p>Java distingue reglas <strong>obligatorias</strong> (el compilador las rechaza si no se cumplen) de convenciones <strong>recomendadas</strong> (el compilador las acepta, pero el equipo las
+        exige para mantener código legible).</p>
+
+      <div class="naming-grid">
+
+        <div class="naming-card naming-rules">
+          <div class="naming-card-header">
+            <span class="naming-icon">⚙</span>
+            <span>Reglas obligatorias</span>
+          </div>
+          <ul class="naming-list">
+            <li><strong>Solo</strong> letras, dígitos, <code>$</code> y <code>_</code></li>
+            <li>El primer carácter <strong>no puede ser un dígito</strong></li>
+            <li><strong>Sin espacios</strong> ni caracteres especiales (<code>-</code>, <code>@</code>, <code>!</code>…)</li>
+            <li>No puede ser una <strong>palabra reservada</strong> (<code>int</code>, <code>class</code>, <code>return</code>…)</li>
+            <li>Es <strong>case-sensitive</strong>: <code>nota</code> ≠ <code>Nota</code> ≠ <code>NOTA</code></li>
+            <li>No tiene límite de longitud</li>
+          </ul>
+          <div class="naming-examples">
+            <div class="naming-ex valid">✓ <code>edad</code></div>
+            <div class="naming-ex valid">✓ <code>_total</code></div>
+            <div class="naming-ex valid">✓ <code>$precio</code></div>
+            <div class="naming-ex invalid">✗ <code>2nota</code> — empieza con dígito</div>
+            <div class="naming-ex invalid">✗ <code>mi nota</code> — tiene espacio</div>
+            <div class="naming-ex invalid">✗ <code>class</code> — palabra reservada</div>
+            <div class="naming-ex invalid">✗ <code>es-mayor</code> — guión prohibido</div>
+          </div>
+        </div>
+
+        <div class="naming-card naming-conventions">
+          <div class="naming-card-header">
+            <span class="naming-icon">📐</span>
+            <span>Convenciones recomendadas</span>
+          </div>
+          <div class="conv-table">
+            <div class="conv-row conv-header">
+              <div>¿Qué?</div>
+              <div>Estilo</div>
+              <div>Ejemplo</div>
+            </div>
+            <div class="conv-row">
+              <div>Variables y métodos</div>
+              <div><span class="pill pill-teal">camelCase</span></div>
+              <div><code>nombreAlumno</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Constantes (<code>final</code>)</div>
+              <div><span class="pill pill-amber">UPPER_SNAKE_CASE</span></div>
+              <div><code>MAX_INTENTOS</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Clases e interfaces</div>
+              <div><span class="pill pill-purple">PascalCase</span></div>
+              <div><code>MiClase</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Paquetes</div>
+              <div><span class="pill pill-blue">todo.minúsculas</span></div>
+              <div><code>com.empresa.util</code></div>
+            </div>
+          </div>
+          <div class="card card-accent blue" style="margin-top:1rem">
+            <h3>¿Qué es camelCase?</h3>
+            <p>Las palabras se unen sin espacio y cada palabra (excepto la primera) empieza con mayúscula: <strong>precioFinal</strong>, <strong>nombreCompleto</strong>,
+              <strong>cantidadDeAlumnos</strong>.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="code-block" id="cb-nombres"></div>
+
+      <!-- ── VALIDADOR DE NOMBRES JAVA ── -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">¿Es válido este nombre?</h3>
+      <p style="margin-bottom: 0.9rem; font-size: 0.9rem; color: var(--muted);">
+        Escribí un nombre de variable o constante y el validador te dirá si cumple las reglas de Java.
+      </p>
+
+      <div class="vname-wrap" id="vname-wrap">
+        <div class="vname-input-row">
+          <div class="vname-type-select">
+            <button class="vname-type active" data-type="variable" onclick="setVnameType(this)">variable</button>
+            <button class="vname-type" data-type="constant" onclick="setVnameType(this)">constante (final)</button>
+          </div>
+          <input class="vname-input" id="vname-input" type="text" placeholder="nombreVariable" spellcheck="false" autocomplete="off" oninput="validateName()">
+          <div class="vname-badge" id="vname-badge">—</div>
+        </div>
+
+        <div class="vname-feedback" id="vname-feedback">
+          <div class="vname-rules" id="vname-rules"></div>
+          <div class="vname-suggestion" id="vname-suggestion"></div>
+        </div>
+      </div>
+
+      <style>
+        .vname-wrap {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--r-lg, 12px);
+          overflow: hidden;
+          margin-bottom: 2rem;
+          transition: border-color 0.25s;
+        }
+
+        .vname-wrap.valid {
+          border-color: var(--teal);
+        }
+
+        .vname-wrap.invalid {
+          border-color: var(--coral, #ef4444);
+        }
+
+        .vname-wrap.warn {
+          border-color: var(--amber);
+        }
+
+        .vname-input-row {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.9rem 1.1rem;
+          border-bottom: 1px solid var(--border);
+          flex-wrap: wrap;
+        }
+
+        .vname-type-select {
+          display: flex;
+          gap: 0.35rem;
+          flex-shrink: 0;
+        }
+
+        .vname-type {
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          color: var(--muted);
+          font-family: 'DM Mono', monospace;
+          font-size: 0.72rem;
+          padding: 0.25rem 0.6rem;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all 0.15s;
+        }
+
+        .vname-type:hover {
+          border-color: var(--accent);
+          color: var(--text);
+        }
+
+        .vname-type.active {
+          background: var(--accent-glow);
+          border-color: var(--accent);
+          color: var(--accent);
+        }
+
+        .vname-input {
+          flex: 1;
+          min-width: 160px;
+          background: transparent;
+          border: none;
+          border-bottom: 1px dashed var(--border);
+          color: var(--text);
+          font-family: 'DM Mono', monospace;
+          font-size: 1.05rem;
+          padding: 4px 6px;
+          outline: none;
+          transition: border-color 0.2s;
+        }
+
+        .vname-input:focus {
+          border-bottom-color: var(--accent);
+        }
+
+        .vname-badge {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.78rem;
+          font-weight: 700;
+          padding: 0.25rem 0.75rem;
+          border-radius: 20px;
+          background: var(--surface2);
+          color: var(--muted);
+          white-space: nowrap;
+          transition: all 0.2s;
+        }
+
+        .vname-badge.ok {
+          background: rgba(20, 184, 166, 0.15);
+          color: var(--teal);
+        }
+
+        .vname-badge.ko {
+          background: rgba(239, 68, 68, 0.12);
+          color: var(--coral, #ef4444);
+        }
+
+        .vname-badge.warn {
+          background: rgba(245, 158, 11, 0.12);
+          color: var(--amber);
+        }
+
+        .vname-feedback {
+          padding: 0.85rem 1.1rem;
+        }
+
+        .vname-rules {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+
+        .vname-rule {
+          display: flex;
+          align-items: baseline;
+          gap: 0.5rem;
+          font-size: 0.85rem;
+          line-height: 1.4;
+        }
+
+        .vname-rule-icon {
+          flex-shrink: 0;
+          font-size: 0.8rem;
+        }
+
+        .vname-rule-ok {
+          color: var(--teal);
+        }
+
+        .vname-rule-ko {
+          color: var(--coral, #ef4444);
+        }
+
+        .vname-rule-warn {
+          color: var(--amber);
+        }
+
+        .vname-suggestion {
+          margin-top: 0.75rem;
+          padding: 0.6rem 0.9rem;
+          background: rgba(124, 58, 237, 0.07);
+          border-left: 3px solid var(--accent);
+          border-radius: 0 6px 6px 0;
+          font-size: 0.85rem;
+          color: var(--muted);
+          display: none;
+        }
+
+        .vname-suggestion strong {
+          color: var(--accent);
+          font-family: 'DM Mono', monospace;
+        }
+      </style>
+
+      <script>
+        (function () {
+          var currentType = 'variable';
+
+          var RESERVED = new Set([
+            // Palabras clave del lenguaje Java (JLS 17)
+            'abstract', 'assert', 'boolean', 'break', 'byte',
+            'case', 'catch', 'char', 'class', 'const',
+            'continue', 'default', 'do', 'double', 'else',
+            'enum', 'extends', 'final', 'finally', 'float',
+            'for', 'goto', 'if', 'implements', 'import',
+            'instanceof', 'int', 'interface', 'long', 'native',
+            'new', 'package', 'private', 'protected', 'public',
+            'return', 'short', 'static', 'strictfp', 'super',
+            'switch', 'synchronized', 'this', 'throw', 'throws',
+            'transient', 'try', 'void', 'volatile', 'while',
+            // Literales reservados
+            'true', 'false', 'null',
+            // Palabras contextuales (Java 9–21)
+            'var', 'record', 'sealed', 'permits', 'yield',
+            'module', 'open', 'opens', 'exports', 'requires',
+            'provides', 'uses', 'with', 'to', 'transitive',
+            // Tipos de la API estándar muy usados como nombre de variable
+            'String', 'Integer', 'Double', 'Float', 'Long',
+            'Short', 'Byte', 'Character', 'Boolean', 'Object',
+            'System', 'Math', 'Scanner', 'Array', 'Arrays',
+            'List', 'ArrayList', 'Map', 'HashMap', 'Set',
+            'HashSet', 'Optional', 'Exception', 'Error'
+          ]);
+
+          window.setVnameType = function (btn) {
+            document.querySelectorAll('.vname-type').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentType = btn.dataset.type;
+            var input = document.getElementById('vname-input');
+            input.placeholder = currentType === 'variable' ? 'nombreVariable' : 'MAX_INTENTOS';
+            validateName();
+          };
+
+          window.validateName = function () {
+            var name = document.getElementById('vname-input').value;
+            var wrap = document.getElementById('vname-wrap');
+            var badge = document.getElementById('vname-badge');
+            var rules = document.getElementById('vname-rules');
+            var sugg = document.getElementById('vname-suggestion');
+
+            if (!name) {
+              wrap.className = 'vname-wrap';
+              badge.className = 'vname-badge';
+              badge.textContent = '—';
+              rules.innerHTML = '';
+              sugg.style.display = 'none';
+              return;
+            }
+
+            var checks = [];
+            var errors = 0;
+            var warns = 0;
+
+            // 1. No empieza con dígito
+            var noDigitStart = !/^\d/.test(name);
+            checks.push({
+              ok: noDigitStart, warn: false,
+              text: noDigitStart
+                ? 'No empieza con un dígito ✓'
+                : 'No puede empezar con un dígito — ej: <code>2nota</code> es inválido'
+            });
+            if (!noDigitStart) errors++;
+
+            // 2. Solo caracteres permitidos
+            var validChars = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(name);
+            checks.push({
+              ok: validChars, warn: false,
+              text: validChars
+                ? 'Solo letras, dígitos, <code>_</code> y <code>$</code> ✓'
+                : 'Contiene caracteres no permitidos (espacios, guiones, ñ, acentos…)'
+            });
+            if (!validChars) errors++;
+
+            // 3. No es palabra reservada
+            var notReserved = !RESERVED.has(name);
+            var reservedNote = RESERVED.has(name)
+              ? ([
+                'abstract', 'assert', 'boolean', 'break', 'byte', 'case', 'catch', 'char', 'class', 'const',
+                'continue', 'default', 'do', 'double', 'else', 'enum', 'extends', 'final', 'finally', 'float',
+                'for', 'goto', 'if', 'implements', 'import', 'instanceof', 'int', 'interface', 'long', 'native',
+                'new', 'package', 'private', 'protected', 'public', 'return', 'short', 'static', 'strictfp',
+                'super', 'switch', 'synchronized', 'this', 'throw', 'throws', 'transient', 'try', 'void',
+                'volatile', 'while', 'true', 'false', 'null', 'var', 'record', 'sealed', 'permits', 'yield',
+                'module', 'open', 'opens', 'exports', 'requires', 'provides', 'uses', 'with', 'to', 'transitive'
+              ].includes(name)
+                ? 'palabra clave del lenguaje'
+                : 'nombre de tipo estándar — sí compila, pero es confuso y no convencional')
+              : '';
+            checks.push({
+              ok: notReserved, warn: false,
+              text: notReserved
+                ? 'No es una palabra reservada ✓'
+                : '<code>' + name + '</code> es ' + reservedNote
+            });
+            if (!notReserved) errors++;
+
+            // 4. Convención según tipo
+            if (currentType === 'variable') {
+              var startsLower = /^[a-z_$]/.test(name);
+              checks.push({
+                ok: startsLower, warn: !startsLower,
+                text: startsLower
+                  ? 'Empieza en minúscula — convención <em>camelCase</em> ✓'
+                  : 'Las variables deben empezar con minúscula (<em>camelCase</em>): <code>' +
+                  name.charAt(0).toLowerCase() + name.slice(1) + '</code>'
+              });
+              if (!startsLower) warns++;
+            } else {
+              var isUpperSnake = /^[A-Z][A-Z0-9_]*$/.test(name);
+              checks.push({
+                ok: isUpperSnake, warn: !isUpperSnake,
+                text: isUpperSnake
+                  ? 'Sigue la convención <em>UPPER_SNAKE_CASE</em> ✓'
+                  : 'Las constantes usan <em>UPPER_SNAKE_CASE</em>: todo mayúsculas con <code>_</code> como separador'
+              });
+              if (!isUpperSnake) warns++;
+            }
+
+            // 5. Nombre de un solo carácter
+            if (name.length === 1 && /^[a-zA-Z_$]$/.test(name)) {
+              checks.push({
+                ok: false, warn: true,
+                text: 'Un solo carácter está permitido pero usa nombres descriptivos (excepción: contadores <code>i</code>, <code>j</code>)'
+              });
+              warns++;
+            }
+
+            // Render
+            rules.innerHTML = checks.map(c => {
+              var cls = c.ok ? 'vname-rule-ok' : (c.warn ? 'vname-rule-warn' : 'vname-rule-ko');
+              var icon = c.ok ? '✓' : (c.warn ? '⚠' : '✗');
+              return '<div class="vname-rule ' + cls + '">'
+                + '<span class="vname-rule-icon">' + icon + '</span>'
+                + '<span>' + c.text + '</span>'
+                + '</div>';
+            }).join('');
+
+            // Estado global
+            if (errors > 0) {
+              wrap.className = 'vname-wrap invalid';
+              badge.className = 'vname-badge ko';
+              badge.textContent = '✗ Inválido';
+            } else if (warns > 0) {
+              wrap.className = 'vname-wrap warn';
+              badge.className = 'vname-badge warn';
+              badge.textContent = '⚠ Convención';
+            } else {
+              wrap.className = 'vname-wrap valid';
+              badge.className = 'vname-badge ok';
+              badge.textContent = '✓ Válido';
+            }
+
+            // Sugerencia
+            var suggested = suggest(name, currentType);
+            if (suggested && suggested !== name) {
+              sugg.style.display = 'block';
+              sugg.innerHTML = '💡 Sugerencia: <strong>' + suggested + '</strong>';
+            } else {
+              sugg.style.display = 'none';
+            }
+          };
+
+          function suggest(name, type) {
+            var clean = name.replace(/[^a-zA-Z0-9_$]/g, '');
+            if (!clean) return null;
+            if (type === 'variable') {
+              return clean.charAt(0).toLowerCase() + clean.slice(1);
+            } else {
+              // convierte camelCase o texto a UPPER_SNAKE
+              return clean
+                .replace(/([a-z])([A-Z])/g, '$1_$2')
+                .toUpperCase()
+                .replace(/^_+|_+$/g, '');
+            }
+          }
+        })();
+      </script>
+
+      <h2>Operadores aritméticos en Java</h2>
+      <div class="pill-row">
+        <span class="pill pill-teal">+ suma</span>
+        <span class="pill pill-teal">- resta</span>
+        <span class="pill pill-teal">* multiplicación</span>
+        <span class="pill pill-teal">/ división</span>
+        <span class="pill pill-teal">% módulo (resto)</span>
+      </div>
+
+      <div class="card card-accent coral">
+        <h3>División entera vs. división real</h3>
+        <p>En Java, <strong>7 / 2 = 3</strong> (división entera, sin decimales) porque ambos operandos son <code>int</code>. Para obtener <strong>3.5</strong>, al menos uno debe ser
+          <code>double</code>: <strong>7.0 / 2</strong> o <strong>(double) 7 / 2</strong>.
+        </p>
+      </div>
+
+      <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem;">Calculadora interactiva</h3>
+      <p style="margin-bottom: 0.75rem; font-size: 0.9rem; color: var(--muted);">Modificá los valores y los resultados se actualizan en tiempo real.</p>
+
+      <div class="op-calc">
+        <div class="op-calc-header">Tiempo real &mdash; editá los números</div>
+        <div class="op-calc-body" id="op-calc-body">
+
+          <!-- SUMA -->
+          <div class="op-row">
+            <div class="op-sym-badge">+</div>
+            <input class="op-num" type="number" value="10" id="a1" oninput="calcOp()">
+            <div class="op-eq">+</div>
+            <input class="op-num" type="number" value="5" id="b1" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-sum">15</div>
+          </div>
+
+          <!-- RESTA -->
+          <div class="op-row">
+            <div class="op-sym-badge">&minus;</div>
+            <input class="op-num" type="number" value="10" id="a2" oninput="calcOp()">
+            <div class="op-eq">&minus;</div>
+            <input class="op-num" type="number" value="5" id="b2" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-sub">5</div>
+          </div>
+
+          <!-- MULTIPLICACIÓN -->
+          <div class="op-row">
+            <div class="op-sym-badge">&times;</div>
+            <input class="op-num" type="number" value="10" id="a3" oninput="calcOp()">
+            <div class="op-eq">&times;</div>
+            <input class="op-num" type="number" value="5" id="b3" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-mul">50</div>
+          </div>
+
+          <!-- DIVISIÓN (int vs double) -->
+          <div class="op-row" id="row-div">
+            <div class="op-sym-badge">/</div>
+            <input class="op-num" type="number" value="10" id="a4" oninput="calcOp()">
+            <div class="op-eq">/</div>
+            <input class="op-num" type="number" value="3" id="b4" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-div">3</div>
+          </div>
+
+          <!-- MÓDULO -->
+          <div class="op-row">
+            <div class="op-sym-badge">%</div>
+            <input class="op-num" type="number" value="10" id="a5" oninput="calcOp()">
+            <div class="op-eq">%</div>
+            <input class="op-num" type="number" value="3" id="b5" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-mod">1</div>
+          </div>
+
+        </div>
+        <div class="op-calc-note" id="div-note">
+          ⚠️ <strong>División entera:</strong> en Java <code style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--teal)">int / int</code> descarta los decimales. El resultado real
+          sería <span id="div-real">3.333...</span>
+        </div>
+      </div>
+
+      <script>
+        function calcOp() {
+          var a1 = +document.getElementById('a1').value;
+          var b1 = +document.getElementById('b1').value;
+          var a2 = +document.getElementById('a2').value;
+          var b2 = +document.getElementById('b2').value;
+          var a3 = +document.getElementById('a3').value;
+          var b3 = +document.getElementById('b3').value;
+          var a4 = +document.getElementById('a4').value;
+          var b4 = +document.getElementById('b4').value;
+          var a5 = +document.getElementById('a5').value;
+          var b5 = +document.getElementById('b5').value;
+
+          document.getElementById('r-sum').textContent = fmt(a1 + b1);
+          document.getElementById('r-sub').textContent = fmt(a2 - b2);
+          document.getElementById('r-mul').textContent = fmt(a3 * b3);
+
+          // División: simula int/int (trunca hacia cero)
+          if (b4 === 0) {
+            document.getElementById('r-div').textContent = '∞ (/ 0)';
+            document.getElementById('div-real').textContent = '∞';
+            document.getElementById('div-note').style.display = 'block';
+          } else {
+            var realDiv = a4 / b4;
+            var intDiv = Math.trunc(realDiv);
+            document.getElementById('r-div').textContent = intDiv;
+            document.getElementById('div-real').textContent = +realDiv.toFixed(6);
+            // Mostrar la nota solo cuando hay diferencia
+            document.getElementById('div-note').style.display =
+              (intDiv !== realDiv) ? 'block' : 'none';
+          }
+
+          // Módulo
+          if (b5 === 0) {
+            document.getElementById('r-mod').textContent = '∞ (/ 0)';
+          } else {
+            document.getElementById('r-mod').textContent = fmt(a5 % b5);
+          }
+        }
+
+        function fmt(n) {
+          if (!isFinite(n)) return '∞';
+          // Redondear a 10 decimales para evitar ruido de punto flotante
+          return +n.toFixed(10);
+        }
+      </script>
+
+      <h2>Incremento y decremento</h2>
+      <div class="code-block" id="cb-incremento"></div>
+
+      <!-- ── INTÉRPRETE PASO A PASO ── -->
+      <h3 style="margin: 1.75rem 0 0.35rem; font-size: 1rem;">Intérprete paso a paso</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Fijá el valor inicial de <code style="font-family:'DM Mono',monospace;color:var(--teal)">x</code> y ejecutá cada operación de a una. Observá cómo cambia el valor.
+      </p>
+
+      <div class="inc-wrap" id="inc-wrap">
+
+        <!-- Header: valor actual de x -->
+        <div class="inc-header">
+          <span class="inc-label">int x =</span>
+          <input class="inc-x-input" id="inc-x-input" type="number" value="5" oninput="incSetX()" onchange="incSetX()">
+          <span class="inc-label">;</span>
+          <div class="inc-display" id="inc-display">
+            <span class="inc-display-label">x actual</span>
+            <span class="inc-display-val" id="inc-val">5</span>
+          </div>
+          <button class="inc-reset" onclick="incReset()" title="Reiniciar">↺ reset</button>
+        </div>
+
+        <!-- Operaciones -->
+        <div class="inc-ops" id="inc-ops">
+
+          <div class="inc-group-label">Incremento y decremento</div>
+
+          <div class="inc-op" data-op="post++" data-desc="Post-incremento: usa el valor actual de x, luego le suma 1.">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x++</code>
+            <span class="inc-op-desc">post-incremento &nbsp;→ usa x, luego suma 1</span>
+            <span class="inc-op-result" id="res-post++"></span>
+          </div>
+
+          <div class="inc-op" data-op="++pre" data-desc="Pre-incremento: suma 1 a x primero, luego usa el nuevo valor.">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">++x</code>
+            <span class="inc-op-desc">pre-incremento &nbsp;&nbsp;→ suma 1, luego usa x</span>
+            <span class="inc-op-result" id="res-++pre"></span>
+          </div>
+
+          <div class="inc-op" data-op="post--" data-desc="Post-decremento: usa el valor actual de x, luego le resta 1.">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x--</code>
+            <span class="inc-op-desc">post-decremento → usa x, luego resta 1</span>
+            <span class="inc-op-result" id="res-post--"></span>
+          </div>
+
+          <div class="inc-op" data-op="--pre" data-desc="Pre-decremento: resta 1 a x primero, luego usa el nuevo valor.">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">--x</code>
+            <span class="inc-op-desc">pre-decremento &nbsp;→ resta 1, luego usa x</span>
+            <span class="inc-op-result" id="res---pre"></span>
+          </div>
+
+          <div class="inc-group-label" style="margin-top:0.75rem;">Asignación compuesta</div>
+
+          <div class="inc-op" data-op="+=" data-operand="3" data-desc="Equivale a: x = x + 3">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x += <input class="inc-operand" type="number" value="3" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x + n</span>
+            <span class="inc-op-result" id="res-+="></span>
+          </div>
+
+          <div class="inc-op" data-op="-=" data-operand="2" data-desc="Equivale a: x = x - 2">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x -= <input class="inc-operand" type="number" value="2" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x - n</span>
+            <span class="inc-op-result" id="res--="></span>
+          </div>
+
+          <div class="inc-op" data-op="*=" data-operand="4" data-desc="Equivale a: x = x * 4">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x *= <input class="inc-operand" type="number" value="4" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x × n</span>
+            <span class="inc-op-result" id="res-*="></span>
+          </div>
+
+          <div class="inc-op" data-op="/=" data-operand="3" data-desc="Equivale a: x = x / 3 (división entera en Java)">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x /= <input class="inc-operand" type="number" value="3" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x ÷ n (entera)</span>
+            <span class="inc-op-result" id="res-/="></span>
+          </div>
+
+          <div class="inc-op" data-op="%= " data-operand="5" data-desc="Equivale a: x = x % 5 (resto de la división entera)">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x %= <input class="inc-operand" type="number" value="5" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x mod n</span>
+            <span class="inc-op-result" id="res-%="></span>
+          </div>
+
+        </div>
+
+        <!-- Log de ejecución -->
+        <div class="inc-log-wrap">
+          <!-- <div class="inc-log-header">// historial de ejecución</div>
+          <div class="inc-log" id="inc-log">
+            <span style="color:var(--muted);font-size:0.8rem;">Ejecutá una operación para ver el historial…</span>
+          </div> -->
+        </div>
+
+      </div>
+
+      <style>
+        .inc-wrap {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--r-lg, 12px);
+          overflow: hidden;
+          margin-bottom: 2rem;
+        }
+
+        .inc-header {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          padding: 0.9rem 1.1rem;
+          background: var(--surface2);
+          border-bottom: 1px solid var(--border);
+          flex-wrap: wrap;
+        }
+
+        .inc-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.95rem;
+          color: var(--muted);
+        }
+
+        .inc-x-input {
+          width: 4.5rem;
+          background: transparent;
+          border: none;
+          border-bottom: 1px dashed var(--border);
+          color: var(--teal);
+          font-family: 'DM Mono', monospace;
+          font-size: 1.05rem;
+          font-weight: 600;
+          text-align: center;
+          outline: none;
+          padding: 2px 4px;
+        }
+
+        .inc-x-input:focus {
+          border-bottom-color: var(--accent);
+        }
+
+        .inc-x-input::-webkit-inner-spin-button,
+        .inc-x-input::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+        }
+
+        .inc-x-input {
+          -moz-appearance: textfield;
+          appearance: textfield;
+        }
+
+        .inc-display {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-left: auto;
+          background: rgba(20, 184, 166, 0.09);
+          border: 1px solid rgba(20, 184, 166, 0.25);
+          border-radius: 8px;
+          padding: 0.3rem 0.9rem;
+        }
+
+        .inc-display-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.7rem;
+          color: var(--muted);
+          text-transform: uppercase;
+          letter-spacing: 0.07em;
+        }
+
+        .inc-display-val {
+          font-family: 'DM Mono', monospace;
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: var(--teal);
+          min-width: 2.5rem;
+          text-align: center;
+          transition: transform 0.15s, color 0.15s;
+        }
+
+        .inc-display-val.flash {
+          transform: scale(1.3);
+          color: var(--amber);
+        }
+
+        .inc-reset {
+          background: transparent;
+          border: 1px solid var(--border);
+          color: var(--muted);
+          font-size: 0.78rem;
+          font-family: inherit;
+          padding: 0.3rem 0.65rem;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all 0.15s;
+        }
+
+        .inc-reset:hover {
+          border-color: var(--coral, #ef4444);
+          color: var(--coral, #ef4444);
+        }
+
+        .inc-ops {
+          padding: 0.85rem 1.1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+        }
+
+        .inc-group-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.68rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--muted);
+          padding-bottom: 0.35rem;
+          border-bottom: 1px solid var(--border);
+          margin-bottom: 0.1rem;
+        }
+
+        .inc-op {
+          display: grid;
+          grid-template-columns: 2rem 9rem 1fr auto;
+          align-items: center;
+          gap: 0.65rem;
+          padding: 0.5rem 0.6rem;
+          border-radius: 7px;
+          border: 1px solid transparent;
+          transition: background 0.15s, border-color 0.15s;
+        }
+
+        .inc-op:hover {
+          background: var(--surface2);
+        }
+
+        .inc-op.ran {
+          background: rgba(124, 58, 237, 0.06);
+          border-color: rgba(124, 58, 237, 0.2);
+        }
+
+        @media (max-width: 580px) {
+          .inc-op {
+            grid-template-columns: 2rem 1fr;
+            grid-template-rows: auto auto;
+          }
+
+          .inc-op-desc {
+            grid-column: 2;
+            font-size: 0.75rem;
+          }
+
+          .inc-op-result {
+            grid-column: 1 / -1;
+          }
+        }
+
+        .inc-btn {
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          color: var(--accent);
+          font-size: 0.7rem;
+          width: 1.8rem;
+          height: 1.8rem;
+          border-radius: 5px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.15s;
+          flex-shrink: 0;
+        }
+
+        .inc-btn:hover {
+          background: var(--accent-glow);
+          border-color: var(--accent);
+        }
+
+        .inc-btn:active {
+          transform: scale(0.92);
+        }
+
+        .inc-code {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.88rem;
+          color: var(--text);
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          white-space: nowrap;
+        }
+
+        .inc-operand {
+          width: 2.8rem;
+          background: transparent;
+          border: none;
+          border-bottom: 1px dashed var(--border);
+          color: var(--amber);
+          font-family: 'DM Mono', monospace;
+          font-size: 0.88rem;
+          text-align: center;
+          outline: none;
+          padding: 0 2px;
+        }
+
+        .inc-operand:focus {
+          border-bottom-color: var(--accent);
+        }
+
+        .inc-operand::-webkit-inner-spin-button,
+        .inc-operand::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+        }
+
+        .inc-operand {
+          -moz-appearance: textfield;
+          appearance: textfield;
+        }
+
+        .inc-op-desc {
+          font-size: 0.8rem;
+          color: var(--muted);
+          font-style: italic;
+        }
+
+        .inc-op-result {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.82rem;
+          color: var(--amber);
+          text-align: right;
+          white-space: nowrap;
+        }
+
+        .inc-log-wrap {
+          border-top: 1px solid var(--border);
+        }
+
+        .inc-log-header {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.68rem;
+          color: var(--muted);
+          padding: 0.4rem 1.1rem;
+          background: var(--surface2);
+          border-bottom: 1px solid var(--border);
+          letter-spacing: 0.05em;
+        }
+
+        .inc-log {
+          padding: 0.65rem 1.1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          max-height: 9rem;
+          overflow-y: auto;
+        }
+
+        .inc-log-entry {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.8rem;
+          display: flex;
+          gap: 0.75rem;
+          align-items: baseline;
+        }
+
+        .inc-log-step {
+          color: var(--muted);
+          font-size: 0.7rem;
+          min-width: 1.5rem;
+        }
+
+        .inc-log-op {
+          color: var(--accent);
+        }
+
+        .inc-log-arrow {
+          color: var(--muted);
+        }
+
+        .inc-log-val {
+          color: var(--teal);
+          font-weight: 600;
+        }
+
+        .inc-log-note {
+          color: var(--muted);
+          font-size: 0.72rem;
+          font-style: italic;
+        }
+      </style>
+
+      <script>
+        (function () {
+          var xVal = 5;
+          var step = 0;
+          var initialX = 5;
+
+          window.incSetX = function () {
+            var v = parseInt(document.getElementById('inc-x-input').value, 10);
+            if (isNaN(v)) return;
+            xVal = v;
+            initialX = v;
+            updateDisplay();
+            clearResults();
+            clearLog();
+            step = 0;
+          };
+
+          window.incReset = function () {
+            xVal = initialX;
+            step = 0;
+            updateDisplay();
+            clearResults();
+            clearLog();
+          };
+
+          window.incRun = function (btn) {
+            var row = btn.closest('.inc-op');
+            var op = row.dataset.op.trim();
+            var prev = xVal;
+            var operandEl = row.querySelector('.inc-operand');
+            var n = operandEl ? (parseInt(operandEl.value, 10) || 0) : 0;
+
+            step++;
+
+            var desc = '';
+            switch (op) {
+              case 'post++': xVal++; desc = 'x++ → usó ' + prev + ', luego x = ' + xVal; break;
+              case '++pre': ++xVal; desc = '++x → x = ' + xVal + ' (antes de usar)'; break;
+              case 'post--': xVal--; desc = 'x-- → usó ' + prev + ', luego x = ' + xVal; break;
+              case '--pre': --xVal; desc = '--x → x = ' + xVal + ' (antes de usar)'; break;
+              case '+=': xVal += n; desc = 'x += ' + n + ' → ' + prev + ' + ' + n + ' = ' + xVal; break;
+              case '-=': xVal -= n; desc = 'x -= ' + n + ' → ' + prev + ' - ' + n + ' = ' + xVal; break;
+              case '*=': xVal *= n; desc = 'x *= ' + n + ' → ' + prev + ' × ' + n + ' = ' + xVal; break;
+              case '/=': xVal = Math.trunc(xVal / n); desc = 'x /= ' + n + ' → ⌊' + prev + ' ÷ ' + n + '⌋ = ' + xVal + (n === 0 ? ' (⚠ div/0)' : ''); break;
+              case '%=': xVal = n !== 0 ? xVal % n : NaN; desc = 'x %= ' + n + ' → ' + prev + ' mod ' + n + ' = ' + xVal + (n === 0 ? ' (⚠ div/0)' : ''); break;
+            }
+
+            if (isNaN(xVal)) xVal = 0;
+
+            // Mostrar resultado en la fila
+            var resId = 'res-' + op;
+            var resEl = document.getElementById(resId);
+            if (resEl) resEl.textContent = '→ x = ' + xVal;
+
+            // Marcar fila como ejecutada
+            document.querySelectorAll('.inc-op').forEach(r => r.classList.remove('ran'));
+            row.classList.add('ran');
+
+            updateDisplay();
+            addLog(step, op, prev, xVal, desc, n);
+          };
+
+          function updateDisplay() {
+            var el = document.getElementById('inc-val');
+            el.textContent = xVal;
+            el.classList.remove('flash');
+            // reflow para reiniciar la transición
+            void el.offsetWidth;
+            el.classList.add('flash');
+            setTimeout(function () { el.classList.remove('flash'); }, 250);
+          }
+
+          function clearResults() {
+            document.querySelectorAll('.inc-op-result').forEach(function (el) { el.textContent = ''; });
+            document.querySelectorAll('.inc-op').forEach(function (r) { r.classList.remove('ran'); });
+          }
+
+          function clearLog() {
+            var log = document.getElementById('inc-log');
+            log.innerHTML = '<span style="color:var(--muted);font-size:0.8rem;">Ejecutá una operación para ver el historial…</span>';
+          }
+
+          function addLog(s, op, before, after, desc, n) {
+            var log = document.getElementById('inc-log');
+            // Limpiar placeholder si es primer entrada
+            if (log.querySelector('span')) log.innerHTML = '';
+
+            var entry = document.createElement('div');
+            entry.className = 'inc-log-entry';
+            entry.innerHTML =
+              '<span class="inc-log-step">' + s + '.</span>' +
+              '<span class="inc-log-op">' + desc + '</span>';
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+          }
+        })();
+      </script>
+
+    </section>
+
+
+    <!-- ===== NO PRIMITIVOS ===== -->
+    <section id="noprim" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 02 · Tipos de Referencia</div>
+        <h1>Tipos no primitivos<br>(de referencia)</h1>
+        <p>A diferencia de los primitivos, los tipos de referencia almacenan una <strong>dirección de memoria</strong> (referencia) que apunta al objeto real. Son más flexibles y potentes, pero tienen
+          un costo de memoria mayor.</p>
+      </div>
+
+      <h2>Primitivo vs. Referencia</h2>
+
+      <div class="comparacion-grid">
+        <div class="comp-card comp-prim">
+          <div class="comp-label">Tipo Primitivo</div>
+          <ul>
+            <li>Almacena el valor directamente</li>
+            <li>Vive en el <strong>stack</strong></li>
+            <li>No puede ser <code>null</code></li>
+            <li>No tiene métodos propios</li>
+            <li>Comparación con <code>==</code></li>
+          </ul>
+          <div class="comp-example">int x = 5; <span class="cm">// valor: 5</span></div>
+        </div>
+        <div class="comp-card comp-ref">
+          <div class="comp-label">Tipo de Referencia</div>
+          <ul>
+            <li>Almacena una referencia al objeto</li>
+            <li>El objeto vive en el <strong>heap</strong></li>
+            <li>Puede ser <code>null</code></li>
+            <li>Tiene métodos y atributos</li>
+            <li>Comparación con <code>.equals()</code></li>
+          </ul>
+          <div class="comp-example">String s = "Hola"; <span class="cm">// ref → heap</span></div>
+        </div>
+      </div>
+
+      <h2>String — La clase más usada</h2>
+      <p>Un <strong>String</strong> es una secuencia inmutable de caracteres. En Java, es un objeto de la clase <code>java.lang.String</code>, disponible sin importar nada.</p>
+
+      <div class="code-block" id="cb-string"></div>
+
+      <!-- ── LABORATORIO INTERACTIVO DE STRINGS ── -->
+      <h3 style="margin: 1.75rem 0 0.35rem; font-size: 1rem;">Laboratorio interactivo de Strings</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Experimentá con concatenación y métodos de <code style="font-family:'DM Mono',monospace;color:var(--teal)">String</code> directamente en el navegador.
+      </p>
+
+      <div class="str-lab">
+
+        <!-- Tabs -->
+        <div class="str-tabs">
+          <button class="str-tab active" onclick="strTab(this,'concat')" id="tab-concat">+ Concatenación</button>
+          <button class="str-tab" onclick="strTab(this,'methods')" id="tab-methods">Métodos</button>
+        </div>
+
+        <!-- ── PANEL: CONCATENACIÓN ── -->
+        <div class="str-panel" id="panel-concat">
+          <div class="str-concat-grid">
+
+            <div class="str-field">
+              <label class="str-field-label">String s1</label>
+              <input class="str-input" id="s1" type="text" value="Hola, " placeholder="primer texto" oninput="runConcat()">
+            </div>
+
+            <div class="str-concat-plus">+</div>
+
+            <div class="str-field">
+              <label class="str-field-label">String s2</label>
+              <input class="str-input" id="s2" type="text" value="Mundo!" placeholder="segundo texto" oninput="runConcat()">
+            </div>
+
+          </div>
+
+          <div class="str-result-block" id="concat-result-block">
+            <div class="str-result-label">Resultado &nbsp;<code class="str-mini-code">s1 + s2</code></div>
+            <div class="str-result-val" id="concat-result">"Hola, Mundo!"</div>
+            <div class="str-result-meta" id="concat-meta">length: 12 caracteres</div>
+          </div>
+
+          <div class="str-java-code" id="concat-java">
+            <span class="kw">String</span> s1 = <span class="fn" id="cj-s1">"Hola, "</span>;
+            <br><span class="kw">String</span> s2 = <span class="fn" id="cj-s2">"Mundo!"</span>;
+            <br><span class="kw">String</span> resultado = s1 + s2; <span class="cm">// <span id="cj-res">"Hola, Mundo!"</span></span>
+          </div>
+
+          <div class="str-info-row">
+            <div class="str-info-card" id="ci-len">
+              <div class="str-info-val" id="ci-s1-len">6</div>
+              <div class="str-info-lbl">chars en s1</div>
+            </div>
+            <div class="str-info-card">
+              <div class="str-info-val" id="ci-s2-len">6</div>
+              <div class="str-info-lbl">chars en s2</div>
+            </div>
+            <div class="str-info-card str-info-total">
+              <div class="str-info-val" id="ci-total-len">12</div>
+              <div class="str-info-lbl">total</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PANEL: MÉTODOS ── -->
+        <div class="str-panel" id="panel-methods" style="display:none;">
+          <div class="str-field" style="margin-bottom:1rem;">
+            <label class="str-field-label">String s</label>
+            <input class="str-input" id="sm" type="text" placeholder="escribí un String" oninput="runMethods()">
+            <div class="str-space-viz" id="sm-viz"></div>
+          </div>
+
+          <div class="str-methods-grid" id="str-methods-grid">
+
+            <div class="str-mrow">
+              <code class="str-mname">.length()</code>
+              <span class="str-mresult" id="m-length"></span>
+              <span class="str-mjava" id="mj-length"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.trim()</code>
+              <span class="str-mresult" id="m-trim"></span>
+              <span class="str-mjava" id="mj-trim"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.toUpperCase()</code>
+              <span class="str-mresult" id="m-upper"></span>
+              <span class="str-mjava" id="mj-upper"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.toLowerCase()</code>
+              <span class="str-mresult" id="m-lower"></span>
+              <span class="str-mjava" id="mj-lower"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.charAt(0)</code>
+              <span class="str-mresult" id="m-charat"></span>
+              <span class="str-mjava" id="mj-charat"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.isEmpty()</code>
+              <span class="str-mresult" id="m-empty"></span>
+              <span class="str-mjava" id="mj-empty"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.contains("Mundo")</code>
+              <span class="str-mresult" id="m-contains"></span>
+              <span class="str-mjava" id="mj-contains"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.indexOf("Mundo")</code>
+              <span class="str-mresult" id="m-indexof"></span>
+              <span class="str-mjava" id="mj-indexof"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.substring(0, 4)</code>
+              <span class="str-mresult" id="m-sub"></span>
+              <span class="str-mjava" id="mj-sub"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.replace("Mundo","Java")</code>
+              <span class="str-mresult" id="m-replace"></span>
+              <span class="str-mjava" id="mj-replace"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.equals("hola")</code>
+              <span class="str-mresult" id="m-equals"></span>
+              <span class="str-mjava" id="mj-equals"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.equalsIgnoreCase("hola")</code>
+              <span class="str-mresult" id="m-equalsic"></span>
+              <span class="str-mjava" id="mj-equalsic"></span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <style>
+        /* ── LABORATORIO STRINGS ── */
+        .str-lab {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--r-lg, 12px);
+          overflow: hidden;
+          margin-bottom: 2rem;
+        }
+
+        .str-tabs {
+          display: flex;
+          background: var(--surface2);
+          border-bottom: 1px solid var(--border);
+        }
+
+        .str-tab {
+          flex: 1;
+          background: transparent;
+          border: none;
+          border-bottom: 2px solid transparent;
+          color: var(--muted);
+          font-family: 'DM Mono', monospace;
+          font-size: 0.82rem;
+          padding: 0.7rem 1rem;
+          cursor: pointer;
+          transition: all 0.15s;
+          letter-spacing: 0.03em;
+        }
+
+        .str-tab:hover {
+          color: var(--text);
+        }
+
+        .str-tab.active {
+          color: var(--accent);
+          border-bottom-color: var(--accent);
+          background: rgba(124, 58, 237, 0.05);
+        }
+
+        .str-panel {
+          padding: 1.1rem 1.25rem;
+        }
+
+        /* Concatenación */
+        .str-concat-grid {
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          align-items: end;
+          gap: 0.75rem;
+          margin-bottom: 1rem;
+        }
+
+        @media (max-width: 540px) {
+          .str-concat-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .str-concat-plus {
+            text-align: center;
+          }
+        }
+
+        .str-field {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+        }
+
+        .str-field-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.72rem;
+          color: var(--muted);
+          text-transform: uppercase;
+          letter-spacing: 0.07em;
+        }
+
+        .str-input {
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          border-radius: 7px;
+          color: var(--teal);
+          font-family: 'DM Mono', monospace;
+          font-size: 0.95rem;
+          padding: 0.5rem 0.75rem;
+          outline: none;
+          width: 100%;
+          box-sizing: border-box;
+          transition: border-color 0.2s;
+        }
+
+        .str-input:focus {
+          border-color: var(--accent);
+        }
+
+        .str-concat-plus {
+          font-family: 'DM Mono', monospace;
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--muted);
+          padding-bottom: 0.4rem;
+          text-align: center;
+        }
+
+        .str-result-block {
+          background: rgba(20, 184, 166, 0.06);
+          border: 1px solid rgba(20, 184, 166, 0.2);
+          border-radius: 8px;
+          padding: 0.75rem 1rem;
+          margin-bottom: 0.85rem;
+        }
+
+        .str-result-label {
+          font-size: 0.72rem;
+          color: var(--muted);
+          text-transform: uppercase;
+          letter-spacing: 0.07em;
+          margin-bottom: 0.3rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .str-mini-code {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.72rem;
+          background: var(--surface2);
+          padding: 0.1rem 0.4rem;
+          border-radius: 4px;
+          color: var(--accent);
+          text-transform: none;
+        }
+
+        .str-result-val {
+          font-family: 'DM Mono', monospace;
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--teal);
+          word-break: break-all;
+          white-space: pre-wrap;
+        }
+
+        .str-result-meta {
+          font-size: 0.75rem;
+          color: var(--muted);
+          margin-top: 0.3rem;
+        }
+
+        .str-java-code {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.8rem;
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          border-radius: 7px;
+          padding: 0.7rem 1rem;
+          line-height: 1.8;
+          margin-bottom: 0.85rem;
+          color: var(--muted);
+        }
+
+        .str-info-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.6rem;
+        }
+
+        .str-info-card {
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          padding: 0.6rem 0.5rem;
+          text-align: center;
+        }
+
+        .str-info-total {
+          border-color: rgba(20, 184, 166, 0.3);
+          background: rgba(20, 184, 166, 0.05);
+        }
+
+        .str-info-val {
+          font-family: 'DM Mono', monospace;
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--text);
+        }
+
+        .str-info-total .str-info-val {
+          color: var(--teal);
+        }
+
+        .str-info-lbl {
+          font-size: 0.7rem;
+          color: var(--muted);
+          margin-top: 0.15rem;
+        }
+
+        /* Métodos */
+        .str-methods-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+
+        .str-mrow {
+          display: grid;
+          grid-template-columns: 14rem 1fr;
+          align-items: center;
+          gap: 0.75rem;
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          border-radius: 7px;
+          padding: 0.5rem 0.8rem;
+          transition: border-color 0.15s;
+        }
+
+        .str-mrow:hover {
+          border-color: var(--accent);
+        }
+
+        @media (max-width: 560px) {
+          .str-mrow {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .str-mname {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.82rem;
+          color: var(--accent);
+        }
+
+        .str-mresult {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.82rem;
+          color: var(--teal);
+          font-weight: 600;
+          white-space: pre;
+        }
+
+        /* Visualizador de espacios */
+        .str-space-viz {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.75rem;
+          margin-top: 0.3rem;
+          line-height: 1.4;
+          letter-spacing: 0.05em;
+          color: var(--muted);
+          word-break: break-all;
+          white-space: pre-wrap;
+        }
+
+        .str-space-viz .sp {
+          color: var(--amber);
+          opacity: 0.8;
+        }
+
+        .str-space-viz .ch {
+          color: var(--muted);
+        }
+
+        .str-mjava {
+          display: none;
+          /* reservado para tooltip futuro */
+        }
+      </style>
+
+      <script>
+        (function () {
+
+          /* ── PESTAÑA ── */
+          window.strTab = function (btn, panel) {
+            document.querySelectorAll('.str-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('panel-concat').style.display = panel === 'concat' ? '' : 'none';
+            document.getElementById('panel-methods').style.display = panel === 'methods' ? '' : 'none';
+          };
+
+          /* ── CONCATENACIÓN ── */
+          function q(id) { return document.getElementById(id); }
+
+          /* Renderiza un string mostrando espacios como · en monospace */
+          function showSpaces(s) {
+            return s.split('').map(function (c) {
+              return c === ' ' ? '<span class="sp">·</span>' : '<span class="ch">' + c.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span>';
+            }).join('');
+          }
+
+          /* Actualiza el visualizador de espacios del input */
+          function updateViz(inputId, vizId) {
+            var el = document.getElementById(vizId);
+            if (el) el.innerHTML = showSpaces(document.getElementById(inputId).value);
+          }
+
+          window.runConcat = function () {
+            var s1 = q('s1').value;
+            var s2 = q('s2').value;
+            var res = s1 + s2;
+
+            q('concat-result').textContent = '"' + res + '"';
+            q('concat-meta').textContent = 'length: ' + res.length + ' carácter' + (res.length === 1 ? '' : 'es');
+
+            // Código Java
+            q('cj-s1').textContent = '"' + s1 + '"';
+            q('cj-s2').textContent = '"' + s2 + '"';
+            q('cj-res').textContent = '"' + res + '"';
+
+            // Contadores
+            q('ci-s1-len').textContent = s1.length;
+            q('ci-s2-len').textContent = s2.length;
+            q('ci-total-len').textContent = res.length;
+          };
+
+          /* ── MÉTODOS ── */
+          window.runMethods = function () {
+            var s = q('sm').value;
+            updateViz('sm', 'sm-viz');
+
+            /* setM: muestra el valor con comillas si es string, preservando espacios */
+            function setM(id, val) {
+              var el = q('m-' + id);
+              if (typeof val === 'string') {
+                /* Mostrar → "valor" con espacios visibles como · */
+                el.innerHTML = '→  "' + showSpaces(val) + '"';
+              } else {
+                el.textContent = '→  ' + String(val);
+              }
+            }
+
+            setM('length', s.length);
+            setM('trim', s.trim());
+            setM('upper', s.toUpperCase());
+            setM('lower', s.toLowerCase());
+            setM('charat', s.length > 0 ? s.charAt(0) : '(vacío)');
+            setM('empty', s.length === 0 ? 'true' : 'false');
+            setM('contains', s.includes('Mundo') ? 'true' : 'false');
+            setM('indexof', s.indexOf('Mundo'));
+            setM('sub', s.length >= 4 ? s.substring(0, 4) : s.substring(0));
+            setM('replace', s.replace(/Mundo/g, 'Java'));
+            setM('equals', s === 'hola' ? 'true' : 'false');
+            setM('equalsic', s.toLowerCase() === 'hola' ? 'true' : 'false');
+          };
+
+          /* Inicializar — el value via JS preserva espacios sin problemas del parser HTML */
+          q('sm').value = '  Hola Mundo  ';
+          runConcat();
+          runMethods();
+
+        })();
+      </script>
+
+      <h2>Métodos esenciales de String</h2>
+
+      <div class="metodos-grid">
+        <div class="metodo-card">
+          <div class="metodo-name">.length()</div>
+          <div class="metodo-desc">Devuelve la cantidad de caracteres.</div>
+          <div class="code-inline">"Hola".<span class="fn">length</span>() <span class="cm">// 4</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.toUpperCase()</div>
+          <div class="metodo-desc">Convierte todo a mayúsculas.</div>
+          <div class="code-inline">"hola".<span class="fn">toUpperCase</span>() <span class="cm">// "HOLA"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.toLowerCase()</div>
+          <div class="metodo-desc">Convierte todo a minúsculas.</div>
+          <div class="code-inline">"HOLA".<span class="fn">toLowerCase</span>() <span class="cm">// "hola"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.charAt(i)</div>
+          <div class="metodo-desc">Devuelve el carácter en posición i (base 0).</div>
+          <div class="code-inline">"Java".<span class="fn">charAt</span>(<span class="nm">0</span>) <span class="cm">// 'J'</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.substring(a, b)</div>
+          <div class="metodo-desc">Extrae caracteres desde a hasta b (sin incluir b).</div>
+          <div class="code-inline">"Hola".<span class="fn">substring</span>(<span class="nm">1</span>,<span class="nm">3</span>) <span class="cm">// "ol"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.contains(str)</div>
+          <div class="metodo-desc">Devuelve true si contiene la cadena indicada.</div>
+          <div class="code-inline">"Java".<span class="fn">contains</span>(<span class="fn">"av"</span>) <span class="cm">// true</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.replace(a, b)</div>
+          <div class="metodo-desc">Reemplaza todas las ocurrencias de a por b.</div>
+          <div class="code-inline">"aabbaa".<span class="fn">replace</span>(<span class="fn">"a"</span>,<span class="fn">"x"</span>) <span class="cm">// "xxbbxx"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.trim()</div>
+          <div class="metodo-desc">Elimina espacios al inicio y al final.</div>
+          <div class="code-inline">" hola ".<span class="fn">trim</span>() <span class="cm">// "hola"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.equals(str)</div>
+          <div class="metodo-desc">Compara contenido (no referencia). Siempre usar esto, nunca ==.</div>
+          <div class="code-inline">s1.<span class="fn">equals</span>(s2) <span class="cm">// true/false</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.equalsIgnoreCase(str)</div>
+          <div class="metodo-desc">Igual que equals(), pero ignora mayúsculas y minúsculas.</div>
+          <div class="code-inline">"HOLA".<span class="fn">equalsIgnoreCase</span>(<span class="fn">"hola"</span>) <span class="cm">// true</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.isEmpty()</div>
+          <div class="metodo-desc">Devuelve true si la cadena no tiene caracteres.</div>
+          <div class="code-inline">"".<span class="fn">isEmpty</span>() <span class="cm">// true</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.indexOf(str)</div>
+          <div class="metodo-desc">Devuelve el índice de la primera ocurrencia de str, o -1 si no está.</div>
+          <div class="code-inline">"Java".<span class="fn">indexOf</span>(<span class="fn">"v"</span>) <span class="cm">// 2</span></div>
+        </div>
+      </div>
+
+      <h2>Clases envolventes (Wrapper Classes)</h2>
+      <p>Cada tipo primitivo tiene una <strong>clase envolvente</strong> en Java. Permiten tratar primitivos como objetos (necesario en colecciones, generics, etc.).</p>
+
+      <div class="props-grid">
+        <div class="prop-card">
+          <div class="prop-label">Primitivo</div>
+          <div class="prop-value">→ Wrapper</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">byte</div>
+          <div class="prop-value">Byte</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">short</div>
+          <div class="prop-value">Short</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">int</div>
+          <div class="prop-value">Integer</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">long</div>
+          <div class="prop-value">Long</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">float</div>
+          <div class="prop-value">Float</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">double</div>
+          <div class="prop-value">Double</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">char</div>
+          <div class="prop-value">Character</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">boolean</div>
+          <div class="prop-value">Boolean</div>
+        </div>
+      </div>
+
+      <div class="card card-accent teal">
+        <h3>Autoboxing y Unboxing</h3>
+        <p>Java convierte automáticamente entre primitivos y wrappers. Esa conversión automática se llama <strong>autoboxing</strong> (primitivo → objeto) y <strong>unboxing</strong> (objeto →
+          primitivo). Desde Java 5, esto es transparente para el programador.</p>
+      </div>
+
+      <div class="code-block" id="cb-wrapper"></div>
+
+      <!-- ── LABORATORIO INTERACTIVO DE WRAPPERS ── -->
+      <h3 style="margin: 1.75rem 0 0.35rem; font-size: 1rem;">Laboratorio de conversiones (Wrapper Classes)</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        En Java es fundamental saber convertir texto a números y conocer los límites de memoria. Interactuá en tiempo real:
+      </p>
+
+      <div class="wrap-lab">
+        <div class="wrap-grid">
+
+          <!-- Parsing: String a Primitivo -->
+          <div class="wrap-box">
+            <div class="wrap-input-row">
+              <label class="wrap-label">String str =</label>
+              <input class="wrap-input" id="win-str" type="text" value="23" placeholder="Ej: 23" oninput="runWrap()">
+            </div>
+
+            <div class="wrap-methods">
+              <div class="wrap-mrow">
+                <code class="wrap-code">Integer.parseInt(<span class="wrap-arg">str</span>)</code>
+                <div class="wrap-res" id="wres-int"></div>
+              </div>
+              <div class="wrap-mrow">
+                <code class="wrap-code">Double.parseDouble(<span class="wrap-arg">str</span>)</code>
+                <div class="wrap-res" id="wres-double"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Constantes y primitivo a String -->
+          <div class="wrap-box">
+            <div class="wrap-input-row">
+              <label class="wrap-label">double d =</label>
+              <input class="wrap-input" id="win-num" type="number" step="any" placeholder="0.0" oninput="runWrap()">
+            </div>
+
+            <div class="wrap-methods">
+              <div class="wrap-mrow">
+                <code class="wrap-code">Double.toString(<span class="wrap-arg">d</span>)</code>
+                <div class="wrap-res str-val" id="wres-str">"0.0"</div>
+              </div>
+
+              <div class="wrap-sep"></div>
+
+              <div class="wrap-mrow">
+                <code class="wrap-code">Integer.MAX_VALUE</code>
+                <div class="wrap-const-val">-</div> <!-- updated via js -->
+              </div>
+              <div class="wrap-mrow">
+                <code class="wrap-code">Integer.MIN_VALUE</code>
+                <div class="wrap-const-val">-</div> <!-- updated via js -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <style>
+        /* ── LABORATORIO WRAPPERS ── */
+        .wrap-lab {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--r-lg, 12px);
+          overflow: hidden;
+          margin-bottom: 2rem;
+          padding: 1.25rem;
+        }
+
+        .wrap-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.25rem;
+        }
+
+        @media (max-width: 680px) {
+          .wrap-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .wrap-box {
+          background: transparent;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          padding: 1rem 1.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .wrap-input-row {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          background: var(--surface2);
+          border-radius: 6px;
+          padding: 0.15rem 0.75rem;
+          border: 1px solid transparent;
+          transition: border-color 0.2s;
+        }
+
+        .wrap-input-row:focus-within {
+          border-color: var(--accent);
+        }
+
+        .wrap-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.75rem;
+          color: var(--muted);
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          white-space: nowrap;
+        }
+
+        .wrap-input {
+          flex: 1;
+          width: 100%;
+          background: transparent;
+          border: none;
+          color: var(--teal);
+          font-family: 'DM Mono', monospace;
+          font-size: 1.05rem;
+          padding: 0.5rem 0;
+          outline: none;
+        }
+
+        .wrap-methods {
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+
+        .wrap-mrow {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          padding: 0.6rem 0.8rem;
+          border-radius: 6px;
+        }
+
+        .wrap-code {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.85rem;
+          color: var(--text);
+        }
+
+        .wrap-arg {
+          color: var(--teal);
+        }
+
+        .wrap-res {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--teal);
+          text-align: right;
+        }
+
+        .wrap-res.error {
+          color: var(--coral, #ef4444);
+          font-size: 0.72rem;
+          font-weight: 400;
+          cursor: help;
+        }
+
+        .wrap-res.str-val {
+          color: #e5c07b;
+          /* un color distintivo para Strings o se puede dejar var(--text) */
+          font-weight: normal;
+        }
+
+        .wrap-const-val {
+          color: var(--amber);
+          font-family: 'DM Mono', monospace;
+          font-size: 0.85rem;
+        }
+
+        .wrap-sep {
+          height: 1px;
+          background: var(--border);
+          margin: 0.2rem 0;
+        }
+      </style>
+
+      <script>
+        (function () {
+          // Asignar costantes iniciales para evitar harcoding visual molesto
+          document.querySelectorAll('.wrap-const-val')[0].textContent = '2147483647';
+          document.querySelectorAll('.wrap-const-val')[1].textContent = '-2147483648';
+
+          window.runWrap = function () {
+            var strEl = document.getElementById('win-str');
+            if (!strEl) return;
+            var str = strEl.value;
+
+            // Int Parsing
+            var resInt = document.getElementById('wres-int');
+            if (/^[-+]?\d+$/.test(str)) {
+              var i = parseInt(str, 10);
+              if (i > 2147483647 || i < -2147483648) {
+                resInt.textContent = '❌ NumberFormatException';
+                resInt.className = 'wrap-res error';
+                resInt.title = 'El valor está fuera de los límites permisibles de int';
+              } else {
+                resInt.textContent = i;
+                resInt.className = 'wrap-res';
+                resInt.removeAttribute('title');
+              }
+            } else {
+              resInt.textContent = '❌ NumberFormatException';
+              resInt.className = 'wrap-res error';
+              resInt.title = 'La cadena contiene caracteres inválidos o espacios para tipo int';
+            }
+
+            // Double Parsing
+            var resDouble = document.getElementById('wres-double');
+            if (str.trim() === str && str !== "" && !isNaN(Number(str))) {
+              var d = Number(str);
+              resDouble.textContent = d + (Number.isInteger(d) ? '.0' : '');
+              resDouble.className = 'wrap-res';
+              resDouble.removeAttribute('title');
+            } else {
+              resDouble.textContent = '❌ NumberFormatException';
+              resDouble.className = 'wrap-res error';
+              resDouble.title = 'Formato decimal inválido en Java. No debe contener espacios en absoluto.';
+            }
+
+            // Double to String
+            var num = document.getElementById('win-num').value;
+            var resStr = document.getElementById('wres-str');
+            if (num === "") num = "0.0";
+            else if (Number.isInteger(Number(num))) num += ".0";
+            resStr.textContent = '"' + num + '"';
+          }
+
+          // Initial run
+          setTimeout(runWrap, 100);
+        })();
+      </script>
+
+    </section>
+
+    <!-- ===== CONVERSIÓN ===== -->
+    <section id="conversion" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 03 · Casting y Conversiones</div>
+        <h1>Conversión<br>entre tipos de datos</h1>
+        <p>En Java, convertir datos de un tipo a otro es una operación frecuente. Según el nivel de riesgo, puede ser <strong>automática</strong> o requerir intervención explícita del programador.</p>
+      </div>
+
+      <h2>Conversión implícita (Widening)</h2>
+      <p>Java convierte automáticamente un tipo "más pequeño" a uno "más grande" sin pérdida de información. No requiere ninguna sintaxis especial.</p>
+
+      <div class="widening-flow">
+        <div class="w-node">byte</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">short</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">int</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">long</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">float</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node w-highlight">double</div>
+      </div>
+
+      <div class="code-block" id="cb-widening"></div>
+
+      <h2>Conversión explícita — Casting (Narrowing)</h2>
+      <p>Cuando convertís de un tipo "más grande" a uno "más pequeño" puede haber <strong>pérdida de datos</strong>. Debés indicarlo explícitamente con <code>(tipo)</code> para asumir la
+        responsabilidad.</p>
+
+      <div class="card card-accent coral">
+        <h3>⚠ Riesgo de precisión</h3>
+        <p>Al hacer casting de <code>double</code> a <code>int</code>, la parte decimal se <strong>descarta</strong> (no se redondea). Por ejemplo: <code>(int) 9.99</code> devuelve <code>9</code>, no
+          <code>10</code>.
+        </p>
+      </div>
+
+      <div class="code-block" id="cb-casting"></div>
+
+      <h2>Conversión entre String y número</h2>
+      <p>Para procesar entradas del usuario (que siempre llegan como <code>String</code>) necesitás convertirlas a número.</p>
+
+      <div class="code-block" id="cb-parse"></div>
+
+      <h2>Operaciones mixtas y promoción de tipos</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Si un operando es double</h3>
+            <p>El otro operando se convierte automáticamente a <code>double</code>. El resultado es <code>double</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Si un operando es float</h3>
+            <p>El otro se convierte a <code>float</code>. El resultado es <code>float</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Si un operando es long</h3>
+            <p>El otro se convierte a <code>long</code>. El resultado es <code>long</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Si ambos son int o menores</h3>
+            <p>Ambos se promueven a <code>int</code>. El resultado es <code>int</code>. Nunca <code>byte</code> ni <code>short</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Concatenación con String</h2>
+      <div class="card card-accent blue">
+        <h3>El operador + con String</h3>
+        <p>Cuando un operando de <code>+</code> es <code>String</code>, Java convierte el otro a texto automáticamente. Esto puede ser fuente de errores si se mezclan sumas y concatenaciones en la
+          misma expresión.</p>
+      </div>
+
+      <div class="code-block" id="cb-concat"></div>
+
+      <!-- ── LABORATORIO DE CONCATENACIÓN ── -->
+      <h3 style="margin: 1.75rem 0 0.35rem; font-size: 1rem;">Intérprete de Concatenación interactiva</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Experimentá cómo el compilador de Java construye el árbol sintáctico (AST) evaluando estrictamente de <strong>izquierda a derecha</strong> y respetando paréntesis. Probá sumas combinando <code>x</code>, <code>y</code>, números y texto.
+      </p>
+
+      <div class="concat-lab">
+         <div class="cl-top">
+           <div class="cl-vars">
+               <div class="cl-var"><code>int <span style="color:var(--coral)">x</span> = 10;</code></div>
+               <div class="cl-var"><code>int <span style="color:var(--coral)">y</span> = 5;</code></div>
+           </div>
+           
+           <div class="cl-input-box">
+               <label class="cl-label" style="color:var(--pink)">System.out.println<span style="color:var(--text)">(</span></label>
+               <input type="text" id="cl-expr" class="cl-input" value='"Suma: " + x + y' placeholder='ej: "Suma: " + (x + y)' oninput="runCat()">
+               <label class="cl-label">)</label><label class="cl-label" style="color:var(--muted)">;</label>
+           </div>
+         </div>
+         
+         <div class="cl-bottom">
+           <div class="cl-panel">
+               <div class="cl-title">Pasos de compilación (Evaluación de nodos)</div>
+               <div class="cl-steps" id="cl-steps"></div>
+           </div>
+           
+           <div class="cl-panel">
+               <div class="cl-title">Efecto en la consola</div>
+               <div class="cl-out-term" id="cl-out"></div>
+           </div>
+         </div>
+      </div>
+
+      <style>
+        /* ── INTERPRETE DE CONCATENACIÓN ── */
+        .concat-lab {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--r-lg, 12px);
+          overflow: hidden;
+          margin-bottom: 2rem;
+        }
+
+        .cl-top {
+          padding: 1.25rem;
+          background: var(--surface2);
+          border-bottom: 1px solid var(--border);
+        }
+
+        .cl-vars {
+          display: flex;
+          gap: 0.75rem;
+          margin-bottom: 1rem;
+        }
+
+        .cl-var {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.85rem;
+          color: var(--muted);
+          background: var(--surface);
+          padding: 0.2rem 0.5rem;
+          border-radius: 4px;
+          border: 1px solid var(--border);
+        }
+
+        .cl-input-box {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          background: #090b0e;
+          padding: 0.6rem 1rem;
+          border-radius: 6px;
+          border: 1px solid var(--border);
+          transition: border-color 0.2s;
+        }
+        
+        .cl-input-box:focus-within { border-color: var(--accent); }
+
+        .cl-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.95rem;
+          color: var(--text);
+        }
+
+        .cl-input {
+          flex: 1;
+          background: transparent;
+          border: none;
+          color: var(--teal);
+          font-family: 'DM Mono', monospace;
+          font-size: 1.1rem;
+          outline: none;
+          width: 100%;
+        }
+
+        .cl-bottom {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 1px;
+          background: var(--border);
+        }
+
+        @media (max-width: 680px) {
+           .cl-bottom { grid-template-columns: 1fr; }
+        }
+
+        .cl-panel {
+          background: var(--surface);
+          padding: 1.25rem;
+        }
+
+        .cl-title {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.75rem;
+          color: var(--muted);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 0.8rem;
+        }
+
+        .cl-steps {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          min-height: 4rem;
+        }
+
+        .cl-step-row {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.85rem;
+          background: var(--surface2);
+          padding: 0.4rem 0.6rem;
+          border-radius: 4px;
+          border-left: 2px solid var(--accent);
+          color: var(--text);
+        }
+
+        .cl-out-term {
+          font-family: 'DM Mono', monospace;
+          font-size: 1.1rem;
+          color: var(--text);
+          background: #090b0e;
+          border: 1px solid var(--border);
+          border-radius: 6px;
+          padding: 1rem;
+          min-height: 3rem;
+          display: flex;
+          align-items: center;
+          word-break: break-all;
+        }
+        .cl-out-error {
+          color: var(--coral, #ef4444);
+          font-size: 0.85rem;
+        }
+      </style>
+
+      <script>
+        (function() {
+          function parseStr(str) {
+              let tokens = [];
+              let regex = /\s*(?:(\d+(?:\.\d+)?)|("(?:[^"\\]|\\.)*")|([a-zA-Z_]\w*)|(\+)|(\()|(\)))\s*/g;
+              let match;
+              let lastIndex = 0;
+              while ((match = regex.exec(str)) !== null) {
+                  if (match.index !== lastIndex) throw "Caracter desconocido";
+                  if (match[1]) tokens.push({type:'num', val: parseFloat(match[1])});
+                  else if (match[2]) tokens.push({type:'str', val: match[2].slice(1,-1)});
+                  else if (match[3]) tokens.push({type:'var', val: match[3]});
+                  else if (match[4]) tokens.push({type:'+', val: '+'});
+                  else if (match[5]) tokens.push({type:'(', val: '('});
+                  else if (match[6]) tokens.push({type:')', val: ')'});
+                  lastIndex = regex.lastIndex;
+              }
+              if (lastIndex !== str.length) throw "Sintaxis inválida";
+
+              let pos = 0;
+              let env = { x: {val: 10, ts: 'int'}, y: {val: 5, ts: 'int'} };
+
+              function e() {
+                  let left = t();
+                  while (pos < tokens.length && tokens[pos].type === '+') {
+                      pos++;
+                      let right = t();
+                      left = {type:'add', left: left, right: right};
+                  }
+                  return left;
+              }
+
+              function t() {
+                  if (pos >= tokens.length) throw "Expresión cortada prematuramente";
+                  let tok = tokens[pos++];
+                  if (tok.type === 'num') return {type:'literal', ts:'number', val: tok.val};
+                  if (tok.type === 'str') return {type:'literal', ts:'string', val: tok.val};
+                  if (tok.type === 'var') {
+                      if (!(tok.val in env)) throw "Variable '" + tok.val + "' no declarada";
+                      return {type:'literal', ts: env[tok.val].ts, val: env[tok.val].val, name: tok.val};
+                  }
+                  if (tok.type === '(') {
+                      let node = e();
+                      if (pos >= tokens.length || tokens[pos].type !== ')') throw "Falta cerrar un paréntesis";
+                      pos++;
+                      return {type:'group', inner: node};
+                  }
+                  throw "Se esperaba un número, variable o cadena";
+              }
+
+              if (tokens.length === 0) return null;
+              let res = e();
+              if (pos < tokens.length) throw "Error de jerarquía (¿paréntesis desbalanceado?)";
+              return res;
+          }
+
+          window.runCat = function() {
+              let expr = document.getElementById('cl-expr').value;
+              let stepsDiv = document.getElementById('cl-steps');
+              let outDiv = document.getElementById('cl-out');
+              
+              if (!expr.trim()) {
+                  stepsDiv.innerHTML = '';
+                  outDiv.className = 'cl-out-term';
+                  outDiv.textContent = '';
+                  return;
+              }
+
+              let steps = [];
+              function evaluate(node) {
+                  if (node.type === 'literal') {
+                      let rep = node.name || (node.ts === 'string' ? '"' + node.val + '"' : String(node.val));
+                      return {val: node.val, ts: node.ts === 'string' ? 'String' : 'int', rep: rep};
+                  }
+                  if (node.type === 'group') {
+                      return evaluate(node.inner);
+                  }
+                  if (node.type === 'add') {
+                      let L = evaluate(node.left);
+                      let R = evaluate(node.right);
+                      let ts = (L.ts === 'String' || R.ts === 'String') ? 'String' : 'int';
+                      let val = (ts === 'String') ? String(L.val) + String(R.val) : Number(L.val) + Number(R.val);
+                      let outRep = (ts === 'String') ? '"' + val + '"' : String(val);
+                      steps.push(`<div class="cl-step-row"><code>${L.rep} + ${R.rep}</code> <span style="color:var(--muted); margin:0 0.5rem;">→</span> <span style="color:var(--${ts==='String'?'amber':'teal'})">${outRep}</span> <span style="font-size:0.75rem; color:var(--muted); margin-left:0.5rem">(${ts})</span></div>`);
+                      return {val: val, ts: ts, rep: outRep};
+                  }
+              }
+
+              try {
+                  let ast = parseStr(expr);
+                  if (!ast) throw "No hay código a evaluar";
+                  let end = evaluate(ast);
+                  stepsDiv.innerHTML = steps.length > 0 ? steps.join('') : '<div class="cl-step-row" style="opacity:0.6; border-color:var(--muted)">Expresión litera directa. Nada que procesar.</div>';
+                  outDiv.className = 'cl-out-term';
+                  outDiv.textContent = end.ts === 'String' ? end.val : String(end.val);
+              } catch (err) {
+                  stepsDiv.innerHTML = `<div class="cl-step-row" style="border-left-color:var(--coral); color:var(--coral)"><i style="font-size: 0.9rem">Error Sintáctico:</i> ${err}</div>`;
+                  outDiv.className = 'cl-out-term cl-out-error';
+                  outDiv.textContent = "Error de compilación o ejecución";
+              }
+          }
+
+          setTimeout(runCat, 100);
+        })();
+      </script>
+
+    </section>
+
+    <!-- ===== PRÁCTICA ===== -->
+    <section id="practica" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">15 Ejercicios · Tipos de Datos Java</div>
+        <h1>Práctica:<br>tipos de datos en Java</h1>
+        <p>Respondé cada ejercicio analizando el tipo correcto, el rango necesario y posibles errores.</p>
+      </div>
+
+      <div class="ex-stats">
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-total">20</span><span class="ex-stat-l">ejercicios</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-done">0</span><span class="ex-stat-l">completados</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-pct">0%</span><span class="ex-stat-l">progreso</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterEx('todos',this)">Todos (20)</button>
+        <button class="filter-btn" onclick="filterEx('Básico',this)">Básico (8)</button>
+        <button class="filter-btn" onclick="filterEx('Intermedio',this)">Intermedio (8)</button>
+        <button class="filter-btn" onclick="filterEx('Avanzado',this)">Avanzado (4)</button>
+      </div>
+
+      <div class="ex-list" id="ex-list"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav">
+    <a class="nav-tab" href="index.html">Algoritmos</a>
+    <button class="nav-tab active" onclick="showSection('primitivos',this)">Primitivos</button>
+    <button class="nav-tab" onclick="showSection('noprim',this)">No Prim.</button>
+    <button class="nav-tab" onclick="showSection('conversion',this)">Casting</button>
+    <button class="nav-tab" onclick="showSection('practica',this)">Práctica</button>
+  </nav>
+
+  <script src="../js/state-manager.js"></script>
+  <script src="../js/tipos-de-datos.js"></script>
+  <!-- ── FOOTER ── -->
+  <footer class="page-footer">
+    <p>Tipos de Datos en Java &middot; Prof. Diego Méndez &middot; ITI 2026</p>
+  </footer>
+
+</body>
+
+</html>
