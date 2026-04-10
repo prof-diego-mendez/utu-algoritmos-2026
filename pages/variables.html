@@ -193,7 +193,7 @@
 <span class="var">producto</span>  <span class="op">←</span> <span class="str">"Cuaderno"</span>      <span class="cm">// texto</span>
 <span class="var">enStock</span>   <span class="op">←</span> <span class="kw">verdadero</span>       <span class="cm">// lógico</span>
 
-<span class="var">total</span> <span class="op">←</span> <span class="var">cantidad</span> <span class="op">×</span> <span class="var">precio</span>  <span class="cm">// → 199.90</span>
+<span class="var">total</span> <span class="op">←</span> <span class="var">cantidad</span> <span class="op">*</span> <span class="var">precio</span>  <span class="cm">// → 199.90</span>
 <span class="kw">ESCRIBIR</span> <span class="var">producto</span> <span class="op">+</span> <span class="str">": $"</span> <span class="op">+</span> <span class="var">total</span></pre>
       </div>
     </section>
@@ -239,8 +239,8 @@
 
 <span class="var">suma</span>      <span class="op">←</span> <span class="var">a</span> <span class="op">+</span> <span class="var">b</span>      <span class="cm">// → 13</span>
 <span class="var">resta</span>     <span class="op">←</span> <span class="var">a</span> <span class="op">-</span> <span class="var">b</span>      <span class="cm">// → 7</span>
-<span class="var">producto</span>  <span class="op">←</span> <span class="var">a</span> <span class="op">×</span> <span class="var">b</span>      <span class="cm">// → 30</span>
-<span class="var">cociente</span>  <span class="op">←</span> <span class="var">a</span> <span class="op">÷</span> <span class="var">b</span>      <span class="cm">// → 3.333...</span>
+<span class="var">producto</span>  <span class="op">←</span> <span class="var">a</span> <span class="op">*</span> <span class="var">b</span>      <span class="cm">// → 30</span>
+<span class="var">cociente</span>  <span class="op">←</span> <span class="var">a</span> <span class="op">/</span> <span class="var">b</span>      <span class="cm">// → 3.333...</span>
 <span class="var">resto</span>     <span class="op">←</span> <span class="var">a</span> <span class="kw">mod</span> <span class="var">b</span>    <span class="cm">// → 1</span>
 <span class="var">potencia</span>  <span class="op">←</span> <span class="var">a</span> <span class="op">^</span> <span class="var">b</span>      <span class="cm">// → 1000</span>
 
@@ -437,7 +437,7 @@
         <div class="sandbox-header">
           <div class="sandbox-dot"></div>
           <span class="sandbox-title">Sandbox del Ejercicio</span>
-          <button class="sandbox-clear-btn" onclick="clearSandbox('modal-sandbox-code', 'modal-sandbox-output')">limpiar</button>
+          <button class="sandbox-clear-btn" onclick="clearSandboxPseint('modal-sandbox-code', 'modal-sandbox-output')">limpiar</button>
         </div>
         <div class="sandbox-body">
           <div class="sandbox-input-area">
@@ -767,12 +767,12 @@
       {
         n: 4, cat: 'aritmetica', title: 'Perímetro de un rectángulo',
         stmt: 'Guardá el largo y el ancho de un rectángulo en variables. Calculá y mostrá su perímetro (2 × largo + 2 × ancho).',
-        hint: `largo ← LEER\nancho ← LEER\nperimetro ← 2 * largo + 2 * ancho\nESCRIBIR "Perímetro: " + perimetro`
+        hint: `ESCRIBIR "Ingresá el largo:"\nLEER largo\nESCRIBIR "Ingresá el ancho:"\nLEER ancho\nperimetro ← 2 * largo + 2 * ancho\nESCRIBIR "Perímetro: " + perimetro`
       },
       {
         n: 5, cat: 'aritmetica', title: 'Área de un triángulo',
         stmt: 'Calculá el área de un triángulo dada su base y altura. El área es (base × altura) ÷ 2.',
-        hint: `base   ← LEER\naltura ← LEER\narea   ← (base * altura) / 2\nESCRIBIR "Área: " + area`
+        hint: `ESCRIBIR "Ingresá la base:"\nLEER base\nESCRIBIR "Ingresá la altura:"\nLEER altura\narea   ← (base * altura) / 2\nESCRIBIR "Área: " + area`
       },
       {
         n: 6, cat: 'aritmetica', title: 'Promedio de tres notas',
@@ -921,7 +921,7 @@
       if (!ex) return;
       document.getElementById('modal-sandbox-code').value = ex.hint;
       openModal();
-      setTimeout(() => runSandbox('modal-sandbox-code', 'modal-sandbox-output'), 100);
+      setTimeout(() => runSandboxPseint('modal-sandbox-code', 'modal-sandbox-output'), 100);
     }
 
     function filterExs(cat, btn) {
