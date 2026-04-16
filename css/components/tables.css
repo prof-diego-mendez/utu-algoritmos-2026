@@ -1,0 +1,174 @@
+/* PROPS GRID */
+.props-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 1.25rem 0;
+}
+
+.prop-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.875rem 1rem;
+  transition: border-color 0.2s;
+}
+
+.prop-card:hover {
+  border-color: var(--accent);
+}
+
+.prop-label {
+  font-size: 0.8rem;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.prop-value {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* TABLE */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+thead tr {
+  background: var(--surface2);
+}
+
+th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border2);
+  letter-spacing: 0.04em;
+}
+
+td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+}
+
+td.num {
+  text-align: center;
+  color: var(--text);
+  font-weight: 500;
+}
+
+td.yes {
+  color: var(--teal);
+}
+
+td.no {
+  color: var(--coral);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: var(--surface);
+}
+
+/* ── TYPE TABLE ── */
+.type-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 1rem 0;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border2);
+}
+
+.type-table th {
+  text-align: left;
+  padding: 10px 16px;
+  background: var(--surface2);
+  color: var(--muted);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+}
+
+.type-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+.type-table tr:last-child td { border-bottom: none; }
+.type-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.td-mono {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--teal);
+}
+
+.td-desc {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ── OPS GRID ── */
+.ops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 10px;
+  margin: 1rem 0;
+}
+
+.op-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.875rem;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.op-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.op-sym {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.op-name {
+  font-size: 0.625rem;
+  color: var(--faint);
+  letter-spacing: 0.05em;
+}

@@ -1,0 +1,108 @@
+/* CODE BLOCKS */
+.code-block {
+  background: #0a0b0e;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: 1.25rem 1.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: #d4d4d8;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.code-block .kw {
+  color: #c084fc;
+}
+
+.code-block .fn {
+  color: #34d399;
+}
+
+.code-block .cm {
+  color: #52525b;
+  font-style: italic;
+}
+
+.code-block .nm {
+  color: #60a5fa;
+}
+
+.code-block .op {
+  color: #fbbf24;
+}
+
+/* ── CODE BLOCK (styled wrap) ── */
+.code-wrap {
+  background: #0a0b0e;
+  border: 1px solid var(--border2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.code-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.code-dot:nth-child(1) { background: #f87171; }
+.code-dot:nth-child(2) { background: #fbbf24; }
+.code-dot:nth-child(3) { background: #4ade80; }
+
+.code-filename {
+  margin-left: auto;
+  font-size: 0.625rem;
+  color: var(--faint);
+  letter-spacing: 0.05em;
+  font-family: 'DM Mono', monospace;
+}
+
+.code-copy {
+  background: none;
+  border: 1px solid var(--border2);
+  color: var(--faint);
+  font-size: 0.625rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  transition: all 0.2s;
+}
+
+.code-copy:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.code-wrap pre {
+  padding: 1.125rem 1.25rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.85;
+  overflow-x: auto;
+  tab-size: 2;
+  color: #d4d4d8;
+}
+
+/* Syntax spans inside code-wrap */
+.code-wrap .kw  { color: #c084fc; font-weight: 500; }
+.code-wrap .cm  { color: var(--faint); font-style: italic; }
+.code-wrap .str { color: var(--teal); }
+.code-wrap .num { color: var(--amber); }
+.code-wrap .fn  { color: var(--blue); }
+.code-wrap .op  { color: var(--coral); }
+.code-wrap .var { color: var(--text); }

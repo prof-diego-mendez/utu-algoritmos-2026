@@ -1,0 +1,468 @@
+
+/* ===== ETYMOLOGY ===== */
+    .etymology {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1.25rem;
+      background: rgba(124, 58, 237, 0.07);
+      border-radius: 0 var(--r) var(--r) 0;
+      margin: 1rem 0 1.25rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .etymology strong {
+      color: var(--text);
+    }
+
+    /* ===== PROPERTIES GRID ===== */
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    .properties-grid .prop-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.1rem 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .properties-grid .prop-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .properties-grid .prop-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .properties-grid .prop-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ===== ANALOGY GRID ===== */
+    .analogy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1rem 0 1.25rem;
+    }
+
+    @media (max-width: 600px) {
+      .analogy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .analogy-col {
+      border-radius: var(--r);
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--border);
+    }
+
+    .analogy-col h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.4rem;
+    }
+
+    .analogy-col p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .analogy-input {
+      background: rgba(20, 184, 166, 0.08);
+      border-color: rgba(20, 184, 166, 0.3);
+    }
+
+    .analogy-input h4 {
+      color: var(--teal);
+    }
+
+    .analogy-process {
+      background: rgba(124, 58, 237, 0.07);
+      border-color: rgba(124, 58, 237, 0.25);
+    }
+
+    .analogy-process h4 {
+      color: var(--accent);
+    }
+
+    .analogy-output {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .analogy-output h4 {
+      color: var(--amber);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 1.75rem;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline li {
+      padding: 0 0 1.25rem 2.5rem;
+      position: relative;
+    }
+
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+    }
+
+    .timeline li strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline li p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ===== QUIZ ===== */
+    .quiz {
+      margin: 1rem 0 1.5rem;
+    }
+
+    .quiz-options {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-options button {
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1rem;
+      border-radius: var(--r);
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .quiz-options button:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: var(--surface2);
+    }
+
+    .quiz-options button:disabled {
+      cursor: default;
+    }
+
+    .quiz-options button.correct {
+      border-color: var(--teal);
+      background: rgba(20, 184, 166, 0.12);
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .quiz-options button.incorrect {
+      border-color: var(--coral);
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--coral);
+    }
+
+    .quiz-options button.reveal-correct {
+      border-color: var(--teal);
+      background: rgba(20, 184, 166, 0.08);
+      color: var(--teal);
+    }
+
+    .quiz-feedback {
+      padding: 0.75rem 1rem;
+      border-radius: var(--r);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .quiz-feedback.correct {
+      display: block;
+      background: rgba(20, 184, 166, 0.12);
+      border: 1px solid rgba(20, 184, 166, 0.35);
+      color: var(--teal);
+    }
+
+    .quiz-feedback.incorrect {
+      display: block;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--coral);
+    }
+
+    /* ===== WHY ALGORITHMS ===== */
+    .why-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    @media (max-width: 600px) {
+      .why-compare {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .why-col {
+      border-radius: var(--r);
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+    }
+
+    .why-col-bad {
+      background: rgba(239, 68, 68, 0.06);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+
+    .why-col-good {
+      background: rgba(20, 184, 166, 0.07);
+      border-color: rgba(20, 184, 166, 0.3);
+    }
+
+    .why-col-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .why-col-bad .why-col-label {
+      color: var(--coral);
+    }
+
+    .why-col-good .why-col-label {
+      color: var(--teal);
+    }
+
+    .why-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .why-col ul li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .why-col-bad ul li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--coral);
+      font-size: 0.8rem;
+    }
+
+    .why-col-good ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-size: 0.8rem;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .why-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .why-card-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .why-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+
+    .why-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .blockquote-highlight {
+      border-left: 3px solid var(--amber);
+      padding: 0.9rem 1.25rem;
+      background: rgba(245, 158, 11, 0.07);
+      border-radius: 0 var(--r) var(--r) 0;
+      margin: 1.5rem 0;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .blockquote-highlight cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      font-style: normal;
+      font-family: 'DM Mono', monospace;
+      color: var(--amber);
+    }
+
+    /* ===== PSEUDO REFERENCE ===== */
+    .pseudo-ref {
+      margin: 1.5rem 0 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .pseudo-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding: 0 0 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.75rem;
+    }
+
+    .pseudo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .pseudo-table th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .pseudo-table td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: top;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .pseudo-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pseudo-table tr:hover td {
+      background: var(--surface2);
+    }
+
+    .pseudo-kw {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .pseudo-syntax {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--teal);
+    }
+
+    .pseudo-desc {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
