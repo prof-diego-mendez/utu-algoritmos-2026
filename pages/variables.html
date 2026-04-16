@@ -130,7 +130,7 @@
           <button class="code-copy" onclick="copyCode(this)">copiar</button>
         </div>
         <pre><span class="kw">ESCRIBIR</span> <span class="str">"¿Cuál es tu nombre?"</span>
-<span class="var">nombre</span> <span class="op">←</span> <span class="kw">LEER</span>
+<span class="kw">LEER</span> <span class="var">nombre</span>
 <span class="kw">ESCRIBIR</span> <span class="str">"Hola, "</span> <span class="op">+</span> <span class="var">nombre</span> <span class="op">+</span> <span class="str">"!"</span></pre>
       </div>
     </section>
@@ -504,7 +504,7 @@
 
         function evalExpr(expr) {
           expr = expr.trim();
-          if (expr.startsWith('"') && expr.endsWith('"')) return expr.slice(1, -1);
+          if (/^"[^"]*"$/.test(expr)) return expr.slice(1, -1);
           if (expr === 'verdadero') return true;
           if (expr === 'falso') return false;
           if (!isNaN(expr) && expr !== '') return parseFloat(expr);
@@ -522,18 +522,6 @@
             return '__STR' + (strings.length - 1) + '__';
           });
 
-          safe = safe.replace(/[a-záéíóúñA-ZÁÉÍÓÚÑ_][a-záéíóúñA-ZÁÉÍÓÚÑ0-9_]*/g, (m) => {
-            if (m.startsWith('__STR')) return m;
-            if (m === 'mod' || m === 'verdadero' || m === 'falso' || m === 'AND' || m === 'OR' || m === 'NOT') return m;
-            if (m in vars) {
-              const v = vars[m];
-              return typeof v === 'string' ? JSON.stringify(v) : v;
-            }
-            throw new Error('Variable no definida: "' + m + '"');
-          });
-
-          safe = safe.replace(/__STR(\d+)__/g, (_, i) => strings[Number(i)]);
-
           safe = safe
             .replace(/verdadero/g, 'true')
             .replace(/falso/g, 'false')
@@ -545,6 +533,18 @@
             .replace(/×/g, '*').replace(/÷/g, '/')
             .replace(/\^/g, '**')
             .replace(/\bmod\b/g, '%');
+
+          safe = safe.replace(/[a-záéíóúñA-ZÁÉÍÓÚÑ_][a-záéíóúñA-ZÁÉÍÓÚÑ0-9_]*/g, (m) => {
+            if (m.startsWith('__STR')) return m;
+            if (m === 'true' || m === 'false') return m;
+            if (m in vars) {
+              const v = vars[m];
+              return typeof v === 'string' ? JSON.stringify(v) : v;
+            }
+            throw new Error('Variable no definida: "' + m + '"');
+          });
+
+          safe = safe.replace(/__STR(\d+)__/g, (_, i) => strings[Number(i)]);
           try {
             return Function('"use strict"; return (' + safe + ')')();
           } catch (e) {
