@@ -1,11 +1,3 @@
-);
-    }
-
-    
-
-    
-
-
     // ── EXERCISES ──
     const EXERCISES = [
       {
