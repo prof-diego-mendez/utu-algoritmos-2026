@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "codigo": "INICIO\nESCRIBIR \"1) me levanto\"\n  ESCRIBIR \"2) me baño\"\n  ESCRIBIR \"3) me cepillo los dientes\"\n  ESCRIBIR \"4) me visto\"\n  ESCRIBIR \"5) desayuno\"\n  ESCRIBIR \"6) preparo la mochila\"\n  ESCRIBIR \"7) salgo a tomar el bus\"\n  ESCRIBIR \"8) me tomo el bus\"\n  ESCRIBIR \"9) me bajo en la parada correspondiente\"\n  ESCRIBIR \"10) camino hasta el ITI\"\n  ESCRIBIR \"11) entro al salón\"\nFIN"
+  },
+  {
+    "id": 2,
+    "codigo": "INICIO\nLEER tipoPan\n  LEER ingrediente1\n  LEER ingrediente2\n  ESCRIBIR \"Tu sandwich de \" + tipoPan + \" es de \" + ingrediente1 + \" y \" + ingrediente2\nFIN"
+  },
+  {
+    "id": 3,
+    "codigo": "INICIO\nLEER num1\n  LEER num2\n  suma = num1 + num2\n  resta = num1 - num2\n  promedio = (num1 + num2) / 2\n  ESCRIBIR \"Suma: \" + suma\n  ESCRIBIR \"Resta: \" + resta\n  ESCRIBIR \"Promedio: \" + promedio\nFIN"
+  },
+  {
+    "id": 4,
+    "codigo": "INICIO\nLEER edad\n  SI edad >= 65 ENTONCES\n  ESCRIBIR \"Es adulto\"\n  SINO\n  SI edad >= 18 ENTONCES\n  ESCRIBIR \"Es mayor de edad\"\n  SINO\n  ESCRIBIR \"Es menor\"\nFIN"
+  },
+  {
+    "id": 5,
+    "codigo": "INICIO\nLEER num\n  SI num mod 2 = 0 & num mod 3 = 0 ENTONCES\n    ESCRIBIR \"Múltipo de 2 y 3\"\n  SINO\n    SI num mod 2 = 0 ENTONCES\n      ESCRIBIR \"Es par\"\n    SINO\n      SI num mod 3 = 0 ENTONCES\n        ESCRIBIR \"Es múltiplo de 3\"\n      SINO\n        ESCRIBIR \"No es múltiplo de 2 ni 3\"\nFIN"
+  },
+  {
+    "id": 6,
+    "codigo": "INICIO\nPARA i = 1 HASTA 100 HACER\n    ESCRIBIR i\n  FIN PARA\n\n  PARA i = 1 HASTA 100 HACER\n    SI i mod 2 = 0 ENTONCES\n      ESCRIBIR i\n    FIN SI\n  FIN PARA\n\n  PARA i = 100 HASTA 1 HACER\n    ESCRIBIR i\n  FIN PARA\nFIN"
+  },
+  {
+    "id": 7,
+    "codigo": "INICIO\nnota1 = 4\n  nota2 = 6\n  nota3 = 9\n  promedio = (nota1 + nota2 + nota3) / 3\n  SI promedio = 10 ENTONCES\n    ESCRIBIR \"¡Felicitaciones!\"\n  FIN SI\n  SI promedio = 9 ENTONCES\n    ESCRIBIR \" Excelente\"\n  FIN SI\n  SI promedio >= 7 ENTONCES\n    ESCRIBIR \"Muy bueno\"\n  FIN SI\n  SI promedio >= 6 ENTONCES\n    ESCRIBIR \"Aprobado\"\n  SINO\n    ESCRIBIR \"Desaprobado\"\n  FIN SI\nFIN"
+  },
+  {
+    "id": 8,
+    "codigo": "INICIO\nsaldo = 10000\n  ESCRIBIR \"Ingrese el monto a retirar\"\n  LEER retiro\n  SI retiro > saldo ENTONCES\n    ESCRIBIR \"Saldo insuficiente\"\n  SINO\n    SI retiro mod 100 != 0 ENTONCES\n      ESCRIBIR \"Ingrese un múltiplo de 100\"\n    SINO\n      saldo = saldo - retiro\n      ESCRIBIR \"Se han retirado \" + retiro\n      ESCRIBIR \"Saldo actual: \" + saldo\nFIN"
+  },
+  {
+    "id": 9,
+    "codigo": "INICIO\nnum = 42\n  intentos = 0\n  salir = falso\n  MIENTRAS salir = falso HACER\n    ESCRIBIR \"Adivine el número...\"\n    LEER numUsuario\n    intentos = intentos + 1\n    SI numUsuario = num ENTONCES\n      ESCRIBIR \"Ganaste!!! El número era \" + num\n      ESCRIBIR \"Intentos: \" + intentos\n      salir = verdadero\n    SINO\n      SI numUsuario > num ENTONCES\n        ESCRIBIR \"Ingrese un número menor\"\n      SINO\n        ESCRIBIR \"Ingrese un número mayor\"\n      FIN SI\n    FIN SI\n    SI intentos = 7 ENTONCES\n      salir = verdadero\n      ESCRIBIR \"Game Over\"\n      ESCRIBIR \"Has alcanzado el máximos de intentos\"\n    FIN SI\n  FIN MIENTRAS\nFIN"
+  },
+  {
+    "id": 10,
+    "codigo": "INICIO\nLEER n\n  suma = 0\n  PARA i = 1 HASTA n HACER\n    suma = suma + i\n  FIN PARA\n  ESCRIBIR \"Suma total: \" + suma\n\n  LEER n\n  resultado= 1\n  PARA i = 1 HASTA n HACER\n    resultado= resultado* i\n  FIN PARA\n  ESCRIBIR \"Factorial: \" + resultado\n\n  LEER n\n  sumaCuadrados = 0\n  PARA i = 1 HASTA n HACER\n    sumaCuadrados = sumaCuadrados + i ^ 2\n  FIN PARA\n  ESCRIBIR \"Suma total: \" + sumaCuadrados\nFIN"
+  },
+  {
+    "id": 11,
+    "codigo": "INICIO\nrangoEdad = falso\n  MIENTRAS rangoEdad = falso HACER\n    LEER edad\n    SI edad < 0 ENTONCES\n      ESCRIBIR \"La edad no puede ser negativa\"\n    SINO\n      SI edad > 120 ENTONCES\n        ESCRIBIR \"La edad es muy alta\"\n      SINO\n        ESCRIBIR \"La edad ingresada es correcta\"\n        rangoEdad = verdadero\n      FIN SI\n    FIN SI\n  FIN MIENTRAS\nFIN"
+  },
+  {
+    "id": 12,
+    "codigo": "INICIO\nLEER num\n  divisores = 0\n  PARA i = 1 HASTA num HACER\n    SI num mod i = 0 ENTONCES\n      divisores = divisores + 1\n    FIN SI\n  FIN PARA\n  SI num = 1 OR divisores = 2 ENTONCES\n    ESCRIBIR num + \" es primo\"\n  SINO\n    ESCRIBIR num + \" NO es primo\"\n  FIN SI\nFIN"
+  },
+  {
+    "id": 13,
+    "codigo": "INICIO\nmin = 0\n  max = 0\n  LEER num\n  min = num\n  max = num\n  PARA i = 1 HASTA 10 HACER\n      ESCRIBIR “Ingrese un valor”\n      LEER num\n      SI num < min ENTONCES\n          min = num\n      SINO\n          SI num > max ENTONCES\n          max = num\n      FIN SI\n  FIN PARA\n  ESCRIBIR \"Mínimo = \" + min\n  ESCRIBIR \"Máximo = \" + max\nFIN"
+  },
+  {
+    "id": 14,
+    "codigo": "INICIO\nESCRIBIR \"  1 - Celsius\"\n  ESCRIBIR \"  2 - Fahrenheit\"\n  ESCRIBIR \"  3 - Kelvin\"\n\n  ESCRIBIR \"Elegí la escala de ORIGEN:\"\n  LEER origen\n  ESCRIBIR \"Elegí la escala DESTINO:\"\n  LEER destino\n  ESCRIBIR \"Ingresá el valor a convertir:\"\n  LEER valor\n\n  SI origen = 1 & destino = 2 ENTONCES\n    resultado = valor × 9/5 + 32\n  FIN SI\n\n  SI origen = 1 & destino = 3 ENTONCES\n    resultado = valor + 273.15\n  FIN SI\n\n  SI origen = 2 & destino = 1 ENTONCES\n    resultado = (valor - 32) × 5/9\n  FIN SI\n\n  SI origen = 2 & destino = 3 ENTONCE\n    celsius = (valor - 32) × 5/9\n    resultado = celsius + 273.15\n  FIN SI\n\n  SI origen = 3 & destino = 1 ENTONCES\t// Kelvin → Celsius\n    resultado = valor - 273.15\n  FIN SI\n\n  SI origen = 3 & destino = 2 ENTONCES  \t// Kelvin → Fahrenheit\n    celsius = valor - 273.15\n    resultado = celsius × 9/5 + 32\n  FIN SI\n\n  ESCRIBIR \"Resultado: \" + resultado\nFIN"
+  },
+  {
+    "id": 15,
+    "codigo": "INICIO\nPARA i = 1 HASTA 10 HACER\n    ESCRIBIR \"1 x \" + i + \" = \" + (1*i)\n  FIN PARA\n\n  PARA i = 1 HASTA 10 HACER\n    PARA j = 1 HASTA 10 HACER\n      ESCRIBIR i + \" x \" + j + \" = \" + (i*j)\n    FIN PARA\n  FIN PARA\nFIN"
+  },
+  {
+    "id": 16,
+    "codigo": "INICIO\nvotosB = 39\n  votosC = 56\n  nulos = 10\n  totalValidos = votosA + votosB + votosC\n  porcentajeA = (votosA / totalValidos) * 100\n  porcentajeB = (votosB / totalValidos) * 100\n  porcentajeC = (votosC / totalValidos) * 100\n  SI votosA > votosB & votosA > votosC ENTONCES\n    ESCRIBIR \"Ganador candidato A\"\n  SINO\n    SI votosB > votosC ENTONCES\n      ESCRIBIR \"Ganador candidato B\"\n    SINO\n      ESCRIBIR \"Ganador candidato C\"\n    FIN SI\n  FIN SI\n  ESCRIBIR \"Candiato A tuvo el \" + porcentajeA + \"% de votos\"\n  ESCRIBIR \"Candiato B tuvo el \" + porcentajeB + \"% de votos\"\n  ESCRIBIR \"Candiato C tuvo el \" + porcentajeC + \"% de votos\"\nFIN"
+  }
+]

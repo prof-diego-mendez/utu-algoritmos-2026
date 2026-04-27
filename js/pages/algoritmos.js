@@ -25,6 +25,7 @@ async function loadExercises() {
     if (!response.ok) throw new Error('Failed to load exercises');
     EXERCISES = await response.json();
     renderEjercicios('todos');
+    loadSoluciones();
   } catch (error) {
     console.error('Error loading exercises:', error);
     // Fallback: show error message in exercises section
@@ -224,6 +225,89 @@ function handleHashChange() {
   }
   handleHashChange();
 })();
+
+let SOLUCIONES = [];
+
+async function loadSoluciones() {
+  const container = document.getElementById('sol-list');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="ex-loading">
+      <div class="ex-loading-spinner"></div>
+      <div class="ex-loading-text">Cargando soluciones...</div>
+    </div>
+  `;
+
+  try {
+    const response = await fetch('../data/soluciones.json');
+    if (!response.ok) throw new Error('Failed to load soluciones');
+    SOLUCIONES = await response.json();
+    renderSoluciones();
+  } catch (error) {
+    console.error('Error loading soluciones:', error);
+    container.innerHTML = `
+      <div class="card card-accent coral">
+        <h3>Error al cargar soluciones</h3>
+        <p>No se pudo cargar el archivo soluciones.json.</p>
+        <p style="font-family:'DM Mono',monospace;font-size:0.8rem;margin-top:0.5rem">Detalle: ${error.message}</p>
+      </div>
+    `;
+  }
+}
+
+function renderSoluciones() {
+  const container = document.getElementById('sol-list');
+  if (!container) return;
+  container.innerHTML = '';
+
+  SOLUCIONES.forEach(sol => {
+    const exerciseData = EXERCISES[sol.id - 1] || { titulo: 'Ejercicio ' + sol.id, nivel: '' };
+    const nClass = exerciseData.nivel === 'Básico' ? 'basico' : exerciseData.nivel === 'Intermedio' ? 'intermedio' : 'avanzado';
+    
+    const div = document.createElement('div');
+    div.className = 'ex-item';
+    div.style.marginBottom = '2rem';
+    
+    const inputId = `sol-sandbox-code-${sol.id}`;
+    const outputId = `sol-sandbox-output-${sol.id}`;
+
+    div.innerHTML = `
+      <div class="ex-num ${nClass}">${sol.id}</div>
+      <div class="ex-top" style="display:block; width: 100%;">
+        <div class="ex-title" style="margin-bottom: 1.5rem">${exerciseData.titulo || ('Ejercicio ' + sol.id)}</div>
+        <div class="sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-dot"></div>
+            <span class="sandbox-title">Solución Propuesta</span>
+            <button class="sandbox-clear-btn" onclick="clearSandboxPseint('${inputId}', '${outputId}')">limpiar</button>
+          </div>
+          <div class="sandbox-body">
+            <div class="sandbox-input-area">
+              <div class="sandbox-label">// código</div>
+              <textarea class="sandbox-editor" id="${inputId}" spellcheck="false" rows="12">${sol.codigo}</textarea>
+              <button class="sandbox-run" onclick="runSandboxPseint('${inputId}', '${outputId}')">▶ Ejecutar</button>
+            </div>
+            <div class="sandbox-output-area">
+              <div class="sandbox-label">// salida</div>
+              <div class="sandbox-output" id="${outputId}" style="min-height: 140px;">
+                <span style="color:var(--faint);font-size:0.8rem;">La salida aparecerá aquí...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+  
+  // Setup editors after adding to DOM
+  SOLUCIONES.forEach(sol => {
+    if (typeof setupSandboxEditor === 'function') {
+      setupSandboxEditor(`sol-sandbox-code-${sol.id}`, `sol-sandbox-output-${sol.id}`);
+    }
+  });
+}
 
 // Load exercises from JSON file (separates content from logic)
 loadExercises();
