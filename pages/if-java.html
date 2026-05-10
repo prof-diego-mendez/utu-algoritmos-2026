@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estructura IF en Java · Programación I</title>
-  <meta name="description" content="Estructura selectiva IF en Java: IF simple, IF-ELSE, IF-ELSE-IF, operadores, diagramas y 20 ejercicios prácticos. Programación I – Prof. Diego Méndez – ITI 2026.">
+  <meta name="description" content="Estructura selectiva IF en Java: IF simple, IF-ELSE, IF-ELSE-IF, operadores y 20 ejercicios prácticos. Programación I – Prof. Diego Méndez – ITI 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
@@ -27,7 +27,6 @@
       <a class="nav-tab active" href="#intro"      role="tab" aria-selected="true">IF simple</a>
       <a class="nav-tab"        href="#operadores" role="tab" aria-selected="false">Operadores</a>
       <a class="nav-tab"        href="#avanzado"   role="tab" aria-selected="false">Avanzado</a>
-      <a class="nav-tab"        href="#diagramas"  role="tab" aria-selected="false">Diagramas</a>
       <a class="nav-tab"        href="#practica"   role="tab" aria-selected="false">Práctica</a>
     </nav>
   </header>
@@ -535,196 +534,7 @@
     </section>
 
 
-    <!-- ===== SECCIÓN 4: DIAGRAMAS ========================= -->
-    <section id="diagramas" class="section">
-
-      <div class="hero">
-        <div class="hero-tag">Módulo 04 · Diagramas de Flujo</div>
-        <h1>Diagramas<br>de flujo del IF</h1>
-        <p>Los diagramas de flujo representan visualmente cómo se ramifica la ejecución del programa. Aprendé a interpretar y construir el diagrama de cada variante del IF.</p>
-      </div>
-
-      <h2>Simbología básica</h2>
-      <div class="card">
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Símbolo</th><th>Nombre</th><th>Uso en diagramas de flujo</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="pill pill-teal" style="border-radius:20px">oval</span></td>
-                <td>Terminal</td>
-                <td>Marca el INICIO o FIN del algoritmo / bloque</td>
-              </tr>
-              <tr>
-                <td><span class="pill pill-blue">rectángulo</span></td>
-                <td>Proceso</td>
-                <td>Instrucciones que se ejecutan: asignaciones, cálculos</td>
-              </tr>
-              <tr>
-                <td><span class="pill pill-amber" style="transform:skewX(-6deg);display:inline-block">rombo</span></td>
-                <td>Decisión</td>
-                <td>Condición booleana — tiene dos salidas: SÍ (true) y NO (false)</td>
-              </tr>
-              <tr>
-                <td><span class="pill pill-purple">paralelogramo</span></td>
-                <td>E/S</td>
-                <td>Entrada (leer) o Salida (imprimir) de datos</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- DIAGRAMAS -->
-      <h2>Diagrama del IF simple</h2>
-      <p>El bloque se ejecuta solo si la condición es verdadera. Si es falsa, la ejecución continúa directamente al siguiente paso.</p>
-
-      <div class="fc-grid">
-        <div class="fc-panel">
-          <div class="fc-caption">IF simple — flujo de control</div>
-          <div class="fc-oval fc-oval-s">INICIO</div>
-          <div class="fc-vline"></div>
-          <div class="fc-arrow"></div>
-          <div class="fc-diamond-wrap">
-            <div class="fc-diamond"></div>
-            <div class="fc-diamond-text">condición<br>¿verdadera?</div>
-          </div>
-
-          <div class="fc-branches" style="width:100%; gap:0;">
-            <div class="fc-branch" style="flex:1; align-items:flex-start; padding-left:10px;">
-              <div class="fc-lbl fc-lbl-no" style="margin-top:8px;">NO</div>
-              <div class="fc-vline" style="margin-left:18px;"></div>
-              <div class="fc-skip-text">(salta el bloque)</div>
-            </div>
-            <div class="fc-branch" style="flex:1; align-items:flex-end; padding-right:10px;">
-              <div class="fc-lbl fc-lbl-si" style="margin-top:8px;">SÍ</div>
-              <div class="fc-vline" style="margin-right:18px;"></div>
-              <div class="fc-arrow" style="margin-right:14px;"></div>
-              <div class="fc-rect" style="margin-right:4px;">{ bloque if }</div>
-              <div class="fc-vline" style="margin-right:18px;"></div>
-            </div>
-          </div>
-
-          <div class="fc-arrow"></div>
-          <div class="fc-oval fc-oval-e">CONTINÚA</div>
-        </div>
-
-        <div class="fc-panel">
-          <div class="fc-caption">IF-ELSE — flujo de control</div>
-          <div class="fc-oval fc-oval-s">INICIO</div>
-          <div class="fc-vline"></div>
-          <div class="fc-arrow"></div>
-          <div class="fc-diamond-wrap">
-            <div class="fc-diamond"></div>
-            <div class="fc-diamond-text">condición<br>¿verdadera?</div>
-          </div>
-
-          <div class="fc-branches" style="width:100%; gap:0;">
-            <div class="fc-branch" style="flex:1; align-items:flex-start; padding-left:10px;">
-              <div class="fc-lbl fc-lbl-no" style="margin-top:8px;">NO</div>
-              <div class="fc-vline" style="margin-left:18px;"></div>
-              <div class="fc-arrow" style="margin-left:14px;"></div>
-              <div class="fc-rect" style="background:rgba(248,113,113,0.08); color:#f87171; border-color:rgba(248,113,113,0.3); margin-left:4px;">{ else }</div>
-              <div class="fc-vline" style="margin-left:18px;"></div>
-            </div>
-            <div class="fc-branch" style="flex:1; align-items:flex-end; padding-right:10px;">
-              <div class="fc-lbl fc-lbl-si" style="margin-top:8px;">SÍ</div>
-              <div class="fc-vline" style="margin-right:18px;"></div>
-              <div class="fc-arrow" style="margin-right:14px;"></div>
-              <div class="fc-rect" style="margin-right:4px;">{ if }</div>
-              <div class="fc-vline" style="margin-right:18px;"></div>
-            </div>
-          </div>
-
-          <div class="fc-arrow"></div>
-          <div class="fc-oval fc-oval-e">CONTINÚA</div>
-        </div>
-      </div>
-
-      <h2>Diagrama del IF-ELSE-IF</h2>
-      <p>La estructura encadenada evalúa condiciones en cascada. Cada <code>else if</code> solo se alcanza si todas las condiciones anteriores fueron falsas.</p>
-
-      <div class="card">
-        <div class="code-wrap" style="margin:0">
-          <div class="code-header">
-            <div class="code-dot"></div>
-            <div class="code-dot"></div>
-            <div class="code-dot"></div>
-            <span class="code-filename">diagrama — if-else-if</span>
-          </div>
-          <pre style="padding:1.25rem; font-family:'DM Mono',monospace; font-size:0.78rem; line-height:1.85; color:#d4d4d8; overflow-x:auto;">
-<span style="color:#3a3c47">┌──────────────────────┐</span>
-<span style="color:#3a3c47">│</span>       <span style="color:#34d399">INICIO</span>         <span style="color:#3a3c47">│</span>
-<span style="color:#3a3c47">└──────────┬───────────┘</span>
-           │
-<span style="color:#3a3c47">     ╔════╧══════════╗</span>
-<span style="color:#3a3c47">     ║</span> <span style="color:#fbbf24">condición1?  </span>  <span style="color:#3a3c47">║</span>
-<span style="color:#3a3c47">     ╚════╤═════╤════╝</span>
-          │<span style="color:#f87171"> NO</span>  │<span style="color:#34d399"> SÍ</span>
-          │     │
-          │  <span style="color:#3a3c47">┌──▼──────────┐</span>
-          │  <span style="color:#3a3c47">│</span> <span style="color:#60a5fa">bloque 1    </span><span style="color:#3a3c47">│</span>
-          │  <span style="color:#3a3c47">└──┬──────────┘</span>
-          │     └──────────────────────────────→ CONTINÚA
-<span style="color:#3a3c47">     ╔════╧══════════╗</span>
-<span style="color:#3a3c47">     ║</span> <span style="color:#fbbf24">condición2?  </span>  <span style="color:#3a3c47">║</span>
-<span style="color:#3a3c47">     ╚════╤═════╤════╝</span>
-          │<span style="color:#f87171"> NO</span>  │<span style="color:#34d399"> SÍ</span>
-          │     │
-          │  <span style="color:#3a3c47">┌──▼──────────┐</span>
-          │  <span style="color:#3a3c47">│</span> <span style="color:#60a5fa">bloque 2    </span><span style="color:#3a3c47">│</span>
-          │  <span style="color:#3a3c47">└──┬──────────┘</span>
-          │     └──────────────────────────────→ CONTINÚA
-<span style="color:#3a3c47">     ╔════╧══════════╗</span>
-<span style="color:#3a3c47">     ║</span>  <span style="color:#fbbf24">    else      </span>  <span style="color:#3a3c47">║</span>
-<span style="color:#3a3c47">     ╚════╤══════════╝</span>
-          │
-       <span style="color:#3a3c47">┌──▼──────────┐</span>
-       <span style="color:#3a3c47">│</span> <span style="color:#60a5fa">bloque else </span><span style="color:#3a3c47">│</span>
-       <span style="color:#3a3c47">└──┬──────────┘</span>
-          │
-<span style="color:#3a3c47">┌─────────▼─────────┐</span>
-<span style="color:#3a3c47">│</span>     <span style="color:#f87171">CONTINÚA</span>      <span style="color:#3a3c47">│</span>
-<span style="color:#3a3c47">└───────────────────┘</span></pre>
-        </div>
-      </div>
-
-      <!-- TRAZADOR DE EJECUCIÓN -->
-      <h2>Trazador de ejecución paso a paso</h2>
-      <p>Ingresá una nota (0–10) para ver exactamente qué líneas del código se ejecutan, qué condiciones se evalúan y cuáles ramas se saltan. Las líneas <span style="color:var(--teal);font-weight:600">verdes</span> se ejecutan, las <span style="color:var(--coral);opacity:0.5;font-weight:600">atenuadas</span> se omiten.</p>
-
-      <div class="tracer">
-        <div class="tracer-header">
-          <span class="tracer-title">Trazador de ejecución — IF-ELSE-IF</span>
-          <div class="tracer-ctrl">
-            <label>int nota =</label>
-            <input type="number" id="tracer-nota" min="0" max="10" value="7" oninput="runTracer()">
-          </div>
-        </div>
-        <div class="tracer-body">
-          <div class="tracer-code" id="tracer-code-lines">
-            <!-- built by JS -->
-          </div>
-          <div class="tracer-aside">
-            <div class="tracer-aside-lbl">// salida de consola</div>
-            <div class="tracer-out" id="tracer-output">—</div>
-            <div class="tracer-aside-lbl">// calificación</div>
-            <div id="tracer-badge-el" class="tracer-badge tb-green">—</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card card-accent purple">
-        <h3>Clave para leer código con IFs</h3>
-        <p>Para trazar manualmente: evaluá cada condición con los valores actuales de las variables. La primera condición verdadera define qué bloque se ejecuta. Todas las demás condiciones y bloques se <strong>saltan completamente</strong> — el evaluador de una rama ya seleccionada no continúa evaluando las siguientes.</p>
-      </div>
-
-    </section>
-
-
-    <!-- ===== SECCIÓN 5: PRÁCTICA ========================== -->
+    <!-- ===== SECCIÓN 4: PRÁCTICA ========================== -->
     <section id="practica" class="section">
 
       <div class="hero">
@@ -761,7 +571,6 @@
     <button class="nav-tab active"  onclick="showSection('intro')">IF simple</button>
     <button class="nav-tab"         onclick="showSection('operadores')">Operadores</button>
     <button class="nav-tab"         onclick="showSection('avanzado')">Avanzado</button>
-    <button class="nav-tab"         onclick="showSection('diagramas')">Diagramas</button>
     <button class="nav-tab"         onclick="showSection('practica')">Práctica</button>
   </nav>
 
