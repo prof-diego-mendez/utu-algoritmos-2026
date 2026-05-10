@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estructura IF en Java · Programación I</title>
+  <meta name="description" content="Estructura selectiva IF en Java: IF simple, IF-ELSE, IF-ELSE-IF, operadores, diagramas y 20 ejercicios prácticos. Programación I – Prof. Diego Méndez – ITI 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">⑂</div>
+      <div>
+        <span>Estructura IF</span>
+        <span class="logo-sub"> · Programación I · Prof. Diego Méndez · ITI 2026</span>
+      </div>
+    </div>
+    <nav class="nav-tabs" role="tablist" aria-label="Navegación principal">
+      <a class="nav-tab-link" href="../index.html">← Inicio</a>
+      <a class="nav-tab-link" href="tipos-de-datos.html">Tipos de Datos</a>
+      <a class="nav-tab active" href="#intro"      role="tab" aria-selected="true">IF simple</a>
+      <a class="nav-tab"        href="#operadores" role="tab" aria-selected="false">Operadores</a>
+      <a class="nav-tab"        href="#avanzado"   role="tab" aria-selected="false">Avanzado</a>
+      <a class="nav-tab"        href="#diagramas"  role="tab" aria-selected="false">Diagramas</a>
+      <a class="nav-tab"        href="#practica"   role="tab" aria-selected="false">Práctica</a>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== SECCIÓN 1: INTRO ============================= -->
+    <section id="intro" class="section active">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 04 · Estructuras de Control</div>
+        <h1>Estructura selectiva<br><em>IF</em> en Java</h1>
+        <p>Las estructuras selectivas permiten que un programa <strong>tome decisiones</strong>: ejecutar cierto código solo si se cumple una condición. Son la base del pensamiento lógico en programación.</p>
+      </div>
+
+      <h2>¿Qué es una estructura selectiva?</h2>
+      <p>En programación, una <strong>estructura selectiva</strong> (o condicional) evalúa una expresión booleana y, según su resultado (<code>true</code> o <code>false</code>), ejecuta uno u otro bloque de código. Sin ellas, todos los programas solo podrían seguir una secuencia fija.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon" style="color:var(--teal)">①</div>
+          <div class="card-title">IF simple</div>
+          <div class="card-body">Ejecuta un bloque solo si la condición es verdadera. Si es falsa, lo salta.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="color:var(--amber)">②</div>
+          <div class="card-title">IF-ELSE</div>
+          <div class="card-body">Dos caminos posibles: uno para verdadero y otro para falso. Siempre se toma exactamente uno.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="color:var(--accent)">③</div>
+          <div class="card-title">IF-ELSE-IF</div>
+          <div class="card-body">Múltiples condiciones encadenadas. Se ejecuta la primera rama que sea verdadera.</div>
+        </div>
+      </div>
+
+      <!-- IF SIMPLE -->
+      <h2>IF simple</h2>
+      <p>La forma más básica. El bloque entre llaves se ejecuta <strong>solo si la condición es verdadera</strong>. Si es falsa, el programa continúa normalmente.</p>
+
+      <div class="card card-accent teal">
+        <h3>Sintaxis general</h3>
+        <p><code>if (condiciónBooleana) { bloqueDeCódigo }</code></p>
+        <p>La condición debe ser una expresión que devuelva <code>true</code> o <code>false</code>. Las llaves <code>{ }</code> delimitan el bloque que se ejecuta condicionalmente.</p>
+      </div>
+
+      <div class="code-block" id="cb-if-simple"></div>
+
+      <!-- IF-ELSE -->
+      <h2>IF-ELSE</h2>
+      <p>Agrega una rama alternativa: si la condición es verdadera se ejecuta el primer bloque; si es falsa, el segundo. <strong>Siempre se ejecuta exactamente uno de los dos</strong>.</p>
+
+      <div class="code-block" id="cb-if-else"></div>
+
+      <!-- IF-ELSE-IF -->
+      <h2>IF-ELSE-IF encadenado</h2>
+      <p>Para evaluar múltiples condiciones en orden. Java evalúa de arriba hacia abajo y <strong>ejecuta solo la primera rama verdadera</strong>; las demás se saltan por completo.</p>
+
+      <div class="code-block" id="cb-if-else-if"></div>
+
+      <div class="card card-accent amber">
+        <h3>⚠ Orden importa</h3>
+        <p>En un IF-ELSE-IF encadenado, las condiciones deben estar ordenadas de <strong>más específica a más general</strong>. Por ejemplo, para calificaciones: primero <code>nota >= 9</code> (más restrictivo) y al final el caso <code>else</code> (más general).</p>
+      </div>
+
+      <!-- EVALUADOR INTERACTIVO -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">Evaluador de condiciones en tiempo real</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Modificá los valores de <code style="color:var(--coral); font-family:'DM Mono',monospace">a</code> y <code style="color:var(--coral); font-family:'DM Mono',monospace">b</code> y observá cómo cambia el resultado de cada comparación al instante.
+      </p>
+
+      <div class="cond-eval">
+        <div class="cond-eval-header">
+          <span class="cond-eval-title">Resultado de condiciones — tiempo real</span>
+          <div class="cond-eval-inputs">
+            <div class="cond-eval-field">
+              <label>int a =</label>
+              <input type="number" id="ce-a" value="10" oninput="updateCondEval()">
+            </div>
+            <div class="cond-eval-field">
+              <label>int b =</label>
+              <input type="number" id="ce-b" value="5" oninput="updateCondEval()">
+            </div>
+          </div>
+        </div>
+        <div class="cond-eval-grid" id="ce-grid">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- SIMULADOR DE RAMA -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">Simulador de rama — IF-ELSE-IF en acción</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Ingresá una nota (0–10) y el simulador muestra exactamente qué rama del IF-ELSE-IF se ejecuta y cuáles se saltan.
+      </p>
+
+      <div class="if-sim">
+        <div class="if-sim-header">
+          <span class="if-sim-title">Rama activa · IF-ELSE-IF</span>
+          <div class="if-sim-input-row">
+            <label>nota =</label>
+            <input type="number" id="if-sim-nota" min="0" max="10" value="7" oninput="runIFSim()">
+          </div>
+        </div>
+        <div class="if-sim-body">
+          <div class="if-sim-code" id="if-sim-code">
+            <!-- built by JS -->
+          </div>
+          <div class="if-sim-panel">
+            <div class="if-sim-output-label">// salida</div>
+            <div class="if-sim-terminal" id="if-sim-out">—</div>
+            <div class="if-sim-output-label">// rama ejecutada</div>
+            <div id="if-sim-badge" class="if-sim-branch-badge badge-true">—</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 2: OPERADORES ======================== -->
+    <section id="operadores" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 04 · Operadores de Condición</div>
+        <h1>Operadores<br>de comparación y lógica</h1>
+        <p>Los operadores relacionales producen valores <code>true</code> o <code>false</code>. Los operadores lógicos combinan condiciones. Juntos forman las expresiones booleanas que controlan el flujo del programa.</p>
+      </div>
+
+      <h2>Operadores relacionales</h2>
+      <p>Comparan dos valores y devuelven un <code>boolean</code>. Se usan en las condiciones de los bloques <code>if</code>.</p>
+
+      <div class="if-card-grid">
+        <div class="if-op-card">
+          <span class="if-op-sym">&gt;</span>
+          <span class="if-op-name">Mayor que</span>
+          <span class="if-op-example">a > b</span>
+        </div>
+        <div class="if-op-card">
+          <span class="if-op-sym">&lt;</span>
+          <span class="if-op-name">Menor que</span>
+          <span class="if-op-example">a &lt; b</span>
+        </div>
+        <div class="if-op-card">
+          <span class="if-op-sym">&gt;=</span>
+          <span class="if-op-name">Mayor o igual</span>
+          <span class="if-op-example">a >= b</span>
+        </div>
+        <div class="if-op-card">
+          <span class="if-op-sym">&lt;=</span>
+          <span class="if-op-name">Menor o igual</span>
+          <span class="if-op-example">a &lt;= b</span>
+        </div>
+        <div class="if-op-card">
+          <span class="if-op-sym">==</span>
+          <span class="if-op-name">Igual a</span>
+          <span class="if-op-example">a == b</span>
+        </div>
+        <div class="if-op-card">
+          <span class="if-op-sym">!=</span>
+          <span class="if-op-name">Distinto de</span>
+          <span class="if-op-example">a != b</span>
+        </div>
+      </div>
+
+      <div class="code-block" id="cb-rel-ops"></div>
+
+      <div class="card card-accent coral">
+        <h3>⚠ El error más costoso: = versus ==</h3>
+        <p><code>a = b</code> es una <strong>asignación</strong>: guarda el valor de b en a. <code>a == b</code> es una <strong>comparación</strong>: devuelve <code>true</code> si son iguales. Usarlos equivocados causa errores de compilación (Java) o bugs silenciosos (C/C++). <strong>Regla: dentro de un <code>if()</code> siempre va <code>==</code></strong>.</p>
+      </div>
+
+      <h2>Tabla de operadores relacionales</h2>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Operador</th>
+                <th>Significado</th>
+                <th>Ejemplo (a=10, b=5)</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="pill pill-amber">&gt;</span></td>  <td>Mayor que</td>         <td><code>10 &gt; 5</code></td>   <td><span class="pill pill-teal">true</span></td></tr>
+              <tr><td><span class="pill pill-amber">&lt;</span></td>  <td>Menor que</td>         <td><code>10 &lt; 5</code></td>   <td><span class="pill pill-coral">false</span></td></tr>
+              <tr><td><span class="pill pill-amber">&gt;=</span></td> <td>Mayor o igual</td>     <td><code>10 &gt;= 10</code></td> <td><span class="pill pill-teal">true</span></td></tr>
+              <tr><td><span class="pill pill-amber">&lt;=</span></td> <td>Menor o igual</td>     <td><code>5 &lt;= 5</code></td>   <td><span class="pill pill-teal">true</span></td></tr>
+              <tr><td><span class="pill pill-amber">==</span></td>    <td>Igual a</td>           <td><code>10 == 5</code></td>    <td><span class="pill pill-coral">false</span></td></tr>
+              <tr><td><span class="pill pill-amber">!=</span></td>    <td>Distinto de</td>       <td><code>10 != 5</code></td>    <td><span class="pill pill-teal">true</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2>Operadores lógicos</h2>
+      <p>Combinan múltiples condiciones booleanas en una sola expresión. Son esenciales para condiciones complejas.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon" style="font-family:'DM Mono',monospace; color:var(--teal); font-size:1.1rem">&&</div>
+          <div class="card-title">AND — Y lógico</div>
+          <div class="card-body">Verdadero <strong>solo si ambas</strong> condiciones son verdaderas. Si la primera es false, no evalúa la segunda (short-circuit).</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="font-family:'DM Mono',monospace; color:var(--accent); font-size:1.1rem">||</div>
+          <div class="card-title">OR — O lógico</div>
+          <div class="card-body">Verdadero si <strong>al menos una</strong> condición es verdadera. Si la primera es true, no evalúa la segunda (short-circuit).</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="font-family:'DM Mono',monospace; color:var(--amber); font-size:1.1rem">!</div>
+          <div class="card-title">NOT — Negación</div>
+          <div class="card-body">Invierte el valor booleano. <code>!true</code> devuelve <code>false</code>, y <code>!false</code> devuelve <code>true</code>.</div>
+        </div>
+      </div>
+
+      <div class="code-block" id="cb-log-ops"></div>
+
+      <!-- TABLA DE VERDAD INTERACTIVA -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">Tabla de verdad interactiva</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Seleccioná los valores de <code style="color:var(--coral);font-family:'DM Mono',monospace">p</code> y <code style="color:var(--coral);font-family:'DM Mono',monospace">q</code> y observá cómo afectan a todas las expresiones lógicas.
+      </p>
+
+      <div class="truth-lab">
+        <div class="truth-lab-header">
+          <span class="truth-lab-title">Tabla de verdad — operadores lógicos</span>
+        </div>
+        <div class="truth-lab-body">
+          <div class="truth-toggles">
+            <div class="truth-toggle-group">
+              <span class="truth-toggle-label">p</span>
+              <div class="truth-toggle" data-var="p">
+                <button data-value="true"  onclick="setTruth('p', true)">true</button>
+                <button data-value="false" onclick="setTruth('p', false)">false</button>
+              </div>
+            </div>
+            <div class="truth-toggle-group">
+              <span class="truth-toggle-label">q</span>
+              <div class="truth-toggle" data-var="q">
+                <button data-value="true"  onclick="setTruth('q', true)">true</button>
+                <button data-value="false" onclick="setTruth('q', false)">false</button>
+              </div>
+            </div>
+          </div>
+          <div class="truth-results" id="truth-grid">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <h2>Precedencia de operadores</h2>
+      <p>Cuando combinás varios operadores en una expresión, Java aplica un orden de precedencia. <strong>Cuanto más alto, se evalúa antes</strong>:</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3><code>!</code> — NOT (mayor precedencia)</h3>
+            <p>Se evalúa primero. <code>!a && b</code> equivale a <code>(!a) && b</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3><code>&&</code> — AND</h3>
+            <p>Más precedencia que OR. <code>a || b && c</code> equivale a <code>a || (b && c)</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3><code>||</code> — OR (menor precedencia)</h3>
+            <p>Se evalúa al final si no hay paréntesis. Usá paréntesis explícitos para mayor claridad.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-accent blue">
+        <h3>Consejo: usá paréntesis siempre que combines && y ||</h3>
+        <p>Aunque la precedencia está definida, expresiones como <code>a || b && !c</code> son difíciles de leer. Escribir <code>a || (b && !c)</code> es más claro y evita bugs futuros. El compilador acepta ambas, pero el equipo agradece la segunda.</p>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 3: AVANZADO ========================== -->
+    <section id="avanzado" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 04 · Formas Avanzadas</div>
+        <h1>Formas avanzadas<br>del IF en Java</h1>
+        <p>Más allá del IF básico: el operador ternario para expresiones compactas, IF anidados para lógica en capas, comparación correcta de Strings y los errores más comunes a evitar.</p>
+      </div>
+
+      <!-- TERNARIO -->
+      <h2>Operador ternario <code>? :</code></h2>
+      <p>Es una forma compacta de escribir un IF-ELSE cuando el objetivo es <strong>asignar un valor según una condición</strong>. Tiene exactamente tres partes: condición, valor si es verdadero, valor si es falso.</p>
+
+      <div class="code-block" id="cb-ternary"></div>
+
+      <div class="card card-accent blue">
+        <h3>¿Cuándo usar ternario vs IF-ELSE?</h3>
+        <p>El ternario es ideal para <strong>asignaciones simples de una línea</strong> donde la lógica es obvia. Preferí IF-ELSE cuando hay múltiples instrucciones, cuando se necesita depurar fácilmente, o cuando la condición es compleja. El código legible siempre gana a la brevedad.</p>
+      </div>
+
+      <!-- CONVERSOR TERNARIO INTERACTIVO -->
+      <h3 style="margin: 1.75rem 0 0.4rem; font-size: 1rem;">Conversor ternario ↔ IF-ELSE</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Completá los campos y observá las dos formas equivalentes de escribir el mismo código.
+      </p>
+
+      <div class="ternary-wrap">
+        <div class="ternary-header">
+          <span class="ternary-header-title">Conversor ternario / IF-ELSE</span>
+        </div>
+        <div class="ternary-body">
+          <div class="ternary-inputs">
+            <div class="ternary-field">
+              <label>Condición</label>
+              <input type="text" id="tern-cond" value="edad >= 18" oninput="runTernary()" placeholder="p. ej: x > 0">
+            </div>
+            <div class="ternary-field">
+              <label>Valor si SÍ</label>
+              <input type="text" id="tern-si" value='"adulto"' oninput="runTernary()" placeholder='p. ej: "sí"'>
+            </div>
+            <div class="ternary-field">
+              <label>Valor si NO</label>
+              <input type="text" id="tern-no" value='"menor"' oninput="runTernary()" placeholder='p. ej: "no"'>
+            </div>
+          </div>
+          <div class="ternary-output">
+            <div class="ternary-form">
+              <div class="ternary-form-label">// forma ternaria</div>
+              <div class="ternary-code" id="tern-out-ternary">—</div>
+            </div>
+            <div class="ternary-form">
+              <div class="ternary-form-label">// forma IF-ELSE equivalente</div>
+              <pre class="ternary-code" id="tern-out-if" style="white-space:pre;margin:0"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IF ANIDADOS -->
+      <h2>IF anidados</h2>
+      <p>Un IF puede contener otro IF dentro de su bloque. Esto permite verificar condiciones en etapas, dando mensajes de error más específicos que con <code>&&</code>.</p>
+
+      <div class="code-block" id="cb-nested"></div>
+
+      <div class="card card-accent teal">
+        <h3>IF anidado vs. operador &&</h3>
+        <p>Ambos pueden expresar lógica compuesta, pero con diferente granularidad:</p>
+        <ul>
+          <li><strong>IF anidado</strong>: permite saber <em>qué condición específica</em> falló → mensajes más útiles al usuario.</li>
+          <li><strong>&&</strong>: más compacto, mejor cuando el mensaje de error no necesita distinguir qué falló.</li>
+        </ul>
+      </div>
+
+      <!-- STRING COMPARISON -->
+      <h2>Comparación de Strings: el error más frecuente</h2>
+      <p>Las cadenas de texto son objetos en Java. El operador <code>==</code> compara <strong>referencias</strong> (si apuntan al mismo objeto en memoria), <strong>no el contenido</strong>. Para comparar el contenido siempre usá <code>.equals()</code>.</p>
+
+      <div class="code-block" id="cb-string-cmp"></div>
+
+      <!-- ERRORES COMUNES -->
+      <h2>Errores comunes — incorrecto vs. correcto</h2>
+
+      <div class="error-list">
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Incorrecto</div>
+            <div class="error-code">
+              <span class="kw">if</span> (edad <span class="bad">=</span> <span class="nm">18</span>) {<br>
+              &nbsp;&nbsp;...<br>
+              }<br>
+              <span class="cm">// Error: = es asignación, no comparación</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Correcto</div>
+            <div class="error-code">
+              <span class="kw">if</span> (edad <span class="good">==</span> <span class="nm">18</span>) {<br>
+              &nbsp;&nbsp;...<br>
+              }<br>
+              <span class="cm">// == compara el valor</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Incorrecto</div>
+            <div class="error-code">
+              <span class="kw">String</span> s = <span class="str">"hola"</span>;<br>
+              <span class="kw">if</span> (s <span class="bad">==</span> <span class="str">"hola"</span>) {<br>
+              &nbsp;&nbsp;...<br>
+              }<br>
+              <span class="cm">// Compara referencias, puede fallar</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Correcto</div>
+            <div class="error-code">
+              <span class="kw">String</span> s = <span class="str">"hola"</span>;<br>
+              <span class="kw">if</span> (s.<span class="good">equals</span>(<span class="str">"hola"</span>)) {<br>
+              &nbsp;&nbsp;...<br>
+              }<br>
+              <span class="cm">// .equals() compara el contenido</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Incorrecto (riesgo NullPointerException)</div>
+            <div class="error-code">
+              <span class="kw">String</span> s = <span class="kw">null</span>;<br>
+              <span class="kw">if</span> (s.<span class="bad">length</span>() > <span class="nm">0</span> <span class="op">&&</span> s != <span class="kw">null</span>) {<br>
+              &nbsp;&nbsp;...<br>
+              }<br>
+              <span class="cm">// .length() lanza error antes de verificar null</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Correcto (null primero)</div>
+            <div class="error-code">
+              <span class="kw">String</span> s = <span class="kw">null</span>;<br>
+              <span class="kw">if</span> (s <span class="good">!=</span> <span class="kw">null</span> <span class="op">&&</span> s.<span class="good">length</span>() > <span class="nm">0</span>) {<br>
+              &nbsp;&nbsp;...<br>
+              }<br>
+              <span class="cm">// Short-circuit: si null, no evalúa .length()</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Pobre (condición innecesaria)</div>
+            <div class="error-code">
+              <span class="kw">boolean</span> activo = <span class="nm">true</span>;<br>
+              <span class="kw">if</span> (activo <span class="bad">== true</span>) {<br>
+              &nbsp;&nbsp;...<br>
+              }<br>
+              <span class="cm">// == true es redundante con boolean</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Mejor (más limpio)</div>
+            <div class="error-code">
+              <span class="kw">boolean</span> activo = <span class="nm">true</span>;<br>
+              <span class="kw">if</span> (<span class="good">activo</span>) {<br>
+              &nbsp;&nbsp;...<br>
+              }<br>
+              <span class="cm">// La variable ya ES boolean</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BUENAS PRÁCTICAS -->
+      <h2>Buenas prácticas</h2>
+
+      <div class="best-practices">
+        <div class="bp-item">
+          <div class="bp-icon">①</div>
+          <div class="bp-content">
+            <h4>Siempre usá llaves <code>{ }</code></h4>
+            <p>Aunque Java permite omitirlas para una sola instrucción, usarlas siempre evita errores futuros cuando agregás más líneas al bloque.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">②</div>
+          <div class="bp-content">
+            <h4>Verificá null antes de usar métodos</h4>
+            <p>Aprovechá el short-circuit de <code>&&</code>: escribe <code>if (variable != null && variable.metodo())</code> para evitar <code>NullPointerException</code>.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">③</div>
+          <div class="bp-content">
+            <h4>Preferí condiciones positivas</h4>
+            <p>Expresiones como <code>if (esActivo)</code> son más legibles que <code>if (!esInactivo)</code>. La negación doble complica la lectura.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">④</div>
+          <div class="bp-content">
+            <h4>Simplificá condiciones redundantes en IF-ELSE-IF</h4>
+            <p>Una vez que entrás a un <code>else if</code>, el rango anterior ya fue descartado. No necesitás repetir el límite inferior del rango.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">⑤</div>
+          <div class="bp-content">
+            <h4>Limitá el anidamiento a 2-3 niveles</h4>
+            <p>Si tu código tiene muchos IF dentro de IF, considerá simplificarlo con operadores lógicos o restructurando con <code>return</code> anticipado (early return).</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 4: DIAGRAMAS ========================= -->
+    <section id="diagramas" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 04 · Diagramas de Flujo</div>
+        <h1>Diagramas<br>de flujo del IF</h1>
+        <p>Los diagramas de flujo representan visualmente cómo se ramifica la ejecución del programa. Aprendé a interpretar y construir el diagrama de cada variante del IF.</p>
+      </div>
+
+      <h2>Simbología básica</h2>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Símbolo</th><th>Nombre</th><th>Uso en diagramas de flujo</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pill pill-teal" style="border-radius:20px">oval</span></td>
+                <td>Terminal</td>
+                <td>Marca el INICIO o FIN del algoritmo / bloque</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-blue">rectángulo</span></td>
+                <td>Proceso</td>
+                <td>Instrucciones que se ejecutan: asignaciones, cálculos</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-amber" style="transform:skewX(-6deg);display:inline-block">rombo</span></td>
+                <td>Decisión</td>
+                <td>Condición booleana — tiene dos salidas: SÍ (true) y NO (false)</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-purple">paralelogramo</span></td>
+                <td>E/S</td>
+                <td>Entrada (leer) o Salida (imprimir) de datos</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DIAGRAMAS -->
+      <h2>Diagrama del IF simple</h2>
+      <p>El bloque se ejecuta solo si la condición es verdadera. Si es falsa, la ejecución continúa directamente al siguiente paso.</p>
+
+      <div class="fc-grid">
+        <div class="fc-panel">
+          <div class="fc-caption">IF simple — flujo de control</div>
+          <div class="fc-oval fc-oval-s">INICIO</div>
+          <div class="fc-vline"></div>
+          <div class="fc-arrow"></div>
+          <div class="fc-diamond-wrap">
+            <div class="fc-diamond"></div>
+            <div class="fc-diamond-text">condición<br>¿verdadera?</div>
+          </div>
+
+          <div class="fc-branches" style="width:100%; gap:0;">
+            <div class="fc-branch" style="flex:1; align-items:flex-start; padding-left:10px;">
+              <div class="fc-lbl fc-lbl-no" style="margin-top:8px;">NO</div>
+              <div class="fc-vline" style="margin-left:18px;"></div>
+              <div class="fc-skip-text">(salta el bloque)</div>
+            </div>
+            <div class="fc-branch" style="flex:1; align-items:flex-end; padding-right:10px;">
+              <div class="fc-lbl fc-lbl-si" style="margin-top:8px;">SÍ</div>
+              <div class="fc-vline" style="margin-right:18px;"></div>
+              <div class="fc-arrow" style="margin-right:14px;"></div>
+              <div class="fc-rect" style="margin-right:4px;">{ bloque if }</div>
+              <div class="fc-vline" style="margin-right:18px;"></div>
+            </div>
+          </div>
+
+          <div class="fc-arrow"></div>
+          <div class="fc-oval fc-oval-e">CONTINÚA</div>
+        </div>
+
+        <div class="fc-panel">
+          <div class="fc-caption">IF-ELSE — flujo de control</div>
+          <div class="fc-oval fc-oval-s">INICIO</div>
+          <div class="fc-vline"></div>
+          <div class="fc-arrow"></div>
+          <div class="fc-diamond-wrap">
+            <div class="fc-diamond"></div>
+            <div class="fc-diamond-text">condición<br>¿verdadera?</div>
+          </div>
+
+          <div class="fc-branches" style="width:100%; gap:0;">
+            <div class="fc-branch" style="flex:1; align-items:flex-start; padding-left:10px;">
+              <div class="fc-lbl fc-lbl-no" style="margin-top:8px;">NO</div>
+              <div class="fc-vline" style="margin-left:18px;"></div>
+              <div class="fc-arrow" style="margin-left:14px;"></div>
+              <div class="fc-rect" style="background:rgba(248,113,113,0.08); color:#f87171; border-color:rgba(248,113,113,0.3); margin-left:4px;">{ else }</div>
+              <div class="fc-vline" style="margin-left:18px;"></div>
+            </div>
+            <div class="fc-branch" style="flex:1; align-items:flex-end; padding-right:10px;">
+              <div class="fc-lbl fc-lbl-si" style="margin-top:8px;">SÍ</div>
+              <div class="fc-vline" style="margin-right:18px;"></div>
+              <div class="fc-arrow" style="margin-right:14px;"></div>
+              <div class="fc-rect" style="margin-right:4px;">{ if }</div>
+              <div class="fc-vline" style="margin-right:18px;"></div>
+            </div>
+          </div>
+
+          <div class="fc-arrow"></div>
+          <div class="fc-oval fc-oval-e">CONTINÚA</div>
+        </div>
+      </div>
+
+      <h2>Diagrama del IF-ELSE-IF</h2>
+      <p>La estructura encadenada evalúa condiciones en cascada. Cada <code>else if</code> solo se alcanza si todas las condiciones anteriores fueron falsas.</p>
+
+      <div class="card">
+        <div class="code-wrap" style="margin:0">
+          <div class="code-header">
+            <div class="code-dot"></div>
+            <div class="code-dot"></div>
+            <div class="code-dot"></div>
+            <span class="code-filename">diagrama — if-else-if</span>
+          </div>
+          <pre style="padding:1.25rem; font-family:'DM Mono',monospace; font-size:0.78rem; line-height:1.85; color:#d4d4d8; overflow-x:auto;">
+<span style="color:#3a3c47">┌──────────────────────┐</span>
+<span style="color:#3a3c47">│</span>       <span style="color:#34d399">INICIO</span>         <span style="color:#3a3c47">│</span>
+<span style="color:#3a3c47">└──────────┬───────────┘</span>
+           │
+<span style="color:#3a3c47">     ╔════╧══════════╗</span>
+<span style="color:#3a3c47">     ║</span> <span style="color:#fbbf24">condición1?  </span>  <span style="color:#3a3c47">║</span>
+<span style="color:#3a3c47">     ╚════╤═════╤════╝</span>
+          │<span style="color:#f87171"> NO</span>  │<span style="color:#34d399"> SÍ</span>
+          │     │
+          │  <span style="color:#3a3c47">┌──▼──────────┐</span>
+          │  <span style="color:#3a3c47">│</span> <span style="color:#60a5fa">bloque 1    </span><span style="color:#3a3c47">│</span>
+          │  <span style="color:#3a3c47">└──┬──────────┘</span>
+          │     └──────────────────────────────→ CONTINÚA
+<span style="color:#3a3c47">     ╔════╧══════════╗</span>
+<span style="color:#3a3c47">     ║</span> <span style="color:#fbbf24">condición2?  </span>  <span style="color:#3a3c47">║</span>
+<span style="color:#3a3c47">     ╚════╤═════╤════╝</span>
+          │<span style="color:#f87171"> NO</span>  │<span style="color:#34d399"> SÍ</span>
+          │     │
+          │  <span style="color:#3a3c47">┌──▼──────────┐</span>
+          │  <span style="color:#3a3c47">│</span> <span style="color:#60a5fa">bloque 2    </span><span style="color:#3a3c47">│</span>
+          │  <span style="color:#3a3c47">└──┬──────────┘</span>
+          │     └──────────────────────────────→ CONTINÚA
+<span style="color:#3a3c47">     ╔════╧══════════╗</span>
+<span style="color:#3a3c47">     ║</span>  <span style="color:#fbbf24">    else      </span>  <span style="color:#3a3c47">║</span>
+<span style="color:#3a3c47">     ╚════╤══════════╝</span>
+          │
+       <span style="color:#3a3c47">┌──▼──────────┐</span>
+       <span style="color:#3a3c47">│</span> <span style="color:#60a5fa">bloque else </span><span style="color:#3a3c47">│</span>
+       <span style="color:#3a3c47">└──┬──────────┘</span>
+          │
+<span style="color:#3a3c47">┌─────────▼─────────┐</span>
+<span style="color:#3a3c47">│</span>     <span style="color:#f87171">CONTINÚA</span>      <span style="color:#3a3c47">│</span>
+<span style="color:#3a3c47">└───────────────────┘</span></pre>
+        </div>
+      </div>
+
+      <!-- TRAZADOR DE EJECUCIÓN -->
+      <h2>Trazador de ejecución paso a paso</h2>
+      <p>Ingresá una nota (0–10) para ver exactamente qué líneas del código se ejecutan, qué condiciones se evalúan y cuáles ramas se saltan. Las líneas <span style="color:var(--teal);font-weight:600">verdes</span> se ejecutan, las <span style="color:var(--coral);opacity:0.5;font-weight:600">atenuadas</span> se omiten.</p>
+
+      <div class="tracer">
+        <div class="tracer-header">
+          <span class="tracer-title">Trazador de ejecución — IF-ELSE-IF</span>
+          <div class="tracer-ctrl">
+            <label>int nota =</label>
+            <input type="number" id="tracer-nota" min="0" max="10" value="7" oninput="runTracer()">
+          </div>
+        </div>
+        <div class="tracer-body">
+          <div class="tracer-code" id="tracer-code-lines">
+            <!-- built by JS -->
+          </div>
+          <div class="tracer-aside">
+            <div class="tracer-aside-lbl">// salida de consola</div>
+            <div class="tracer-out" id="tracer-output">—</div>
+            <div class="tracer-aside-lbl">// calificación</div>
+            <div id="tracer-badge-el" class="tracer-badge tb-green">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-accent purple">
+        <h3>Clave para leer código con IFs</h3>
+        <p>Para trazar manualmente: evaluá cada condición con los valores actuales de las variables. La primera condición verdadera define qué bloque se ejecuta. Todas las demás condiciones y bloques se <strong>saltan completamente</strong> — el evaluador de una rama ya seleccionada no continúa evaluando las siguientes.</p>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 5: PRÁCTICA ========================== -->
+    <section id="practica" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">20 Ejercicios · Estructura IF en Java</div>
+        <h1>Práctica:<br>estructura IF en Java</h1>
+        <p>Ejercicios graduados para consolidar el aprendizaje. Desde predicción de outputs hasta diseño de algoritmos complejos con múltiples condiciones.</p>
+      </div>
+
+      <div class="ex-stats">
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-total">20</span><span class="ex-stat-l">ejercicios</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-done">0</span><span class="ex-stat-l">completados</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-pct">0%</span><span class="ex-stat-l">progreso</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterEx('todos',this)">Todos (20)</button>
+        <button class="filter-btn" onclick="filterEx('Básico',this)">Básico (8)</button>
+        <button class="filter-btn" onclick="filterEx('Intermedio',this)">Intermedio (8)</button>
+        <button class="filter-btn" onclick="filterEx('Avanzado',this)">Avanzado (4)</button>
+      </div>
+
+      <div class="ex-list" id="ex-list"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav">
+    <a class="nav-tab-link" href="../index.html">← Inicio</a>
+    <button class="nav-tab active"  onclick="showSection('intro')">IF simple</button>
+    <button class="nav-tab"         onclick="showSection('operadores')">Operadores</button>
+    <button class="nav-tab"         onclick="showSection('avanzado')">Avanzado</button>
+    <button class="nav-tab"         onclick="showSection('diagramas')">Diagramas</button>
+    <button class="nav-tab"         onclick="showSection('practica')">Práctica</button>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>Estructura IF en Java &middot; Prof. Diego Méndez &middot; ITI 2026</p>
+  </footer>
+
+  <script src="../js/core/state-manager.js"></script>
+  <script src="../js/utils/ui-utils.js"></script>
+  <script src="../js/utils/copy-code.js"></script>
+  <script src="../js/pages/if-java.js"></script>
+</body>
+
+</html>

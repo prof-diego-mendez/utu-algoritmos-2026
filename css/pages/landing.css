@@ -222,6 +222,11 @@
       --module-bg: var(--amber-bg);
     }
 
+    .module-if {
+      --module-color: var(--blue);
+      --module-bg: var(--blue-bg);
+    }
+
     /* QUICK STATS */
     .stats-section {
       padding: 3rem 2rem;
