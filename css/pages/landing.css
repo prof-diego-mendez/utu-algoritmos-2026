@@ -232,6 +232,11 @@
       --module-bg: var(--teal-bg);
     }
 
+    .module-for {
+      --module-color: var(--coral);
+      --module-bg: var(--coral-bg);
+    }
+
     /* QUICK STATS */
     .stats-section {
       padding: 3rem 2rem;

@@ -1,0 +1,142 @@
+[
+  {
+    "titulo": "Predecir el output — FOR simple",
+    "nivel": "Básico",
+    "tema": "FOR simple",
+    "enunciado": "Sin ejecutar el código, indicá qué imprime cada fragmento y cuántas iteraciones realiza:\n\n// Caso A:\nfor (int i = 1; i <= 5; i++) {\n    System.out.println(i);\n}\n\n// Caso B:\nfor (int i = 0; i < 5; i++) {\n    System.out.println(i);\n}\n\n// Caso C:\nfor (int i = 1; i <= 5; i++) {\n    System.out.println(i * 2);\n}\n\na) ¿En qué se diferencian A y B en cuanto a los números impresos?\nb) ¿Cuántas iteraciones realiza cada uno?\nc) ¿Qué valor tiene i después de que el bucle termina en A?",
+    "hint": "Caso A: imprime 1,2,3,4,5 (arranca en 1, condición i<=5). Caso B: imprime 0,1,2,3,4 (arranca en 0, condición i<5 — equivalente a i<=4). Caso C: imprime 2,4,6,8,10 (multiplica por 2 en el body). Después del bucle A, i vale 6 (se incrementa una vez más antes de que la condición sea false)."
+  },
+  {
+    "titulo": "FOR con paso distinto de 1",
+    "nivel": "Básico",
+    "tema": "FOR simple",
+    "enunciado": "Trazá la ejecución de los siguientes FOR y predecí la salida:\n\n// Caso A: paso de 2\nfor (int i = 0; i <= 10; i += 2) {\n    System.out.print(i + \" \");\n}\n\n// Caso B: decreciente\nfor (int i = 10; i >= 1; i--) {\n    System.out.print(i + \" \");\n}\n\n// Caso C: paso de 3\nfor (int i = 3; i <= 30; i += 3) {\n    System.out.print(i + \" \");\n}\n\na) ¿Cuántas iteraciones realiza cada caso?\nb) ¿Qué tienen en común los valores impresos en C?",
+    "hint": "A: 0 2 4 6 8 10 → 6 iteraciones (pares). B: 10 9 8 ... 1 → 10 iteraciones (cuenta regresiva). C: 3 6 9 12 ... 30 → 10 iteraciones (múltiplos de 3). Para el decreciente, la parte de actualización usa i-- y la condición usa >= en lugar de <=."
+  },
+  {
+    "titulo": "Las 3 partes del FOR",
+    "nivel": "Básico",
+    "tema": "Estructura del FOR",
+    "enunciado": "El encabezado del FOR tiene 3 partes separadas por ';'. Identificalas en este ejemplo y explicá qué pasa si falta cada una:\n\nfor (int i = 1; i <= 100; i++) {\n    System.out.println(i);\n}\n\na) ¿Qué nombre recibe cada parte?\nb) ¿Cuántas veces se ejecuta la inicialización?\nc) ¿Cuántas veces se evalúa la condición durante toda la ejecución?\nd) ¿Qué ocurre si se omite la actualización (i++)?\ne) ¿Es posible tener un FOR con todas las partes vacías? ¿Qué significa?",
+    "hint": "Partes: 1) <strong>Inicialización</strong> — una sola vez al entrar. 2) <strong>Condición</strong> — 101 veces (100 true + 1 false). 3) <strong>Actualización</strong> — 100 veces (después de cada iteración del cuerpo). Sin actualización → bucle infinito. Un <code>for(;;)</code> (todas vacías) es un bucle infinito explícito, equivalente a <code>while(true)</code>."
+  },
+  {
+    "titulo": "FOR vs WHILE: convertir",
+    "nivel": "Básico",
+    "tema": "FOR vs WHILE",
+    "enunciado": "Todo FOR puede reescribirse como WHILE. Convertí cada FOR a su WHILE equivalente:\n\n// FOR 1:\nfor (int i = 0; i < 10; i++) {\n    System.out.println(i);\n}\n\n// FOR 2:\nfor (int x = 100; x >= 0; x -= 5) {\n    System.out.println(x);\n}\n\nLuego, ¿cuándo preferirías usar FOR sobre WHILE? ¿Y WHILE sobre FOR?",
+    "hint": "Conversión FOR → WHILE: la inicialización va antes del while, la condición va entre paréntesis del while, y la actualización va al final del cuerpo. <code>int i=0; while(i<10){ System.out.println(i); i++; }</code>. Regla práctica: usá FOR cuando sabés de antemano cuántas veces vas a repetir; usá WHILE cuando la cantidad de repeticiones depende de una condición que puede cambiar en cualquier momento."
+  },
+  {
+    "titulo": "Escribir FOR: imprimir del 1 al 10",
+    "nivel": "Básico",
+    "tema": "FOR simple",
+    "enunciado": "Escribí en Java el código completo que use un bucle FOR para:\n\na) Imprimir los números del 1 al 10, uno por línea.\nb) Imprimir los números impares del 1 al 19.\nc) Imprimir las potencias de 2 desde 1 hasta 1024 (2⁰, 2¹, 2², ..., 2¹⁰).\n\nPara cada caso identificá la inicialización, condición y actualización del FOR.",
+    "hint": "Para impares: arrancá en 1 y sumá 2 (<code>i+=2</code>), o recorrés todos y usás <code>if(i%2!=0)</code>. Para potencias de 2: <code>for(int p=1; p<=1024; p*=2)</code> — la actualización <em>multiplica</em> por 2 en cada iteración. La actualización no tiene por qué ser siempre i++."
+  },
+  {
+    "titulo": "Tabla de multiplicar",
+    "nivel": "Básico",
+    "tema": "FOR simple",
+    "enunciado": "Escribí el código Java que imprima la tabla de multiplicar de un número N (del 1 al 10) usando FOR.\n\nEjemplo para N=7:\n7 x 1 = 7\n7 x 2 = 14\n...\n7 x 10 = 70\n\na) ¿Cuántas iteraciones realiza el FOR?\nb) ¿Cómo modificarías el código para imprimir solo los resultados mayores a 35?",
+    "hint": "El FOR va de 1 a 10 con i++. En el cuerpo: <code>System.out.println(N + \" x \" + i + \" = \" + (N*i));</code>. Para solo resultados > 35: agregá <code>if(N*i > 35)</code> dentro del cuerpo, o calculá a partir de qué i es necesario y empezá el FOR desde ahí."
+  },
+  {
+    "titulo": "Suma con FOR: acumulador",
+    "nivel": "Básico",
+    "tema": "Acumulador",
+    "enunciado": "Escribí el código Java que use FOR para calcular:\n\na) La suma de los primeros 100 números naturales.\nb) La suma de los números pares entre 1 y 50.\nc) La suma de los cuadrados: 1² + 2² + 3² + ... + N²\n\nPara cada uno, indicá el valor inicial del acumulador y por qué.",
+    "hint": "El acumulador siempre arranca en 0 para sumas. Para el inciso a): la respuesta es 5050 (fórmula N*(N+1)/2). Para cuadrados: dentro del for hacés <code>suma += i*i</code> o <code>suma += Math.pow(i,2)</code>. Verificá con N=3: 1+4+9=14."
+  },
+  {
+    "titulo": "FOR decreciente: cuenta regresiva",
+    "nivel": "Básico",
+    "tema": "FOR simple",
+    "enunciado": "Escribí un FOR que cuente hacia atrás del 10 al 1 e imprima '¡Despegue!' al terminar.\n\nLuego respondé:\na) ¿Cuál es la inicialización, condición y actualización?\nb) ¿Qué cambiaría para contar de 100 a 0 de a 10?\nc) El siguiente FOR, ¿cuántas iteraciones hace?\n\nfor (int i = 10; i > 0; i -= 3) {\n    System.out.println(i);\n}",
+    "hint": "Para el decreciente: <code>for(int i=10; i>=1; i--)</code>. Para de 100 a 0 de a 10: <code>for(int i=100; i>=0; i-=10)</code>. El FOR con paso -3 desde 10: imprime 10, 7, 4, 1 (4 iteraciones — cuando i llega a -2, la condición i>0 es false y para)."
+  },
+  {
+    "titulo": "Factorial con FOR",
+    "nivel": "Intermedio",
+    "tema": "Acumulador",
+    "enunciado": "Escribí el código Java que calcule el factorial de N usando FOR.\nRecordá: N! = N × (N-1) × ... × 2 × 1. Por ejemplo: 5! = 120.\n\na) ¿Con qué valor inicial debe empezar el acumulador de producto? ¿Por qué?\nb) ¿El FOR debe ir de 1 a N o de N a 1? ¿Importa el orden?\nc) Trazá paso a paso el cálculo de 6!, mostrando el valor del producto en cada iteración.\nd) ¿Qué tipo de dato usarías para calcular 20!? ¿Por qué?",
+    "hint": "El acumulador comienza en 1 (neutro de la multiplicación). El orden no importa: 1×2×3×4×5 = 5×4×3×2×1 = 120. Traza de 6!: prod=1→1→2→6→24→120→720. Para 20!: el resultado supera el rango de int (~2 mil millones) e incluso de long (~9.2×10¹⁸). Necesitarías <code>BigInteger</code>."
+  },
+  {
+    "titulo": "FOR-EACH: recorrer un arreglo",
+    "nivel": "Intermedio",
+    "tema": "FOR-EACH",
+    "enunciado": "El FOR mejorado (for-each) simplifica el recorrido de arreglos.\n\n// FOR clásico:\nint[] numeros = {5, 12, 3, 8, 17, 4};\nfor (int i = 0; i < numeros.length; i++) {\n    System.out.println(numeros[i]);\n}\n\n// FOR-EACH equivalente:\nfor (int n : numeros) {\n    System.out.println(n);\n}\n\na) ¿Cuándo preferirías el FOR clásico sobre el FOR-EACH?\nb) ¿Podés modificar los elementos del arreglo con FOR-EACH? ¿Por qué?\nc) Reescribí el siguiente FOR-EACH como FOR clásico:\n   for (String s : palabras) { System.out.println(s.length()); }",
+    "hint": "FOR clásico: cuando necesitás el índice (para modificar, acceder a posiciones adyacentes, recorrer de atrás hacia adelante, o recorrer parcialmente). FOR-EACH: no da acceso al índice y no puede modificar los valores del arreglo directamente (la variable es una copia). Reescritura: <code>for(int i=0; i<palabras.length; i++){ System.out.println(palabras[i].length()); }</code>"
+  },
+  {
+    "titulo": "Máximo y mínimo en un arreglo",
+    "nivel": "Intermedio",
+    "tema": "Búsqueda",
+    "enunciado": "Dado el arreglo int[] datos = {34, 7, 23, 32, 5, 62, 18};\n\nEscribí el código Java que use FOR para encontrar:\na) El valor máximo del arreglo.\nb) El valor mínimo del arreglo.\nc) La posición (índice) donde se encuentra el máximo.\n\nPara el máximo: ¿con qué valor inicial lo arrancarías? Evaluá las opciones:\n- max = 0\n- max = Integer.MIN_VALUE\n- max = datos[0]\n¿Cuál es más robusta y por qué?",
+    "hint": "La opción más robusta es <code>max = datos[0]</code> o <code>max = Integer.MIN_VALUE</code>. Con <code>max = 0</code> el código falla si todos los elementos son negativos. Para el índice: usá FOR clásico con variable extra <code>int idxMax = 0;</code> y actualizála cuando encontrás un nuevo máximo: <code>if(datos[i] > max){ max=datos[i]; idxMax=i; }</code>."
+  },
+  {
+    "titulo": "Números primos hasta N",
+    "nivel": "Intermedio",
+    "tema": "Algoritmos",
+    "enunciado": "Un número es primo si solo es divisible por 1 y por sí mismo.\n\nEscribí el código Java que imprima todos los números primos del 2 al N.\n\nEstrategia: para cada número n (del 2 al N), verificar si tiene algún divisor entre 2 y n-1. Si no tiene ninguno, es primo.\n\na) ¿Qué estructura de bucles necesitás? (bucle externo + bucle interno)\nb) Trazá el algoritmo para los números 2, 3, 4 y 5.\nc) ¿Cómo optimizarías el rango del bucle interno para reducir iteraciones?",
+    "hint": "Necesitás un FOR externo (de 2 a N) y un FOR interno (de 2 a n-1) con un flag booleano <code>esPrimo</code>. Optimización: el divisor más pequeño de un número compuesto no puede superar su raíz cuadrada, entonces el interno va hasta <code>Math.sqrt(n)</code>. Ejemplo: para verificar si 37 es primo, solo hace falta probar divisores hasta 6."
+  },
+  {
+    "titulo": "break en FOR: búsqueda lineal",
+    "nivel": "Intermedio",
+    "tema": "break",
+    "enunciado": "Implementá una búsqueda lineal: dado un arreglo y un valor buscado, encontrá el primer índice donde aparece.\n\nint[] datos = {15, 42, 8, 73, 21, 8, 66};\nint buscado = 8;\n\nUsá FOR con break. El resultado esperado es índice = 2.\n\na) ¿Cuántas iteraciones hace hasta encontrar el 8 en la primera posición?\nb) ¿Qué pasa si el valor no existe en el arreglo?\nc) ¿Por qué es importante el break? ¿Qué pasaría sin él en este ejemplo?",
+    "hint": "Usá una variable <code>int encontrado = -1;</code>. Cuando encontrás el elemento, asignás el índice y hacés <code>break</code>. Si el valor no existe, <code>encontrado</code> sigue en -1. Sin break, el bucle seguiría hasta el final y encontraría la segunda aparición del 8 (índice 5), sobreescribiendo el resultado correcto."
+  },
+  {
+    "titulo": "Bucles anidados: tabla de multiplicar completa",
+    "nivel": "Intermedio",
+    "tema": "Bucles anidados",
+    "enunciado": "Escribí el código con FOR anidados que imprima la tabla de multiplicar del 1 al 5 × 1 al 5 en formato de grilla:\n\n   1   2   3   4   5\n   2   4   6   8  10\n   3   6   9  12  15\n   4   8  12  16  20\n   5  10  15  20  25\n\na) ¿Cuántas veces se ejecuta el cuerpo del FOR interno en total?\nb) ¿Cuántas veces se evalúa la condición del FOR externo?\nc) Modificá el código para imprimir solo el triángulo superior (donde j >= i).",
+    "hint": "Total ejecuciones del cuerpo interno: 5×5=25. Evaluaciones de la condición del externo: 6 (5 true + 1 false). Para el triángulo superior: en el FOR interno arrancá j desde i (no desde 1): <code>for(int j=i; j<=5; j++)</code>. Usá <code>System.out.printf(\"%4d\", i*j)</code> para alinear columnas."
+  },
+  {
+    "titulo": "continue en FOR: filtrar elementos",
+    "nivel": "Intermedio",
+    "tema": "continue",
+    "enunciado": "Trazá la ejecución del siguiente código y explicá cada salto:\n\nfor (int i = 1; i <= 15; i++) {\n    if (i % 3 == 0) continue;\n    if (i % 5 == 0) continue;\n    System.out.print(i + \" \");\n}\n\na) ¿Qué números se imprimen?\nb) ¿Cuántas veces se ejecuta cada continue?\nc) Reescribí el código sin continue usando un IF-ELSE o condición compuesta.\nd) ¿Cómo usarías continue en un FOR-EACH?",
+    "hint": "Se imprimen: 1 2 4 7 8 11 13 14 (números del 1 al 15 que no son múltiplos de 3 ni de 5). El primer continue salta 5 veces (3,6,9,12,15), el segundo salta 1 vez (5 — el 10 y el 15 ya fueron salteados por el primero). Versión sin continue: <code>if(i%3!=0 && i%5!=0){ System.out.print(i+\" \"); }</code>"
+  },
+  {
+    "titulo": "Patrón de asteriscos con FOR anidado",
+    "nivel": "Intermedio",
+    "tema": "Bucles anidados",
+    "enunciado": "Escribí el código con FOR anidados para imprimir el siguiente patrón para N=5:\n\n*\n**\n***\n****\n*****\n\nLuego:\na) Modificá el código para imprimir el triángulo invertido.\nb) Modificá para centrar el triángulo (con espacios adelante):\n    *\n   **\n  ***\n c) ¿Cuántas iteraciones totales hace el FOR interno para N=5?",
+    "hint": "Para el triángulo: externo <code>for(i=1; i<=N; i++)</code>, interno <code>for(j=1; j<=i; j++)</code>, imprimís '*' sin salto, después del interno imprimís newline. Para el invertido: externo va de N a 1 (<code>i=N; i>=1; i--</code>). Total iteraciones: 1+2+3+4+5 = 15 = N*(N+1)/2."
+  },
+  {
+    "titulo": "Análisis de iteraciones: FOR anidado",
+    "nivel": "Avanzado",
+    "tema": "Análisis de código",
+    "enunciado": "Sin ejecutar el código, calculá cuántas veces se imprime 'X' y expresá el resultado en función de N:\n\n// Caso A:\nfor (int i = 0; i < N; i++)\n    for (int j = i; j < N; j++)\n        System.out.print(\"X\");\n\n// Caso B:\nfor (int i = 1; i <= N; i++)\n    for (int j = 1; j <= i; j++)\n        for (int k = 1; k <= j; k++)\n            System.out.print(\"X\");\n\na) Calculá para N=4 en ambos casos.\nb) Expresá la fórmula general para el caso A.\nc) ¿Cuál es el orden de complejidad (O) de cada caso?",
+    "hint": "Caso A: cuando i=0 → N iter, i=1 → N-1, ..., i=N-1 → 1. Total = N + (N-1) + ... + 1 = N*(N+1)/2. Para N=4: 10. Complejidad O(N²). Caso B (triple anidado): para N=4 → 1+(1+2)+(1+2+3)+(1+2+3+4) = 1+3+6+10 = 20. La fórmula es N*(N+1)*(N+2)/6. Complejidad O(N³)."
+  },
+  {
+    "titulo": "FOR-EACH vs FOR clásico: ¿cuándo usar cada uno?",
+    "nivel": "Avanzado",
+    "tema": "Diseño y refactoring",
+    "enunciado": "Analizá el siguiente código. En cada caso, indicá si es posible (y preferible) reemplazar el FOR clásico por FOR-EACH:\n\n// Caso 1:\nfor (int i = 0; i < arr.length; i++) {\n    arr[i] = arr[i] * 2;\n}\n\n// Caso 2:\nfor (int i = arr.length - 1; i >= 0; i--) {\n    System.out.println(arr[i]);\n}\n\n// Caso 3:\nfor (int i = 0; i < arr.length - 1; i++) {\n    if (arr[i] > arr[i+1]) swap(arr, i, i+1);\n}\n\n// Caso 4:\nfor (int i = 0; i < arr.length; i++) {\n    System.out.println(arr[i]);\n}",
+    "hint": "Caso 1: NO — necesitás el índice para modificar el arreglo. Caso 2: NO — recorre en orden inverso, for-each siempre va de izquierda a derecha. Caso 3: NO — necesitás acceder a arr[i+1] (posición adyacente). Caso 4: SÍ — solo lee, no necesita índice → <code>for(int x : arr)</code>. Regla: usá for-each siempre que solo necesites el valor, no la posición."
+  },
+  {
+    "titulo": "Refactorizar: código con FOR redundante",
+    "nivel": "Avanzado",
+    "tema": "Diseño y refactoring",
+    "enunciado": "El siguiente código funciona pero tiene al menos 4 problemas de diseño. Identificalos y reescribilo de forma óptima:\n\nint[] nums = {3, 7, 1, 9, 4, 6, 2, 8, 5};\nint max = 0;\nboolean encontrado = false;\n\nfor (int i = 0; i < nums.length; i++) {\n    if (nums[i] == nums[i]) {  // siempre true\n        if (nums[i] > max) {\n            max = nums[i];\n            encontrado = true;\n        }\n    }\n}\nif (encontrado == true) {\n    System.out.println(\"Max: \" + max);\n}\n\nEl objetivo del código es encontrar el máximo del arreglo.",
+    "hint": "Problemas: 1) <code>nums[i] == nums[i]</code> es siempre true (comparación de un elemento consigo mismo). 2) <code>max = 0</code> falla con arreglos de negativos. 3) <code>encontrado == true</code> es redundante (podría ser solo <code>encontrado</code>). 4) La variable <code>encontrado</code> es innecesaria si el arreglo nunca está vacío. Versión óptima: <code>int max = nums[0]; for(int n : nums) if(n > max) max = n;</code>"
+  },
+  {
+    "titulo": "Ordenamiento burbuja (Bubble Sort)",
+    "nivel": "Avanzado",
+    "tema": "Algoritmos",
+    "enunciado": "El ordenamiento burbuja recorre el arreglo repetidas veces. En cada pasada, compara pares adyacentes y los intercambia si están en el orden incorrecto.\n\nImplementá Bubble Sort con FOR anidados para ordenar int[] arr = {64, 34, 25, 12, 22, 11, 90};\n\na) ¿Cuántas pasadas (iteraciones del FOR externo) se necesitan en el peor caso?\nb) Trazá las primeras 2 pasadas completas mostrando el arreglo después de cada intercambio.\nc) ¿Por qué en la pasada i-ésima podemos parar el FOR interno en arr.length-1-i?\nd) ¿Cómo optimizarías el algoritmo para que se detenga anticipadamente si ya está ordenado?",
+    "hint": "Necesitás N-1 pasadas para N elementos. En cada pasada i, el FOR interno va hasta <code>arr.length-1-i</code> porque el mayor elemento ya 'burbujeó' al final. Primera pasada resultado: {34,25,12,22,11,64,90}. Optimización: usá una bandera <code>boolean intercambio</code>; si en toda una pasada no hubo intercambios, el arreglo ya está ordenado → hacer break."
+  }
+]
