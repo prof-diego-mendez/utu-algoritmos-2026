@@ -227,6 +227,11 @@
       --module-bg: var(--blue-bg);
     }
 
+    .module-while {
+      --module-color: var(--teal);
+      --module-bg: var(--teal-bg);
+    }
+
     /* QUICK STATS */
     .stats-section {
       padding: 3rem 2rem;
