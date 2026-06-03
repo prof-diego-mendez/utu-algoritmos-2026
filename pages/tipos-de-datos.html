@@ -514,9 +514,48 @@
 
       </div>
 
-      
+      <h2>Lectura de datos por teclado (Clase Scanner)</h2>
+      <p>Para interactuar con el usuario y pedirle datos por la consola, en Java usamos la clase <strong>Scanner</strong>. Esta clase permite leer diferentes tipos de datos desde el teclado de forma muy sencilla.</p>
 
-      
+      <div class="card card-accent teal">
+        <h3>Importar la clase</h3>
+        <p>Como <code>Scanner</code> no es parte del paquete básico, primero debemos importarla al principio del archivo:</p>
+        <div class="code-inline"><span class="kw">import</span> java.util.Scanner;</div>
+      </div>
+
+      <div class="code-block">
+<span class="cm">// 1. Importar e inicializar el Scanner</span>
+<span class="kw">import</span> java.util.Scanner;
+
+<span class="kw">public class</span> EntradaDatos {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        Scanner teclado <span class="op">=</span> <span class="kw">new</span> Scanner(System.in);
+
+        <span class="cm">// 2. Leer un String (texto completo)</span>
+        System.out.<span class="fn">print</span>(<span class="fn">"Ingresá tu nombre completo: "</span>);
+        <span class="kw">String</span> nombre <span class="op">=</span> teclado.<span class="fn">nextLine</span>();
+
+        <span class="cm">// 3. Leer números enteros y decimales</span>
+        System.out.<span class="fn">print</span>(<span class="fn">"Ingresá tu edad: "</span>);
+        <span class="kw">int</span> edad <span class="op">=</span> teclado.<span class="fn">nextInt</span>();
+
+        System.out.<span class="fn">print</span>(<span class="fn">"Ingresá tu altura (ej: 1.75): "</span>);
+        <span class="kw">double</span> altura <span class="op">=</span> teclado.<span class="fn">nextDouble</span>();
+        
+        <span class="cm">// 4. Leer booleanos</span>
+        System.out.<span class="fn">print</span>(<span class="fn">"¿Sos estudiante? (true/false): "</span>);
+        <span class="kw">boolean</span> esEstudiante <span class="op">=</span> teclado.<span class="fn">nextBoolean</span>();
+        
+        <span class="cm">// 5. Siempre es buena práctica cerrar el Scanner al final</span>
+        teclado.<span class="fn">close</span>();
+    }
+}
+      </div>
+
+      <div class="card card-accent amber">
+        <h3>⚠ El problema del buffer (nextLine)</h3>
+        <p>Si usás <code>nextLine()</code> <strong>después</strong> de leer un número (como <code>nextInt()</code> o <code>nextDouble()</code>), el programa "se saltea" la lectura porque lee el <em>Enter</em> (\n) que quedó pendiente del número. Para solucionarlo, agregá un <code>teclado.nextLine();</code> extra después de leer el número para "limpiar" el teclado.</p>
+      </div>
 
     </section>
 
