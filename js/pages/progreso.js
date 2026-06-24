@@ -5,7 +5,7 @@
       
       // Overall stats
       const totalCompleted = report.overall.totalCompleted;
-      const totalExercises = 60;
+      const totalExercises = 120;
       const percentage = Math.round((totalCompleted / totalExercises) * 100);
       
       // Animate values
@@ -14,13 +14,16 @@
       document.getElementById('overall-bar').style.width = percentage + '%';
       
       // Count total answers
-      const totalAnswers = report.algoritmos.answers + report.variables.answers + report.java.answers;
+      const totalAnswers = report.algoritmos.answers + report.variables.answers + report.java.answers + report.if.answers + report.for.answers + report.while.answers;
       animateValue('total-answers', 0, totalAnswers, 1000);
       
       // Module stats
       updateModule('algo', report.algoritmos);
       updateModule('variables', report.variables);
       updateModule('java', report.java);
+      updateModule('if', report.if);
+      updateModule('for', report.for);
+      updateModule('while', report.while);
     }
 
     function updateModule(prefix, data) {

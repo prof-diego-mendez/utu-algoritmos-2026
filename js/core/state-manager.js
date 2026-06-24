@@ -3,7 +3,7 @@
  * State Manager - Shared State Management System
  * ============================================================
  * Centralized localStorage management for unified progress tracking
- * across all modules (Algoritmos, Variables, Java Types)
+ * across all 6 modules (Algoritmos, Variables, Java, IF, FOR, WHILE)
  * 
  * Usage:
  *   StateManager.init()                    // Initialize on page load
@@ -22,7 +22,10 @@ const StateManager = (function() {
   const MODULES = {
     ALGORITMOS: 'algoritmos',
     VARIABLES: 'variables',
-    JAVA: 'java'
+    JAVA: 'java',
+    IF: 'if',
+    FOR: 'for',
+    WHILE: 'while'
   };
 
   // ── STATE STRUCTURE ─────────────────────────────────────
@@ -42,6 +45,21 @@ const StateManager = (function() {
         lastAccessed: null
       },
       [MODULES.JAVA]: {
+        completed: {},
+        answers: {},
+        lastAccessed: null
+      },
+      [MODULES.IF]: {
+        completed: {},
+        answers: {},
+        lastAccessed: null
+      },
+      [MODULES.FOR]: {
+        completed: {},
+        answers: {},
+        lastAccessed: null
+      },
+      [MODULES.WHILE]: {
         completed: {},
         answers: {},
         lastAccessed: null
@@ -83,7 +101,8 @@ const StateManager = (function() {
       if (stored) {
         const parsed = JSON.parse(stored);
         // Merge with default state to ensure structure
-        state = { ...state, ...parsed };
+        // Merge preserving default modules for backward compat (new modules survive)
+        state = { ...state, ...parsed, modules: { ...state.modules, ...(parsed.modules || {}) } };
         
         // Migrate old localStorage keys if they exist
         migrateOldData();
@@ -294,6 +313,21 @@ const StateManager = (function() {
         completed: Object.values(state.modules.java.completed).filter(Boolean).length,
         answers: Object.keys(state.modules.java.answers).length,
         lastAccessed: state.modules.java.lastAccessed
+      },
+      if: {
+        completed: Object.values(state.modules.if.completed).filter(Boolean).length,
+        answers: Object.keys(state.modules.if.answers).length,
+        lastAccessed: state.modules.if.lastAccessed
+      },
+      for: {
+        completed: Object.values(state.modules.for.completed).filter(Boolean).length,
+        answers: Object.keys(state.modules.for.answers).length,
+        lastAccessed: state.modules.for.lastAccessed
+      },
+      while: {
+        completed: Object.values(state.modules.while.completed).filter(Boolean).length,
+        answers: Object.keys(state.modules.while.answers).length,
+        lastAccessed: state.modules.while.lastAccessed
       },
       overall: {
         totalCompleted: Object.values(state.modules).reduce((sum, m) => 

@@ -29,6 +29,7 @@
       <a class="nav-tab-link" href="variables.html">Variables</a>
       <a class="nav-tab active" href="#primitivos" role="tab" aria-selected="true">Primitivos</a>
       <a class="nav-tab" href="#noprim" role="tab" aria-selected="false">No Primitivos</a>
+      <a class="nav-tab" href="#arrays" role="tab" aria-selected="false">Arrays</a>
       <a class="nav-tab" href="#conversion" role="tab" aria-selected="false">Conversión</a>
       <a class="nav-tab" href="#practica" role="tab" aria-selected="false">Práctica</a>
     </nav>
@@ -920,6 +921,91 @@
 
     </section>
 
+    <!-- ===== ARRAYS ===== -->
+    <section id="arrays" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 02 · Tipos de Referencia</div>
+        <h1>Arrays<br>(Arreglos)</h1>
+        <p>Un <strong>array</strong> es una estructura que almacena múltiples valores del <strong>mismo tipo</strong>
+           en posiciones contiguas de memoria. En Java, los arrays son <strong>objetos</strong> — tipos de referencia —
+           incluso cuando contienen tipos primitivos.</p>
+      </div>
+
+      <h2>Declaración e inicialización</h2>
+      <p>Tres formas de crear un array en Java:</p>
+      <div class="code-block" id="cb-arrays-decl"></div>
+
+      <h2>Acceso a elementos y <code>.length</code></h2>
+      <p>Los índices empiezan en <strong>0</strong>. El tamaño del array es <strong>fijo</strong> una vez creado y se consulta con <code>.length</code> (sin paréntesis, no es un método).</p>
+      <div class="code-block" id="cb-arrays-access"></div>
+
+      <!-- VALORES POR DEFECTO -->
+      <h2>Valores por defecto</h2>
+      <p>Al crear un array con <code>new</code>, cada celda se inicializa automáticamente según el tipo:</p>
+      <div class="def-values-wrap">
+        <table class="def-values-table">
+          <thead><tr><th>Tipo del array</th><th>Valor por defecto</th></tr></thead>
+          <tbody>
+            <tr><td><code>int[]</code>, <code>long[]</code>, <code>short[]</code>, <code>byte[]</code></td><td><code>0</code></td></tr>
+            <tr><td><code>double[]</code>, <code>float[]</code></td><td><code>0.0</code></td></tr>
+            <tr><td><code>boolean[]</code></td><td><code>false</code></td></tr>
+            <tr><td><code>char[]</code></td><td><code>'\u0000'</code> (carácter nulo)</td></tr>
+            <tr><td><code>String[]</code> o cualquier objeto</td><td><code>null</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- LABORATORIO INTERACTIVO -->
+      <h3 style="margin:2rem 0 0.35rem;font-size:1rem;">Laboratorio: Visualizador de arrays</h3>
+      <p style="margin-bottom:1rem;font-size:0.9rem;color:var(--muted);">
+        Creá un array, asignale valores y mirá cómo se accede por índice.
+      </p>
+
+      <div class="array-lab">
+        <div class="array-lab-controls">
+          <div class="array-lab-field">
+            <label class="array-lab-label">Tipo</label>
+            <select class="array-lab-select" id="al-type" onchange="runArrayLab()">
+              <option value="int">int</option>
+              <option value="double">double</option>
+              <option value="boolean">boolean</option>
+              <option value="String">String</option>
+            </select>
+          </div>
+          <div class="array-lab-field">
+            <label class="array-lab-label">Tamaño</label>
+            <input class="array-lab-input" id="al-size" type="number" min="1" max="10" value="5" onchange="runArrayLab()">
+          </div>
+          <button class="array-lab-btn" onclick="fillRandom()">🎲 Aleatorio</button>
+        </div>
+
+        <div class="array-viz" id="array-viz"></div>
+
+        <div class="array-lab-access">
+          <label class="array-lab-label">Consultar índice</label>
+          <input class="array-lab-input" id="al-idx" type="number" min="0" max="9" value="0" onchange="accessArrayIdx()">
+          <span class="array-access-result" id="al-result"></span>
+        </div>
+
+        <div class="array-lab-code">
+          <span class="cm">// Java equivalente</span>
+          <code id="al-code"></code>
+        </div>
+      </div>
+
+      <!-- MULTIDIMENSIONALES -->
+      <h2>Arrays multidimensionales</h2>
+      <p>En Java, una matriz es un <strong>array de arrays</strong>. Cada fila es un array independiente y puede tener distinto largo (arrays irregulares o <em>jagged</em>).</p>
+      <div class="code-block" id="cb-arrays-2d"></div>
+
+      <!-- CLASE UTILITARIA -->
+      <h2>Clase utilitaria <code>java.util.Arrays</code></h2>
+      <p>Provee métodos estáticos para operaciones comunes sobre arrays sin necesidad de escribir bucles manualmente:</p>
+      <div class="code-block" id="cb-arrays-util"></div>
+
+    </section>
+
     <!-- ===== CONVERSIÓN ===== -->
     <section id="conversion" class="section">
 
@@ -1083,6 +1169,7 @@
     <a class="nav-tab" href="../index.html">Algoritmos</a>
     <button class="nav-tab active" onclick="showSection('primitivos',this)">Primitivos</button>
     <button class="nav-tab" onclick="showSection('noprim',this)">No Prim.</button>
+    <button class="nav-tab" onclick="showSection('arrays',this)">Arrays</button>
     <button class="nav-tab" onclick="showSection('conversion',this)">Casting</button>
     <button class="nav-tab" onclick="showSection('practica',this)">Práctica</button>
   </nav>  <!-- ── FOOTER ── -->

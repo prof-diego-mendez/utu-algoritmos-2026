@@ -5,7 +5,7 @@
         setTimeout(() => {
           const report = StateManager.getProgressReport();
           const totalCompleted = report.overall.totalCompleted;
-          const totalExercises = 60; // 20 per module × 3 modules
+          const totalExercises = 120; // 20 per module × 6 modules
 
           // Update stats with animation
           animateValue('stat-total', 0, totalCompleted, 1000);

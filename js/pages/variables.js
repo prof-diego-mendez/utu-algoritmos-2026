@@ -163,6 +163,9 @@
     }
     function toggleDone(n) {
       done.has(n) ? done.delete(n) : done.add(n);
+      const idx = n - 1;
+      const isCompleted = done.has(n);
+      StateManager.setExercise('variables', idx, isCompleted);
       buildExercises();
       buildProgress();
     }
@@ -198,32 +201,12 @@
     buildProgress();
     buildExercises();
 
-// Integrate StateManager with Variables module exercises
-    const VARIABLES_MODULE = 'variables';
-    const VARIABLES_TOTAL = 20;
-
-    // Override toggleDone to use StateManager
-    const originalToggleDone = typeof toggleExercise !== 'undefined' ? toggleExercise : null;
-    if (originalToggleDone) {
-      window.toggleExercise = function (idx) {
-        const completed = StateManager.setExercise(VARIABLES_MODULE, idx, !StateManager.getExercise(VARIABLES_MODULE, idx)?.completed);
-        buildProgress();
-        buildExercises();
-      };
-    }
-
-    // Override saveSolution to use StateManager
-    const originalSaveSolution = typeof saveSolution !== 'undefined' ? saveSolution : null;
-    if (originalSaveSolution) {
-      window.saveSolution = function (idx, text) {
-        StateManager.setAnswer(VARIABLES_MODULE, idx, text);
-      };
-    }
-
-    // Override getSolution to use StateManager
-    const originalGetSolution = typeof getSolution !== 'undefined' ? getSolution : null;
-    if (originalGetSolution) {
-      window.getSolution = function (idx) {
-        return StateManager.getExercise(VARIABLES_MODULE, idx)?.answer || '';
-      };
-    }
+    // Load persisted state after StateManager.init() runs (on DOMContentLoaded)
+    document.addEventListener('DOMContentLoaded', () => {
+      for (let n = 1; n <= 20; n++) {
+        const data = StateManager.getExercise('variables', n - 1);
+        if (data?.completed) done.add(n);
+      }
+      buildProgress();
+      buildExercises();
+    });

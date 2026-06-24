@@ -1,0 +1,41 @@
+/* ============================================================
+   STEAMPUNK MAIN CASCADE
+   Victorian-industrial theme for Programación I
+   ============================================================
+   Load order: tokens → reset → layout → components → pages
+   ============================================================ */
+
+/* ── Design tokens ─────────────────────────────────── */
+@import "variables.css";
+
+/* ── Base ──────────────────────────────────────────── */
+@import "reset.css";
+@import "typography.css";
+
+/* ── Components ────────────────────────────────────── */
+@import "ui-elements.css";
+@import "header-nav.css";
+@import "hero.css";
+@import "cards.css";
+@import "code.css";
+@import "tables.css";
+@import "diagrams.css";
+@import "sandbox.css";
+@import "exercises.css";
+
+/* ── Layout (original — no visual changes needed) ──── */
+@import "../layout/main.css";
+@import "../layout/page-nav.css";
+@import "../layout/footer.css";
+
+/* ── Responsive (original) ─────────────────────────── */
+@import "../components/responsive.css";
+
+/* ── Page-specific ─────────────────────────────────── */
+@import "landing.css";
+@import "algoritmos.css";
+@import "progreso.css";
+@import "tipos-de-datos.css";
+@import "if-java.css";
+@import "while-java.css";
+@import "for-java.css";

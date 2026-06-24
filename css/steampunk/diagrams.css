@@ -1,0 +1,92 @@
+/* ============================================================
+   STEAMPUNK DIAGRAMS
+   Copper flow diagrams, brass connections
+   ============================================================ */
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow-x: auto;
+}
+
+.flow-node {
+  padding: 8px 16px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  text-align: center;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.flow-node.start {
+  background: var(--teal-bg);
+  color: var(--copper);
+  border: 1px solid rgba(192, 120, 76, 0.35);
+  border-radius: 20px;
+}
+
+.flow-node.proc {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid rgba(122, 154, 138, 0.35);
+}
+
+.flow-node.dec {
+  background: var(--amber-bg);
+  color: var(--amber);
+  border: 1px solid rgba(232, 197, 90, 0.35);
+  transform: skewX(-4deg);
+}
+
+.flow-node.io {
+  background: var(--accent-glow);
+  color: var(--brass);
+  border: 1px solid rgba(212, 168, 68, 0.35);
+  transform: skewX(8deg);
+}
+
+.flow-node.end {
+  background: var(--coral-bg);
+  color: var(--coral);
+  border: 1px solid rgba(212, 120, 76, 0.35);
+  border-radius: 20px;
+}
+
+.flow-arrow {
+  color: var(--copper);
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.flow-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.flow-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--bronze);
+}
+
+.flow-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}

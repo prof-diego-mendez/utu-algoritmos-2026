@@ -1,0 +1,70 @@
+/* ============================================================
+   STEAMPUNK DESIGN TOKENS
+   Brass, copper, sepia, parchment — Victorian industrial
+   ============================================================ */
+
+:root {
+  /* ── Backgrounds ───────────────────────────────────── */
+  --bg: #1a1410;
+  --surface: #2a2218;
+  --surface2: #352d20;
+
+  /* ── Borders ───────────────────────────────────────── */
+  --border: rgba(180, 150, 100, 0.15);
+  --border2: rgba(200, 160, 90, 0.25);
+
+  /* ── Text ──────────────────────────────────────────── */
+  --text: #e8dcc8;
+  --muted: #9a8a70;
+  --faint: #5a4a38;
+
+  /* ── Accent: Brass / Gold ──────────────────────────── */
+  --accent: #d4a844;
+  --accent2: #b8922e;
+  --accent-glow: rgba(212, 168, 68, 0.15);
+
+  /* ── Copper ────────────────────────────────────────── */
+  --teal: #c0784c;
+  --teal-bg: rgba(192, 120, 76, 0.12);
+
+  /* ── Light brass ───────────────────────────────────── */
+  --amber: #e8c55a;
+  --amber-bg: rgba(232, 197, 90, 0.12);
+
+  /* ── Bronze ────────────────────────────────────────── */
+  --purple: #a08060;
+  --purple-bg: rgba(160, 128, 96, 0.12);
+
+  /* ── Rust / reddish copper ─────────────────────────── */
+  --coral: #d4784c;
+  --coral-bg: rgba(212, 120, 76, 0.12);
+
+  /* ── Verdigris (green patina) ──────────────────────── */
+  --blue: #7a9a8a;
+  --blue-bg: rgba(122, 154, 138, 0.12);
+
+  /* ── Semantic ──────────────────────────────────────── */
+  --success: #6a9a5a;
+  --success-bg: rgba(106, 154, 90, 0.15);
+  --warning: #c89840;
+  --warning-bg: rgba(200, 152, 64, 0.15);
+  --error: #c44a3a;
+  --error-bg: rgba(196, 74, 58, 0.15);
+  --info: #6a8a9a;
+  --info-bg: rgba(106, 138, 154, 0.15);
+
+  /* ── Radii (slightly squared — industrial) ─────────── */
+  --r: 8px;
+  --r-lg: 12px;
+
+  /* ── Steampunk specific ────────────────────────────── */
+  --brass: #d4a844;
+  --brass-dark: #8a7020;
+  --copper: #c0784c;
+  --copper-dark: #8a5030;
+  --bronze: #a08060;
+  --parchment: #e8dcc8;
+  --parchment-dark: #c8b898;
+  --sepia-dark: #1a1410;
+  --gear-color: rgba(180, 150, 100, 0.08);
+}

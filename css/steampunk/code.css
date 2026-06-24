@@ -1,0 +1,102 @@
+/* ============================================================
+   STEAMPUNK CODE BLOCKS
+   Parchment background, vintage syntax highlighting
+   ============================================================ */
+
+.code-block {
+  background: #1e1810;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: 1.25rem 1.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--parchment-dark);
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  white-space: pre;
+  border-bottom: 2px solid var(--brass-dark);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.code-block .kw { color: var(--brass); font-weight: 600; }
+.code-block .fn { color: var(--copper); }
+.code-block .cm { color: #6a5a48; font-style: italic; }
+.code-block .nm { color: var(--amber); }
+.code-block .op { color: var(--coral); }
+.code-block .str { color: var(--success); }
+.code-block .var { color: var(--parchment-dark); }
+.code-block .val { color: var(--copper); }
+
+/* ── Code wrap (with header) ────────────────────────── */
+.code-wrap {
+  background: #1e1810;
+  border: 1px solid var(--border2);
+  border-bottom: 2px solid var(--brass-dark);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(180, 140, 80, 0.04);
+}
+
+.code-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.code-dot:nth-child(1) { background: var(--coral); }
+.code-dot:nth-child(2) { background: var(--amber); }
+.code-dot:nth-child(3) { background: var(--success); }
+
+.code-filename {
+  margin-left: auto;
+  font-size: 0.6rem;
+  color: var(--bronze);
+  letter-spacing: 0.08em;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.code-copy {
+  background: none;
+  border: 1px solid var(--border2);
+  color: var(--bronze);
+  font-size: 0.6rem;
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  transition: all 0.2s;
+}
+
+.code-copy:hover {
+  color: var(--brass);
+  border-color: var(--brass);
+}
+
+.code-wrap pre {
+  padding: 1.125rem 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.85;
+  overflow-x: auto;
+  tab-size: 2;
+  color: var(--parchment-dark);
+}
+
+.code-wrap .kw  { color: var(--brass); font-weight: 600; }
+.code-wrap .cm  { color: #6a5a48; font-style: italic; }
+.code-wrap .str { color: var(--success); }
+.code-wrap .num { color: var(--amber); }
+.code-wrap .fn  { color: var(--copper); }
+.code-wrap .op  { color: var(--coral); }
+.code-wrap .var { color: var(--parchment-dark); }

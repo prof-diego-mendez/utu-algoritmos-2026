@@ -205,11 +205,11 @@ El proyecto usa una paleta de colores oscuros moderna con acentos vibrantes:
 
 | Métrica | Cantidad |
 |---------|----------|
-| Módulos | 3 |
-| Ejercicios totales | 60 |
+| Módulos | 6 |
+| Ejercicios totales | 120 |
 | Líneas de código | ~4000+ |
-| Archivos JSON | 2 |
-| Páginas HTML | 4 |
+| Archivos JSON | 5 |
+| Páginas HTML | 7 |
 
 ---
 

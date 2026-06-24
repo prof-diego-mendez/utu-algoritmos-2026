@@ -1,0 +1,250 @@
+/* ============================================================
+   STEAMPUNK PROGRESO PAGE
+   Vintage progress dashboard with brass bars
+   ============================================================ */
+
+.progress-dashboard {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.dashboard-header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--brass);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dashboard-header p {
+  color: var(--bronze);
+  font-size: 1rem;
+}
+
+/* ── Overall progress ───────────────────────────────── */
+.overall-progress {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: 3px solid var(--brass-dark);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.overall-percentage {
+  font-family: 'Cinzel', serif;
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--brass), var(--copper));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.overall-label {
+  font-size: 0.8rem;
+  color: var(--bronze);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.overall-bar {
+  height: 8px;
+  background: var(--surface2);
+  border-radius: 2px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.overall-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brass-dark), var(--brass), var(--copper));
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.overall-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.overall-stat {
+  background: var(--surface2);
+  padding: 1rem;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+}
+
+.overall-stat-n {
+  font-family: 'Cinzel', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--brass);
+}
+
+.overall-stat-l {
+  font-size: 0.7rem;
+  color: var(--bronze);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.25rem;
+}
+
+/* ── Modules breakdown ──────────────────────────────── */
+.modules-breakdown {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.module-progress-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+  transition: all 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.module-progress-card:hover {
+  border-color: var(--border2);
+  transform: translateX(4px);
+  border-left-color: var(--module-color);
+}
+
+.module-progress-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.module-progress-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--module-bg);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  border: 1px solid var(--module-color);
+}
+
+.module-progress-info { flex: 1; }
+
+.module-progress-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.03em;
+}
+
+.module-progress-subtitle {
+  font-size: 0.78rem;
+  color: var(--bronze);
+}
+
+.module-progress-bar {
+  height: 6px;
+  background: var(--surface2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+}
+
+.module-progress-bar-fill {
+  height: 100%;
+  background: var(--module-color);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.module-progress-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--bronze);
+}
+
+.module-progress-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--module-color);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  transition: all 0.2s;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+.module-progress-link:hover { gap: 10px; }
+
+/* ── Module colors ──────────────────────────────────── */
+.module-algoritmos { --module-color: var(--brass); --module-bg: var(--accent-glow); }
+.module-variables { --module-color: var(--copper); --module-bg: var(--teal-bg); }
+.module-java { --module-color: var(--amber); --module-bg: var(--amber-bg); }
+.module-if { --module-color: var(--coral); --module-bg: var(--coral-bg); }
+.module-for { --module-color: var(--purple); --module-bg: var(--purple-bg); }
+.module-while { --module-color: var(--blue); --module-bg: var(--blue-bg); }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--bronze);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: all 0.2s;
+}
+
+.back-link:hover { color: var(--brass); gap: 12px; }
+
+.reset-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.reset-btn {
+  background: transparent;
+  border: 1px solid var(--coral);
+  color: var(--coral);
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+.reset-btn:hover { background: var(--coral-bg); }
+
+@media (max-width: 640px) {
+  .overall-stats { grid-template-columns: 1fr; }
+  .module-progress-header { flex-direction: column; text-align: center; }
+  .module-progress-stats { flex-direction: column; gap: 0.5rem; text-align: center; }
+}

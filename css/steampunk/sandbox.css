@@ -1,0 +1,190 @@
+/* ============================================================
+   STEAMPUNK SANDBOX
+   Brass-accented code editor and modals
+   ============================================================ */
+
+.sandbox {
+  background: var(--surface);
+  border: 2px solid var(--brass-dark);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin: 1.25rem 0;
+  box-shadow: 0 0 32px rgba(180, 140, 80, 0.04),
+              inset 0 1px 0 rgba(180, 150, 100, 0.05);
+}
+
+.sandbox-header {
+  background: var(--accent-glow);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(212, 168, 68, 0.2);
+}
+
+.sandbox-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--brass);
+  box-shadow: 0 0 8px var(--brass-dark);
+}
+
+.sandbox-title {
+  font-size: 0.65rem;
+  color: var(--brass);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.sandbox-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.sandbox-input-area {
+  padding: 1rem;
+  border-right: 1px solid var(--border);
+}
+
+.sandbox-label {
+  font-size: 0.6rem;
+  color: var(--bronze);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.sandbox-editor {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--brass);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  resize: none;
+  outline: none;
+  min-height: 160px;
+  caret-color: var(--brass);
+}
+
+.sandbox-run {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 18px;
+  background: linear-gradient(180deg, var(--brass), var(--brass-dark));
+  color: var(--sepia-dark);
+  border: 1px solid var(--copper);
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sandbox-run:hover {
+  background: linear-gradient(180deg, var(--amber), var(--brass));
+  transform: translateY(-1px);
+}
+
+.sandbox-output-area { padding: 1rem; }
+
+.sandbox-output {
+  min-height: 160px;
+  font-size: 0.8rem;
+  font-family: 'IBM Plex Mono', monospace;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.out-line {
+  padding: 2px 0;
+  display: flex;
+  gap: 8px;
+}
+
+.out-line::before {
+  content: '>';
+  color: var(--brass);
+  opacity: 0.5;
+}
+
+.out-error { color: var(--coral); }
+
+.sandbox-clear-btn {
+  margin-left: auto;
+  font-size: 0.6rem;
+  background: none;
+  border: 1px solid rgba(212, 168, 68, 0.2);
+  color: var(--copper);
+  padding: 3px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* ── Modal ──────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 20, 16, 0.9);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  transform: scale(0.95) translateY(10px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  background: var(--surface);
+  border: 2px solid var(--brass);
+  color: var(--brass);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--brass);
+  color: var(--sepia-dark);
+  transform: scale(1.1);
+}
+
+.modal-content .sandbox { margin: 0; }

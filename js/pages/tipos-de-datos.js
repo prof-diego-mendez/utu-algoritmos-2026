@@ -347,7 +347,109 @@ System.out.<span class="fn">printf</span>(<span class="fn">"Suma de %d y %d = %d
 // Variables · métodos : camelCase      → edadAlumno, calcularNota()
 // Constantes (final)  : UPPER_SNAKE    → MAX_NOTAS, TASA_IVA
 // Clases · Interfaces : PascalCase     → MiClase, Serializable
-// Paquetes            : todo.minúsculas → com.iti.prog1</span>`
+// Paquetes            : todo.minúsculas → com.iti.prog1</span>`,
+
+  // ── ARRAYS ──────────────────────────────────────────────
+
+  'cb-arrays-decl': `<span class="cm">// ① Declarar + inicializar con new (valores por defecto)</span>
+<span class="kw">int</span>[] notas <span class="op">=</span> <span class="kw">new</span> <span class="kw">int</span>[<span class="nm">5</span>];            <span class="cm">// {0, 0, 0, 0, 0}</span>
+<span class="kw">double</span>[] precios <span class="op">=</span> <span class="kw">new</span> <span class="kw">double</span>[<span class="nm">3</span>];     <span class="cm">// {0.0, 0.0, 0.0}</span>
+<span class="kw">String</span>[] nombres <span class="op">=</span> <span class="kw">new</span> <span class="kw">String</span>[<span class="nm">4</span>];  <span class="cm">// {null, null, null, null}</span>
+
+<span class="cm">// ② Declarar + inicializar con valores literales</span>
+<span class="kw">int</span>[] edades <span class="op">=</span> {<span class="nm">18</span>, <span class="nm">21</span>, <span class="nm">35</span>, <span class="nm">42</span>, <span class="nm">67</span>};
+<span class="kw">char</span>[] vocales <span class="op">=</span> {<span class="fn">'a'</span>, <span class="fn">'e'</span>, <span class="fn">'i'</span>, <span class="fn">'o'</span>, <span class="fn">'u'</span>};
+<span class="kw">boolean</span>[] flags <span class="op">=</span> {<span class="nm">true</span>, <span class="nm">false</span>, <span class="nm">true</span>};
+
+<span class="cm">// ③ Declarar primero, inicializar después</span>
+<span class="kw">int</span>[] nums;                <span class="cm">// nums = null (referencia sin objeto)</span>
+nums <span class="op">=</span> <span class="kw">new</span> <span class="kw">int</span>[]{<span class="nm">7</span>, <span class="nm">14</span>, <span class="nm">21</span>};  <span class="cm">// ahora apunta a un array de 3</span>
+
+<span class="cm">// ⚠ Los corchetes pueden ir después del tipo o del nombre</span>
+<span class="kw">int</span>[]  a;  <span class="cm">// preferido — el tipo es "int[]"</span>
+<span class="kw">int</span>    b[]; <span class="cm">// válido pero poco usado</span>`,
+
+  'cb-arrays-access': `<span class="cm">// El índice empieza en 0, termina en length - 1</span>
+<span class="kw">int</span>[] arr <span class="op">=</span> {<span class="nm">10</span>, <span class="nm">20</span>, <span class="nm">30</span>, <span class="nm">40</span>};
+<span class="kw">int</span> primero   <span class="op">=</span> arr[<span class="nm">0</span>];  <span class="cm">// 10</span>
+<span class="kw">int</span> ultimo    <span class="op">=</span> arr[arr.length <span class="op">-</span> <span class="nm">1</span>];  <span class="cm">// 40</span>
+arr[<span class="nm">2</span>]  <span class="op">=</span> <span class="nm">99</span>;               <span class="cm">// {10, 20, 99, 40}</span>
+
+<span class="cm">// .length — propiedad, NO método (sin paréntesis)</span>
+System.out.<span class="fn">println</span>(arr.length);  <span class="cm">// 4</span>
+
+<span class="cm">// ⚠ Índice fuera de rango → ArrayIndexOutOfBoundsException</span>
+<span class="cm">// arr[4] = 50;   ✗ el índice válido máximo es 3</span>
+<span class="cm">// arr[-1] = 0;   ✗ índice negativo no permitido</span>
+
+<span class="cm">// Recorrido con for clásico (tenés el índice)</span>
+<span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op"><</span> arr.length; i<span class="op">++</span>) {
+    System.out.<span class="fn">println</span>(<span class="str">"arr["</span> <span class="op">+</span> i <span class="op">+</span> <span class="str">"] = "</span> <span class="op">+</span> arr[i]);
+}
+
+<span class="cm">// Recorrido con for-each (más limpio, pero sin índice)</span>
+<span class="kw">for</span> (<span class="kw">int</span> valor : arr) {
+    System.out.<span class="fn">println</span>(valor);
+}`,
+
+  'cb-arrays-2d': `<span class="cm">// Matriz: array de arrays</span>
+<span class="kw">int</span>[][] matriz <span class="op">=</span> <span class="kw">new</span> <span class="kw">int</span>[<span class="nm">3</span>][<span class="nm">4</span>]; <span class="cm">// 3 filas × 4 columnas</span>
+
+<span class="cm">// Acceso: matriz[fila][columna]</span>
+matriz[<span class="nm">0</span>][<span class="nm">0</span>] <span class="op">=</span> <span class="nm">1</span>;
+matriz[<span class="nm">2</span>][<span class="nm">3</span>] <span class="op">=</span> <span class="nm">42</span>;
+
+<span class="cm">// Inicialización literal</span>
+<span class="kw">int</span>[][] tablero <span class="op">=</span> {
+    {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>},
+    {<span class="nm">4</span>, <span class="nm">5</span>, <span class="nm">6</span>},
+    {<span class="nm">7</span>, <span class="nm">8</span>, <span class="nm">9</span>}
+};
+
+<span class="cm">// Arrays irregulares (jagged): cada fila puede tener distinto largo</span>
+<span class="kw">int</span>[][] triangulo <span class="op">=</span> <span class="kw">new</span> <span class="kw">int</span>[<span class="nm">4</span>][];
+triangulo[<span class="nm">0</span>] <span class="op">=</span> <span class="kw">new</span> <span class="kw">int</span>[<span class="nm">1</span>];  <span class="cm">// fila 0: 1 elemento</span>
+triangulo[<span class="nm">1</span>] <span class="op">=</span> <span class="kw">new</span> <span class="kw">int</span>[<span class="nm">2</span>];  <span class="cm">// fila 1: 2 elementos</span>
+triangulo[<span class="nm">2</span>] <span class="op">=</span> <span class="kw">new</span> <span class="kw">int</span>[<span class="nm">3</span>];  <span class="cm">// fila 2: 3 elementos</span>
+triangulo[<span class="nm">3</span>] <span class="op">=</span> <span class="kw">new</span> <span class="kw">int</span>[<span class="nm">4</span>];  <span class="cm">// fila 3: 4 elementos</span>
+
+<span class="cm">// Recorrer con bucles anidados</span>
+<span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op"><</span> matriz.length; i<span class="op">++</span>) {
+    <span class="kw">for</span> (<span class="kw">int</span> j <span class="op">=</span> <span class="nm">0</span>; j <span class="op"><</span> matriz[i].length; j<span class="op">++</span>) {
+        System.out.<span class="fn">printf</span>(<span class="str">"%4d"</span>, matriz[i][j]);
+    }
+    System.out.<span class="fn">println</span>();
+}`,
+
+  'cb-arrays-util': `<span class="cm">// java.util.Arrays — métodos estáticos más usados</span>
+<span class="kw">import</span> java.util.Arrays;
+
+<span class="kw">int</span>[] nums <span class="op">=</span> {<span class="nm">3</span>, <span class="nm">7</span>, <span class="nm">1</span>, <span class="nm">9</span>, <span class="nm">4</span>};
+
+<span class="cm">// Convertir a String para imprimir</span>
+System.out.<span class="fn">println</span>(Arrays.<span class="fn">toString</span>(nums));
+<span class="cm">// → [3, 7, 1, 9, 4]</span>
+
+<span class="cm">// Ordenar (modifica el array original)</span>
+Arrays.<span class="fn">sort</span>(nums);
+System.out.<span class="fn">println</span>(Arrays.<span class="fn">toString</span>(nums));
+<span class="cm">// → [1, 3, 4, 7, 9]</span>
+
+<span class="cm">// Rellenar todo con un valor</span>
+Arrays.<span class="fn">fill</span>(nums, <span class="nm">0</span>);
+<span class="cm">// nums → {0, 0, 0, 0, 0}</span>
+
+<span class="cm">// Comparar dos arrays</span>
+<span class="kw">int</span>[] a <span class="op">=</span> {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>};
+<span class="kw">int</span>[] b <span class="op">=</span> {<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>};
+<span class="kw">boolean</span> iguales <span class="op">=</span> Arrays.<span class="fn">equals</span>(a, b);  <span class="cm">// true</span>
+<span class="cm">// ⚠ a.equals(b)  → false (compara referencias, no contenido)</span>
+
+<span class="cm">// Copiar (total o parcial)</span>
+<span class="kw">int</span>[] copia <span class="op">=</span> Arrays.<span class="fn">copyOf</span>(nums, <span class="nm">3</span>);  <span class="cm">// primeros 3</span>
+
+<span class="cm">// Búsqueda binaria (requiere array ordenado)</span>
+<span class="kw">int</span> idx <span class="op">=</span> Arrays.<span class="fn">binarySearch</span>(nums, <span class="nm">7</span>);  <span class="cm">// índice de 7, o negativo si no está</span>`
 
 };
 
@@ -925,3 +1027,112 @@ function calcOp() {
 
           setTimeout(runCat, 100);
         })();
+
+// ── ARRAY VISUALIZER ────────────────────────────────────
+
+(function() {
+  var currentArray = [10, 20, 30, 40, 50];
+  var currentType  = 'int';
+
+  function formatVal(v, t) {
+    if (t === 'String') return '"' + v + '"';
+    if (t === 'boolean') return v ? 'true' : 'false';
+    if (t === 'double') return Number(v).toFixed(1);
+    return String(v);
+  }
+
+  function genRandom(t) {
+    if (t === 'int')     return Math.floor(Math.random() * 100);
+    if (t === 'double')  return +(Math.random() * 100).toFixed(1);
+    if (t === 'boolean') return Math.random() > 0.5;
+    if (t === 'String')  return ['Java','Arrays','Hola','UTU','ITI','abc','xyz'][Math.floor(Math.random() * 7)];
+    return 0;
+  }
+
+  function javaDecl(arr, t) {
+    var tMap = { int: 'int', double: 'double', boolean: 'boolean', String: 'String' };
+    return tMap[t] + '[] arr = {' + arr.map(function(v) { return formatVal(v, t); }).join(', ') + '};';
+  }
+
+  function javaAccess(arr, idx, t) {
+    return 'arr[' + idx + '] → ' + formatVal(arr[idx], t);
+  }
+
+  function renderViz() {
+    var viz = document.getElementById('array-viz');
+    if (!viz) return;
+    viz.innerHTML = '';
+    currentArray.forEach(function(v, i) {
+      var cell = document.createElement('div');
+      cell.className = 'array-cell';
+      cell.onclick = function() {
+        document.getElementById('al-idx').value = i;
+        accessArrayIdx();
+      };
+      cell.innerHTML = '<span class="array-cell-idx">[' + i + ']</span>' +
+                       '<span class="array-cell-val">' + formatVal(v, currentType) + '</span>';
+      viz.appendChild(cell);
+    });
+    updateCode();
+  }
+
+  function updateCode() {
+    var codeEl = document.getElementById('al-code');
+    var typeEl = document.getElementById('al-type');
+    if (codeEl && typeEl) {
+      codeEl.textContent = javaDecl(currentArray, currentType);
+    }
+  }
+
+  function buildArray() {
+    var typeEl = document.getElementById('al-type');
+    var sizeEl = document.getElementById('al-size');
+    if (!typeEl || !sizeEl) return;
+    currentType = typeEl.value;
+    var size = Math.min(Math.max(parseInt(sizeEl.value, 10) || 5, 1), 10);
+    sizeEl.value = size;
+    currentArray = [];
+    for (var i = 0; i < size; i++) {
+      currentArray.push(genRandom(currentType));
+    }
+    renderViz();
+    accessArrayIdx();
+  }
+
+  window.runArrayLab = buildArray;
+
+  window.fillRandom = function() {
+    for (var i = 0; i < currentArray.length; i++) {
+      currentArray[i] = genRandom(currentType);
+    }
+    renderViz();
+    accessArrayIdx();
+  };
+
+  window.accessArrayIdx = function() {
+    var idxEl = document.getElementById('al-idx');
+    var resultEl = document.getElementById('al-result');
+    if (!idxEl || !resultEl) return;
+    var idx = parseInt(idxEl.value, 10);
+    if (isNaN(idx) || idx < 0) {
+      resultEl.textContent = '⚠ Índice inválido';
+      resultEl.className = 'array-access-result error';
+      return;
+    }
+    if (idx >= currentArray.length) {
+      resultEl.textContent = '⚠ ArrayIndexOutOfBoundsException (índice ' + idx + ' fuera de rango 0..' + (currentArray.length-1) + ')';
+      resultEl.className = 'array-access-result error';
+      return;
+    }
+    resultEl.textContent = javaAccess(currentArray, idx, currentType);
+    resultEl.className = 'array-access-result';
+  };
+
+  window.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      var typeEl = document.getElementById('al-type');
+      if (typeEl) typeEl.value = 'int';
+      buildArray();
+    }, 80);
+  });
+})();
