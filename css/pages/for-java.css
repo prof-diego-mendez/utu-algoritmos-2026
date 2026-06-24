@@ -1,0 +1,304 @@
+/* ============================================================
+   for-java.css
+   Estilos específicos para la página de Estructura FOR en Java
+   ============================================================ */
+
+/* ── ANATOMÍA DEL FOR (las 3 partes coloreadas) ───────────── */
+.for-anatomy {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin: 1.5rem 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+}
+
+.for-anatomy-prefix,
+.for-anatomy-suffix {
+  padding: 1rem 0.75rem;
+  color: #c084fc;
+  display: flex;
+  align-items: center;
+  background: var(--surface2);
+  font-weight: 600;
+}
+
+.for-anatomy-parts {
+  display: flex;
+  flex: 1;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.for-anatomy-part {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.875rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.for-anatomy-part:hover { background: var(--surface2); }
+
+.fap-num {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.fap-num-1 { background: rgba(52,211,153,0.12); color: var(--teal); }
+.fap-num-2 { background: rgba(251,191,36,0.12);  color: var(--amber); }
+.fap-num-3 { background: rgba(167,139,250,0.12); color: var(--accent); }
+
+.fap-code {
+  color: #d4d4d8;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.fap-code .kw  { color: #c084fc; }
+.fap-code .op  { color: #fbbf24; }
+.fap-code .nm  { color: #60a5fa; }
+.fap-code .val { color: #f87171; }
+
+.fap-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2px;
+}
+
+.fap-desc {
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.fap-freq {
+  font-size: 0.62rem;
+  color: var(--faint);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* ── SIMULADOR FOR ────────────────────────────────────────── */
+.for-sim-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 540px) {
+  .for-sim-inputs { grid-template-columns: 1fr 1fr; }
+}
+
+.for-sim-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.for-sim-field label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.for-sim-field input {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.for-sim-field input:focus { border-color: var(--accent); }
+
+.for-sim-body {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .for-sim-body { grid-template-columns: 1fr; }
+}
+
+.for-sim-code-preview {
+  padding: 1rem 1.25rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 2;
+  color: #d4d4d8;
+  border-right: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.for-sim-code-preview .kw  { color: #c084fc; }
+.for-sim-code-preview .nm  { color: #60a5fa; }
+.for-sim-code-preview .op  { color: #fbbf24; }
+.for-sim-code-preview .val { color: #f87171; font-weight: 700; }
+.for-sim-code-preview .fn  { color: #34d399; }
+.for-sim-code-preview .cm  { color: #3f3f46; font-style: italic; }
+
+.for-sim-panel {
+  padding: 1rem;
+  background: var(--surface2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.for-sim-error {
+  color: var(--coral);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  padding: 8px 10px;
+  background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.2);
+  border-radius: var(--r);
+}
+
+/* ── CONVERSOR FOR ↔ WHILE ───────────────────────────────── */
+.for-conv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 600px) {
+  .for-conv-grid { grid-template-columns: 1fr; }
+}
+
+.for-conv-side {
+  background: var(--surface);
+  padding: 1.25rem;
+}
+
+.for-conv-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.for-conv-label.lbl-for   { background: rgba(96,165,250,0.12); color: var(--blue); }
+.for-conv-label.lbl-while { background: rgba(52,211,153,0.1);  color: var(--teal); }
+
+.for-conv-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.9;
+  color: #d4d4d8;
+  min-height: 100px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.for-conv-code .kw  { color: #c084fc; }
+.for-conv-code .nm  { color: #60a5fa; }
+.for-conv-code .op  { color: #fbbf24; }
+.for-conv-code .val { color: #f87171; font-weight: 700; }
+.for-conv-code .cm  { color: #3f3f46; font-style: italic; }
+
+/* ── IMPRESIÓN DE PATRÓN ──────────────────────────────────── */
+.pat-output {
+  background: #0a0b0e;
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: 1rem 1.25rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--teal);
+  min-height: 80px;
+  white-space: pre;
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}
+
+.pat-stats {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ── GRILLA DE TARJETAS DE VARIANTES ─────────────────────── */
+.for-variants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.for-variant-card {
+  background: var(--surface);
+  padding: 1rem;
+  transition: background 0.15s;
+}
+
+.for-variant-card:hover { background: var(--surface2); }
+
+.fvc-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.fvc-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: #d4d4d8;
+}
+
+.fvc-code .kw  { color: #c084fc; }
+.fvc-code .nm  { color: #60a5fa; }
+.fvc-code .op  { color: #fbbf24; }
+
+.fvc-result {
+  margin-top: 6px;
+  font-size: 0.68rem;
+  color: var(--teal);
+  font-family: 'DM Mono', monospace;
+}

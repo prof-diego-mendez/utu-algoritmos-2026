@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipos de Datos en Java · Programación I</title>
+  <meta name="description" content="Material educativo sobre tipos de datos primitivos y no primitivos en Java. Programación I – Prof. Diego Méndez – ITI 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+
+  
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">☕</div>
+      <div>
+        <span>Tipos de Datos</span>
+        <span class="logo-sub"> · Programación I · Prof. Diego Méndez · ITI 2026</span>
+      </div>
+    </div>
+    <nav class="nav-tabs" role="tablist" aria-label="Navegación principal">
+      <a class="nav-tab-link" href="../index.html">← Inicio</a>
+      <a class="nav-tab-link" href="algoritmos-index.html">Algoritmos</a>
+      <a class="nav-tab-link" href="variables.html">Variables</a>
+      <a class="nav-tab active" href="#primitivos" role="tab" aria-selected="true">Primitivos</a>
+      <a class="nav-tab" href="#noprim" role="tab" aria-selected="false">No Primitivos</a>
+      <a class="nav-tab" href="#arrays" role="tab" aria-selected="false">Arrays</a>
+      <a class="nav-tab" href="#conversion" role="tab" aria-selected="false">Conversión</a>
+      <a class="nav-tab" href="#practica" role="tab" aria-selected="false">Práctica</a>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== PRIMITIVOS ===== -->
+    <section id="primitivos" class="section active">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 01 · Fundamentos de Java</div>
+        <h1>Tipos de datos primitivos<br>en Java</h1>
+        <p>Java es un lenguaje <strong>fuertemente tipado</strong>: toda variable debe declararse con un tipo antes de usarse. Los tipos primitivos son los bloques de construcción más básicos del
+          lenguaje.</p>
+      </div>
+
+      <h2>¿Qué es un tipo de dato?</h2>
+      <p>Un <strong>tipo de dato</strong> define qué clase de valor puede almacenar una variable, cuántos bytes de memoria ocupa y qué operaciones se pueden realizar sobre él. En Java, cada variable
+        tiene exactamente un tipo, que no cambia durante la ejecución.</p>
+
+      <div class="card card-accent blue">
+        <h3>Declaración en Java</h3>
+        <p>La sintaxis general es: <strong>tipo nombreVariable = valorInicial;</strong></p>
+        <p>Ejemplo: <strong>int edad = 18;</strong> — se reserva memoria, se nombra la variable y se asigna un valor.</p>
+      </div>
+
+      <h2>Los 8 tipos primitivos</h2>
+      <p>Java define exactamente 8 tipos primitivos. No son objetos: son valores almacenados directamente en memoria (stack).</p>
+
+      <div class="tipos-grid">
+
+        <div class="tipo-card tipo-azul">
+          <div class="tipo-header">
+            <span class="tipo-keyword">byte</span>
+            <span class="tipo-size">8 bits · 1 byte</span>
+          </div>
+          <div class="tipo-range">−128 a 127</div>
+          <div class="tipo-desc">Entero muy pequeño. Útil para ahorrar memoria en arreglos grandes.</div>
+          <div class="code-inline">byte b = <span class="nm">100</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-azul">
+          <div class="tipo-header">
+            <span class="tipo-keyword">short</span>
+            <span class="tipo-size">16 bits · 2 bytes</span>
+          </div>
+          <div class="tipo-range">−32 768 a 32 767</div>
+          <div class="tipo-desc">Entero corto. Poco común en código moderno.</div>
+          <div class="code-inline">short s = <span class="nm">1000</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-teal">
+          <div class="tipo-header">
+            <span class="tipo-keyword">int</span>
+            <span class="tipo-size">32 bits · 4 bytes</span>
+          </div>
+          <div class="tipo-range">−2 147 483 648 a 2 147 483 647</div>
+          <div class="tipo-desc">El tipo entero más usado. Valor predeterminado para literales numéricos enteros.</div>
+          <div class="code-inline">int edad = <span class="nm">18</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-teal">
+          <div class="tipo-header">
+            <span class="tipo-keyword">long</span>
+            <span class="tipo-size">64 bits · 8 bytes</span>
+          </div>
+          <div class="tipo-range">±9.2 × 10¹⁸</div>
+          <div class="tipo-desc">Entero muy grande. El literal lleva sufijo <strong>L</strong>.</div>
+          <div class="code-inline">long pob = <span class="nm">8000000000L</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-amber">
+          <div class="tipo-header">
+            <span class="tipo-keyword">float</span>
+            <span class="tipo-size">32 bits · 4 bytes</span>
+          </div>
+          <div class="tipo-range">±3.4 × 10³⁸ (~7 dígitos)</div>
+          <div class="tipo-desc">Decimal de simple precisión. El literal lleva sufijo <strong>f</strong>.</div>
+          <div class="code-inline">float pi = <span class="nm">3.14f</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-amber">
+          <div class="tipo-header">
+            <span class="tipo-keyword">double</span>
+            <span class="tipo-size">64 bits · 8 bytes</span>
+          </div>
+          <div class="tipo-range">±1.7 × 10³⁰⁸ (~15 dígitos)</div>
+          <div class="tipo-desc">Decimal de doble precisión. El más usado para cálculos. Es el tipo predeterminado para literales decimales.</div>
+          <div class="code-inline">double nota = <span class="nm">9.75</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-coral">
+          <div class="tipo-header">
+            <span class="tipo-keyword">char</span>
+            <span class="tipo-size">16 bits · 2 bytes</span>
+          </div>
+          <div class="tipo-range">'\u0000' a '\uFFFF' (Unicode)</div>
+          <div class="tipo-desc">Un único carácter Unicode. Se escribe entre comillas simples.</div>
+          <div class="code-inline">char letra = <span class="nm">'A'</span>;</div>
+        </div>
+
+        <div class="tipo-card tipo-purple">
+          <div class="tipo-header">
+            <span class="tipo-keyword">boolean</span>
+            <span class="tipo-size">1 bit (lógico)</span>
+          </div>
+          <div class="tipo-range">true · false</div>
+          <div class="tipo-desc">Solo dos valores posibles. Esencial para condiciones y estructuras de control.</div>
+          <div class="code-inline">boolean activo = <span class="nm">true</span>;</div>
+        </div>
+
+      </div>
+
+      <h2>Tabla resumen</h2>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Categoría</th>
+                <th>Bits</th>
+                <th>Rango / Valores</th>
+                <th>Valor por defecto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pill pill-blue">byte</span></td>
+                <td>Entero</td>
+                <td class="num">8</td>
+                <td>−128 a 127</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-blue">short</span></td>
+                <td>Entero</td>
+                <td class="num">16</td>
+                <td>−32 768 a 32 767</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-teal">int</span></td>
+                <td>Entero</td>
+                <td class="num">32</td>
+                <td>±2.1 × 10⁹</td>
+                <td class="num">0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-teal">long</span></td>
+                <td>Entero</td>
+                <td class="num">64</td>
+                <td>±9.2 × 10¹⁸</td>
+                <td class="num">0L</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-amber">float</span></td>
+                <td>Decimal</td>
+                <td class="num">32</td>
+                <td>±3.4 × 10³⁸</td>
+                <td class="num">0.0f</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-amber">double</span></td>
+                <td>Decimal</td>
+                <td class="num">64</td>
+                <td>±1.7 × 10³⁰⁸</td>
+                <td class="num">0.0</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-coral">char</span></td>
+                <td>Carácter</td>
+                <td class="num">16</td>
+                <td>'\u0000' – '\uFFFF'</td>
+                <td class="num">'\u0000'</td>
+              </tr>
+              <tr>
+                <td><span class="pill pill-purple">boolean</span></td>
+                <td>Lógico</td>
+                <td class="num">1</td>
+                <td>true / false</td>
+                <td class="num">false</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card card-accent amber">
+        <h3>⚠ Overflow: cuando un número no cabe</h3>
+        <p>Si asignás un valor fuera del rango del tipo, Java produce un <strong>overflow</strong>: el número "da la vuelta". Por ejemplo, si <code>byte b = 127</code> y hacés <code>b++</code>, el
+          resultado es −128. Java no lanza error, simplemente el valor se desborda silenciosamente.</p>
+      </div>
+
+      <h2>Variables y constantes</h2>
+      <div class="code-block" id="cb-declaracion"></div>
+
+      <h2>Reglas y convenciones para nombrar variables</h2>
+      <p>Java distingue reglas <strong>obligatorias</strong> (el compilador las rechaza si no se cumplen) de convenciones <strong>recomendadas</strong> (el compilador las acepta, pero el equipo las
+        exige para mantener código legible).</p>
+
+      <div class="naming-grid">
+
+        <div class="naming-card naming-rules">
+          <div class="naming-card-header">
+            <span class="naming-icon">⚙</span>
+            <span>Reglas obligatorias</span>
+          </div>
+          <ul class="naming-list">
+            <li><strong>Solo</strong> letras, dígitos, <code>$</code> y <code>_</code></li>
+            <li>El primer carácter <strong>no puede ser un dígito</strong></li>
+            <li><strong>Sin espacios</strong> ni caracteres especiales (<code>-</code>, <code>@</code>, <code>!</code>…)</li>
+            <li>No puede ser una <strong>palabra reservada</strong> (<code>int</code>, <code>class</code>, <code>return</code>…)</li>
+            <li>Es <strong>case-sensitive</strong>: <code>nota</code> ≠ <code>Nota</code> ≠ <code>NOTA</code></li>
+            <li>No tiene límite de longitud</li>
+          </ul>
+          <div class="naming-examples">
+            <div class="naming-ex valid">✓ <code>edad</code></div>
+            <div class="naming-ex valid">✓ <code>_total</code></div>
+            <div class="naming-ex valid">✓ <code>$precio</code></div>
+            <div class="naming-ex invalid">✗ <code>2nota</code> — empieza con dígito</div>
+            <div class="naming-ex invalid">✗ <code>mi nota</code> — tiene espacio</div>
+            <div class="naming-ex invalid">✗ <code>class</code> — palabra reservada</div>
+            <div class="naming-ex invalid">✗ <code>es-mayor</code> — guión prohibido</div>
+          </div>
+        </div>
+
+        <div class="naming-card naming-conventions">
+          <div class="naming-card-header">
+            <span class="naming-icon">📐</span>
+            <span>Convenciones recomendadas</span>
+          </div>
+          <div class="conv-table">
+            <div class="conv-row conv-header">
+              <div>¿Qué?</div>
+              <div>Estilo</div>
+              <div>Ejemplo</div>
+            </div>
+            <div class="conv-row">
+              <div>Variables y métodos</div>
+              <div><span class="pill pill-teal">camelCase</span></div>
+              <div><code>nombreAlumno</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Constantes (<code>final</code>)</div>
+              <div><span class="pill pill-amber">UPPER_SNAKE_CASE</span></div>
+              <div><code>MAX_INTENTOS</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Clases e interfaces</div>
+              <div><span class="pill pill-purple">PascalCase</span></div>
+              <div><code>MiClase</code></div>
+            </div>
+            <div class="conv-row">
+              <div>Paquetes</div>
+              <div><span class="pill pill-blue">todo.minúsculas</span></div>
+              <div><code>com.empresa.util</code></div>
+            </div>
+          </div>
+          <div class="card card-accent blue" style="margin-top:1rem">
+            <h3>¿Qué es camelCase?</h3>
+            <p>Las palabras se unen sin espacio y cada palabra (excepto la primera) empieza con mayúscula: <strong>precioFinal</strong>, <strong>nombreCompleto</strong>,
+              <strong>cantidadDeAlumnos</strong>.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="code-block" id="cb-nombres"></div>
+
+      <!-- ── VALIDADOR DE NOMBRES JAVA ── -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">¿Es válido este nombre?</h3>
+      <p style="margin-bottom: 0.9rem; font-size: 0.9rem; color: var(--muted);">
+        Escribí un nombre de variable o constante y el validador te dirá si cumple las reglas de Java.
+      </p>
+
+      <div class="vname-wrap" id="vname-wrap">
+        <div class="vname-input-row">
+          <div class="vname-type-select">
+            <button class="vname-type active" data-type="variable" onclick="setVnameType(this)">variable</button>
+            <button class="vname-type" data-type="constant" onclick="setVnameType(this)">constante (final)</button>
+          </div>
+          <input class="vname-input" id="vname-input" type="text" placeholder="nombreVariable" spellcheck="false" autocomplete="off" oninput="validateName()">
+          <div class="vname-badge" id="vname-badge">—</div>
+        </div>
+
+        <div class="vname-feedback" id="vname-feedback">
+          <div class="vname-rules" id="vname-rules"></div>
+          <div class="vname-suggestion" id="vname-suggestion"></div>
+        </div>
+      </div>
+
+      
+
+      
+
+      <h2>Operadores aritméticos en Java</h2>
+      <div class="pill-row">
+        <span class="pill pill-teal">+ suma</span>
+        <span class="pill pill-teal">- resta</span>
+        <span class="pill pill-teal">* multiplicación</span>
+        <span class="pill pill-teal">/ división</span>
+        <span class="pill pill-teal">% módulo (resto)</span>
+      </div>
+
+      <div class="card card-accent coral">
+        <h3>División entera vs. división real</h3>
+        <p>En Java, <strong>7 / 2 = 3</strong> (división entera, sin decimales) porque ambos operandos son <code>int</code>. Para obtener <strong>3.5</strong>, al menos uno debe ser
+          <code>double</code>: <strong>7.0 / 2</strong> o <strong>(double) 7 / 2</strong>.
+        </p>
+      </div>
+
+      <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem;">Calculadora interactiva</h3>
+      <p style="margin-bottom: 0.75rem; font-size: 0.9rem; color: var(--muted);">Modificá los valores y los resultados se actualizan en tiempo real.</p>
+
+      <div class="op-calc">
+        <div class="op-calc-header">Tiempo real &mdash; editá los números</div>
+        <div class="op-calc-body" id="op-calc-body">
+
+          <!-- SUMA -->
+          <div class="op-row">
+            <div class="op-sym-badge">+</div>
+            <input class="op-num" type="number" value="10" id="a1" oninput="calcOp()">
+            <div class="op-eq">+</div>
+            <input class="op-num" type="number" value="5" id="b1" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-sum">15</div>
+          </div>
+
+          <!-- RESTA -->
+          <div class="op-row">
+            <div class="op-sym-badge">&minus;</div>
+            <input class="op-num" type="number" value="10" id="a2" oninput="calcOp()">
+            <div class="op-eq">&minus;</div>
+            <input class="op-num" type="number" value="5" id="b2" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-sub">5</div>
+          </div>
+
+          <!-- MULTIPLICACIÓN -->
+          <div class="op-row">
+            <div class="op-sym-badge">&times;</div>
+            <input class="op-num" type="number" value="10" id="a3" oninput="calcOp()">
+            <div class="op-eq">&times;</div>
+            <input class="op-num" type="number" value="5" id="b3" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-mul">50</div>
+          </div>
+
+          <!-- DIVISIÓN (int vs double) -->
+          <div class="op-row" id="row-div">
+            <div class="op-sym-badge">/</div>
+            <input class="op-num" type="number" value="10" id="a4" oninput="calcOp()">
+            <div class="op-eq">/</div>
+            <input class="op-num" type="number" value="3" id="b4" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-div">3</div>
+          </div>
+
+          <!-- MÓDULO -->
+          <div class="op-row">
+            <div class="op-sym-badge">%</div>
+            <input class="op-num" type="number" value="10" id="a5" oninput="calcOp()">
+            <div class="op-eq">%</div>
+            <input class="op-num" type="number" value="3" id="b5" oninput="calcOp()">
+            <div class="op-eq">=</div>
+            <div class="op-result" id="r-mod">1</div>
+          </div>
+
+        </div>
+        <div class="op-calc-note" id="div-note">
+          ⚠️ <strong>División entera:</strong> en Java <code style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--teal)">int / int</code> descarta los decimales. El resultado real
+          sería <span id="div-real">3.333...</span>
+        </div>
+      </div>
+
+      
+
+      <h2>Incremento y decremento</h2>
+      <div class="code-block" id="cb-incremento"></div>
+
+      <!-- ── INTÉRPRETE PASO A PASO ── -->
+      <h3 style="margin: 1.75rem 0 0.35rem; font-size: 1rem;">Intérprete paso a paso</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Fijá el valor inicial de <code style="font-family:'DM Mono',monospace;color:var(--teal)">x</code> y ejecutá cada operación de a una. Observá cómo cambia el valor.
+      </p>
+
+      <div class="inc-wrap" id="inc-wrap">
+
+        <!-- Header: valor actual de x -->
+        <div class="inc-header">
+          <span class="inc-label">int x =</span>
+          <input class="inc-x-input" id="inc-x-input" type="number" value="5" oninput="incSetX()" onchange="incSetX()">
+          <span class="inc-label">;</span>
+          <div class="inc-display" id="inc-display">
+            <span class="inc-display-label">x actual</span>
+            <span class="inc-display-val" id="inc-val">5</span>
+          </div>
+          <button class="inc-reset" onclick="incReset()" title="Reiniciar">↺ reset</button>
+        </div>
+
+        <!-- Operaciones -->
+        <div class="inc-ops" id="inc-ops">
+
+          <div class="inc-group-label">Incremento y decremento</div>
+
+          <div class="inc-op" data-op="post++" data-desc="Post-incremento: usa el valor actual de x, luego le suma 1.">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x++</code>
+            <span class="inc-op-desc">post-incremento &nbsp;→ usa x, luego suma 1</span>
+            <span class="inc-op-result" id="res-post++"></span>
+          </div>
+
+          <div class="inc-op" data-op="++pre" data-desc="Pre-incremento: suma 1 a x primero, luego usa el nuevo valor.">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">++x</code>
+            <span class="inc-op-desc">pre-incremento &nbsp;&nbsp;→ suma 1, luego usa x</span>
+            <span class="inc-op-result" id="res-++pre"></span>
+          </div>
+
+          <div class="inc-op" data-op="post--" data-desc="Post-decremento: usa el valor actual de x, luego le resta 1.">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x--</code>
+            <span class="inc-op-desc">post-decremento → usa x, luego resta 1</span>
+            <span class="inc-op-result" id="res-post--"></span>
+          </div>
+
+          <div class="inc-op" data-op="--pre" data-desc="Pre-decremento: resta 1 a x primero, luego usa el nuevo valor.">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">--x</code>
+            <span class="inc-op-desc">pre-decremento &nbsp;→ resta 1, luego usa x</span>
+            <span class="inc-op-result" id="res---pre"></span>
+          </div>
+
+          <div class="inc-group-label" style="margin-top:0.75rem;">Asignación compuesta</div>
+
+          <div class="inc-op" data-op="+=" data-operand="3" data-desc="Equivale a: x = x + 3">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x += <input class="inc-operand" type="number" value="3" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x + n</span>
+            <span class="inc-op-result" id="res-+="></span>
+          </div>
+
+          <div class="inc-op" data-op="-=" data-operand="2" data-desc="Equivale a: x = x - 2">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x -= <input class="inc-operand" type="number" value="2" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x - n</span>
+            <span class="inc-op-result" id="res--="></span>
+          </div>
+
+          <div class="inc-op" data-op="*=" data-operand="4" data-desc="Equivale a: x = x * 4">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x *= <input class="inc-operand" type="number" value="4" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x × n</span>
+            <span class="inc-op-result" id="res-*="></span>
+          </div>
+
+          <div class="inc-op" data-op="/=" data-operand="3" data-desc="Equivale a: x = x / 3 (división entera en Java)">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x /= <input class="inc-operand" type="number" value="3" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x ÷ n (entera)</span>
+            <span class="inc-op-result" id="res-/="></span>
+          </div>
+
+          <div class="inc-op" data-op="%= " data-operand="5" data-desc="Equivale a: x = x % 5 (resto de la división entera)">
+            <button class="inc-btn" onclick="incRun(this)">▶</button>
+            <code class="inc-code">x %= <input class="inc-operand" type="number" value="5" min="-999" max="999"></code>
+            <span class="inc-op-desc">equivale a x = x mod n</span>
+            <span class="inc-op-result" id="res-%="></span>
+          </div>
+
+        </div>
+
+        <!-- Log de ejecución -->
+        <div class="inc-log-wrap">
+          <!-- <div class="inc-log-header">// historial de ejecución</div>
+          <div class="inc-log" id="inc-log">
+            <span style="color:var(--muted);font-size:0.8rem;">Ejecutá una operación para ver el historial…</span>
+          </div> -->
+        </div>
+
+      </div>
+
+      <h2>Lectura de datos por teclado (Clase Scanner)</h2>
+      <p>Para interactuar con el usuario y pedirle datos por la consola, en Java usamos la clase <strong>Scanner</strong>. Esta clase permite leer diferentes tipos de datos desde el teclado de forma muy sencilla.</p>
+
+      <div class="card card-accent teal">
+        <h3>Importar la clase</h3>
+        <p>Como <code>Scanner</code> no es parte del paquete básico, primero debemos importarla al principio del archivo:</p>
+        <div class="code-inline"><span class="kw">import</span> java.util.Scanner;</div>
+      </div>
+
+      <div class="code-block">
+<span class="cm">// 1. Importar e inicializar el Scanner</span>
+<span class="kw">import</span> java.util.Scanner;
+
+<span class="kw">public class</span> EntradaDatos {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        Scanner teclado <span class="op">=</span> <span class="kw">new</span> Scanner(System.in);
+
+        <span class="cm">// 2. Leer un String (texto completo)</span>
+        System.out.<span class="fn">print</span>(<span class="fn">"Ingresá tu nombre completo: "</span>);
+        <span class="kw">String</span> nombre <span class="op">=</span> teclado.<span class="fn">nextLine</span>();
+
+        <span class="cm">// 3. Leer números enteros y decimales</span>
+        System.out.<span class="fn">print</span>(<span class="fn">"Ingresá tu edad: "</span>);
+        <span class="kw">int</span> edad <span class="op">=</span> teclado.<span class="fn">nextInt</span>();
+
+        System.out.<span class="fn">print</span>(<span class="fn">"Ingresá tu altura (ej: 1.75): "</span>);
+        <span class="kw">double</span> altura <span class="op">=</span> teclado.<span class="fn">nextDouble</span>();
+        
+        <span class="cm">// 4. Leer booleanos</span>
+        System.out.<span class="fn">print</span>(<span class="fn">"¿Sos estudiante? (true/false): "</span>);
+        <span class="kw">boolean</span> esEstudiante <span class="op">=</span> teclado.<span class="fn">nextBoolean</span>();
+        
+        <span class="cm">// 5. Siempre es buena práctica cerrar el Scanner al final</span>
+        teclado.<span class="fn">close</span>();
+    }
+}
+      </div>
+
+      <div class="card card-accent amber">
+        <h3>⚠ El problema del buffer (nextLine)</h3>
+        <p>Si usás <code>nextLine()</code> <strong>después</strong> de leer un número (como <code>nextInt()</code> o <code>nextDouble()</code>), el programa "se saltea" la lectura porque lee el <em>Enter</em> (\n) que quedó pendiente del número. Para solucionarlo, agregá un <code>teclado.nextLine();</code> extra después de leer el número para "limpiar" el teclado.</p>
+      </div>
+
+    </section>
+
+
+    <!-- ===== NO PRIMITIVOS ===== -->
+    <section id="noprim" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 02 · Tipos de Referencia</div>
+        <h1>Tipos no primitivos<br>(de referencia)</h1>
+        <p>A diferencia de los primitivos, los tipos de referencia almacenan una <strong>dirección de memoria</strong> (referencia) que apunta al objeto real. Son más flexibles y potentes, pero tienen
+          un costo de memoria mayor.</p>
+      </div>
+
+      <h2>Primitivo vs. Referencia</h2>
+
+      <div class="comparacion-grid">
+        <div class="comp-card comp-prim">
+          <div class="comp-label">Tipo Primitivo</div>
+          <ul>
+            <li>Almacena el valor directamente</li>
+            <li>Vive en el <strong>stack</strong></li>
+            <li>No puede ser <code>null</code></li>
+            <li>No tiene métodos propios</li>
+            <li>Comparación con <code>==</code></li>
+          </ul>
+          <div class="comp-example">int x = 5; <span class="cm">// valor: 5</span></div>
+        </div>
+        <div class="comp-card comp-ref">
+          <div class="comp-label">Tipo de Referencia</div>
+          <ul>
+            <li>Almacena una referencia al objeto</li>
+            <li>El objeto vive en el <strong>heap</strong></li>
+            <li>Puede ser <code>null</code></li>
+            <li>Tiene métodos y atributos</li>
+            <li>Comparación con <code>.equals()</code></li>
+          </ul>
+          <div class="comp-example">String s = "Hola"; <span class="cm">// ref → heap</span></div>
+        </div>
+      </div>
+
+      <h2>String — La clase más usada</h2>
+      <p>Un <strong>String</strong> es una secuencia inmutable de caracteres. En Java, es un objeto de la clase <code>java.lang.String</code>, disponible sin importar nada.</p>
+
+      <div class="code-block" id="cb-string"></div>
+
+      <!-- ── LABORATORIO INTERACTIVO DE STRINGS ── -->
+      <h3 style="margin: 1.75rem 0 0.35rem; font-size: 1rem;">Laboratorio interactivo de Strings</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Experimentá con concatenación y métodos de <code style="font-family:'DM Mono',monospace;color:var(--teal)">String</code> directamente en el navegador.
+      </p>
+
+      <div class="str-lab">
+
+        <!-- Tabs -->
+        <div class="str-tabs">
+          <button class="str-tab active" onclick="strTab(this,'concat')" id="tab-concat">+ Concatenación</button>
+          <button class="str-tab" onclick="strTab(this,'methods')" id="tab-methods">Métodos</button>
+        </div>
+
+        <!-- ── PANEL: CONCATENACIÓN ── -->
+        <div class="str-panel" id="panel-concat">
+          <div class="str-concat-grid">
+
+            <div class="str-field">
+              <label class="str-field-label">String s1</label>
+              <input class="str-input" id="s1" type="text" value="Hola, " placeholder="primer texto" oninput="runConcat()">
+            </div>
+
+            <div class="str-concat-plus">+</div>
+
+            <div class="str-field">
+              <label class="str-field-label">String s2</label>
+              <input class="str-input" id="s2" type="text" value="Mundo!" placeholder="segundo texto" oninput="runConcat()">
+            </div>
+
+          </div>
+
+          <div class="str-result-block" id="concat-result-block">
+            <div class="str-result-label">Resultado &nbsp;<code class="str-mini-code">s1 + s2</code></div>
+            <div class="str-result-val" id="concat-result">"Hola, Mundo!"</div>
+            <div class="str-result-meta" id="concat-meta">length: 12 caracteres</div>
+          </div>
+
+          <div class="str-java-code" id="concat-java">
+            <span class="kw">String</span> s1 = <span class="fn" id="cj-s1">"Hola, "</span>;
+            <br><span class="kw">String</span> s2 = <span class="fn" id="cj-s2">"Mundo!"</span>;
+            <br><span class="kw">String</span> resultado = s1 + s2; <span class="cm">// <span id="cj-res">"Hola, Mundo!"</span></span>
+          </div>
+
+          <div class="str-info-row">
+            <div class="str-info-card" id="ci-len">
+              <div class="str-info-val" id="ci-s1-len">6</div>
+              <div class="str-info-lbl">chars en s1</div>
+            </div>
+            <div class="str-info-card">
+              <div class="str-info-val" id="ci-s2-len">6</div>
+              <div class="str-info-lbl">chars en s2</div>
+            </div>
+            <div class="str-info-card str-info-total">
+              <div class="str-info-val" id="ci-total-len">12</div>
+              <div class="str-info-lbl">total</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PANEL: MÉTODOS ── -->
+        <div class="str-panel" id="panel-methods" style="display:none;">
+          <div class="str-field" style="margin-bottom:1rem;">
+            <label class="str-field-label">String s</label>
+            <input class="str-input" id="sm" type="text" placeholder="escribí un String" oninput="runMethods()">
+            <div class="str-space-viz" id="sm-viz"></div>
+          </div>
+
+          <div class="str-methods-grid" id="str-methods-grid">
+
+            <div class="str-mrow">
+              <code class="str-mname">.length()</code>
+              <span class="str-mresult" id="m-length"></span>
+              <span class="str-mjava" id="mj-length"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.trim()</code>
+              <span class="str-mresult" id="m-trim"></span>
+              <span class="str-mjava" id="mj-trim"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.toUpperCase()</code>
+              <span class="str-mresult" id="m-upper"></span>
+              <span class="str-mjava" id="mj-upper"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.toLowerCase()</code>
+              <span class="str-mresult" id="m-lower"></span>
+              <span class="str-mjava" id="mj-lower"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.charAt(0)</code>
+              <span class="str-mresult" id="m-charat"></span>
+              <span class="str-mjava" id="mj-charat"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.isEmpty()</code>
+              <span class="str-mresult" id="m-empty"></span>
+              <span class="str-mjava" id="mj-empty"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.contains("Mundo")</code>
+              <span class="str-mresult" id="m-contains"></span>
+              <span class="str-mjava" id="mj-contains"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.indexOf("Mundo")</code>
+              <span class="str-mresult" id="m-indexof"></span>
+              <span class="str-mjava" id="mj-indexof"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.substring(0, 4)</code>
+              <span class="str-mresult" id="m-sub"></span>
+              <span class="str-mjava" id="mj-sub"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.replace("Mundo","Java")</code>
+              <span class="str-mresult" id="m-replace"></span>
+              <span class="str-mjava" id="mj-replace"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.equals("hola")</code>
+              <span class="str-mresult" id="m-equals"></span>
+              <span class="str-mjava" id="mj-equals"></span>
+            </div>
+            <div class="str-mrow">
+              <code class="str-mname">.equalsIgnoreCase("hola")</code>
+              <span class="str-mresult" id="m-equalsic"></span>
+              <span class="str-mjava" id="mj-equalsic"></span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      
+
+      
+
+      <h2>Métodos esenciales de String</h2>
+
+      <div class="metodos-grid">
+        <div class="metodo-card">
+          <div class="metodo-name">.length()</div>
+          <div class="metodo-desc">Devuelve la cantidad de caracteres.</div>
+          <div class="code-inline">"Hola".<span class="fn">length</span>() <span class="cm">// 4</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.toUpperCase()</div>
+          <div class="metodo-desc">Convierte todo a mayúsculas.</div>
+          <div class="code-inline">"hola".<span class="fn">toUpperCase</span>() <span class="cm">// "HOLA"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.toLowerCase()</div>
+          <div class="metodo-desc">Convierte todo a minúsculas.</div>
+          <div class="code-inline">"HOLA".<span class="fn">toLowerCase</span>() <span class="cm">// "hola"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.charAt(i)</div>
+          <div class="metodo-desc">Devuelve el carácter en posición i (base 0).</div>
+          <div class="code-inline">"Java".<span class="fn">charAt</span>(<span class="nm">0</span>) <span class="cm">// 'J'</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.substring(a, b)</div>
+          <div class="metodo-desc">Extrae caracteres desde a hasta b (sin incluir b).</div>
+          <div class="code-inline">"Hola".<span class="fn">substring</span>(<span class="nm">1</span>,<span class="nm">3</span>) <span class="cm">// "ol"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.contains(str)</div>
+          <div class="metodo-desc">Devuelve true si contiene la cadena indicada.</div>
+          <div class="code-inline">"Java".<span class="fn">contains</span>(<span class="fn">"av"</span>) <span class="cm">// true</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.replace(a, b)</div>
+          <div class="metodo-desc">Reemplaza todas las ocurrencias de a por b.</div>
+          <div class="code-inline">"aabbaa".<span class="fn">replace</span>(<span class="fn">"a"</span>,<span class="fn">"x"</span>) <span class="cm">// "xxbbxx"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.trim()</div>
+          <div class="metodo-desc">Elimina espacios al inicio y al final.</div>
+          <div class="code-inline">" hola ".<span class="fn">trim</span>() <span class="cm">// "hola"</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.equals(str)</div>
+          <div class="metodo-desc">Compara contenido (no referencia). Siempre usar esto, nunca ==.</div>
+          <div class="code-inline">s1.<span class="fn">equals</span>(s2) <span class="cm">// true/false</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.equalsIgnoreCase(str)</div>
+          <div class="metodo-desc">Igual que equals(), pero ignora mayúsculas y minúsculas.</div>
+          <div class="code-inline">"HOLA".<span class="fn">equalsIgnoreCase</span>(<span class="fn">"hola"</span>) <span class="cm">// true</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.isEmpty()</div>
+          <div class="metodo-desc">Devuelve true si la cadena no tiene caracteres.</div>
+          <div class="code-inline">"".<span class="fn">isEmpty</span>() <span class="cm">// true</span></div>
+        </div>
+        <div class="metodo-card">
+          <div class="metodo-name">.indexOf(str)</div>
+          <div class="metodo-desc">Devuelve el índice de la primera ocurrencia de str, o -1 si no está.</div>
+          <div class="code-inline">"Java".<span class="fn">indexOf</span>(<span class="fn">"v"</span>) <span class="cm">// 2</span></div>
+        </div>
+      </div>
+
+      <h2>Clases envolventes (Wrapper Classes)</h2>
+      <p>Cada tipo primitivo tiene una <strong>clase envolvente</strong> en Java. Permiten tratar primitivos como objetos (necesario en colecciones, generics, etc.).</p>
+
+      <div class="props-grid">
+        <div class="prop-card">
+          <div class="prop-label">Primitivo</div>
+          <div class="prop-value">→ Wrapper</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">byte</div>
+          <div class="prop-value">Byte</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">short</div>
+          <div class="prop-value">Short</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">int</div>
+          <div class="prop-value">Integer</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">long</div>
+          <div class="prop-value">Long</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">float</div>
+          <div class="prop-value">Float</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">double</div>
+          <div class="prop-value">Double</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">char</div>
+          <div class="prop-value">Character</div>
+        </div>
+        <div class="prop-card">
+          <div class="prop-label">boolean</div>
+          <div class="prop-value">Boolean</div>
+        </div>
+      </div>
+
+      <div class="card card-accent teal">
+        <h3>Autoboxing y Unboxing</h3>
+        <p>Java convierte automáticamente entre primitivos y wrappers. Esa conversión automática se llama <strong>autoboxing</strong> (primitivo → objeto) y <strong>unboxing</strong> (objeto →
+          primitivo). Desde Java 5, esto es transparente para el programador.</p>
+      </div>
+
+      <div class="code-block" id="cb-wrapper"></div>
+
+      <!-- ── LABORATORIO INTERACTIVO DE WRAPPERS ── -->
+      <h3 style="margin: 1.75rem 0 0.35rem; font-size: 1rem;">Laboratorio de conversiones (Wrapper Classes)</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        En Java es fundamental saber convertir texto a números y conocer los límites de memoria. Interactuá en tiempo real:
+      </p>
+
+      <div class="wrap-lab">
+        <div class="wrap-grid">
+
+          <!-- Parsing: String a Primitivo -->
+          <div class="wrap-box">
+            <div class="wrap-input-row">
+              <label class="wrap-label">String str =</label>
+              <input class="wrap-input" id="win-str" type="text" value="23" placeholder="Ej: 23" oninput="runWrap()">
+            </div>
+
+            <div class="wrap-methods">
+              <div class="wrap-mrow">
+                <code class="wrap-code">Integer.parseInt(<span class="wrap-arg">str</span>)</code>
+                <div class="wrap-res" id="wres-int"></div>
+              </div>
+              <div class="wrap-mrow">
+                <code class="wrap-code">Double.parseDouble(<span class="wrap-arg">str</span>)</code>
+                <div class="wrap-res" id="wres-double"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Constantes y primitivo a String -->
+          <div class="wrap-box">
+            <div class="wrap-input-row">
+              <label class="wrap-label">double d =</label>
+              <input class="wrap-input" id="win-num" type="number" step="any" placeholder="0.0" oninput="runWrap()">
+            </div>
+
+            <div class="wrap-methods">
+              <div class="wrap-mrow">
+                <code class="wrap-code">Double.toString(<span class="wrap-arg">d</span>)</code>
+                <div class="wrap-res str-val" id="wres-str">"0.0"</div>
+              </div>
+
+              <div class="wrap-sep"></div>
+
+              <div class="wrap-mrow">
+                <code class="wrap-code">Integer.MAX_VALUE</code>
+                <div class="wrap-const-val">-</div> <!-- updated via js -->
+              </div>
+              <div class="wrap-mrow">
+                <code class="wrap-code">Integer.MIN_VALUE</code>
+                <div class="wrap-const-val">-</div> <!-- updated via js -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </section>
+
+    <!-- ===== ARRAYS ===== -->
+    <section id="arrays" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 02 · Tipos de Referencia</div>
+        <h1>Arrays<br>(Arreglos)</h1>
+        <p>Un <strong>array</strong> es una estructura que almacena múltiples valores del <strong>mismo tipo</strong>
+           en posiciones contiguas de memoria. En Java, los arrays son <strong>objetos</strong> — tipos de referencia —
+           incluso cuando contienen tipos primitivos.</p>
+      </div>
+
+      <h2>Declaración e inicialización</h2>
+      <p>Tres formas de crear un array en Java:</p>
+      <div class="code-block" id="cb-arrays-decl"></div>
+
+      <h2>Acceso a elementos y <code>.length</code></h2>
+      <p>Los índices empiezan en <strong>0</strong>. El tamaño del array es <strong>fijo</strong> una vez creado y se consulta con <code>.length</code> (sin paréntesis, no es un método).</p>
+      <div class="code-block" id="cb-arrays-access"></div>
+
+      <!-- VALORES POR DEFECTO -->
+      <h2>Valores por defecto</h2>
+      <p>Al crear un array con <code>new</code>, cada celda se inicializa automáticamente según el tipo:</p>
+      <div class="def-values-wrap">
+        <table class="def-values-table">
+          <thead><tr><th>Tipo del array</th><th>Valor por defecto</th></tr></thead>
+          <tbody>
+            <tr><td><code>int[]</code>, <code>long[]</code>, <code>short[]</code>, <code>byte[]</code></td><td><code>0</code></td></tr>
+            <tr><td><code>double[]</code>, <code>float[]</code></td><td><code>0.0</code></td></tr>
+            <tr><td><code>boolean[]</code></td><td><code>false</code></td></tr>
+            <tr><td><code>char[]</code></td><td><code>'\u0000'</code> (carácter nulo)</td></tr>
+            <tr><td><code>String[]</code> o cualquier objeto</td><td><code>null</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- LABORATORIO INTERACTIVO -->
+      <h3 style="margin:2rem 0 0.35rem;font-size:1rem;">Laboratorio: Visualizador de arrays</h3>
+      <p style="margin-bottom:1rem;font-size:0.9rem;color:var(--muted);">
+        Creá un array, asignale valores y mirá cómo se accede por índice.
+      </p>
+
+      <div class="array-lab">
+        <div class="array-lab-controls">
+          <div class="array-lab-field">
+            <label class="array-lab-label">Tipo</label>
+            <select class="array-lab-select" id="al-type" onchange="runArrayLab()">
+              <option value="int">int</option>
+              <option value="double">double</option>
+              <option value="boolean">boolean</option>
+              <option value="String">String</option>
+            </select>
+          </div>
+          <div class="array-lab-field">
+            <label class="array-lab-label">Tamaño</label>
+            <input class="array-lab-input" id="al-size" type="number" min="1" max="10" value="5" onchange="runArrayLab()">
+          </div>
+          <button class="array-lab-btn" onclick="fillRandom()">🎲 Aleatorio</button>
+        </div>
+
+        <div class="array-viz" id="array-viz"></div>
+
+        <div class="array-lab-access">
+          <label class="array-lab-label">Consultar índice</label>
+          <input class="array-lab-input" id="al-idx" type="number" min="0" max="9" value="0" onchange="accessArrayIdx()">
+          <span class="array-access-result" id="al-result"></span>
+        </div>
+
+        <div class="array-lab-code">
+          <span class="cm">// Java equivalente</span>
+          <code id="al-code"></code>
+        </div>
+      </div>
+
+      <!-- MULTIDIMENSIONALES -->
+      <h2>Arrays multidimensionales</h2>
+      <p>En Java, una matriz es un <strong>array de arrays</strong>. Cada fila es un array independiente y puede tener distinto largo (arrays irregulares o <em>jagged</em>).</p>
+      <div class="code-block" id="cb-arrays-2d"></div>
+
+      <!-- CLASE UTILITARIA -->
+      <h2>Clase utilitaria <code>java.util.Arrays</code></h2>
+      <p>Provee métodos estáticos para operaciones comunes sobre arrays sin necesidad de escribir bucles manualmente:</p>
+      <div class="code-block" id="cb-arrays-util"></div>
+
+    </section>
+
+    <!-- ===== CONVERSIÓN ===== -->
+    <section id="conversion" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 03 · Casting y Conversiones</div>
+        <h1>Conversión<br>entre tipos de datos</h1>
+        <p>En Java, convertir datos de un tipo a otro es una operación frecuente. Según el nivel de riesgo, puede ser <strong>automática</strong> o requerir intervención explícita del programador.</p>
+      </div>
+
+      <h2>Conversión implícita (Widening)</h2>
+      <p>Java convierte automáticamente un tipo "más pequeño" a uno "más grande" sin pérdida de información. No requiere ninguna sintaxis especial.</p>
+
+      <div class="widening-flow">
+        <div class="w-node">byte</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">short</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">int</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">long</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node">float</div>
+        <div class="w-arrow">→</div>
+        <div class="w-node w-highlight">double</div>
+      </div>
+
+      <div class="code-block" id="cb-widening"></div>
+
+      <h2>Conversión explícita — Casting (Narrowing)</h2>
+      <p>Cuando convertís de un tipo "más grande" a uno "más pequeño" puede haber <strong>pérdida de datos</strong>. Debés indicarlo explícitamente con <code>(tipo)</code> para asumir la
+        responsabilidad.</p>
+
+      <div class="card card-accent coral">
+        <h3>⚠ Riesgo de precisión</h3>
+        <p>Al hacer casting de <code>double</code> a <code>int</code>, la parte decimal se <strong>descarta</strong> (no se redondea). Por ejemplo: <code>(int) 9.99</code> devuelve <code>9</code>, no
+          <code>10</code>.
+        </p>
+      </div>
+
+      <div class="code-block" id="cb-casting"></div>
+
+      <h2>Conversión entre String y número</h2>
+      <p>Para procesar entradas del usuario (que siempre llegan como <code>String</code>) necesitás convertirlas a número.</p>
+
+      <div class="code-block" id="cb-parse"></div>
+
+      <h2>Operaciones mixtas y promoción de tipos</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Si un operando es double</h3>
+            <p>El otro operando se convierte automáticamente a <code>double</code>. El resultado es <code>double</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Si un operando es float</h3>
+            <p>El otro se convierte a <code>float</code>. El resultado es <code>float</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Si un operando es long</h3>
+            <p>El otro se convierte a <code>long</code>. El resultado es <code>long</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Si ambos son int o menores</h3>
+            <p>Ambos se promueven a <code>int</code>. El resultado es <code>int</code>. Nunca <code>byte</code> ni <code>short</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Concatenación con String</h2>
+      <div class="card card-accent blue">
+        <h3>El operador + con String</h3>
+        <p>Cuando un operando de <code>+</code> es <code>String</code>, Java convierte el otro a texto automáticamente. Esto puede ser fuente de errores si se mezclan sumas y concatenaciones en la
+          misma expresión.</p>
+      </div>
+
+      <div class="code-block" id="cb-concat"></div>
+
+      <!-- ── LABORATORIO DE CONCATENACIÓN ── -->
+      <h3 style="margin: 1.75rem 0 0.35rem; font-size: 1rem;">Intérprete de Concatenación interactiva</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Experimentá cómo el compilador de Java construye el árbol sintáctico (AST) evaluando estrictamente de <strong>izquierda a derecha</strong> y respetando paréntesis. Probá sumas combinando <code>x</code>, <code>y</code>, números y texto.
+      </p>
+
+      <div class="concat-lab">
+         <div class="cl-top">
+           <div class="cl-vars">
+               <div class="cl-var"><code>int <span style="color:var(--coral)">x</span> = 10;</code></div>
+               <div class="cl-var"><code>int <span style="color:var(--coral)">y</span> = 5;</code></div>
+           </div>
+           
+           <div class="cl-input-box">
+               <label class="cl-label" style="color:var(--pink)">System.out.println<span style="color:var(--text)">(</span></label>
+               <input type="text" id="cl-expr" class="cl-input" value='"Suma: " + x + y' placeholder='ej: "Suma: " + (x + y)' oninput="runCat()">
+               <label class="cl-label">)</label><label class="cl-label" style="color:var(--muted)">;</label>
+           </div>
+         </div>
+         
+         <div class="cl-bottom">
+           <div class="cl-panel">
+               <div class="cl-title">Pasos de compilación (Evaluación de nodos)</div>
+               <div class="cl-steps" id="cl-steps"></div>
+           </div>
+           
+           <div class="cl-panel">
+               <div class="cl-title">Efecto en la consola</div>
+               <div class="cl-out-term" id="cl-out"></div>
+           </div>
+         </div>
+      </div>
+
+      
+
+      
+
+    </section>
+
+    <!-- ===== PRÁCTICA ===== -->
+    <section id="practica" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">15 Ejercicios · Tipos de Datos Java</div>
+        <h1>Práctica:<br>tipos de datos en Java</h1>
+        <p>Respondé cada ejercicio analizando el tipo correcto, el rango necesario y posibles errores.</p>
+      </div>
+
+      <div class="ex-stats">
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-total">20</span><span class="ex-stat-l">ejercicios</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-done">0</span><span class="ex-stat-l">completados</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-pct">0%</span><span class="ex-stat-l">progreso</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterEx('todos',this)">Todos (20)</button>
+        <button class="filter-btn" onclick="filterEx('Básico',this)">Básico (8)</button>
+        <button class="filter-btn" onclick="filterEx('Intermedio',this)">Intermedio (8)</button>
+        <button class="filter-btn" onclick="filterEx('Avanzado',this)">Avanzado (4)</button>
+      </div>
+
+      <div class="ex-list" id="ex-list"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav">
+    <a class="nav-tab" href="../index.html">Algoritmos</a>
+    <button class="nav-tab active" onclick="showSection('primitivos',this)">Primitivos</button>
+    <button class="nav-tab" onclick="showSection('noprim',this)">No Prim.</button>
+    <button class="nav-tab" onclick="showSection('arrays',this)">Arrays</button>
+    <button class="nav-tab" onclick="showSection('conversion',this)">Casting</button>
+    <button class="nav-tab" onclick="showSection('practica',this)">Práctica</button>
+  </nav>  <!-- ── FOOTER ── -->
+  <footer class="page-footer">
+    <p>Tipos de Datos en Java &middot; Prof. Diego Méndez &middot; ITI 2026</p>
+  </footer>  <script src="../js/core/state-manager.js"></script>
+  <script src="../js/utils/ui-utils.js"></script>
+  <script src="../js/utils/copy-code.js"></script>
+  <script src="../js/pages/tipos-de-datos.js"></script>
+</body>
+
+</html>

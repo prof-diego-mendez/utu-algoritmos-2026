@@ -1,0 +1,142 @@
+[
+  {
+    "titulo": "Predecir el output — IF simple",
+    "nivel": "Básico",
+    "tema": "IF simple",
+    "enunciado": "Sin ejecutar el código, indicá qué se imprime en cada caso:\n\nCaso A:\nint temperatura = 35;\nif (temperatura > 30) {\n    System.out.println(\"Hace calor\");\n}\nSystem.out.println(\"Fin\");\n\nCaso B:\nint temperatura = 20;\nif (temperatura > 30) {\n    System.out.println(\"Hace calor\");\n}\nSystem.out.println(\"Fin\");\n\n¿Qué diferencia hay entre los resultados de A y B? ¿Por qué 'Fin' aparece en ambos casos?",
+    "hint": "En el caso A, la condición 35 > 30 es <strong>verdadera</strong>, por lo que el bloque se ejecuta. En el caso B, 20 > 30 es <strong>falsa</strong> y el bloque se omite completamente. En ambos casos, 'Fin' siempre se imprime porque está <em>fuera</em> del bloque if — no depende de la condición."
+  },
+  {
+    "titulo": "Predecir el output — IF-ELSE",
+    "nivel": "Básico",
+    "tema": "IF-ELSE",
+    "enunciado": "Trazá la ejecución del siguiente código para los valores indicados:\n\nint nota = ...;\nif (nota >= 6) {\n    System.out.println(\"Aprobado\");\n} else {\n    System.out.println(\"Desaprobado\");\n}\n\na) nota = 8 → ¿qué se imprime?\nb) nota = 5 → ¿qué se imprime?\nc) nota = 6 → ¿qué se imprime? ¿Por qué?\nd) nota = 0 → ¿qué se imprime?",
+    "hint": "La condición usa <code>>=</code> (mayor o igual). Con nota=6, se cumple 6 >= 6, por lo que se imprime 'Aprobado'. El <code>>=</code> es muy diferente a <code>></code>: incluye el límite del rango. En IF-ELSE <strong>siempre</strong> se ejecuta exactamente una de las dos ramas."
+  },
+  {
+    "titulo": "Operadores relacionales — valores concretos",
+    "nivel": "Básico",
+    "tema": "Operadores relacionales",
+    "enunciado": "Dado int a = 10 y int b = 5, evaluá cada expresión como verdadero (V) o falso (F):\n\na) a > b\nb) a < b\nc) a == b\nd) a != b\ne) a >= 10\nf) b <= 4\ng) a == 10\nh) b == 5\ni) a == b + 5\nj) a - b > 0",
+    "hint": "<code>==</code> es comparación (¿son iguales?), completamente diferente de <code>=</code> que es asignación. Evaluá cada expresión sustituyendo los valores: por ejemplo, <code>a > b</code> es <code>10 > 5</code> que es verdadero. Para el inciso i), <code>b + 5 = 10</code>, entonces <code>a == 10</code> es verdadero."
+  },
+  {
+    "titulo": "El error más común: = vs ==",
+    "nivel": "Básico",
+    "tema": "Errores comunes",
+    "enunciado": "El siguiente código tiene un error muy frecuente. Identificalo y corregilo:\n\nint edad = 18;\nif (edad = 18) {   // ← ¿hay un problema acá?\n    System.out.println(\"Es mayor de edad\");\n}\n\na) ¿Qué hace el operador = en este contexto?\nb) ¿El compilador Java acepta este código?\nc) ¿Qué debería usarse en su lugar?\nd) ¿Por qué este error es más grave en C/C++ que en Java?",
+    "hint": "En Java, <code>=</code> es asignación y <code>==</code> es comparación. Dentro de un <code>if()</code>, debés usar <code>==</code> para comparar. Escribir <code>if(edad = 18)</code> intenta asignar 18 a edad. En Java esto da <strong>error de compilación</strong> porque un <code>int</code> no es un <code>boolean</code>. En C/C++, sí compila (silenciosamente incorrecto)."
+  },
+  {
+    "titulo": "Par o impar",
+    "nivel": "Básico",
+    "tema": "IF-ELSE",
+    "enunciado": "Escribí en Java el código completo que:\n1. Declare una variable int llamada numero con el valor 17.\n2. Use una estructura IF-ELSE para determinar si el número es par o impar.\n3. Imprima el mensaje correspondiente.\n\nRecordá: un número es par si el resto de dividirlo por 2 es 0.\n\nLuego probá mentalmente con numero = 22 y numero = 0.",
+    "hint": "El operador <code>%</code> devuelve el resto de la división entera. Si <code>numero % 2 == 0</code>, el número es par. Para el 0: <code>0 % 2 = 0</code>, así que el cero es par. Esta condición (módulo 2) es una de las más usadas en programación."
+  },
+  {
+    "titulo": "Calificaciones con IF-ELSE-IF",
+    "nivel": "Básico",
+    "tema": "IF-ELSE-IF",
+    "enunciado": "Escribí un programa Java que, dada una nota entre 0 y 10, muestre la calificación descriptiva:\n\n- 9 o 10: 'Sobresaliente'\n- 7 u 8: 'Muy bueno'\n- 6: 'Bueno'\n- 5: 'Regular'\n- Menos de 5: 'Insuficiente'\n\nUsá una estructura IF-ELSE-IF encadenada. ¿Qué pasa con nota = 11 o nota = -1?",
+    "hint": "Empezá con el caso más alto (<code>nota >= 9</code>) y bajá. Con IF-ELSE-IF solo se ejecuta la primera rama verdadera; las demás se saltan automáticamente. Para manejar notas inválidas, podés agregar una verificación inicial antes de la cadena."
+  },
+  {
+    "titulo": "Condiciones compuestas con AND",
+    "nivel": "Básico",
+    "tema": "Operadores lógicos",
+    "enunciado": "Escribí la condición Java (usando &&) para cada caso:\n\na) Una persona puede votar si tiene 18 años o más Y tiene documento válido (<code>boolean tieneDocumento</code>).\nb) Un número está entre 1 y 100 (inclusive en ambos extremos).\nc) Un alumno aprueba si su nota es >= 6 Y tiene asistencia >= 75%.\n\nPara cada uno, indicá las variables necesarias y escribí la condición completa dentro de un if.",
+    "hint": "Para 'entre 1 y 100': <code>numero >= 1 && numero <= 100</code>. Para variables boolean, se usan directamente: <code>tieneDocumento && edad >= 18</code>. El <code>&&</code> exige que <strong>ambas</strong> condiciones sean verdaderas."
+  },
+  {
+    "titulo": "Condiciones compuestas con OR",
+    "nivel": "Básico",
+    "tema": "Operadores lógicos",
+    "enunciado": "Escribí la condición Java (usando ||) para cada caso:\n\na) Un número es múltiplo de 3 O de 5.\nb) Un char es una vocal minúscula (a, e, i, o, u).\nc) Un año es bisiesto si: es divisible por 400, O bien es divisible por 4 Y NO por 100.\n\nPara el inciso c), escribí la expresión booleana completa con los paréntesis necesarios.",
+    "hint": "Múltiplo de 3: <code>n % 3 == 0</code>. Para las vocales, comparás el char con cada una: <code>c == 'a' || c == 'e' || ...</code>. El año bisiesto: <code>(anio % 400 == 0) || (anio % 4 == 0 && anio % 100 != 0)</code>. Los paréntesis son clave por la precedencia."
+  },
+  {
+    "titulo": "Trazar un IF-ELSE-IF encadenado",
+    "nivel": "Intermedio",
+    "tema": "IF-ELSE-IF",
+    "enunciado": "Trazá manualmente la ejecución del siguiente código para cada valor. Indicá qué rama ejecuta y cuál es la salida:\n\nint x = ...;\nString resultado;\n\nif (x > 20)      { resultado = \"mayor que 20\"; }\nelse if (x > 10) { resultado = \"entre 11 y 20\"; }\nelse if (x > 5)  { resultado = \"entre 6 y 10\"; }\nelse             { resultado = \"5 o menos\"; }\n\na) x = 25\nb) x = 15\nc) x = 7\nd) x = 3\ne) x = 10  — ¿qué rama? ¿Por qué?\nf) x = 20  — ¿qué rama? ¿Por qué?",
+    "hint": "El IF-ELSE-IF ejecuta <strong>solo la primera rama verdadera</strong>. Con x=10: <code>10 > 20</code> es false, luego <code>10 > 10</code> es false (10 no es estrictamente mayor que 10), luego <code>10 > 5</code> es true → 'entre 6 y 10'. Con x=20: <code>20 > 20</code> es false, <code>20 > 10</code> es true → 'entre 11 y 20'."
+  },
+  {
+    "titulo": "Comparación de Strings: equals() vs ==",
+    "nivel": "Intermedio",
+    "tema": "Strings",
+    "enunciado": "Analizá los dos fragmentos e indicá cuál es correcto y por qué:\n\n// Fragmento A:\nString color = \"rojo\";\nif (color == \"rojo\") {\n    System.out.println(\"Es rojo\");\n}\n\n// Fragmento B:\nString color = \"rojo\";\nif (color.equals(\"rojo\")) {\n    System.out.println(\"Es rojo\");\n}\n\na) ¿Cuál es el correcto?\nb) ¿Qué compara == en los Strings?\nc) ¿Cómo comparás sin distinción de mayúsculas?",
+    "hint": "Con Strings, <code>==</code> compara <strong>referencias</strong> (si ambas variables apuntan al mismo objeto en memoria), no el contenido. Siempre usá <code>.equals()</code> para comparar el contenido de dos Strings. Para ignorar mayúsculas/minúsculas: <code>.equalsIgnoreCase()</code>."
+  },
+  {
+    "titulo": "Operador ternario",
+    "nivel": "Intermedio",
+    "tema": "Operador ternario",
+    "enunciado": "Reescribí cada IF-ELSE usando el operador ternario (condición ? valorSÍ : valorNO):\n\na) if (edad >= 18) { categoria = \"adulto\"; } else { categoria = \"menor\"; }\nb) if (x > 0)      { signo = \"+\"; } else { signo = \"-\"; }\nc) if (n % 2 == 0) { tipo = \"par\"; } else { tipo = \"impar\"; }\n\nLuego, para cada uno: ¿en qué situaciones preferirías IF-ELSE por sobre el ternario?",
+    "hint": "El operador ternario: <code>String cat = (edad >= 18) ? \"adulto\" : \"menor\";</code>. El ternario es ideal para <strong>asignaciones simples de una sola línea</strong>. Para lógica compleja, múltiples instrucciones o cuando necesitás depurar, IF-ELSE es mucho más legible."
+  },
+  {
+    "titulo": "Debugging: encontrá el error lógico",
+    "nivel": "Intermedio",
+    "tema": "Errores comunes",
+    "enunciado": "El siguiente programa funciona pero tiene un problema de diseño. Identificalo y mejoralo:\n\nint numero = -5;\n\nif (numero > 0) {\n    System.out.println(\"Positivo\");\n}\nif (numero < 0) {\n    System.out.println(\"Negativo\");\n}\nif (numero == 0) {\n    System.out.println(\"Cero\");\n}\n\na) ¿Cuántas condiciones se evalúan?\nb) ¿Qué problema estructural tiene?\nc) Reescribilo con IF-ELSE-IF.",
+    "hint": "El código usa tres <code>if</code> <strong>independientes</strong>: se evalúan las tres condiciones siempre. Con IF-ELSE-IF, se evalúa solo hasta encontrar la primera verdadera. Además, si cambiaras el número dentro de un bloque, podrías entrar en múltiples ramas. La versión con IF-ELSE-IF es más eficiente y segura."
+  },
+  {
+    "titulo": "IF anidados: trazar y simplificar",
+    "nivel": "Intermedio",
+    "tema": "IF anidado",
+    "enunciado": "Trazá el siguiente código para cada combinación de valores, luego reescribilo con un solo IF usando &&:\n\nif (edad >= 18) {\n    if (tieneCarnet) {\n        System.out.println(\"Puede conducir\");\n    } else {\n        System.out.println(\"Mayor, sin carnet\");\n    }\n} else {\n    System.out.println(\"Menor de edad\");\n}\n\na) edad=25, tieneCarnet=true\nb) edad=25, tieneCarnet=false\nc) edad=16, tieneCarnet=true\nd) edad=16, tieneCarnet=false",
+    "hint": "Para la versión con &&: <code>if(edad >= 18 && tieneCarnet) { ... }</code>. Pero el IF anidado permite dar <strong>mensajes de error más específicos</strong> (distinguir entre menor de edad vs. mayor sin carnet), algo que el && no puede lograr directamente."
+  },
+  {
+    "titulo": "Precedencia de operadores lógicos",
+    "nivel": "Intermedio",
+    "tema": "Operadores lógicos",
+    "enunciado": "Evaluá las expresiones (a=true, b=false, c=true). La precedencia es: ! > && > ||.\n\na) a && b || c\nb) a || b && !c\nc) !(a && b) || c\nd) !a || !b && c\ne) (a || b) && (!c || b)\n\nPara cada una: primero aplicá la precedencia implícita, luego agregá paréntesis explícitos que dejen clara la evaluación.",
+    "hint": "Precedencia (mayor a menor): <code>!</code> > <code>&&</code> > <code>||</code>. Así, <code>a && b || c</code> se evalúa como <code>(a && b) || c</code>. Y <code>a || b && c</code> como <code>a || (b && c)</code>. Siempre agregá paréntesis cuando combinás <code>&&</code> y <code>||</code> para evitar bugs silenciosos."
+  },
+  {
+    "titulo": "Diseño: precio de entradas al cine",
+    "nivel": "Intermedio",
+    "tema": "Diseño",
+    "enunciado": "Un cine tiene las siguientes reglas de precio:\n- Menores de 12: $200\n- Entre 12 y 65 (inclusive): $400\n- Mayores de 65: $250\n- Los miércoles: 50% de descuento para todos\n\nEscribí el código Java completo que, dado <code>int edad</code> y <code>boolean esMiercoles</code>, calcule e imprima el precio final de la entrada.",
+    "hint": "Primero calculá el precio base con IF-ELSE-IF según la edad. Luego, con un IF separado, verificá si es miércoles y aplicá el 50% (<code>precio = precio * 0.5</code> o <code>precio /= 2</code>). Separarlos en dos bloques distintos es más limpio que anidarlos."
+  },
+  {
+    "titulo": "Short-circuit evaluation",
+    "nivel": "Intermedio",
+    "tema": "Operadores lógicos",
+    "enunciado": "Java evalúa condiciones en cortocircuito:\n- Con &&: si la izquierda es false, no evalúa la derecha.\n- Con ||: si la izquierda es true, no evalúa la derecha.\n\nAnalizá por qué este código NO lanza NullPointerException aunque texto puede ser null:\n\nString texto = null;\nif (texto != null && texto.length() > 0) {\n    System.out.println(\"Texto válido\");\n}\n\na) ¿Qué pasaría si la condición fuera al revés: <code>texto.length() > 0 && texto != null</code>?\nb) ¿Cuál es la regla práctica para verificar null?",
+    "hint": "Como <code>texto != null</code> es false, Java no evalúa <code>texto.length()</code> gracias al cortocircuito. Si estuvieran al revés, Java intentaría llamar <code>.length()</code> sobre null y lanzaría <code>NullPointerException</code>. La regla: <strong>siempre verificá null primero</strong>, antes de cualquier método sobre la variable."
+  },
+  {
+    "titulo": "IF anidados vs. condiciones compuestas",
+    "nivel": "Avanzado",
+    "tema": "Diseño y refactoring",
+    "enunciado": "Trazá el siguiente código para dia=1, dia=5, dia=9. Luego reescribilo con IF-ELSE-IF sin anidamiento:\n\nif (dia >= 1 && dia <= 7) {\n    if (dia == 1 || dia == 7) {\n        System.out.println(\"Fin de semana\");\n    } else {\n        System.out.println(\"Día hábil\");\n    }\n} else {\n    System.out.println(\"Día inválido\");\n}\n\n¿Cuál versión preferís? Justificá con argumentos concretos.",
+    "hint": "La versión plana con IF-ELSE-IF: <code>if(dia < 1 || dia > 7) { inválido } else if(dia == 1 || dia == 7) { fin de semana } else { hábil }</code>. Ambas son correctas pero la plana reduce la profundidad de anidamiento, lo que facilita lectura y depuración."
+  },
+  {
+    "titulo": "Análisis de código con condiciones múltiples",
+    "nivel": "Avanzado",
+    "tema": "Análisis de código",
+    "enunciado": "Analizá el siguiente código y respondé todas las preguntas:\n\nint x = 5, y = 10, z = 3;\n\nif (x < y && y > z) {\n    if (x + z == y - 2) {\n        System.out.println(\"A\");\n    } else {\n        System.out.println(\"B\");\n    }\n} else if (x == z * 2 - 1) {\n    System.out.println(\"C\");\n} else {\n    System.out.println(\"D\");\n}\n\na) ¿Qué se imprime con los valores iniciales?\nb) ¿Para qué valor de x se imprimiría 'C'?\nc) Cambiá y a 7: ¿qué se imprime ahora?\nd) ¿Qué condición debe cumplirse para imprimir 'D'?",
+    "hint": "Con x=5,y=10,z=3: <code>5 < 10 && 10 > 3</code> = true. Dentro: <code>5+3=8</code> y <code>10-2=8</code>, entonces <code>8==8</code> es true → imprime 'A'. Para 'C': la primera condición debe ser false Y <code>x == z*2-1</code> → <code>x == 5</code>. Para 'D': ambas condiciones externas deben ser false."
+  },
+  {
+    "titulo": "Redundancias en condiciones",
+    "nivel": "Avanzado",
+    "tema": "Diseño y refactoring",
+    "enunciado": "El siguiente código funciona pero tiene redundancias. Identificá al menos 3 y reescribilo de forma óptima:\n\nif (edad >= 0 && edad <= 150) {\n    if (edad >= 0 && edad < 12) {\n        System.out.println(\"Niño\");\n    } else if (edad >= 12 && edad < 18) {\n        System.out.println(\"Adolescente\");\n    } else if (edad >= 18 && edad < 65) {\n        System.out.println(\"Adulto\");\n    } else if (edad >= 65 && edad <= 150) {\n        System.out.println(\"Adulto mayor\");\n    }\n} else {\n    System.out.println(\"Edad inválida\");\n}",
+    "hint": "Redundancias: 1) Dentro del IF externo (<code>edad >= 0</code> ya garantizado), la condición <code>edad >= 0</code> en el primer IF interno siempre es verdadera. 2) En IF-ELSE-IF, si <code>edad < 12</code> fue false, entonces <code>edad >= 12</code> en la siguiente rama está garantizado — es redundante. 3) <code>edad <= 150</code> en el último else-if está cubierta por el IF externo."
+  },
+  {
+    "titulo": "Sistema de clasificación bancaria",
+    "nivel": "Avanzado",
+    "tema": "Diseño",
+    "enunciado": "Diseñá e implementá un sistema que clasifique a un cliente bancario:\n\nVariables: int saldo, int aniosCliente, boolean estaBloqueado, double tasaInteres\n\nReglas:\n1. Si estaBloqueado: imprimir 'CUENTA BLOQUEADA' y terminar.\n2. Si saldo < 0: aplicar recargo de 20% a la tasa.\n3. Si aniosCliente >= 10: aplicar descuento del 10% a la tasa.\n4. Clasificar el saldo:\n   - < 0: 'En descubierto'\n   - 0 a 9999: 'Básica'\n   - 10000 a 49999: 'Silver'\n   - 50000 o más: 'Gold'\n5. Imprimir: categoría, tasa final y saldo.\n\nConsiderá qué pasa si aplican reglas 2 y 3 a la vez.",
+    "hint": "Empezá con el check de bloqueo (usá <code>return</code> para salir del método o envolvé el resto en un <code>else</code>). Las reglas 2 y 3 son dos IF independientes (no IF-ELSE) porque pueden aplicarse simultáneamente. La clasificación del saldo usa IF-ELSE-IF. Si aplican ambas reglas: <code>tasa = tasa * 1.20 * 0.90</code>."
+  }
+]

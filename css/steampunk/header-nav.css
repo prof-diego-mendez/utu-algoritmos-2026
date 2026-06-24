@@ -1,0 +1,118 @@
+/* ============================================================
+   STEAMPUNK HEADER
+   Metallic sheen, double border, industrial nav
+   ============================================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, rgba(26, 20, 16, 0.97) 0%, rgba(42, 34, 24, 0.95) 100%);
+  border-bottom: 2px solid var(--brass-dark);
+  box-shadow: 0 1px 0 var(--border2),
+              inset 0 1px 0 rgba(180, 150, 100, 0.05);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--brass);
+}
+
+.logo-icon {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--brass), var(--brass-dark));
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--sepia-dark);
+  font-weight: 800;
+  border: 1px solid var(--copper);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.logo-sub {
+  color: var(--bronze);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 2px;
+}
+
+.nav-tab {
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-tab:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+
+.nav-tab-link {
+  padding: 6px 16px;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-tab-link:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+
+.nav-tab-link:hover {
+  color: var(--brass);
+  background: var(--accent-glow);
+}
+
+.nav-tab:hover {
+  color: var(--brass);
+  background: var(--accent-glow);
+}
+
+.nav-tab.active {
+  color: var(--brass);
+  background: var(--accent-glow);
+  border-color: rgba(212, 168, 68, 0.3);
+  box-shadow: inset 0 1px 0 rgba(212, 168, 68, 0.15);
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "titulo": "Predecir el output — WHILE simple",
+    "nivel": "Básico",
+    "tema": "WHILE simple",
+    "enunciado": "Sin ejecutar el código, indicá qué imprime y cuántas veces se ejecuta el cuerpo del bucle:\n\nint i = 1;\nwhile (i <= 5) {\n    System.out.println(\"Vuelta: \" + i);\n    i++;\n}\nSystem.out.println(\"Fin\");\n\na) ¿Cuántas líneas imprime en total?\nb) ¿Qué valor tiene i cuando el bucle termina?\nc) ¿Qué pasaría si la condición fuera i < 5 en lugar de i <= 5?",
+    "hint": "El bucle ejecuta mientras <code>i <= 5</code>. Con i=1,2,3,4,5 la condición es verdadera (5 veces). Cuando i llega a 6, la condición es false y el bucle termina. 'Fin' se imprime <strong>una sola vez</strong>, ya que está fuera del bucle. Con <code>i < 5</code> solo se imprimirían 4 vueltas (i=1,2,3,4)."
+  },
+  {
+    "titulo": "WHILE con condición nunca verdadera",
+    "nivel": "Básico",
+    "tema": "WHILE simple",
+    "enunciado": "Analizá el siguiente código:\n\nint x = 10;\nwhile (x < 5) {\n    System.out.println(\"Dentro del bucle\");\n    x++;\n}\nSystem.out.println(\"Después del bucle: \" + x);\n\na) ¿Se ejecuta alguna vez el cuerpo del bucle? ¿Por qué?\nb) ¿Qué imprime el programa?\nc) ¿En qué se diferencia esto de un DO-WHILE con la misma condición?\nd) ¿Qué valor tiene x al finalizar?",
+    "hint": "La condición <code>10 < 5</code> es <strong>false desde el principio</strong>. El WHILE evalúa la condición <em>antes</em> de entrar, así que el cuerpo nunca se ejecuta. Solo se imprime 'Después del bucle: 10'. Con DO-WHILE, el cuerpo se ejecutaría al menos una vez antes de verificar la condición."
+  },
+  {
+    "titulo": "Las 4 partes del WHILE",
+    "nivel": "Básico",
+    "tema": "Estructura del WHILE",
+    "enunciado": "Todo WHILE correcto tiene 4 partes. Identificalas en este código y explicá qué pasaría si faltara cada una:\n\nint contador = 0;          // parte 1\nwhile (contador < 10) {    // parte 2\n    System.out.println(contador);  // parte 3\n    contador++;            // parte 4\n}\n\na) ¿Qué nombre recibe cada parte?\nb) ¿Qué ocurre si se omite la inicialización (parte 1)?\nc) ¿Qué ocurre si se omite la actualización (parte 4)?\nd) ¿Cuántas veces se evalúa la condición (parte 2) durante toda la ejecución?",
+    "hint": "Las 4 partes: 1) <strong>Inicialización</strong> (variable de control), 2) <strong>Condición</strong> (cuándo continuar), 3) <strong>Cuerpo</strong> (lo que hace cada iteración), 4) <strong>Actualización</strong> (modificar la variable para eventualmente terminar). Sin actualización → bucle infinito. La condición se evalúa 11 veces: 10 veces true + 1 vez false al salir."
+  },
+  {
+    "titulo": "Detectar bucle infinito",
+    "nivel": "Básico",
+    "tema": "Errores comunes",
+    "enunciado": "Identificá cuáles de estos bucles son infinitos y por qué. Para los que lo son, escribí la corrección:\n\n// Bucle A:\nint n = 0;\nwhile (n < 10) {\n    System.out.println(n);\n}\n\n// Bucle B:\nint m = 10;\nwhile (m > 0) {\n    m++;\n}\n\n// Bucle C:\nint k = 1;\nwhile (k != 10) {\n    k += 2;\n}",
+    "hint": "A: infinito — falta <code>n++</code> para actualizar. B: infinito — <code>m++</code> hace que m crezca, nunca baja a 0. C: infinito — k va 1,3,5,7,9,11... y nunca vale exactamente 10 (siempre salta de 9 a 11). Para C, usá <code>k < 10</code> como condición en lugar de <code>k != 10</code>."
+  },
+  {
+    "titulo": "Escribir un WHILE: del 1 al 10",
+    "nivel": "Básico",
+    "tema": "WHILE simple",
+    "enunciado": "Escribí en Java el código completo que use un bucle WHILE para:\n\na) Imprimir los números del 1 al 10, uno por línea.\nb) Imprimir los números pares del 2 al 20.\nc) Imprimir los múltiplos de 3 menores que 30.\n\nPara cada caso, identificá las 4 partes del bucle (inicialización, condición, cuerpo, actualización).",
+    "hint": "Para el inciso a): <code>int i=1; while(i<=10){ System.out.println(i); i++; }</code>. Para los pares: empezá en 2 y sumá 2 en cada iteración (<code>i+=2</code>). Para múltiplos de 3: empezá en 3, sumá 3. Alternativamente, podés recorrer todos los números y usar un <code>if</code> dentro."
+  },
+  {
+    "titulo": "Cuenta regresiva",
+    "nivel": "Básico",
+    "tema": "WHILE simple",
+    "enunciado": "Escribí un bucle WHILE que imprima una cuenta regresiva del 10 al 1 y luego imprima '¡Despegue!'.\n\nEjemplo de salida:\n10\n9\n8\n...\n1\n¡Despegue!\n\nLuego respondé:\na) ¿Qué cambia si usás i-- en lugar de i++?\nb) ¿Cómo modificarías el código para que cuente de 20 a 0 de a 2?",
+    "hint": "Iniciá <code>i = 10</code>, condición <code>i >= 1</code>, en el cuerpo imprimís i y luego hacés <code>i--</code>. Para contar de 20 a 0 de a 2: iniciá en 20, condición <code>i >= 0</code> y actualizá con <code>i -= 2</code>."
+  },
+  {
+    "titulo": "Suma de los primeros N números",
+    "nivel": "Básico",
+    "tema": "Acumulador",
+    "enunciado": "Escribí el código Java que calcule la suma de los números del 1 al N usando un WHILE.\n\nDado N = 5, la suma es 1 + 2 + 3 + 4 + 5 = 15.\n\na) Declarás dos variables: una para el contador (i) y otra para la suma acumulada (suma).\nb) ¿Con qué valor inicial debe empezar suma?\nc) Calculá manualmente la suma para N = 10.\nd) ¿Cómo modificarías el código para sumar solo los números pares?",
+    "hint": "El patrón acumulador: <code>int suma = 0; int i = 1; while(i <= N){ suma += i; i++; }</code>. La variable <code>suma</code> arranca en 0 (neutro de la suma). Para N=10 el resultado es 55 (fórmula: N*(N+1)/2). Para solo pares: agregá <code>if(i % 2 == 0)</code> antes de acumular."
+  },
+  {
+    "titulo": "WHILE vs DO-WHILE: ¿cuándo usar cada uno?",
+    "nivel": "Básico",
+    "tema": "DO-WHILE",
+    "enunciado": "Para cada situación, indicá si usarías WHILE o DO-WHILE y justificá:\n\na) Leer un número del usuario hasta que ingrese uno entre 1 y 100.\nb) Imprimir los elementos de una lista (puede estar vacía).\nc) Mostrar un menú de opciones y pedir selección hasta que elija 'Salir'.\nd) Recorrer un arreglo de N elementos.\ne) Intentar conectar a un servidor con hasta 3 reintentos.\n\nPara cada DO-WHILE: ¿qué garantiza el 'al menos una vez'?",
+    "hint": "DO-WHILE: situaciones donde siempre necesitás hacer la acción al menos una vez antes de verificar (menú, validación de entrada, reintentos). WHILE: cuando la condición podría ser false desde el principio (lista vacía, arreglo vacío). La clave: ¿tiene sentido ejecutar el cuerpo 0 veces?"
+  },
+  {
+    "titulo": "Factorial con WHILE",
+    "nivel": "Intermedio",
+    "tema": "Acumulador",
+    "enunciado": "El factorial de N (escrito N!) es el producto de todos los enteros del 1 al N. Por ejemplo: 5! = 5×4×3×2×1 = 120.\n\nEscribí el código Java que calcule el factorial de un número N usando un bucle WHILE.\n\na) ¿Con qué valor inicial debe empezar la variable producto? ¿Por qué?\nb) Calculá manualmente 6! paso a paso, mostrando el valor de producto en cada iteración.\nc) ¿Qué resultado devuelve con N=0? (0! = 1 por definición matemática)\nd) ¿Qué problema hay con N muy grande (ej: N=20) y por qué?",
+    "hint": "Patrón producto: <code>int producto = 1;</code> (neutro de la multiplicación, no 0). El bucle multiplica por cada número. Con N=0 el while no ejecuta y retorna el valor inicial 1, que coincide con 0!=1. Para N=20: 20! ≈ 2.4×10¹⁸, que supera el rango de <code>int</code> y <code>long</code> — necesitarías <code>BigInteger</code>."
+  },
+  {
+    "titulo": "DO-WHILE: validación de entrada",
+    "nivel": "Intermedio",
+    "tema": "DO-WHILE",
+    "enunciado": "Escribí el código Java que use DO-WHILE para simular la validación de un número ingresado por el usuario. El número debe estar entre 1 y 100 (inclusive).\n\nSimulá la entrada con un arreglo de prueba:\nint[] entradas = {-5, 200, 50}; // el usuario va 'ingresando' estos valores\n\na) ¿Por qué DO-WHILE es más natural que WHILE para este patrón?\nb) ¿Qué imprime si la primera entrada ya es válida?\nc) ¿Cuántas iteraciones hace con el arreglo de prueba dado?",
+    "hint": "El patrón de validación con DO-WHILE: <code>do { leer valor; } while(valor < 1 || valor > 100);</code>. Es más natural porque siempre debés pedir el dato al menos una vez antes de verificarlo. Con el arreglo dado: lee -5 (inválido), lee 200 (inválido), lee 50 (válido) → 3 iteraciones."
+  },
+  {
+    "titulo": "break: encontrar el primer divisor",
+    "nivel": "Intermedio",
+    "tema": "break",
+    "enunciado": "Escribí el código Java que encuentre el primer divisor de un número N mayor que 1 (es decir, el divisor primo más pequeño).\n\nUsá un WHILE con break para detenerte al encontrarlo.\n\na) Para N = 36: ¿cuál es el primer divisor? ¿Cuántas iteraciones hace el bucle?\nb) Para N = 37 (primo): ¿cuál es el resultado?\nc) ¿Qué pasa con N = 2?\nd) ¿Cómo podés saber si un número es primo usando este enfoque?",
+    "hint": "Recorrés desde i=2 hasta i<=N. Si <code>N % i == 0</code>, encontraste el divisor → imprimís y hacés <code>break</code>. Para un primo como 37, el único divisor encontrado es el mismo 37. Para saber si es primo: si el primer divisor encontrado ES el propio número, entonces es primo."
+  },
+  {
+    "titulo": "continue: filtrar con WHILE",
+    "nivel": "Intermedio",
+    "tema": "continue",
+    "enunciado": "Trazá la ejecución del siguiente código y explicá cada salto:\n\nint i = 0;\nwhile (i < 10) {\n    i++;\n    if (i % 3 == 0) {\n        continue;\n    }\n    System.out.println(i);\n}\n\na) ¿Qué números se imprimen?\nb) ¿Qué efecto tiene el continue aquí?\nc) Reescribí el código sin usar continue (usando un IF-ELSE).\nd) ¿Por qué i++ está ANTES del continue? ¿Qué pasaría si estuviera después?",
+    "hint": "Se imprimen: 1,2,4,5,7,8,10 (se saltean los múltiplos de 3: 3,6,9). El <code>continue</code> salta el resto del cuerpo y va directo a la condición del while. Si <code>i++</code> estuviera después del continue, cuando i=3 se saltaría el incremento → bucle infinito en i=3."
+  },
+  {
+    "titulo": "Suma de dígitos",
+    "nivel": "Intermedio",
+    "tema": "Acumulador",
+    "enunciado": "Escribí el código Java que calcule la suma de los dígitos de un número entero positivo usando WHILE.\n\nPor ejemplo: 1234 → 1+2+3+4 = 10.\n\nPista: el operador % 10 da el último dígito, y / 10 elimina el último dígito.\n\na) Trazá el algoritmo para N = 9875, mostrando el valor de N y suma en cada iteración.\nb) ¿Funciona correctamente para N = 0?\nc) ¿Funciona para números negativos? ¿Cómo lo corregirías?",
+    "hint": "El algoritmo: <code>while(n > 0){ suma += n % 10; n /= 10; }</code>. Para 9875: suma=5 (n=987), suma=12 (n=98), suma=20 (n=9), suma=29 (n=0) → termina. Para n=0 el while no ejecuta y suma queda en 0 (correcto). Para negativos: tomá valor absoluto antes: <code>n = Math.abs(n);</code>."
+  },
+  {
+    "titulo": "Secuencia de Fibonacci",
+    "nivel": "Intermedio",
+    "tema": "Secuencias",
+    "enunciado": "La sucesión de Fibonacci comienza: 0, 1, 1, 2, 3, 5, 8, 13, 21...\nCada número es la suma de los dos anteriores.\n\nEscribí el código Java que imprima los primeros N términos de Fibonacci usando WHILE.\n\na) Con N = 8, ¿cuál es el último número impreso?\nb) ¿Cuántas variables necesitás para calcular la secuencia?\nc) Modificá el código para que imprima los términos de Fibonacci menores a 100 (sin saber de antemano cuántos son).",
+    "hint": "Necesitás dos variables: <code>a=0, b=1</code>. En cada iteración imprimís <code>a</code>, luego calculás el siguiente: <code>int temp = a+b; a = b; b = temp;</code>. Para la variante 'menores a 100': cambiá la condición del while a <code>while(a < 100)</code> en lugar de contar iteraciones."
+  },
+  {
+    "titulo": "Patrón con bucles anidados",
+    "nivel": "Intermedio",
+    "tema": "Bucles anidados",
+    "enunciado": "Trazá y explicá la salida del siguiente código:\n\nint i = 1;\nwhile (i <= 3) {\n    int j = 1;\n    while (j <= 3) {\n        System.out.print(i + \"x\" + j + \"=\" + (i*j) + \"  \");\n        j++;\n    }\n    System.out.println();\n    i++;\n}\n\na) ¿Cuántas veces se ejecuta el cuerpo del bucle interno en total?\nb) ¿Cuántas veces se evalúa la condición del bucle interno?\nc) Modificá el código para imprimir la tabla de multiplicar de un número N.",
+    "hint": "El bucle externo itera 3 veces (i=1,2,3). Por cada iteración del externo, el interno itera 3 veces (j=1,2,3). Total de ejecuciones del cuerpo interno: 3×3=9. La condición del interno se evalúa 4 veces por cada iteración del externo (3 verdaderas + 1 false para salir) = 4×3=12 veces."
+  },
+  {
+    "titulo": "Máximo en una secuencia (centinela)",
+    "nivel": "Intermedio",
+    "tema": "Centinela",
+    "enunciado": "El patrón centinela usa un valor especial para indicar el fin de la entrada.\n\nSimulá con un arreglo: int[] datos = {4, 7, 2, 9, 1, 5, -1};\nEl valor -1 es el centinela (fin de secuencia).\n\nEscribí el código que use WHILE para encontrar el mayor valor de la secuencia (sin incluir el centinela).\n\na) ¿Con qué valor inicial del máximo es correcto empezar?\nb) ¿Qué pasa si todos los números son negativos (excepto el centinela)?\nc) ¿Qué pasa si la primera entrada ya es el centinela?",
+    "hint": "Iniciá <code>max = Integer.MIN_VALUE</code> (o el primer elemento antes del bucle). Lee el primer dato, luego <code>while(dato != -1){ if(dato > max) max = dato; leer siguiente; }</code>. Si todos son negativos, el centinela (-1) puede confundirse con datos — mejor usar un valor fuera del rango esperado como centinela."
+  },
+  {
+    "titulo": "Algoritmo de Euclides (MCD)",
+    "nivel": "Avanzado",
+    "tema": "Algoritmos clásicos",
+    "enunciado": "El algoritmo de Euclides calcula el Máximo Común Divisor (MCD) de dos números:\n- Mientras b no sea 0: reemplazá a por b, y b por el resto de a÷b\n- El MCD es el valor final de a\n\nEscribí el código Java que implemente este algoritmo con WHILE.\n\na) Trazá el algoritmo para MCD(48, 18) mostrando a y b en cada iteración.\nb) ¿Cuántas iteraciones hace?\nc) ¿Qué relación tiene el MCD con el MCM (Mínimo Común Múltiplo)?\nd) ¿Por qué este algoritmo es eficiente incluso para números muy grandes?",
+    "hint": "Traza para MCD(48,18): a=48,b=18 → temp=18, a=18, b=48%18=12 → a=12, b=18%12=6 → a=6, b=12%6=0 → sale. MCD=6 en 3 iteraciones. La relación MCM: <code>MCM(a,b) = a*b / MCD(a,b)</code>. El algoritmo es logarítmico: el número de iteraciones crece muy lentamente con el tamaño de los números."
+  },
+  {
+    "titulo": "Análisis de bucles anidados",
+    "nivel": "Avanzado",
+    "tema": "Análisis de código",
+    "enunciado": "Sin ejecutar el código, calculá cuántas veces se imprime '*' en cada caso:\n\n// Caso A:\nint i = 0;\nwhile (i < N) {\n    int j = 0;\n    while (j < N) {\n        System.out.print(\"*\");\n        j++;\n    }\n    i++;\n}\n\n// Caso B:\nint i = 0;\nwhile (i < N) {\n    int j = 0;\n    while (j < i) {\n        System.out.print(\"*\");\n        j++;\n    }\n    i++;\n}\n\na) Resultado para N=4 en ambos casos.\nb) Expresión general en función de N para cada caso.\nc) ¿Qué figura formaría la salida del caso B si se imprime newline al terminar el bucle interno?",
+    "hint": "Caso A: el interno ejecuta N veces por cada iteración del externo → N×N = N² veces. Para N=4: 16. Caso B: cuando i=0 el interno no ejecuta, i=1 → 1 vez, i=2 → 2 veces, i=3 → 3 veces. Total = 0+1+2+3 = N*(N-1)/2 = 6 para N=4. El caso B dibuja un triángulo rectángulo de asteriscos."
+  },
+  {
+    "titulo": "Refactorizar: eliminar redundancias del WHILE",
+    "nivel": "Avanzado",
+    "tema": "Diseño y refactoring",
+    "enunciado": "El siguiente código funciona pero tiene problemas de diseño. Identificá al menos 4 problemas y reescribilo de forma óptima:\n\nint numero = 1;\nint suma = 0;\nboolean continuar = true;\nwhile (continuar == true) {\n    if (numero > 100) {\n        continuar = false;\n    } else {\n        suma = suma + numero;\n        numero = numero + 1;\n    }\n    if (continuar == false) {\n        break;\n    }\n}\nSystem.out.println(\"Suma: \" + suma);\n\nLa intención del código es sumar los números del 1 al 100.",
+    "hint": "Problemas: 1) <code>continuar == true</code> es redundante, podría ser solo <code>continuar</code>. 2) El break es innecesario con el if-else. 3) La variable boolean <code>continuar</code> es innecesaria — la condición puede ir directo en el while. 4) <code>suma = suma + numero</code> puede simplificarse a <code>suma += numero</code>. Versión óptima: <code>while(numero <= 100){ suma += numero++; }</code>."
+  },
+  {
+    "titulo": "Diseño: sistema de menú con DO-WHILE",
+    "nivel": "Avanzado",
+    "tema": "Diseño",
+    "enunciado": "Diseñá e implementá un sistema de menú para una caja registradora simplificada.\n\nVariables disponibles: double total = 0, int opcion, double precio\n\nEl menú debe:\n1. Mostrar opciones: 1-Agregar producto, 2-Ver total, 3-Aplicar descuento 10%, 4-Cobrar y salir\n2. Repetir hasta que se elija opción 4\n3. Con opción 1: sumar precio al total\n4. Con opción 3: solo aplicar si total > 0\n5. Al salir: mostrar total final\n\nSimulá las entradas con un arreglo de opciones y precios. Indicá qué estructura de control usás en cada parte y por qué.",
+    "hint": "El menú principal usa DO-WHILE (siempre se muestra al menos una vez). El switch o IF-ELSE maneja las opciones. Para el descuento, un IF verifica que total > 0. Al salir (opción 4), el DO-WHILE termina naturalmente cuando la condición es false. Simulá: opcion=1 precio=150, opcion=1 precio=300, opcion=3, opcion=2, opcion=4."
+  }
+]

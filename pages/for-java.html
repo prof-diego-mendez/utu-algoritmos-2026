@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estructura FOR en Java · Programación I</title>
+  <meta name="description" content="Estructura repetitiva FOR en Java: FOR clásico, FOR-EACH, bucles anidados, patrones y 20 ejercicios prácticos. Programación I – Prof. Diego Méndez – ITI 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">⟳</div>
+      <div>
+        <span>Estructura FOR</span>
+        <span class="logo-sub"> · Programación I · Prof. Diego Méndez · ITI 2026</span>
+      </div>
+    </div>
+    <nav class="nav-tabs" role="tablist" aria-label="Navegación principal">
+      <a class="nav-tab-link" href="../index.html">← Inicio</a>
+      <a class="nav-tab-link" href="while-java.html">WHILE</a>
+      <a class="nav-tab active" href="#intro"    role="tab" aria-selected="true">FOR</a>
+      <a class="nav-tab"       href="#foreach"  role="tab" aria-selected="false">FOR-EACH</a>
+      <a class="nav-tab"       href="#avanzado" role="tab" aria-selected="false">Avanzado</a>
+      <a class="nav-tab"       href="#practica" role="tab" aria-selected="false">Práctica</a>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== SECCIÓN 1: FOR ================================ -->
+    <section id="intro" class="section active">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 06 · Estructuras de Control</div>
+        <h1>Estructura repetitiva<br><em>FOR</em> en Java</h1>
+        <p>El <code>for</code> es el bucle más compacto de Java: concentra la <strong>inicialización, condición y actualización</strong> en una sola línea. Es ideal cuando sabés de antemano cuántas veces vas a iterar.</p>
+      </div>
+
+      <h2>Sintaxis y primer ejemplo</h2>
+      <p>Las tres partes del encabezado van separadas por <code>;</code> dentro de los paréntesis. El cuerpo entre llaves se ejecuta en cada iteración.</p>
+
+      <div class="card card-accent blue">
+        <h3>Sintaxis general</h3>
+        <p><code>for (inicialización; condición; actualización) { cuerpo }</code></p>
+        <p>Las tres partes son opcionales individualmente (se puede omitir cualquiera dejando el <code>;</code>), pero la lógica del bucle debe seguir siendo correcta.</p>
+      </div>
+
+      <div class="code-block" id="cb-for-basic"></div>
+
+      <!-- ANATOMÍA VISUAL DEL FOR -->
+      <h2>Anatomía del FOR: las 3 partes</h2>
+      <p>Cada parte cumple un rol específico y se ejecuta en un momento distinto del ciclo de vida del bucle:</p>
+
+      <div class="for-anatomy">
+        <div class="for-anatomy-prefix">for (</div>
+        <div class="for-anatomy-parts">
+          <div class="for-anatomy-part">
+            <span class="fap-num fap-num-1">① init</span>
+            <span class="fap-code"><span class="kw">int</span> i <span class="op">=</span> <span class="nm">1</span></span>
+            <span class="fap-name">Inicialización</span>
+            <span class="fap-desc">Declara y asigna la variable de control.</span>
+            <span class="fap-freq">Se ejecuta 1 sola vez, al entrar al for.</span>
+          </div>
+          <div class="for-anatomy-part">
+            <span class="fap-num fap-num-2">② cond</span>
+            <span class="fap-code">i <span class="op">&lt;=</span> <span class="nm">100</span></span>
+            <span class="fap-name">Condición</span>
+            <span class="fap-desc">Booleana evaluada antes de cada iteración. Si es false, el for termina.</span>
+            <span class="fap-freq">Se evalúa N+1 veces (N true + 1 false).</span>
+          </div>
+          <div class="for-anatomy-part">
+            <span class="fap-num fap-num-3">③ update</span>
+            <span class="fap-code">i<span class="op">++</span></span>
+            <span class="fap-name">Actualización</span>
+            <span class="fap-desc">Modifica la variable de control al final de cada iteración.</span>
+            <span class="fap-freq">Se ejecuta N veces (una por iteración).</span>
+          </div>
+        </div>
+        <div class="for-anatomy-suffix">) { ... }</div>
+      </div>
+
+      <!-- VARIANTES DEL FOR -->
+      <h2>Variantes del FOR</h2>
+      <p>La actualización no tiene que ser siempre <code>i++</code>. Puede ser cualquier expresión que acerque el bucle a su fin:</p>
+
+      <div class="for-variants-grid">
+        <div class="for-variant-card">
+          <div class="fvc-label">Ascendente (paso 1)</div>
+          <div class="fvc-code"><span class="kw">for</span>(<span class="kw">int</span> i=<span class="nm">1</span>; i&lt;=<span class="nm">10</span>; i<span class="op">++</span>)</div>
+          <div class="fvc-result">→ 1 2 3 4 5 6 7 8 9 10</div>
+        </div>
+        <div class="for-variant-card">
+          <div class="fvc-label">Decreciente (paso -1)</div>
+          <div class="fvc-code"><span class="kw">for</span>(<span class="kw">int</span> i=<span class="nm">10</span>; i&gt;=<span class="nm">1</span>; i<span class="op">--</span>)</div>
+          <div class="fvc-result">→ 10 9 8 7 6 5 4 3 2 1</div>
+        </div>
+        <div class="for-variant-card">
+          <div class="fvc-label">Paso de 2 (pares)</div>
+          <div class="fvc-code"><span class="kw">for</span>(<span class="kw">int</span> i=<span class="nm">0</span>; i&lt;=<span class="nm">10</span>; i<span class="op">+=2</span>)</div>
+          <div class="fvc-result">→ 0 2 4 6 8 10</div>
+        </div>
+        <div class="for-variant-card">
+          <div class="fvc-label">Paso multiplicativo</div>
+          <div class="fvc-code"><span class="kw">for</span>(<span class="kw">int</span> p=<span class="nm">1</span>; p&lt;=<span class="nm">1024</span>; p<span class="op">*=2</span>)</div>
+          <div class="fvc-result">→ 1 2 4 8 16 … 1024</div>
+        </div>
+      </div>
+
+      <div class="code-block" id="cb-for-variations"></div>
+
+      <!-- SIMULADOR FOR -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">Simulador FOR interactivo</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Ajustá inicio, fin y paso y observá exactamente cuántas iteraciones genera el bucle.
+      </p>
+
+      <div class="wgt">
+        <div class="wgt-header dot-blue">
+          <span class="wgt-title">Simulador FOR — iteraciones en tiempo real</span>
+        </div>
+        <div class="wgt-body">
+          <div class="for-sim-inputs">
+            <div class="for-sim-field">
+              <label>Inicio (init)</label>
+              <input type="number" id="fs-ini" value="1" oninput="runForSim()">
+            </div>
+            <div class="for-sim-field">
+              <label>Fin (condición)</label>
+              <input type="number" id="fs-fin" value="10" oninput="runForSim()">
+            </div>
+            <div class="for-sim-field">
+              <label>Paso (update)</label>
+              <input type="number" id="fs-paso" value="1" oninput="runForSim()">
+            </div>
+          </div>
+          <div class="for-sim-body">
+            <div class="for-sim-code-preview" id="for-sim-code-preview">
+              <!-- built by JS -->
+            </div>
+            <div class="for-sim-panel loop-sim-panel" id="for-sim-panel">
+              <!-- built by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOR VS WHILE -->
+      <h2>FOR vs WHILE: ¿cuándo usar cada uno?</h2>
+      <p>Los dos bucles son <strong>equivalentes en poder</strong>: todo FOR puede escribirse como WHILE y viceversa. La elección es una cuestión de claridad y convención:</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon" style="color:var(--blue); font-family:'DM Mono',monospace; font-size:0.9rem">for</div>
+          <div class="card-title">Usá FOR cuando…</div>
+          <div class="card-body">Sabés de antemano <strong>cuántas veces</strong> vas a iterar. Recorrés un arreglo, contás hasta N, iterás un rango fijo. El FOR agrupa las 3 partes visualmente en una línea.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="color:var(--teal); font-family:'DM Mono',monospace; font-size:0.9rem">while</div>
+          <div class="card-title">Usá WHILE cuando…</div>
+          <div class="card-body">La cantidad de iteraciones <strong>no se conoce</strong> de antemano y depende de una condición dinámica. Leer hasta EOF, esperar una respuesta válida, procesar hasta centinela.</div>
+        </div>
+      </div>
+
+      <div class="code-block" id="cb-for-vs-while"></div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 2: FOR-EACH =========================== -->
+    <section id="foreach" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 06 · FOR mejorado</div>
+        <h1>FOR-EACH:<br>el FOR mejorado</h1>
+        <p>El <strong>FOR mejorado</strong> (o for-each) es una sintaxis simplificada para recorrer arreglos y colecciones. Elimina la variable de índice y el riesgo de acceder fuera de rango.</p>
+      </div>
+
+      <h2>Sintaxis y comparación</h2>
+      <p>En lugar de manejar el índice manualmente, el FOR-EACH itera directamente sobre cada elemento. Es más legible cuando no necesitás la posición.</p>
+
+      <div class="card card-accent teal">
+        <h3>Sintaxis del FOR-EACH</h3>
+        <p><code>for (Tipo variable : coleccion) { cuerpo }</code></p>
+        <p>Se lee: <em>"para cada <code>variable</code> en <code>coleccion</code>"</em>. El tipo debe coincidir con el tipo de los elementos.</p>
+      </div>
+
+      <div class="code-block" id="cb-foreach"></div>
+
+      <h2>¿Cuándo usar FOR clásico y cuándo FOR-EACH?</h2>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Situación</th>
+                <th>FOR clásico</th>
+                <th>FOR-EACH</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Solo leer elementos</td>
+                <td>Funciona</td>
+                <td><span class="pill pill-teal">Preferido</span></td>
+              </tr>
+              <tr>
+                <td>Modificar elementos del arreglo</td>
+                <td><span class="pill pill-teal">Necesario</span></td>
+                <td>No puede (trabaja con copia)</td>
+              </tr>
+              <tr>
+                <td>Necesitás el índice (<code>i</code>)</td>
+                <td><span class="pill pill-teal">Necesario</span></td>
+                <td>No disponible</td>
+              </tr>
+              <tr>
+                <td>Recorrer en orden inverso</td>
+                <td><span class="pill pill-teal">Necesario</span></td>
+                <td>No puede</td>
+              </tr>
+              <tr>
+                <td>Acceder a posición adyacente (<code>arr[i+1]</code>)</td>
+                <td><span class="pill pill-teal">Necesario</span></td>
+                <td>No puede</td>
+              </tr>
+              <tr>
+                <td>Recorrer parcialmente</td>
+                <td><span class="pill pill-teal">Necesario</span></td>
+                <td>Solo con <code>break</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card card-accent amber">
+        <h3>⚠ El FOR-EACH no modifica el arreglo original</h3>
+        <p>Cuando hacés <code>for(int n : arr)</code>, la variable <code>n</code> es una <strong>copia</strong> de cada elemento, no una referencia al elemento original. Escribir <code>n = n * 2</code> dentro del bucle no cambia el arreglo. Para modificar los valores necesitás el FOR clásico con índice.</p>
+      </div>
+
+      <h2>FOR-EACH con colecciones</h2>
+      <p>El FOR-EACH no se limita a arreglos: funciona con cualquier clase que implemente <code>Iterable</code>, como <code>ArrayList</code>, <code>HashSet</code> y otras colecciones de Java.</p>
+
+      <div class="card">
+        <div class="code-wrap">
+          <div class="code-header">
+            <div class="code-dot"></div><div class="code-dot"></div><div class="code-dot"></div>
+            <span class="code-filename">ForEachColecciones.java</span>
+          </div>
+          <pre class="code-content"><span class="kw">import</span> java.util.ArrayList;
+
+ArrayList&lt;String&gt; nombres = <span class="kw">new</span> ArrayList&lt;&gt;();
+nombres.<span class="fn">add</span>(<span class="str">"Ana"</span>);
+nombres.<span class="fn">add</span>(<span class="str">"Bruno"</span>);
+nombres.<span class="fn">add</span>(<span class="str">"Carla"</span>);
+
+<span class="cm">// FOR clásico con ArrayList (usando índice)</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i &lt; nombres.<span class="fn">size</span>(); i++) {
+    System.out.<span class="fn">println</span>(nombres.<span class="fn">get</span>(i));
+}
+
+<span class="cm">// FOR-EACH — más limpio y legible</span>
+<span class="kw">for</span> (<span class="kw">String</span> nombre : nombres) {
+    System.out.<span class="fn">println</span>(nombre);
+}</pre>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Con arreglos primitivos</h3>
+            <p>Usá el tipo primitivo: <code>for(int n : arr)</code>, <code>for(double d : valores)</code>, <code>for(boolean b : flags)</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Con arreglos de objetos</h3>
+            <p>Usá el tipo de clase: <code>for(String s : palabras)</code>, <code>for(int[] fila : matriz)</code> para matrices.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Con colecciones</h3>
+            <p>Funciona con cualquier <code>ArrayList</code>, <code>LinkedList</code>, <code>HashSet</code>: misma sintaxis, sin importar el tipo de colección.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 3: AVANZADO ========================== -->
+    <section id="avanzado" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 06 · Técnicas Avanzadas</div>
+        <h1>Técnicas avanzadas<br>con FOR</h1>
+        <p>FOR anidados para procesar estructuras bidimensionales, los patrones más usados en programación, generador visual de patrones y los errores más frecuentes.</p>
+      </div>
+
+      <!-- FOR ANIDADOS -->
+      <h2>FOR anidados</h2>
+      <p>Un FOR puede contener otro FOR en su cuerpo. Por cada iteración del externo, el interno <strong>se ejecuta completo</strong>. Son la herramienta principal para procesar matrices y generar patrones.</p>
+
+      <div class="code-block" id="cb-nested-for"></div>
+
+      <div class="card card-accent blue">
+        <h3>Contar iteraciones en FOR anidados</h3>
+        <p>Si el externo itera <code>M</code> veces y el interno <code>N</code> veces, el cuerpo del interno se ejecuta <strong>M × N</strong> veces en total. Para un triángulo donde el interno va de 1 a i (dependiente del externo), el total es 1 + 2 + ... + N = N*(N+1)/2.</p>
+      </div>
+
+      <!-- PATRONES -->
+      <h2>Patrones de programación con FOR</h2>
+      <p>Estos cuatro patrones cubren la enorme mayoría de los problemas que se resuelven con bucles:</p>
+
+      <div class="code-block" id="cb-for-patterns"></div>
+
+      <!-- GENERADOR DE PATRONES -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">Generador de patrones con FOR anidado</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Seleccioná el tipo y el tamaño para ver el patrón generado por el FOR anidado.
+      </p>
+
+      <div class="wgt">
+        <div class="wgt-header dot-accent">
+          <span class="wgt-title">Generador de patrones — FOR anidado</span>
+          <div class="wgt-ctrl">
+            <label>N =</label>
+            <input type="number" id="pat-n" value="5" min="1" max="10" oninput="runPattern()">
+            <select id="pat-tipo" onchange="runPattern()" style="background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:4px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:0.8rem;outline:none;">
+              <option value="triangulo">Triángulo</option>
+              <option value="invertido">Triángulo invertido</option>
+              <option value="piramide">Pirámide</option>
+              <option value="cuadrado">Cuadrado</option>
+            </select>
+          </div>
+        </div>
+        <div class="wgt-body" style="padding:1.25rem;">
+          <div class="pat-output" id="pat-output"></div>
+          <div class="pat-stats" id="pat-stats"></div>
+        </div>
+      </div>
+
+      <!-- CONVERSOR FOR ↔ WHILE -->
+      <h2>Conversor FOR ↔ WHILE</h2>
+      <p>Toda estructura FOR tiene una estructura WHILE equivalente exacta. El conversor muestra las dos formas lado a lado para que puedas ver la correspondencia entre sus partes.</p>
+
+      <div class="wgt">
+        <div class="wgt-header dot-teal">
+          <span class="wgt-title">Conversor FOR ↔ WHILE</span>
+          <div class="wgt-ctrl">
+            <label>ini</label>
+            <input type="number" id="fc-ini"  value="1"  style="width:60px" oninput="runForConv()">
+            <label>fin</label>
+            <input type="number" id="fc-fin"  value="10" style="width:60px" oninput="runForConv()">
+            <label>paso</label>
+            <input type="number" id="fc-paso" value="1"  style="width:60px" oninput="runForConv()">
+          </div>
+        </div>
+        <div class="wgt-body" style="padding:0">
+          <div class="for-conv-grid">
+            <div class="for-conv-side">
+              <div class="for-conv-label lbl-for">FOR</div>
+              <div class="for-conv-code" id="for-conv-for">—</div>
+            </div>
+            <div class="for-conv-side">
+              <div class="for-conv-label lbl-while">WHILE equivalente</div>
+              <div class="for-conv-code" id="for-conv-while">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ERRORES COMUNES -->
+      <h2>Errores comunes — incorrecto vs. correcto</h2>
+
+      <div class="error-list">
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Off-by-one: un elemento de más o de menos</div>
+            <div class="error-code">
+              <span class="kw">int</span>[] arr = {<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">3</span>,<span class="nm">4</span>,<span class="nm">5</span>};<br>
+              <span class="cm">// arr.length = 5, índices válidos: 0-4</span><br>
+              <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i <span class="op bad">&lt;=</span> arr.length; i++) {<br>
+              &nbsp;&nbsp;System.out.println(arr[<span class="bad">i</span>]);<br>
+              }<br>
+              <span class="cm">// Cuando i=5: arr[5] → ArrayIndexOutOfBoundsException</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Condición correcta con &lt;</div>
+            <div class="error-code">
+              <span class="kw">int</span>[] arr = {<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">3</span>,<span class="nm">4</span>,<span class="nm">5</span>};<br>
+              <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i <span class="op good">&lt;</span> arr.length; i++) {<br>
+              &nbsp;&nbsp;System.out.println(arr[i]);<br>
+              }<br>
+              <span class="cm">// i va de 0 a 4 → acceso seguro</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Modificar la variable de control en el cuerpo</div>
+            <div class="error-code">
+              <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i <span class="op">&lt;</span> <span class="nm">10</span>; i++) {<br>
+              &nbsp;&nbsp;<span class="bad">i++</span>; <span class="cm">// doble incremento: salta elementos</span><br>
+              &nbsp;&nbsp;System.out.println(i);<br>
+              }<br>
+              <span class="cm">// Imprime: 1 3 5 7 9 (salta los pares)</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Control de paso en el encabezado</div>
+            <div class="error-code">
+              <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i <span class="op">&lt;</span> <span class="nm">10</span>; i<span class="op good">+=2</span>) {<br>
+              &nbsp;&nbsp;System.out.println(i);<br>
+              }<br>
+              <span class="cm">// Imprime: 0 2 4 6 8 (intención clara)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Redeclarar variable del FOR fuera de su alcance</div>
+            <div class="error-code">
+              <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i <span class="op">&lt;</span> <span class="nm">5</span>; i++) {<br>
+              &nbsp;&nbsp;System.out.println(i);<br>
+              }<br>
+              System.out.println(<span class="bad">i</span>); <span class="cm">// Error: i no existe aquí</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Declarar fuera si se necesita después</div>
+            <div class="error-code">
+              <span class="kw">int</span> <span class="good">i</span> = <span class="nm">0</span>; <span class="cm">// scope ampliado</span><br>
+              <span class="kw">for</span> (; i <span class="op">&lt;</span> <span class="nm">5</span>; i++) {<br>
+              &nbsp;&nbsp;System.out.println(i);<br>
+              }<br>
+              System.out.println(<span class="good">i</span>); <span class="cm">// → 5 (válido)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Acumulador con valor inicial incorrecto</div>
+            <div class="error-code">
+              <span class="cm">// Buscar el máximo de un arreglo</span><br>
+              <span class="kw">int</span> max = <span class="bad">0</span>; <span class="cm">// falla si todos son negativos</span><br>
+              <span class="kw">for</span> (<span class="kw">int</span> n : arr) {<br>
+              &nbsp;&nbsp;<span class="kw">if</span> (n &gt; max) max = n;<br>
+              }<br>
+              <span class="cm">// Con arr={-5,-3,-8}: max queda en 0 (incorrecto)</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Inicializar con el primer elemento</div>
+            <div class="error-code">
+              <span class="kw">int</span> max = arr[<span class="nm">0</span>]; <span class="cm">// correcto para cualquier arreglo</span><br>
+              <span class="kw">for</span> (<span class="kw">int</span> n : arr) {<br>
+              &nbsp;&nbsp;<span class="kw">if</span> (n &gt; max) max = n;<br>
+              }<br>
+              <span class="cm">// Con arr={-5,-3,-8}: max = -3 (correcto)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BUENAS PRÁCTICAS -->
+      <h2>Buenas prácticas</h2>
+
+      <div class="best-practices">
+        <div class="bp-item">
+          <div class="bp-icon">①</div>
+          <div class="bp-content">
+            <h4>Usá <code>i &lt; arr.length</code>, no <code>i &lt;= arr.length - 1</code></h4>
+            <p>La primera forma es más clara y menos propensa a errores. Además, si el arreglo está vacío (<code>length = 0</code>), la condición es false desde el inicio y el bucle no ejecuta.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">②</div>
+          <div class="bp-content">
+            <h4>No modificues la variable de control dentro del cuerpo</h4>
+            <p>Cambiá <code>i</code> solo en la parte de actualización del encabezado. Modificarla en el cuerpo también hace el código muy difícil de leer y genera bugs sutiles.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">③</div>
+          <div class="bp-content">
+            <h4>Preferí FOR-EACH cuando no necesitás el índice</h4>
+            <p>Si solo leés los valores y no necesitás la posición, el FOR-EACH es más legible y elimina el riesgo de <code>ArrayIndexOutOfBoundsException</code>.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">④</div>
+          <div class="bp-content">
+            <h4>Sacá del for todo lo que no cambia por iteración</h4>
+            <p>Si calculás <code>arr.length</code> o llamás un método costoso en la condición, Java lo evalúa en <em>cada</em> iteración. Guardar el resultado en una variable antes del for mejora la performance.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">⑤</div>
+          <div class="bp-content">
+            <h4>Limitá los FOR anidados a 2 niveles como máximo</h4>
+            <p>Tres o más niveles de anidamiento son difíciles de razonar. Si lo necesitás, extraé el bucle más interno a un método con un nombre descriptivo.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 4: PRÁCTICA ========================== -->
+    <section id="practica" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">20 Ejercicios · Estructura FOR en Java</div>
+        <h1>Práctica:<br>estructura FOR en Java</h1>
+        <p>Ejercicios graduados desde predicción de outputs hasta algoritmos clásicos como Bubble Sort y números primos. Cada nivel construye sobre el anterior.</p>
+      </div>
+
+      <div class="ex-stats">
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-total">20</span><span class="ex-stat-l">ejercicios</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-done">0</span><span class="ex-stat-l">completados</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-pct">0%</span><span class="ex-stat-l">progreso</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterEx('todos',this)">Todos (20)</button>
+        <button class="filter-btn" onclick="filterEx('Básico',this)">Básico (8)</button>
+        <button class="filter-btn" onclick="filterEx('Intermedio',this)">Intermedio (8)</button>
+        <button class="filter-btn" onclick="filterEx('Avanzado',this)">Avanzado (4)</button>
+      </div>
+
+      <div class="ex-list" id="ex-list"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav">
+    <a class="nav-tab-link" href="../index.html">← Inicio</a>
+    <button class="nav-tab active"  onclick="showSection('intro')">FOR</button>
+    <button class="nav-tab"         onclick="showSection('foreach')">FOR-EACH</button>
+    <button class="nav-tab"         onclick="showSection('avanzado')">Avanzado</button>
+    <button class="nav-tab"         onclick="showSection('practica')">Práctica</button>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>Estructura FOR en Java &middot; Prof. Diego Méndez &middot; ITI 2026</p>
+  </footer>
+
+  <script src="../js/core/state-manager.js"></script>
+  <script src="../js/utils/ui-utils.js"></script>
+  <script src="../js/utils/copy-code.js"></script>
+  <script src="../js/pages/for-java.js"></script>
+</body>
+
+</html>

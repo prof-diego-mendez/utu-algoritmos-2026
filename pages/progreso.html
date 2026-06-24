@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Progreso · Programación I</title>
+  <meta name="description" content="Seguimiento de tu progreso en todos los módulos de Programación I">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+
+<body>
+
+  <div class="progress-dashboard">
+    <a href="../index.html" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Volver al inicio
+    </a>
+
+    <div class="dashboard-header">
+      <h1>Tu Progreso</h1>
+      <p>Seguimiento detallado de tu avance en todos los módulos</p>
+    </div>
+
+    <!-- Overall Progress -->
+    <div class="overall-progress">
+      <div class="overall-percentage" id="overall-percentage">0%</div>
+      <div class="overall-label">Progreso Total</div>
+      <div class="overall-bar">
+        <div class="overall-bar-fill" id="overall-bar" style="width: 0%"></div>
+      </div>
+      <div class="overall-stats">
+        <div class="overall-stat">
+          <div class="overall-stat-n" id="total-completed">0</div>
+          <div class="overall-stat-l">Ejercicios<br>Completados</div>
+        </div>
+        <div class="overall-stat">
+          <div class="overall-stat-n" id="total-exercises">120</div>
+          <div class="overall-stat-l">Total<br>Ejercicios</div>
+        </div>
+        <div class="overall-stat">
+          <div class="overall-stat-n" id="total-answers">0</div>
+          <div class="overall-stat-l">Respuestas<br>Guardadas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module Breakdown -->
+    <div class="modules-breakdown">
+
+      <!-- Algoritmos -->
+      <div class="module-progress-card module-algoritmos">
+        <div class="module-progress-header">
+          <div class="module-progress-icon">λ</div>
+          <div class="module-progress-info">
+            <div class="module-progress-title">Algoritmos y Fundamentos</div>
+            <div class="module-progress-subtitle">20 ejercicios · Pseudocódigo y estructuras</div>
+          </div>
+        </div>
+        <div class="module-progress-bar">
+          <div class="module-progress-bar-fill" id="algo-bar" style="width: 0%"></div>
+        </div>
+        <div class="module-progress-stats">
+          <span><span id="algo-completed">0</span>/20 completados</span>
+          <span id="algo-percentage">0%</span>
+        </div>
+        <a href="algoritmos-index.html" class="module-progress-link">
+          Ir al módulo
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Variables -->
+      <div class="module-progress-card module-variables">
+        <div class="module-progress-header">
+          <div class="module-progress-icon">📦</div>
+          <div class="module-progress-info">
+            <div class="module-progress-title">Variables y Operaciones</div>
+            <div class="module-progress-subtitle">20 ejercicios · Sandbox interactivo</div>
+          </div>
+        </div>
+        <div class="module-progress-bar">
+          <div class="module-progress-bar-fill" id="variables-bar" style="width: 0%"></div>
+        </div>
+        <div class="module-progress-stats">
+          <span><span id="variables-completed">0</span>/20 completados</span>
+          <span id="variables-percentage">0%</span>
+        </div>
+        <a href="variables.html" class="module-progress-link">
+          Ir al módulo
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Java -->
+      <div class="module-progress-card module-java">
+        <div class="module-progress-header">
+          <div class="module-progress-icon">☕</div>
+          <div class="module-progress-info">
+            <div class="module-progress-title">Tipos de Datos en Java</div>
+            <div class="module-progress-subtitle">20 ejercicios · Tipos primitivos y wrappers</div>
+          </div>
+        </div>
+        <div class="module-progress-bar">
+          <div class="module-progress-bar-fill" id="java-bar" style="width: 0%"></div>
+        </div>
+        <div class="module-progress-stats">
+          <span><span id="java-completed">0</span>/20 completados</span>
+          <span id="java-percentage">0%</span>
+        </div>
+        <a href="tipos-de-datos.html" class="module-progress-link">
+          Ir al módulo
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- IF -->
+      <div class="module-progress-card module-if">
+        <div class="module-progress-header">
+          <div class="module-progress-icon">🔀</div>
+          <div class="module-progress-info">
+            <div class="module-progress-title">Estructura IF en Java</div>
+            <div class="module-progress-subtitle">20 ejercicios · Condicionales y operadores</div>
+          </div>
+        </div>
+        <div class="module-progress-bar">
+          <div class="module-progress-bar-fill" id="if-bar" style="width: 0%"></div>
+        </div>
+        <div class="module-progress-stats">
+          <span><span id="if-completed">0</span>/20 completados</span>
+          <span id="if-percentage">0%</span>
+        </div>
+        <a href="if-java.html" class="module-progress-link">
+          Ir al módulo
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- FOR -->
+      <div class="module-progress-card module-for">
+        <div class="module-progress-header">
+          <div class="module-progress-icon">🔁</div>
+          <div class="module-progress-info">
+            <div class="module-progress-title">Estructura FOR en Java</div>
+            <div class="module-progress-subtitle">20 ejercicios · Bucles definidos</div>
+          </div>
+        </div>
+        <div class="module-progress-bar">
+          <div class="module-progress-bar-fill" id="for-bar" style="width: 0%"></div>
+        </div>
+        <div class="module-progress-stats">
+          <span><span id="for-completed">0</span>/20 completados</span>
+          <span id="for-percentage">0%</span>
+        </div>
+        <a href="for-java.html" class="module-progress-link">
+          Ir al módulo
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- WHILE -->
+      <div class="module-progress-card module-while">
+        <div class="module-progress-header">
+          <div class="module-progress-icon">🔄</div>
+          <div class="module-progress-info">
+            <div class="module-progress-title">Estructura WHILE en Java</div>
+            <div class="module-progress-subtitle">20 ejercicios · Bucles condicionales</div>
+          </div>
+        </div>
+        <div class="module-progress-bar">
+          <div class="module-progress-bar-fill" id="while-bar" style="width: 0%"></div>
+        </div>
+        <div class="module-progress-stats">
+          <span><span id="while-completed">0</span>/20 completados</span>
+          <span id="while-percentage">0%</span>
+        </div>
+        <a href="while-java.html" class="module-progress-link">
+          Ir al módulo
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Reset Section -->
+    <div class="reset-section">
+      <button class="reset-btn" onclick="resetProgress()">
+        🗑️ Reiniciar todo mi progreso
+      </button>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:0.5rem">
+        Esta acción no se puede deshacer. Se borrarán todas tus respuestas y ejercicios completados.
+      </p>
+    </div>
+  </div>
+
+  <!-- State Manager -->  
+  <!-- ── FOOTER ── -->
+  <footer class="page-footer">
+    <p>Mi Progreso &mdash; Prof. Diego Méndez &middot; ITI 2026</p>
+  </footer>  <script src="../js/core/state-manager.js"></script>
+  <script src="../js/pages/progreso.js"></script>
+</body>
+
+</html>

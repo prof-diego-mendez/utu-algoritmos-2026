@@ -1,0 +1,555 @@
+/* ── RESPONSIVE for sandbox and page-scroll ── */
+@media(max-width: 580px) {
+  .sandbox-body { grid-template-columns: 1fr; }
+  .sandbox-input-area {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media(max-width: 640px) {
+  .page-nav { padding: 0 1rem; }
+  .page-nav-links .page-nav-link {
+    padding: 6px 8px;
+    font-size: 0.6875rem;
+  }
+  .hero-scroll { padding: 2.5rem 0 2rem; }
+  .hero-scroll h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PRINT STYLES
+   Optimized for printing exercises, theory, and documentation
+   Students can print content with proper formatting and ink savings
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media print {
+  /* ── GLOBAL PRINT RESETS ─────────────────────────────────────── */
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  html {
+    font-size: 12pt;
+  }
+  
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #000;
+    background: #fff;
+  }
+  
+  /* ── LAYOUT ─────────────────────────────────────────────────── */
+  .main,
+  .page-scroll {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* ── HIDE NON-ESSENTIAL ELEMENTS ────────────────────────────── */
+  .site-header,
+  .mobile-nav,
+  .hamburger-btn,
+  .nav-overlay,
+  .page-nav,
+  .page-footer,
+  .landing-hero,
+  .modules-section,
+  .stats-section,
+  .landing-footer,
+  .filter-row,
+  .filter-btn,
+  .ex-controls,
+  .work-area-toggle,
+  .ex-body,
+  .hint-box,
+  .check-btn,
+  .btn-save,
+  .btn-clear,
+  .saved-msg,
+  .sandbox,
+  .sandbox-run,
+  .sandbox-clear-btn,
+  .code-copy,
+  .toast-container,
+  .loading-overlay,
+  .progress-wrap,
+  .ex-stats,
+  .prog-count,
+  .prog-bar-wrap,
+  .prog-dots,
+  nav[role="tablist"],
+  button[onclick*="showSection"],
+  a[href^="#"],
+  .skip-link {
+    display: none !important;
+  }
+  
+  /* ── LINKS ─────────────────────────────────────────────────── */
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+  
+  /* Don't show URLs for internal links */
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  
+  /* ── TYPOGRAPHY ────────────────────────────────────────────── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #000;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    margin-top: 0;
+  }
+  
+  h2 {
+    font-size: 18pt;
+    font-weight: bold;
+    border-bottom: 2pt solid #000;
+    padding-bottom: 0.25em;
+  }
+  
+  h3 {
+    font-size: 14pt;
+    font-weight: bold;
+  }
+  
+  p {
+    font-size: 11pt;
+    line-height: 1.6;
+    margin-bottom: 1em;
+    text-align: justify;
+  }
+  
+  /* ── CARDS ─────────────────────────────────────────────────── */
+  .card {
+    background: #fff;
+    border: 1pt solid #ccc;
+    border-radius: 0;
+    padding: 1em;
+    margin: 1em 0;
+    page-break-inside: avoid;
+  }
+  
+  .card-accent {
+    border-left: 4pt solid #666;
+    border-radius: 0;
+  }
+  
+  /* ── CODE BLOCKS ───────────────────────────────────────────── */
+  .code-block,
+  pre,
+  code {
+    font-family: 'Courier New', 'Lucida Console', monospace;
+    font-size: 9pt;
+    background: #f5f5f5 !important;
+    border: 1pt solid #ddd;
+    border-radius: 0;
+    padding: 0.75em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #333;
+  }
+  
+  .code-block {
+    margin: 1em 0;
+    page-break-inside: avoid;
+  }
+  
+  /* Syntax highlighting colors for print */
+  .kw { color: #000080; font-weight: bold; }  /* Keywords */
+  .fn { color: #006600; }  /* Functions */
+  .cm { color: #666; font-style: italic; }  /* Comments */
+  .nm { color: #000080; }  /* Numbers */
+  .op { color: #666; }  /* Operators */
+  .str { color: #006600; }  /* Strings */
+  
+  /* ── LISTS ─────────────────────────────────────────────────── */
+  ul, ol {
+    margin: 0.5em 0;
+    padding-left: 2em;
+  }
+  
+  li {
+    margin-bottom: 0.5em;
+    page-break-inside: avoid;
+  }
+  
+  /* ── TABLES ────────────────────────────────────────────────── */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    page-break-inside: avoid;
+  }
+  
+  th, td {
+    border: 1pt solid #000;
+    padding: 0.5em;
+    text-align: left;
+  }
+  
+  th {
+    background: #f0f0f0 !important;
+    font-weight: bold;
+  }
+  
+  .table-wrap {
+    overflow: visible !important;
+  }
+  
+  /* ── EXERCISES ─────────────────────────────────────────────── */
+  .ex-list {
+    display: block !important;
+  }
+  
+  .ex-item {
+    background: #fff;
+    border: 1pt solid #ccc;
+    border-radius: 0;
+    padding: 1em;
+    margin: 1em 0;
+    page-break-inside: avoid;
+  }
+  
+  .ex-item.done {
+    border-color: #999;
+  }
+  
+  .ex-num {
+    display: inline-block;
+    background: #f0f0f0 !important;
+    color: #000;
+    border: 1pt solid #999;
+    border-radius: 0;
+    padding: 0.25em 0.5em;
+    margin-right: 0.5em;
+    font-weight: bold;
+  }
+  
+  .ex-title {
+    font-weight: bold;
+    font-size: 12pt;
+    margin: 0.5em 0;
+  }
+  
+  .badge {
+    display: inline-block;
+    border: 1pt solid #666;
+    padding: 0.125em 0.5em;
+    margin-right: 0.25em;
+    font-size: 8pt;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .badge-tema,
+  .badge-basico,
+  .badge-intermedio,
+  .badge-avanzado {
+    background: #f0f0f0 !important;
+    color: #000;
+  }
+  
+  .ex-enunciado {
+    margin: 1em 0;
+    font-size: 11pt;
+    line-height: 1.6;
+    white-space: normal;
+  }
+  
+  /* ── HERO SECTIONS ─────────────────────────────────────────── */
+  .hero {
+    background: #f5f5f5 !important;
+    border: 1pt solid #ccc;
+    border-radius: 0;
+    padding: 1.5em;
+    margin-bottom: 2em;
+    page-break-inside: avoid;
+  }
+  
+  .hero-tag {
+    background: #e0e0e0 !important;
+    color: #000;
+    border: 1pt solid #999;
+    padding: 0.25em 0.75em;
+    border-radius: 0;
+    font-size: 9pt;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .hero h1 {
+    margin-top: 0.5em;
+  }
+  
+  /* ── PROPS GRID ────────────────────────────────────────────── */
+  .props-grid {
+    display: block;
+  }
+  
+  .prop-card {
+    background: #f5f5f5 !important;
+    border: 1pt solid #ccc;
+    border-radius: 0;
+    padding: 0.75em;
+    margin: 0.5em 0;
+    page-break-inside: avoid;
+  }
+  
+  .prop-label {
+    font-weight: bold;
+    font-size: 9pt;
+    text-transform: uppercase;
+  }
+  
+  .prop-value {
+    font-size: 11pt;
+    margin-top: 0.25em;
+  }
+  
+  /* ── FLOW DIAGRAM ──────────────────────────────────────────── */
+  .flow-row {
+    display: block;
+    background: #f5f5f5 !important;
+    border: 1pt solid #ccc;
+    padding: 1em;
+    margin: 1em 0;
+  }
+  
+  .flow-node {
+    display: inline-block;
+    border: 2pt solid #000;
+    background: #fff !important;
+    padding: 0.5em 1em;
+    margin: 0.25em;
+    font-weight: bold;
+    font-size: 9pt;
+    transform: none !important;
+  }
+  
+  .flow-arrow {
+    display: inline;
+    margin: 0 0.5em;
+  }
+  
+  .flow-legend {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1pt solid #ccc;
+  }
+  
+  .flow-legend-item {
+    display: inline-block;
+    margin-right: 1em;
+    font-size: 9pt;
+  }
+  
+  .flow-legend-dot {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: 1pt solid #000;
+    background: #fff !important;
+    margin-right: 0.25em;
+    transform: none !important;
+  }
+  
+  /* ── STEPS ─────────────────────────────────────────────────── */
+  .steps {
+    display: block;
+  }
+  
+  .step {
+    background: #f5f5f5 !important;
+    border: 1pt solid #ccc;
+    border-radius: 0;
+    padding: 1em;
+    margin: 0.5em 0;
+    page-break-inside: avoid;
+  }
+  
+  .step-num {
+    display: inline-block;
+    background: #e0e0e0 !important;
+    color: #000;
+    border: 1pt solid #999;
+    border-radius: 0;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    line-height: 2em;
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
+  
+  /* ── PILLS & TAGS ──────────────────────────────────────────── */
+  .pill-row {
+    display: block;
+    margin: 0.5em 0;
+  }
+  
+  .pill {
+    display: inline-block;
+    border: 1pt solid #666;
+    padding: 0.25em 0.75em;
+    margin: 0.25em 0.5em 0.25em 0;
+    font-size: 9pt;
+    font-weight: bold;
+    background: #f5f5f5 !important;
+  }
+  
+  /* ── PROGRESS & STATS ──────────────────────────────────────── */
+  .progress-track {
+    display: none;
+  }
+  
+  .ex-stat {
+    display: inline-block;
+    margin-right: 1em;
+    padding: 0.5em;
+    border: 1pt solid #ccc;
+  }
+  
+  .ex-stat-n {
+    font-size: 18pt;
+    font-weight: bold;
+  }
+  
+  .ex-stat-l {
+    font-size: 8pt;
+    text-transform: uppercase;
+  }
+  
+  /* ── SECTIONS ──────────────────────────────────────────────── */
+  .section {
+    display: block !important;
+    page-break-before: auto;
+  }
+  
+  .section-tag {
+    display: inline-block;
+    font-size: 9pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.5em;
+  }
+  
+  .section-desc {
+    font-size: 11pt;
+    font-style: italic;
+    color: #444;
+  }
+  
+  /* ── PAGE BREAKS ───────────────────────────────────────────── */
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+  
+  .card,
+  .code-block,
+  .ex-item,
+  table,
+  .hero {
+    page-break-inside: avoid;
+  }
+  
+  /* Force new page for major sections */
+  .section:nth-child(n+2) {
+    page-break-before: always;
+  }
+  
+  /* ── INK SAVINGS ───────────────────────────────────────────── */
+  /* Remove background colors to save ink */
+  .card-accent.teal,
+  .card-accent.amber,
+  .card-accent.coral,
+  .card-accent.blue,
+  .card-accent.purple {
+    background: #f5f5f5 !important;
+    border-left-color: #666;
+  }
+  
+  /* ── PRINT INFO FOOTER ─────────────────────────────────────── */
+  body:after {
+    content: "\a \a ---\a Printed from Programación I - UTU ITI 2026\a Prof. Diego Méndez\a " attr(data-print-date);
+    white-space: pre;
+    font-size: 9pt;
+    color: #666;
+    text-align: center;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1pt solid #ccc;
+  }
+  
+  /* ── COVER PAGE (optional - uncomment to use) ─────────────── */
+  /*
+  body:before {
+    content: "Programación I\a Algoritmos y Fundamentos\a \a UTU - ITI 2026\a Prof. Diego Méndez";
+    white-space: pre;
+    text-align: center;
+    font-size: 24pt;
+    font-weight: bold;
+    display: block;
+    page-break-after: always;
+    padding-top: 3in;
+  }
+  */
+}
+
+/* ── PRINT BUTTON (visible only on screen) ─────────────────────── */
+.print-btn {
+  display: none;
+  padding: 8px 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+}
+
+.print-btn:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+}
+
+@media screen {
+  .print-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .print-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}

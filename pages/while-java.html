@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estructura WHILE en Java · Programación I</title>
+  <meta name="description" content="Estructura repetitiva WHILE en Java: WHILE, DO-WHILE, break, continue, bucles anidados y 20 ejercicios prácticos. Programación I – Prof. Diego Méndez – ITI 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">↺</div>
+      <div>
+        <span>Estructura WHILE</span>
+        <span class="logo-sub"> · Programación I · Prof. Diego Méndez · ITI 2026</span>
+      </div>
+    </div>
+    <nav class="nav-tabs" role="tablist" aria-label="Navegación principal">
+      <a class="nav-tab-link" href="../index.html">← Inicio</a>
+      <a class="nav-tab-link" href="if-java.html">Estructura IF</a>
+      <a class="nav-tab active" href="#intro"    role="tab" aria-selected="true">WHILE</a>
+      <a class="nav-tab"       href="#dowhile"  role="tab" aria-selected="false">DO-WHILE</a>
+      <a class="nav-tab"       href="#avanzado" role="tab" aria-selected="false">Avanzado</a>
+      <a class="nav-tab"       href="#practica" role="tab" aria-selected="false">Práctica</a>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== SECCIÓN 1: WHILE ============================== -->
+    <section id="intro" class="section active">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 05 · Estructuras de Control</div>
+        <h1>Estructura repetitiva<br><em>WHILE</em> en Java</h1>
+        <p>Las estructuras repetitivas permiten que un programa <strong>ejecute un bloque de código varias veces</strong>, mientras se cumpla una condición. Son esenciales para procesar colecciones, acumular resultados y automatizar tareas.</p>
+      </div>
+
+      <h2>¿Qué es un bucle?</h2>
+      <p>Un <strong>bucle</strong> (o ciclo) repite un bloque de instrucciones mientras una condición booleana sea verdadera. Sin ellos, para sumar 1000 números necesitaríamos 1000 líneas de código. Con un bucle, lo resolvemos en 4.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon" style="color:var(--teal)">①</div>
+          <div class="card-title">WHILE</div>
+          <div class="card-body">Evalúa la condición <strong>antes</strong> de ejecutar el cuerpo. Puede ejecutarse 0 veces si la condición es false desde el principio.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="color:var(--accent)">②</div>
+          <div class="card-title">DO-WHILE</div>
+          <div class="card-body">Evalúa la condición <strong>después</strong>. El cuerpo se ejecuta <strong>al menos una vez</strong>, sin importar la condición.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="color:var(--amber)">③</div>
+          <div class="card-title">break / continue</div>
+          <div class="card-body">Controlan el flujo dentro del bucle: <code>break</code> lo termina anticipadamente, <code>continue</code> salta la iteración actual.</div>
+        </div>
+      </div>
+
+      <!-- WHILE básico -->
+      <h2>Bucle WHILE</h2>
+      <p>El cuerpo se ejecuta <strong>mientras</strong> la condición sea verdadera. Antes de cada iteración Java evalúa la condición; si es false, el bucle termina y la ejecución continúa tras la llave de cierre.</p>
+
+      <div class="card card-accent teal">
+        <h3>Sintaxis general</h3>
+        <p><code>while (condiciónBooleana) { cuerpo }</code></p>
+        <p>La condición debe cambiar en algún momento dentro del cuerpo; de lo contrario el bucle nunca termina (bucle infinito).</p>
+      </div>
+
+      <div class="code-block" id="cb-while"></div>
+
+      <!-- Las 4 partes -->
+      <h2>Las 4 partes esenciales del WHILE</h2>
+      <p>Todo bucle WHILE correcto tiene cuatro partes bien definidas. Si falta alguna el programa tendrá un error o entrará en un bucle infinito.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Inicialización</h3>
+            <p>Declará y asigná el valor inicial a la variable de control <strong>antes</strong> del while. Sin ella el compilador no sabe con qué valor arrancar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Condición</h3>
+            <p>Expresión booleana evaluada <strong>antes de cada iteración</strong>. Cuando es false, el bucle termina. Usá operadores relacionales y lógicos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Cuerpo</h3>
+            <p>Las instrucciones que se repiten. Puede ser una sola línea o un bloque complejo. Aquí se realiza el trabajo útil del bucle.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Actualización</h3>
+            <p>Modifica la variable de control para que la condición eventualmente sea false. Sin ella el bucle nunca termina.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block" id="cb-while-parts"></div>
+
+      <div class="card card-accent coral">
+        <h3>⚠ Bucle infinito: el error más temido</h3>
+        <p>Un bucle infinito ocurre cuando la condición <em>nunca</em> se vuelve false. Causas comunes: olvidarse de actualizar la variable (<code>i++</code>), actualizar en dirección equivocada (<code>i--</code> cuando debería ser <code>i++</code>), o usar <code>!=</code> con un valor que nunca se alcanza exactamente.</p>
+      </div>
+
+      <!-- SIMULADOR DE BUCLE WHILE -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">Simulador de bucle WHILE</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Modificá el límite y observá cuántas iteraciones se ejecutan y cómo acumula la suma.
+      </p>
+
+      <div class="wgt">
+        <div class="wgt-header dot-teal">
+          <span class="wgt-title">Simulador WHILE — suma acumulada</span>
+          <div class="wgt-ctrl">
+            <label>limite =</label>
+            <input type="number" id="ls-limit" value="5" min="1" max="15" oninput="runLoopSim()">
+          </div>
+        </div>
+        <div class="loop-sim-body">
+          <div class="loop-sim-code" id="loop-sim-code">
+            <!-- built by JS -->
+          </div>
+          <div class="loop-sim-panel">
+            <div class="loop-sim-lbl">// iteraciones</div>
+            <div class="loop-iter-list" id="loop-iter-list"></div>
+            <div class="loop-summary" id="loop-summary"></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 2: DO-WHILE =========================== -->
+    <section id="dowhile" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 05 · DO-WHILE</div>
+        <h1>Bucle<br><em>DO-WHILE</em></h1>
+        <p>La variante del WHILE que <strong>garantiza al menos una ejecución</strong> del cuerpo. La condición se evalúa al final de cada iteración, no al principio.</p>
+      </div>
+
+      <h2>Sintaxis y ejemplo</h2>
+      <p>La diferencia clave con WHILE: el cuerpo se ejecuta primero y la condición se evalúa después. Esto hace que el cuerpo siempre se ejecute al menos una vez, incluso si la condición es false desde el principio.</p>
+
+      <div class="code-block" id="cb-do-while"></div>
+
+      <div class="card card-accent amber">
+        <h3>⚠ No olvides el punto y coma</h3>
+        <p>La sintaxis DO-WHILE requiere un <code>;</code> después del <code>while(condición)</code>. Es el único caso en Java donde un <code>while</code> termina con punto y coma. Olvidarlo es un error de compilación frecuente.</p>
+      </div>
+
+      <!-- COMPARACIÓN INTERACTIVA -->
+      <h2>WHILE vs DO-WHILE: comparación lado a lado</h2>
+      <p>Ingresá un valor inicial para <code>x</code>. El bucle repite mientras <code>x &lt; 5</code>. Observá cómo cambia el comportamiento según el tipo de bucle.</p>
+
+      <div class="wgt">
+        <div class="wgt-header dot-amber">
+          <span class="wgt-title">Comparador WHILE / DO-WHILE</span>
+          <div class="wgt-ctrl">
+            <label>int x =</label>
+            <input type="number" id="cmp-val" value="3" min="-5" max="10" oninput="runCmp()">
+          </div>
+        </div>
+        <div class="wgt-body" style="padding:0">
+          <div class="cmp-grid">
+            <div class="cmp-panel">
+              <div class="cmp-label lbl-while">WHILE</div>
+              <div class="cmp-code">
+                <span class="kw">int</span> x = <span class="val" id="cmp-while-xval">3</span>;<br>
+                <span class="kw">while</span> (x <span class="op">&lt;</span> <span class="nm">5</span>) {<br>
+                &nbsp;&nbsp;System.out.println(x);<br>
+                &nbsp;&nbsp;x++;<br>
+                }
+              </div>
+              <div class="loop-sim-lbl" style="margin-bottom:4px">// salida (<span id="cmp-while-iter">—</span> iteraciones)</div>
+              <div class="cmp-result" id="cmp-while-result">—</div>
+            </div>
+            <div class="cmp-panel">
+              <div class="cmp-label lbl-dowhile">DO-WHILE</div>
+              <div class="cmp-code">
+                <span class="kw">int</span> x = <span class="val" id="cmp-do-xval">3</span>;<br>
+                <span class="kw">do</span> {<br>
+                &nbsp;&nbsp;System.out.println(x);<br>
+                &nbsp;&nbsp;x++;<br>
+                } <span class="kw">while</span> (x <span class="op">&lt;</span> <span class="nm">5</span>);
+              </div>
+              <div class="loop-sim-lbl" style="margin-bottom:4px">// salida (<span id="cmp-do-iter">—</span> iteraciones)</div>
+              <div class="cmp-result" id="cmp-do-result">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Tabla comparativa</h2>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>WHILE</th>
+                <th>DO-WHILE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>¿Cuándo evalúa la condición?</td>
+                <td>Antes del cuerpo</td>
+                <td>Después del cuerpo</td>
+              </tr>
+              <tr>
+                <td>Mínimo de ejecuciones</td>
+                <td><span class="pill pill-amber">0 veces</span></td>
+                <td><span class="pill pill-teal">1 vez</span></td>
+              </tr>
+              <tr>
+                <td>¿Tiene ; al final?</td>
+                <td>No</td>
+                <td>Sí — <code>while(cond);</code></td>
+              </tr>
+              <tr>
+                <td>Uso más típico</td>
+                <td>Recorrido de listas, contadores</td>
+                <td>Menús, validación de entrada</td>
+              </tr>
+              <tr>
+                <td>¿Condición puede ser false al inicio?</td>
+                <td>Sí — el cuerpo no se ejecuta</td>
+                <td>Sí — pero el cuerpo se ejecuta igual</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="code-block" id="cb-while-vs-dowhile"></div>
+
+      <div class="card card-accent teal">
+        <h3>¿Cuándo elegir DO-WHILE?</h3>
+        <p>Cuando necesitás que el cuerpo se ejecute <strong>al menos una vez</strong> antes de verificar la condición. El caso más clásico es la <strong>validación de entrada del usuario</strong>: siempre tenés que pedirle el dato al menos una vez, y luego repetir si no es válido. También es ideal para menús interactivos.</p>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 3: AVANZADO ========================== -->
+    <section id="avanzado" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">Módulo 05 · Técnicas Avanzadas</div>
+        <h1>Técnicas avanzadas<br>con bucles</h1>
+        <p>Control de flujo dentro de bucles con <code>break</code> y <code>continue</code>, bucles anidados, el patrón acumulador, y los errores más comunes a evitar.</p>
+      </div>
+
+      <!-- BREAK -->
+      <h2>Instrucción <code>break</code></h2>
+      <p><code>break</code> termina el bucle inmediatamente, sin esperar a que la condición sea false. La ejecución continúa en la primera instrucción después del bucle. Es útil cuando encontrás lo que buscabas y no tiene sentido seguir iterando.</p>
+
+      <div class="code-block" id="cb-break"></div>
+
+      <!-- CONTINUE -->
+      <h2>Instrucción <code>continue</code></h2>
+      <p><code>continue</code> salta el resto del cuerpo de la iteración actual y va directamente a evaluar la condición para la siguiente. El bucle no termina; solo omite parte del trabajo en esa vuelta.</p>
+
+      <div class="code-block" id="cb-continue"></div>
+
+      <div class="card card-accent coral">
+        <h3>⚠ continue y la actualización de la variable</h3>
+        <p>Si usás <code>continue</code>, asegurate de que la <strong>actualización de la variable de control</strong> esté <em>antes</em> del <code>continue</code>. Si está después, el <code>continue</code> la saltará en algunas iteraciones y el bucle puede volverse infinito.</p>
+      </div>
+
+      <!-- BUCLES ANIDADOS -->
+      <h2>Bucles anidados</h2>
+      <p>Un bucle puede contener otro bucle en su cuerpo. Por cada iteración del externo, el interno <strong>se ejecuta completo</strong>. Son útiles para procesar tablas, matrices o generar patrones.</p>
+
+      <div class="code-block" id="cb-nested"></div>
+
+      <div class="card card-accent blue">
+        <h3>Clave de los bucles anidados: reiniciar la variable interna</h3>
+        <p>La variable del bucle interno (<code>j</code>) debe reiniciarse <strong>dentro</strong> del bucle externo, justo antes del bucle interno. Si se declara fuera, la segunda vuelta del externo encontrará <code>j</code> ya en su valor final y el interno no ejecutará.</p>
+      </div>
+
+      <!-- PATRÓN ACUMULADOR -->
+      <h2>Patrón acumulador</h2>
+      <p>El acumulador es una variable que <strong>reúne un resultado progresivamente</strong> a través de las iteraciones. Hay tres sabores principales según la operación:</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon" style="font-family:'DM Mono',monospace; color:var(--teal); font-size:1rem">+=</div>
+          <div class="card-title">Suma acumulada</div>
+          <div class="card-body">Valor inicial: <code>0</code> (neutro de la suma). Usado para sumar series, calcular promedios o totales.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="font-family:'DM Mono',monospace; color:var(--amber); font-size:1rem">*=</div>
+          <div class="card-title">Producto acumulado</div>
+          <div class="card-body">Valor inicial: <code>1</code> (neutro de la multiplicación). Usado para factoriales, potencias y combinaciones.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="font-family:'DM Mono',monospace; color:var(--accent); font-size:1rem">++</div>
+          <div class="card-title">Contador</div>
+          <div class="card-body">Valor inicial: <code>0</code>. Cuenta cuántos elementos cumplen una condición dentro del bucle.</div>
+        </div>
+      </div>
+
+      <div class="code-block" id="cb-accumulator"></div>
+
+      <!-- TRAZADOR DE ACUMULADOR -->
+      <h3 style="margin: 2rem 0 0.4rem; font-size: 1rem;">Trazador de suma acumulada</h3>
+      <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--muted);">
+        Ingresá N y visualizá cómo crece la suma en cada iteración del bucle.
+      </p>
+
+      <div class="wgt">
+        <div class="wgt-header dot-accent">
+          <span class="wgt-title">Trazador acumulador — suma 1 a N</span>
+          <div class="wgt-ctrl">
+            <label>int N =</label>
+            <input type="number" id="acc-n" value="5" min="1" max="12" oninput="runAccTracer()">
+          </div>
+        </div>
+        <div class="acc-tracer-body">
+          <div class="acc-tracer-steps">
+            <div class="acc-step-row acc-header">
+              <span class="acc-i">i</span>
+              <span class="acc-sum">suma</span>
+              <span class="acc-op">operación</span>
+            </div>
+            <div id="acc-steps-body"></div>
+          </div>
+          <div class="acc-tracer-aside">
+            <div class="acc-aside-lbl">// resultado final</div>
+            <div class="acc-result-box" id="acc-result-val">—</div>
+            <div class="acc-aside-lbl">// fórmula</div>
+            <div class="acc-formula" id="acc-formula-val">N×(N+1)/2</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ERRORES COMUNES -->
+      <h2>Errores comunes — incorrecto vs. correcto</h2>
+
+      <div class="error-list">
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Bucle infinito — falta actualización</div>
+            <div class="error-code">
+              <span class="kw">int</span> i = <span class="nm">1</span>;<br>
+              <span class="kw">while</span> (i <span class="op">&lt;=</span> <span class="nm">10</span>) {<br>
+              &nbsp;&nbsp;System.out.<span class="fn">println</span>(i);<br>
+              &nbsp;&nbsp;<span class="cm bad">// olvidé i++</span><br>
+              }<br>
+              <span class="cm">// i nunca cambia → infinito</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Correcto — actualización presente</div>
+            <div class="error-code">
+              <span class="kw">int</span> i = <span class="nm">1</span>;<br>
+              <span class="kw">while</span> (i <span class="op">&lt;=</span> <span class="nm">10</span>) {<br>
+              &nbsp;&nbsp;System.out.<span class="fn">println</span>(i);<br>
+              &nbsp;&nbsp;<span class="good">i++</span>; <span class="cm">// avanza hacia el fin</span><br>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ continue antes de la actualización</div>
+            <div class="error-code">
+              <span class="kw">int</span> i = <span class="nm">0</span>;<br>
+              <span class="kw">while</span> (i <span class="op">&lt;</span> <span class="nm">10</span>) {<br>
+              &nbsp;&nbsp;<span class="kw">if</span> (i <span class="op">%</span> <span class="nm">2</span> <span class="op">==</span> <span class="nm">0</span>) <span class="kw bad">continue</span>;<br>
+              &nbsp;&nbsp;System.out.<span class="fn">println</span>(i);<br>
+              &nbsp;&nbsp;<span class="bad">i++</span>; <span class="cm">// nunca llega acá con i par</span><br>
+              }
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Actualización antes del continue</div>
+            <div class="error-code">
+              <span class="kw">int</span> i = <span class="nm">0</span>;<br>
+              <span class="kw">while</span> (i <span class="op">&lt;</span> <span class="nm">10</span>) {<br>
+              &nbsp;&nbsp;<span class="good">i++</span>; <span class="cm">// actualizar primero</span><br>
+              &nbsp;&nbsp;<span class="kw">if</span> (i <span class="op">%</span> <span class="nm">2</span> <span class="op">==</span> <span class="nm">0</span>) <span class="kw good">continue</span>;<br>
+              &nbsp;&nbsp;System.out.<span class="fn">println</span>(i);<br>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Punto y coma accidental en WHILE</div>
+            <div class="error-code">
+              <span class="kw">int</span> i = <span class="nm">0</span>;<br>
+              <span class="kw">while</span> (i <span class="op">&lt;</span> <span class="nm">5</span>)<span class="bad">;</span>  <span class="cm">// ← ; vacía el cuerpo</span><br>
+              {<br>
+              &nbsp;&nbsp;System.out.<span class="fn">println</span>(i);<br>
+              &nbsp;&nbsp;i++;<br>
+              }<br>
+              <span class="cm">// El while no tiene cuerpo → infinito</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Sin punto y coma espurio</div>
+            <div class="error-code">
+              <span class="kw">int</span> i = <span class="nm">0</span>;<br>
+              <span class="kw">while</span> (i <span class="op">&lt;</span> <span class="nm">5</span>) <span class="good">{</span><br>
+              &nbsp;&nbsp;System.out.<span class="fn">println</span>(i);<br>
+              &nbsp;&nbsp;i++;<br>
+              <span class="good">}</span><br>
+              <span class="cm">// La llave abre el cuerpo real</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-item">
+          <div class="error-wrong">
+            <div class="err-header err-ko">✗ Neutro incorrecto en acumulador</div>
+            <div class="error-code">
+              <span class="cm">// Queremos calcular 5!</span><br>
+              <span class="kw">int</span> fact = <span class="bad">0</span>;  <span class="cm">// neutro incorrecto</span><br>
+              <span class="kw">int</span> n = <span class="nm">5</span>;<br>
+              <span class="kw">while</span> (n <span class="op">&gt;</span> <span class="nm">0</span>) {<br>
+              &nbsp;&nbsp;fact <span class="op">*=</span> n;<br>
+              &nbsp;&nbsp;n--;<br>
+              }<br>
+              <span class="cm">// fact = 0 (cualquier n * 0 = 0)</span>
+            </div>
+          </div>
+          <div class="error-right">
+            <div class="err-header err-ok">✓ Neutro correcto para multiplicación</div>
+            <div class="error-code">
+              <span class="kw">int</span> fact = <span class="good">1</span>;  <span class="cm">// neutro de la multiplicación</span><br>
+              <span class="kw">int</span> n = <span class="nm">5</span>;<br>
+              <span class="kw">while</span> (n <span class="op">&gt;</span> <span class="nm">0</span>) {<br>
+              &nbsp;&nbsp;fact <span class="op">*=</span> n;<br>
+              &nbsp;&nbsp;n--;<br>
+              }<br>
+              <span class="cm">// fact = 120 (correcto)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BUENAS PRÁCTICAS -->
+      <h2>Buenas prácticas</h2>
+
+      <div class="best-practices">
+        <div class="bp-item">
+          <div class="bp-icon">①</div>
+          <div class="bp-content">
+            <h4>Elegí la condición de salida más clara</h4>
+            <p>Preferí <code>i &lt; 10</code> o <code>i &lt;= 9</code> sobre <code>i != 10</code>. Con <code>!=</code>, si la variable saltara el valor exacto (por suma de más de 1), el bucle sería infinito.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">②</div>
+          <div class="bp-content">
+            <h4>Poné un límite de seguridad en bucles de entrada</h4>
+            <p>Cuando el bucle depende de entrada del usuario, agregá un contador máximo de intentos para evitar que un bug o entrada maliciosa congele el programa.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">③</div>
+          <div class="bp-content">
+            <h4>Declaré la variable del bucle interno dentro del externo</h4>
+            <p>Declarar <code>int j</code> dentro del bucle externo asegura que se reinicia en cada vuelta. Declararla fuera es un error frecuente que hace que el interno no ejecute a partir de la segunda iteración.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">④</div>
+          <div class="bp-content">
+            <h4>Usá break con comentario que explique por qué</h4>
+            <p>Un <code>break</code> sin contexto es difícil de leer. Agregá un comentario breve: <code>break; // encontramos el primer divisor</code>. Esto evita confusión sobre por qué el bucle puede terminar antes de la condición principal.</p>
+          </div>
+        </div>
+        <div class="bp-item">
+          <div class="bp-icon">⑤</div>
+          <div class="bp-content">
+            <h4>Limitá el anidamiento a 2 niveles</h4>
+            <p>Más de dos niveles de bucles anidados hace el código difícil de leer y depurar. Si necesitás más profundidad, extraé el bucle interno a un método separado.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===== SECCIÓN 4: PRÁCTICA ========================== -->
+    <section id="practica" class="section">
+
+      <div class="hero">
+        <div class="hero-tag">20 Ejercicios · Estructura WHILE en Java</div>
+        <h1>Práctica:<br>estructura WHILE en Java</h1>
+        <p>Ejercicios graduados para consolidar el aprendizaje. Desde predicción de outputs hasta diseño de algoritmos clásicos como Fibonacci y el algoritmo de Euclides.</p>
+      </div>
+
+      <div class="ex-stats">
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-total">20</span><span class="ex-stat-l">ejercicios</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-done">0</span><span class="ex-stat-l">completados</span></div>
+        <div class="ex-stat"><span class="ex-stat-n" id="cnt-pct">0%</span><span class="ex-stat-l">progreso</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterEx('todos',this)">Todos (20)</button>
+        <button class="filter-btn" onclick="filterEx('Básico',this)">Básico (8)</button>
+        <button class="filter-btn" onclick="filterEx('Intermedio',this)">Intermedio (8)</button>
+        <button class="filter-btn" onclick="filterEx('Avanzado',this)">Avanzado (4)</button>
+      </div>
+
+      <div class="ex-list" id="ex-list"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav">
+    <a class="nav-tab-link" href="../index.html">← Inicio</a>
+    <button class="nav-tab active"  onclick="showSection('intro')">WHILE</button>
+    <button class="nav-tab"         onclick="showSection('dowhile')">DO-WHILE</button>
+    <button class="nav-tab"         onclick="showSection('avanzado')">Avanzado</button>
+    <button class="nav-tab"         onclick="showSection('practica')">Práctica</button>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>Estructura WHILE en Java &middot; Prof. Diego Méndez &middot; ITI 2026</p>
+  </footer>
+
+  <script src="../js/core/state-manager.js"></script>
+  <script src="../js/utils/ui-utils.js"></script>
+  <script src="../js/utils/copy-code.js"></script>
+  <script src="../js/pages/while-java.js"></script>
+</body>
+
+</html>

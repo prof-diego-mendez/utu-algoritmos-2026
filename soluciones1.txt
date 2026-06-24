@@ -1,0 +1,296 @@
+EJERCICIO 1
+
+ESCRIBIR "1) me levanto"
+ESCRIBIR "2) me baño"
+ESCRIBIR "3) me cepillo los dientes"
+ESCRIBIR "4) me visto"
+ESCRIBIR "5) desayuno"
+ESCRIBIR "6) preparo la mochila"
+ESCRIBIR "7) salgo a tomar el bus"
+ESCRIBIR "8) me tomo el bus"
+ESCRIBIR "9) me bajo en la parada correspondiente"
+ESCRIBIR "10) camino hasta el ITI"
+ESCRIBIR "11) entro al salón"
+
+EJERCICIOS 2
+
+LEER tipoPan
+LEER ingrediente1
+LEER ingrediente2
+ESCRIBIR "Tu sandwich de " + tipoPan + " es de " + ingrediente1 + " y " + ingrediente2
+
+EJERCICIO 3
+
+LEER num1
+LEER num2
+suma = num1 + num2
+resta = num1 - num2
+promedio = (num1 + num2) / 2
+ESCRIBIR "Suma: " + suma
+ESCRIBIR "Resta: " + resta
+ESCRIBIR "Promedio: " + promedio
+
+EJERCICIO 4
+
+LEER edad
+SI edad >= 65 ENTONCES
+ESCRIBIR "Es adulto"
+SINO
+SI edad >= 18 ENTONCES
+ESCRIBIR "Es mayor de edad"
+SINO
+ESCRIBIR "Es menor"
+
+
+EJERCICIO 5
+
+LEER num
+SI num mod 2 = 0 & num mod 3 = 0 ENTONCES
+  ESCRIBIR "Múltipo de 2 y 3"
+SINO
+  SI num mod 2 = 0 ENTONCES
+    ESCRIBIR "Es par"
+  SINO
+    SI num mod 3 = 0 ENTONCES
+      ESCRIBIR "Es múltiplo de 3"
+    SINO
+      ESCRIBIR "No es múltiplo de 2 ni 3"
+
+EJERCICIO 6
+
+PARA i = 1 HASTA 100 HACER
+  ESCRIBIR i
+FIN PARA
+
+PARA i = 1 HASTA 100 HACER
+  SI i mod 2 = 0 ENTONCES
+    ESCRIBIR i
+  FIN SI
+FIN PARA
+
+PARA i = 100 HASTA 1 HACER
+  ESCRIBIR i
+FIN PARA
+
+EJERCICIO 7
+
+nota1 = 4
+nota2 = 6
+nota3 = 9
+promedio = (nota1 + nota2 + nota3) / 3
+SI promedio = 10 ENTONCES
+  ESCRIBIR "¡Felicitaciones!"
+FIN SI
+SI promedio = 9 ENTONCES
+  ESCRIBIR " Excelente"
+FIN SI
+SI promedio >= 7 ENTONCES
+  ESCRIBIR "Muy bueno"
+FIN SI
+SI promedio >= 6 ENTONCES
+  ESCRIBIR "Aprobado"
+SINO
+  ESCRIBIR "Desaprobado"
+FIN SI
+
+EJERCICIO 8
+
+saldo = 10000
+ESCRIBIR "Ingrese el monto a retirar"
+LEER retiro
+SI retiro > saldo ENTONCES
+  ESCRIBIR "Saldo insuficiente"
+SINO
+  SI retiro mod 100 != 0 ENTONCES
+    ESCRIBIR "Ingrese un múltiplo de 100"
+  SINO
+    saldo = saldo - retiro
+    ESCRIBIR "Se han retirado " + retiro
+    ESCRIBIR "Saldo actual: " + saldo
+
+EJERCICIO 9
+
+num = 42
+intentos = 0
+salir = falso
+MIENTRAS salir = falso HACER
+  ESCRIBIR "Adivine el número..."
+  LEER numUsuario
+  intentos = intentos + 1
+  SI numUsuario = num ENTONCES
+    ESCRIBIR "Ganaste!!! El número era " + num
+    ESCRIBIR "Intentos: " + intentos
+    salir = verdadero
+  SINO
+    SI numUsuario > num ENTONCES
+      ESCRIBIR "Ingrese un número menor"
+    SINO
+      ESCRIBIR "Ingrese un número mayor"
+    FIN SI
+  FIN SI
+  SI intentos = 7 ENTONCES
+    salir = verdadero
+    ESCRIBIR "Game Over"
+    ESCRIBIR "Has alcanzado el máximos de intentos"
+  FIN SI
+FIN MIENTRAS
+
+
+EJERCICIO 10
+
+LEER n
+suma = 0
+PARA i = 1 HASTA n HACER
+  suma = suma + i
+FIN PARA
+ESCRIBIR "Suma total: " + suma
+
+LEER n
+resultado= 1
+PARA i = 1 HASTA n HACER
+  resultado= resultado* i
+FIN PARA
+ESCRIBIR "Factorial: " + resultado
+
+LEER n
+sumaCuadrados = 0
+PARA i = 1 HASTA n HACER
+  sumaCuadrados = sumaCuadrados + i ^ 2
+FIN PARA
+ESCRIBIR "Suma total: " + sumaCuadrados
+
+EJERCICIO 11
+
+rangoEdad = falso
+MIENTRAS rangoEdad = falso HACER
+  LEER edad
+  SI edad < 0 ENTONCES
+    ESCRIBIR "La edad no puede ser negativa"
+  SINO
+    SI edad > 120 ENTONCES
+      ESCRIBIR "La edad es muy alta"
+    SINO
+      ESCRIBIR "La edad ingresada es correcta"
+      rangoEdad = verdadero
+    FIN SI
+  FIN SI
+FIN MIENTRAS
+
+
+EJERCICIO 12
+
+LEER num
+divisores = 0
+PARA i = 1 HASTA num HACER
+  SI num mod i = 0 ENTONCES
+    divisores = divisores + 1
+  FIN SI
+FIN PARA
+SI num = 1 OR divisores = 2 ENTONCES
+  ESCRIBIR num + " es primo"
+SINO
+  ESCRIBIR num + " NO es primo"
+FIN SI
+
+
+EJERCICIO 13
+
+min = 0
+max = 0
+LEER num
+min = num
+max = num
+PARA i = 1 HASTA 10 HACER
+    ESCRIBIR “Ingrese un valor”
+    LEER num
+    SÍ num < min ENTONCES
+        min = num
+    SINO
+        SÍ num > max ENTONCES
+        max = num
+    FIN SI
+FIN PARA
+ESCRIBIR "Mínimo = " + min
+ESCRIBIR "Máximo = " + max
+
+
+EJERCICIO 14
+
+ESCRIBIR "  1 - Celsius"
+ESCRIBIR "  2 - Fahrenheit"
+ESCRIBIR "  3 - Kelvin"
+
+ESCRIBIR "Elegí la escala de ORIGEN:"
+LEER origen
+ESCRIBIR "Elegí la escala DESTINO:"
+LEER destino
+ESCRIBIR "Ingresá el valor a convertir:"
+LEER valor
+
+SI origen = 1 & destino = 2 ENTONCES
+  resultado = valor × 9/5 + 32
+FIN SI
+
+SI origen = 1 & destino = 3 ENTONCES
+  resultado = valor + 273.15
+FIN SI
+
+SI origen = 2 & destino = 1 ENTONCES
+  resultado = (valor - 32) × 5/9
+FIN SI
+
+SI origen = 2 & destino = 3 ENTONCE
+  celsius = (valor - 32) × 5/9
+  resultado = celsius + 273.15
+FIN SI
+
+SI origen = 3 & destino = 1 ENTONCES	// Kelvin → Celsius
+  resultado = valor - 273.15
+FIN SI
+
+SI origen = 3 & destino = 2 ENTONCE  	// Kelvin → Fahrenheit
+  celsius = valor - 273.15
+  resultado = celsius × 9/5 + 32
+FIN SI
+
+ESCRIBIR "Resultado: " + resultado
+
+
+EJERCICIO 15
+
+PARA i = 1 HASTA 10 HACER
+  ESCRIBIR "1 x " + i + " = " + (1*i)
+FIN PARA
+
+PARA i = 1 HASTA 10 HACER
+  PARA j = 1 HASTA 10 HACER
+    ESCRIBIR i + " x " + j + " = " + (i*j)
+  FIN PARA
+FIN PARA
+
+EJERCICIO 16
+
+votosB = 39
+votosC = 56
+nulos = 10
+totalValidos = votosA + votosB + votosC
+porcentajeA = (votosA / totalValidos) * 100
+porcentajeB = (votosB / totalValidos) * 100
+porcentajeC = (votosC / totalValidos) * 100
+SI votosA > votosB & votosA > votosC ENTONCES
+  ESCRIBIR "Ganador candidato A"
+SINO
+  SI votosB > votosC ENTONCES
+    ESCRIBIR "Ganador candidato B"
+  SINO
+    ESCRIBIR "Ganador candidato C"
+  FIN SI
+FIN SI
+ESCRIBIR "Candiato A tuvo el " + porcentajeA + "% de votos"
+ESCRIBIR "Candiato B tuvo el " + porcentajeB + "% de votos"
+ESCRIBIR "Candiato C tuvo el " + porcentajeC + "% de votos"
+
+
+
+
+

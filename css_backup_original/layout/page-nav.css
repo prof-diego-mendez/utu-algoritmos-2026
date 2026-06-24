@@ -1,0 +1,106 @@
+/* ============================================================
+   VARIABLES PAGE (index2) — Scrollable single-page layout
+   ============================================================ */
+
+/* Scrollable page wrapper (no tab switching) */
+.page-scroll .section {
+  display: block;
+  animation: fadeUp 0.5s ease both;
+}
+
+/* Section tag label */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-family: 'DM Mono', monospace;
+}
+
+.section-tag::before {
+  content: '§';
+  font-size: 0.9rem;
+}
+
+.section-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+}
+
+/* ── SCROLLABLE PAGE NAV ── */
+.page-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(14, 15, 19, 0.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+
+/* When page-nav is below site-header, offset its sticky position */
+.site-header ~ .page-nav {
+  top: 60px;
+  z-index: 99;
+}
+
+.page-nav-inner {
+  max-width: clamp(320px, 90%, 860px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 56px;
+}
+
+.page-nav-logo {
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-nav-logo .logo-icon {
+  width: 26px;
+  height: 26px;
+  font-size: 0.8rem;
+}
+
+.page-nav-logo span { color: var(--faint); }
+
+.page-nav-links {
+  display: flex;
+  gap: 0;
+  margin-left: auto;
+}
+
+.page-nav-link {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.03em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+.page-nav-link:hover {
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.page-nav-link.active { color: var(--accent); }
